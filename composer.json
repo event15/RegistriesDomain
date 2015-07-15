@@ -1,0 +1,26 @@
+{
+    "name": "madkom/registries",
+    "description": "Rejestr firmowy",
+    "require-dev": {
+        "behat/behat": "^3.0@dev",
+        "phpspec/phpspec": "^2.2@dev"
+    },
+    "authors": [
+        {
+            "name": "Marek Woś",
+            "email": "m.wos@madkom.pl"
+        },
+        {
+            "name": "Robert Stańkiewicz",
+            "email": "r.stankiewicz@madkom.pl"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "config": {
+        "bin-dir": "bin"
+    },
+    "autoload": {
+        "psr-0": {"": "src/"}
+    }
+}
