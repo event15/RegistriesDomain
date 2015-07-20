@@ -1,0 +1,9 @@
+CarRegistry:
+  type: entity
+  OneToMany:
+    targetEntity: Car
+    joinTable:
+      name: CarRegistry
+      fields:
+        cars:
+          type: array

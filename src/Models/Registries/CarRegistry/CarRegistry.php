@@ -9,7 +9,13 @@
 namespace Models\Registries\CarRegistry;
 
 
-class CarRegistry
+use Models\Registries\Registry;
+
+class CarRegistry extends Registry
 {
+    /**
+     * @var array
+     */
+    private $cars = array();
 
 }

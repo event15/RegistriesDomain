@@ -1,0 +1,29 @@
+Car:
+  type: entity
+  table: Car
+  id:
+    carId:
+      type: integer
+      generator:
+        strategy: AUTO
+  fields:
+    brand:
+      type: string
+    model:
+      type: string
+    registrationNumber:
+      type: string
+    insurer:
+      type: string
+    others:
+      type: string
+    departments:
+      type: array
+    OC:
+      type: Term
+    AC:
+      type: Term
+    ASS:
+      type: Term
+    review:
+      type: Term

@@ -8,13 +8,9 @@
 
 require_once __DIR__.'/../vendor/autoload.php';
 
+$app = new Silex\Application();
 $app['debug'] = true;
 
-$app = new Silex\Application();
 
-$app->mount('/samochody', new \Registries\Registries());
-
-
-
-
+$app->mount('/registry', new \API\Controllers\RegistryControllerProvider());
 $app->run();

@@ -11,5 +11,23 @@ namespace Models\Registries;
 
 class Term
 {
+    /**
+     * @var \DateTime
+     */
+    private $dateFrom;
 
+    /**
+     * @var \DateTime
+     */
+    private $dateTo;
+
+    /**
+     * @var string
+     */
+    private $department;
+
+    /**
+     * @var int
+     */
+    private $reminderTime;
 }
