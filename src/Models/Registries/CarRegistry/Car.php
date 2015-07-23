@@ -9,8 +9,6 @@
 namespace Models\Registries\CarRegistry;
 
 
-use Models\Registries\Term;
-
 class Car
 {
     /**
@@ -42,30 +40,8 @@ class Car
      * @var string
      */
     private $others;
-
-    /**
-     * @var array
-     */
-    private $departments = [];
-
-    /**
-     * @var Term
-     */
     private $OC;
-
-    /**
-     * @var Term
-     */
     private $AC;
-
-    /**
-     * @var Term
-     */
     private $ASS;
-
-    /**
-     * @var Term
-     */
     private $review;
-
 }

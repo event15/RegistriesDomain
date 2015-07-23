@@ -17,21 +17,25 @@ abstract class Registry
     /**
      * @var string
      */
-    protected $name;
+    protected $registryName;
+
+    protected $createdBy;
 
     /**
      * @var \DateTime
      */
     protected $createDate;
 
+    protected $registerType;
 
     /**
      * Registry constructor.
      * @param string $name
      */
-    public function __construct($name)
+    public function __construct($name, $createdBy)
     {
         $this->name = $name;
+        $this->createdBy = $createdBy;
         $this->createDate = new \DateTime();
     }
 
@@ -41,6 +45,11 @@ abstract class Registry
     public function changeName($name)
     {
         $this->name = $name;
+    }
+
+    public function showDate($formatDate)
+    {
+        return $this->createDate->format($formatDate);
     }
 
 }

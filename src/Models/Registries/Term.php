@@ -11,6 +11,7 @@ namespace Models\Registries;
 
 class Term
 {
+    private $termId;
     /**
      * @var \DateTime
      */
@@ -30,4 +31,8 @@ class Term
      * @var int
      */
     private $reminderTime;
+
+    private $regId;
+
+    private $reminderType;
 }

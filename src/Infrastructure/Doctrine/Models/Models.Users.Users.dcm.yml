@@ -1,0 +1,22 @@
+Models/Users/Users:
+  type: entity
+
+  id:
+    userId:
+        type: integer
+        generator:
+          strategy: AUTO
+
+  fields:
+    login:
+      type: string
+      length: 25
+    password:
+      type: string
+      length: 50
+    email:
+      type: string
+      length: 50
+    rights:
+      type: string
+      length: 100

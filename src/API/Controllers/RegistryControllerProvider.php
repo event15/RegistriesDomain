@@ -29,18 +29,26 @@ class RegistryControllerProvider implements ControllerProviderInterface
         /** @var ControllerCollection $facotry */
         $ControllerCollection = $app['controllers_factory'];
 
-        $ControllerCollection->post('/{type}', function(Application $app, Request $request, $type) {
+
+        $ControllerCollection->put('/registry/{type}', function(Request $request, $type) {
             $registryFactory = new RegistryFactory();
-            $obj = $registryFactory->create($request->get('name'), $type);
+
+
+            $obj = $registryFactory->create($request->get('name'), $type, $request->get('createdBy'));
+            $obj->changeName($request->get('name') . " " . $obj->showDate("Y"));
             var_dump($obj);
 
-            return new Response('Udało się dodać!', 200);
+            //$obj->
+
+
+            return new Response("OK", 200);
         })->assert('type', RegistryFactory::CAR_REGISTRY . '|' . RegistryFactory::DEPOSIT_REGISTRY . '|' . RegistryFactory::POLICY_REGISTRY);
 
-        $ControllerCollection->get('/show/{type}', function(Application $app, Request $request, $type) {
-            return $app->escape("Dodano.");
-        });
 
+        $ControllerCollection->post('/registry/{type}', function(Request $request, $type) {
+
+
+        });
         return $ControllerCollection;
     }
 

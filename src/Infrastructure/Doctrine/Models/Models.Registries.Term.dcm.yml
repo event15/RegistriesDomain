@@ -1,0 +1,29 @@
+#    private $dateFrom;
+#    private $dateTo;
+#    private $department;
+#    private $reminderTime;
+#    private $regId;
+#    private $reminderType;
+Models\Registries\Term:
+  type: entity
+
+  id:
+    termId:
+      type: integer
+      column: term_id
+      generator:
+        strategy: AUTO
+
+  fields:
+    dateFrom:
+      type: datatime
+      column: date_from
+    dateTo:
+      type: datatime
+      column: date_to
+    department:
+      type: string
+    reminderTime:
+      type: integer
+      column: reminder_time
+    # klucze obce

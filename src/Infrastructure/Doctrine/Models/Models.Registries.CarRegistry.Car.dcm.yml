@@ -1,29 +1,35 @@
-Car:
+Models\Registries\CarRegistry\Car:
   type: entity
-  table: Car
+
   id:
     carId:
       type: integer
+      column: car_id
       generator:
         strategy: AUTO
+
   fields:
     brand:
       type: string
+      column: brand
+      length: 50
+
     model:
       type: string
+      column: model
+      length: 50
+
     registrationNumber:
       type: string
+      column: registration_number
+      length: 15
+
     insurer:
       type: string
+      column: insurer
+      length: 50
+
     others:
       type: string
-    departments:
-      type: array
-    OC:
-      type: Term
-    AC:
-      type: Term
-    ASS:
-      type: Term
-    review:
-      type: Term
+      column: others
+      length: 255

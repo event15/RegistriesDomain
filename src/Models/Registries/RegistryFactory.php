@@ -30,11 +30,11 @@ class RegistryFactory
      * @param $registryType
      * @return CarRegistry|DepositRegistry|PolicyRegistry|string
      */
-    public function create($name, $registryType)
+    public function create($name, $registryType, $createBy)
     {
         switch ($registryType) {
             case self::CAR_REGISTRY:
-                return new CarRegistry($name);
+                return new CarRegistry($name, $createBy);
                 break;
             case self::DEPOSIT_REGISTRY:
                 return new DepositRegistry($name);
