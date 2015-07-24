@@ -10,13 +10,17 @@ Models/Users/Users:
   fields:
     login:
       type: string
+      column: user_login
       length: 25
     password:
       type: string
+      column: user_pass
       length: 50
     email:
       type: string
+      column: user_email
       length: 50
     rights:
       type: string
+      column: user_rights
       length: 100

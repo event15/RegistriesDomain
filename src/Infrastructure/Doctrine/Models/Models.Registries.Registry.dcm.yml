@@ -1,12 +1,5 @@
 Models\Registries\Registry:
   type: entity
-  inheritanceType: SINGLE_TABLE
-  discriminatorColumn:
-    name: register_type
-    type: string
-  discriminatorMap:
-    registry: Models\Registries\Registry
-    car_registry: Models\Registries\CarRegistry\CarRegistry
 
   id:
     registryId:
@@ -19,13 +12,16 @@ Models\Registries\Registry:
     registryName:
       type: string
       column: registry_name
-      length: 255
-
-    createdBy:
-      type: string
-      column: created_by
       length: 100
+
+    createdBy: # id użytkownika, który stworzył rejestr
+      type: int
+      column: registry_created_by
 
     createDate:
       type: datetime
-      column: create_date
+      column: registry_create_date
+
+    registerType:
+      type: string
+      column: registry_create_date

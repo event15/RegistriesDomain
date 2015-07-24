@@ -12,27 +12,9 @@ namespace Models\Registries;
 class Term
 {
     private $termId;
-    /**
-     * @var \DateTime
-     */
+    private $termType;
     private $dateFrom;
-
-    /**
-     * @var \DateTime
-     */
     private $dateTo;
-
-    /**
-     * @var string
-     */
     private $department;
-
-    /**
-     * @var int
-     */
-    private $reminderTime;
-
-    private $regId;
-
-    private $reminderType;
+    private $reminder;
 }

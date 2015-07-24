@@ -1,9 +1,3 @@
-#    private $dateFrom;
-#    private $dateTo;
-#    private $department;
-#    private $reminderTime;
-#    private $regId;
-#    private $reminderType;
 Models\Registries\Term:
   type: entity
 
@@ -15,15 +9,24 @@ Models\Registries\Term:
         strategy: AUTO
 
   fields:
+    termType:
+      type: string
+      column: term_type
+      length: 50
+
     dateFrom:
-      type: datatime
-      column: date_from
+      type: datetime
+      column: term_date_from
+
     dateTo:
-      type: datatime
-      column: date_to
+      type: datetime
+      column: term_date_to
+
     department:
       type: string
-    reminderTime:
+      column: term_department
+      length: 255
+
+    reminder:
       type: integer
-      column: reminder_time
-    # klucze obce
+      column: term_reminder

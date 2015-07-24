@@ -10,26 +10,39 @@ Models\Registries\CarRegistry\Car:
 
   fields:
     brand:
-      type: string
-      column: brand
-      length: 50
+      type: sting
+      column: car_brand
+      lenght: 50
 
     model:
-      type: string
-      column: model
-      length: 50
+      type: sting
+      column: car_model
+      lenght: 50
 
     registrationNumber:
-      type: string
-      column: registration_number
-      length: 15
+      type: sting
+      column: car_registration_number
+      lenght: 20
 
     insurer:
-      type: string
-      column: insurer
-      length: 50
+      type: sting
+      column: car_insurer
+      lenght: 50
 
     others:
+      type: sting
+      column: car_others
+      lenght: 255
+
+    attachments:
       type: string
-      column: others
-      length: 255
+      column: car_attachments
+      length: 10000
+
+    createdBy:
+      type: integer
+      column: car_user_id
+
+    registryId:
+      type: integer
+      column: car_registry_id
