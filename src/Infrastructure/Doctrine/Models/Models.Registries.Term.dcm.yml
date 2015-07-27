@@ -1,6 +1,12 @@
 Models\Registries\Term:
   type: entity
 
+  manyToMany:
+    cars:
+      targetEntity: Models\Registries\CarRegistry\Car
+      mappedBy: CarTerm
+
+
   id:
     termId:
       type: integer

@@ -20,7 +20,7 @@ class RegistryFactory
 {
     protected $registryType;
 
-    const CAR_REGISTRY = 'car';
+    const CAR_REGISTRY = 'samochody';
     const POLICY_REGISTRY = 'policy';
     const DEPOSIT_REGISTRY = 'deposit'; // WADIUM
 
@@ -30,11 +30,11 @@ class RegistryFactory
      * @param $registryType
      * @return CarRegistry|DepositRegistry|PolicyRegistry|string
      */
-    public function create($name, $registryType, $createBy)
+    public function create($name, $registryType)
     {
         switch ($registryType) {
             case self::CAR_REGISTRY:
-                return new CarRegistry($name, $createBy);
+                return new CarRegistry($name);
                 break;
             case self::DEPOSIT_REGISTRY:
                 return new DepositRegistry($name);

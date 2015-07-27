@@ -1,6 +1,21 @@
 Models\Registries\Registry:
   type: entity
 
+  inheritanceType: SINGLE_TABLE
+  discriminatorColumn:
+    name: registry_type
+    type: string
+  discriminatorMap:
+    samochody: Models\Registries\CarRegistry\CarRegistry
+
+
+  manyToOne:
+    createdBy:
+      targetEntity: Models\Users\Users
+      joinColumn:
+        name: registry_created_by
+        referencedColumnName: user_id
+
   id:
     registryId:
       type: integer
@@ -14,14 +29,6 @@ Models\Registries\Registry:
       column: registry_name
       length: 100
 
-    createdBy: # id użytkownika, który stworzył rejestr
-      type: int
-      column: registry_created_by
-
     createDate:
       type: datetime
-      column: registry_create_date
-
-    registerType:
-      type: string
       column: registry_create_date

@@ -1,9 +1,10 @@
-Models/Users/Users:
+Models\Users\Users:
   type: entity
 
   id:
     userId:
         type: integer
+        column: user_id
         generator:
           strategy: AUTO
 

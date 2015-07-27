@@ -29,27 +29,44 @@ abstract class Registry
     protected $registerType;
 
     /**
-     * Registry constructor.
-     * @param string $name
+     * @param          $name
+     * @param Registry $registerType
      */
-    public function __construct($name, $createdBy)
+    public function __construct($name)
     {
-        $this->name = $name;
-        $this->createdBy = $createdBy;
+        $this->registryName = $name;
         $this->createDate = new \DateTime();
     }
+
+    /**
+     * @return string
+     */
+    public abstract function getType();
+
 
     /**
      * @param $name
      */
     public function changeName($name)
     {
-        $this->name = $name;
+        $this->registryName = $name;
     }
 
     public function showDate($formatDate)
     {
-        return $this->createDate->format($formatDate);
+        return $this->createDate->format ($formatDate);
+    }
+
+    public function toArray()
+    {
+        $registry = array( 'registry_id' => $this->registryId,
+               'registry_name' => $this->registryName,
+               'registerType' => $this->getType(),
+               'registry_created_by' => $this->createdBy,
+               'registry_create_date' => $this->createDate->format("Y-m-d H:i:s")
+            );
+
+        return $registry;
     }
 
 }

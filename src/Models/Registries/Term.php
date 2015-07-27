@@ -7,7 +7,7 @@
  */
 
 namespace Models\Registries;
-
+use Doctrine\Common\Collections\ArrayCollection;
 
 class Term
 {
@@ -17,4 +17,12 @@ class Term
     private $dateTo;
     private $department;
     private $reminder;
+
+    private $cars;
+
+    public function __construct($cars)
+    {
+        $this->cars = new ArrayCollection();
+    }
+
 }

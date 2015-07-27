@@ -7,7 +7,7 @@
  */
 
 namespace Models\Registries\CarRegistry;
-
+use Doctrine\Common\Collections\ArrayCollection;
 
 class Car
 {
@@ -20,4 +20,13 @@ class Car
     private $attachments;
     private $createdBy;
     private $registryId;
+
+    private $terms;
+
+    public function __construct($terms)
+    {
+        $this->terms = new ArrayCollection();
+    }
+
+
 }
