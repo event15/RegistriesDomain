@@ -11,15 +11,22 @@ namespace Models\Users;
 
 class Users
 {
+    /** @var  integer $userId */
     private $userId;
+
+    /** @var  string $login */
     private $login;
+
+    /** @var  string $password */
     private $password;
+
+    /** @var  string $email */
     private $email;
+
+    /** @var  string $rights */
     private $rights;
 
     /**
-     * Users constructor.
-     *
      * @param $login
      * @param $password
      * @param $email
