@@ -9,7 +9,7 @@ use Doctrine\ORM\EntityManager;
 use Infrastructure\Doctrine\Repositories\RegistryRepository;
 
 $app = new Silex\Application();
-$app[ 'debug' ] = false;
+$app[ 'debug' ] = true;
 
 
 $app->register (new DoctrineServiceProvider(), array(
