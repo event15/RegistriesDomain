@@ -26,4 +26,8 @@ interface RegistryRepository
     public function find($registryId);
 
     public function findAll();
+
+    public function deleteOne(\Models\Registries\Registry $register);
+
+    public function changeName($newName, \Models\Registries\Registry $register);
 }

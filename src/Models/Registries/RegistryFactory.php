@@ -21,8 +21,8 @@ class RegistryFactory
     protected $registryType;
 
     const CAR_REGISTRY = 'samochody';
-    const POLICY_REGISTRY = 'policy';
-    const DEPOSIT_REGISTRY = 'deposit'; // WADIUM
+    const POLICY_REGISTRY = 'polisy';
+    const DEPOSIT_REGISTRY = 'wadium'; // WADIUM
 
     /**
      * @param $name

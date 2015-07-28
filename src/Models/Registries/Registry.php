@@ -69,4 +69,5 @@ abstract class Registry
         return $registry;
     }
 
+
 }
