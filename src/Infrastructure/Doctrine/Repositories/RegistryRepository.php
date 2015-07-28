@@ -2,21 +2,21 @@
 namespace Infrastructure\Doctrine\Repositories;
 
 
+use Doctrine\ORM\ORMException;
+use Doctrine\ORM\ORMInvalidArgumentException;
 use Models\Registries\Registry;
+use Doctrine\ORM\EntityManager;
 
 class RegistryRepository implements \Models\Registries\RegistryRepository
 {
-
-    /**
-     * @var \Doctrine\ORM\EntityManager
-     */
+    /** @var \Doctrine\ORM\EntityManager $em */
     private $em;
     const MODEL = "\\Models\\Registries\\Registry";
 
     /**
      * @param \Doctrine\ORM\EntityManager $entityManager
      */
-    public function __construct(\Doctrine\ORM\EntityManager $entityManager)
+    public function __construct(EntityManager $entityManager)
     {
         $this->em = $entityManager;
     }
@@ -24,18 +24,26 @@ class RegistryRepository implements \Models\Registries\RegistryRepository
     /**
      * @param \Models\Registries\Registry $registry
      *
-     * @return bool
+     * @return void
+     * @throws \Doctrine\ORM\ORMException
+     * @throws \Exception
      */
     public function save(Registry $registry)
     {
-        $this->em->persist($registry);
-        $this->em->flush();
+        try {
+            $this->em->persist($registry);
+            $this->em->flush();
+        } catch (ORMInvalidArgumentException $e) {
+            throw $e;
+        } catch (ORMException $e) {
+            throw $e;
+        }
     }
 
     /**
      * @param $registryId
      *
-     * @return Registry
+     * @return null|object
      */
     public function find($registryId)
     {
@@ -51,23 +59,44 @@ class RegistryRepository implements \Models\Registries\RegistryRepository
     }
 
     /**
-     * @param Registry $register
+     * @param \Models\Registries\Registry $register
+     *
+     * @return void
+     * @throws \Doctrine\ORM\ORMException
+     * @throws \Exception
      */
     public function deleteOne(Registry $register)
     {
-        $this->em->remove($register);
-        $this->em->flush();
+        try{
+            $this->em->remove($register);
+            $this->em->flush();
+        } catch (ORMInvalidArgumentException $e) {
+            throw $e;
+        } catch (ORMException $e) {
+            throw $e;
+        }
     }
 
     /**
-     * @param          $newName
-     * @param Registry $register
+     * @param                             $newName
+     * @param \Models\Registries\Registry $register
+     *
+     * @return void
+     * @throws \Doctrine\ORM\ORMException
+     * @throws \Exception
      */
     public function changeName($newName, Registry $register)
     {
-        $register->changeName($newName);
-        $this->em->persist($register);
-        $this->em->flush();
+        try {
+            $register->changeName($newName);
+            $this->em->persist($register);
+            $this->em->flush();
+        } catch (ORMInvalidArgumentException $e) {
+            throw $e;
+        } catch (ORMException $e) {
+            throw $e;
+        }
+
 
     }
 }
