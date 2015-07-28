@@ -10,6 +10,10 @@ namespace Models\Registries;
 
 use Doctrine\Common\Collections\ArrayCollection;
 
+/**
+ * Class Term
+ * @package Models\Registries
+ */
 class Term
 {
     /** @var  integer $termId */
