@@ -8,7 +8,10 @@
 
 namespace Models\Registries;
 
-
+/**
+ * Interface RegistryRepository
+ * @package Models\Registries
+ */
 interface RegistryRepository
 {
     /**
@@ -25,9 +28,23 @@ interface RegistryRepository
      */
     public function find($registryId);
 
+    /**
+     * @return mixed
+     */
     public function findAll();
 
-    public function deleteOne(\Models\Registries\Registry $register);
+    /**
+     * @param \Models\Registries\Registry $register
+     *
+     * @return mixed
+     */
+    public function deleteOne(Registry $register);
 
-    public function changeName($newName, \Models\Registries\Registry $register);
+    /**
+     * @param                             $newName
+     * @param \Models\Registries\Registry $register
+     *
+     * @return mixed
+     */
+    public function changeName($newName, Registry $register);
 }
