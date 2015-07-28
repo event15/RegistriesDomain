@@ -12,7 +12,7 @@ namespace Models\Registries;
  * Interface RegistryRepository
  * @package Models\Registries
  */
-interface RegistryRepository
+interface RegistryRepositoryInterface
 {
     /**
      * @param Registry $registry

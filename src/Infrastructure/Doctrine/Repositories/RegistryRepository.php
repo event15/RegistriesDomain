@@ -4,10 +4,12 @@ namespace Infrastructure\Doctrine\Repositories;
 
 use Doctrine\ORM\ORMException;
 use Doctrine\ORM\ORMInvalidArgumentException;
+use Models\Registries\RegistryRepositoryInterface;
 use Models\Registries\Registry;
 use Doctrine\ORM\EntityManager;
 
-class RegistryRepository implements \Models\Registries\RegistryRepository
+
+class RegistryRepository implements RegistryRepositoryInterface
 {
     /** @var \Doctrine\ORM\EntityManager $em */
     private $em;

@@ -18,7 +18,7 @@ use Symfony\Component\HttpFoundation\Response;
  * Class RegistryRequestsControllers
  * @package API\Controllers
  */
-class RegistryRequestsControllers
+class RegistryRequests
 {
     /**
      * @param \Silex\Application                        $app

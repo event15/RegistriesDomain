@@ -32,11 +32,13 @@ class RegistryControllerProvider implements ControllerProviderInterface
         $ControllerCollection = $app['controllers_factory'];
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        $ControllerCollection->post('/', 'API\\Controllers\\RegistryRequestsControllers::addRegistry');
-        $ControllerCollection->get('/', 'API\\Controllers\\RegistryRequestsControllers::getAllRegistries');
-        $ControllerCollection->get('/{id}', 'API\\Controllers\\RegistryRequestsControllers::getRegisterById');
-        $ControllerCollection->put('/{id}', 'API\\Controllers\\RegistryRequestsControllers::modifyRegisterById');
-        $ControllerCollection->delete('/{id}', 'API\\Controllers\\RegistryRequestsControllers::deleteRegisterById');
+        $ControllerCollection->post('/', 'API\\Controllers\\RegistryRequests::addRegistry');
+        $ControllerCollection->get('/', 'API\\Controllers\\RegistryRequests::getAllRegistries');
+        $ControllerCollection->get('/{id}', 'API\\Controllers\\RegistryRequests::getRegisterById');
+        $ControllerCollection->put('/{id}', 'API\\Controllers\\RegistryRequests::modifyRegisterById');
+        $ControllerCollection->delete('/{id}', 'API\\Controllers\\RegistryRequests::deleteRegisterById');
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        $ControllerCollection->post('/{type}', 'API\\Controllers\\RegistryObjectRequests::addObject');
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
         return $ControllerCollection;
