@@ -26,7 +26,6 @@ class RegistryFactory
 
     /**
      * @param $name
-     * @param $userId
      * @param $registryType
      * @return CarRegistry|DepositRegistry|PolicyRegistry|string
      */
