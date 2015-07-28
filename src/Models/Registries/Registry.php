@@ -29,8 +29,7 @@ abstract class Registry
     protected $registerType;
 
     /**
-     * @param          $name
-     * @param Registry $registerType
+     * @param $name
      */
     public function __construct($name)
     {
@@ -63,7 +62,7 @@ abstract class Registry
                'registry_name' => $this->registryName,
                'registerType' => $this->getType(),
                'registry_created_by' => $this->createdBy,
-               'registry_create_date' => $this->createDate->format("Y-m-d H:i:s")
+               'registry_create_date' => $this->createDate->format('Y-m-d H:i:s')
             );
 
         return $registry;
