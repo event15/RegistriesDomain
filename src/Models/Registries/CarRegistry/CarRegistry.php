@@ -12,13 +12,18 @@ namespace Models\Registries\CarRegistry;
 use Models\Registries\Registry;
 use Models\Registries\RegistryFactory;
 
+/**
+ * Class CarRegistry
+ * @package Models\Registries\CarRegistry
+ */
 class CarRegistry extends Registry
 {
-    /**
-     * @var array
-     */
+    /** @var array $cars */
     private $cars = array();
 
+    /**
+     * @return string
+     */
     public function getType()
     {
         return RegistryFactory::CAR_REGISTRY;
