@@ -98,7 +98,5 @@ class RegistryRepository implements RegistryRepositoryInterface
         } catch (ORMException $e) {
             throw $e;
         }
-
-
     }
 }

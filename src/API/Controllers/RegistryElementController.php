@@ -9,13 +9,15 @@
 namespace API\Controllers;
 
 use Silex\Application;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 
-class RegistryObjectRequests
+class RegistryElementController
 {
-    public function addObject()
+    public function addObject(Application $app, Request $request)
     {
+
         return new Response('OK', 201);
     }
 }

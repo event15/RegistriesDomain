@@ -6,18 +6,18 @@
  * Time: 13:52
  */
 
-namespace API\Controllers;
+namespace API\Controllers\Providers;
 
 use Silex\Application;
 use Silex\ControllerCollection;
 use Silex\ControllerProviderInterface;
 
 /**
- * Class RegistryControllerProvider
+ * Class RegistryProvider
  *
  * @package API\Controllers
  */
-class RegistryControllerProvider implements ControllerProviderInterface
+class RegistryProvider implements ControllerProviderInterface
 {
     /**
      * Returns routes to connect to the given application.
@@ -32,13 +32,21 @@ class RegistryControllerProvider implements ControllerProviderInterface
         $ControllerCollection = $app['controllers_factory'];
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        $ControllerCollection->post('/', 'API\\Controllers\\RegistryRequests::addRegistry');
-        $ControllerCollection->get('/', 'API\\Controllers\\RegistryRequests::getAllRegistries');
-        $ControllerCollection->get('/{id}', 'API\\Controllers\\RegistryRequests::getRegisterById');
-        $ControllerCollection->put('/{id}', 'API\\Controllers\\RegistryRequests::modifyRegisterById');
-        $ControllerCollection->delete('/{id}', 'API\\Controllers\\RegistryRequests::deleteRegisterById');
+        /**
+         * host/web/rejestry/
+         * host/web/rejestry/{id}
+         */
+        $ControllerCollection->post('/', 'API\\Controllers\\RegistryController::addRegistry');
+        $ControllerCollection->get('/', 'API\\Controllers\\RegistryController::getAllRegistries');
+        $ControllerCollection->get('/{id}', 'API\\Controllers\\RegistryController::getRegisterById');
+        $ControllerCollection->put('/{id}', 'API\\Controllers\\RegistryController::modifyRegisterById');
+        $ControllerCollection->delete('/{id}', 'API\\Controllers\\RegistryController::deleteRegisterById');
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        $ControllerCollection->post('/{type}', 'API\\Controllers\\RegistryObjectRequests::addObject');
+        /**
+         * host/web/rejestry/{typ}/
+         * host/web/rejestry/{typ}/{id}
+         */
+        $ControllerCollection->post('/{type}', 'API\\Controllers\\RegistryElementController::addObject');
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
         return $ControllerCollection;

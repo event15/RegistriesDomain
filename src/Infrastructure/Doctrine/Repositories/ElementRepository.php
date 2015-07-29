@@ -9,7 +9,7 @@
 namespace Infrastructure\Doctrine\Repositories;
 
 
-class ObjectRepository
+class ElementRepository
 {
 
 }

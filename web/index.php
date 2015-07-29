@@ -17,12 +17,7 @@ require_once '../config/bootstrap.php';
 /** @var \Doctrine\ORM\EntityManager $em */
 $em = $app[ 'orm.em' ];
 
-$app->mount ('/rejestry', new \API\Controllers\RegistryControllerProvider());
-
-/*
- * $app->mount ('/add', new \API\Controllers\RegistryControllerProvider());
- * $app->mount ('/modify', new \API\Controllers\RegistryControllerProvider());
- * $app->mount ('/delete', new \API\Controllers\RegistryControllerProvider());
- */
+$app->mount ('/rejestry', new \API\Controllers\Providers\RegistryProvider());
+$app->mount ('/uzytkownicy', new \API\Controllers\Providers\UsersProvider());
 
 $app->run ();
