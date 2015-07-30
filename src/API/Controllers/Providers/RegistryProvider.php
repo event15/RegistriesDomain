@@ -42,12 +42,6 @@ class RegistryProvider implements ControllerProviderInterface
         $ControllerCollection->put('/{id}', 'API\\Controllers\\RegistryController::modifyRegisterById');
         $ControllerCollection->delete('/{id}', 'API\\Controllers\\RegistryController::deleteRegisterById');
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        /**
-         * host/web/rejestry/{typ}/
-         * host/web/rejestry/{typ}/{id}
-         */
-        $ControllerCollection->post('/{type}', 'API\\Controllers\\RegistryElementController::addObject');
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
         return $ControllerCollection;
     }

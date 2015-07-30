@@ -28,6 +28,4 @@ class CarRegistry extends Registry
     {
         return RegistryFactory::CAR_REGISTRY;
     }
-
-
 }

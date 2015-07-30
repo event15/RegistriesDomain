@@ -20,7 +20,8 @@ class UsersProvider implements ControllerProviderInterface
         $ControllerCollection = $app['controllers_factory'];
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        $ControllerCollection->post('/', 'API\\Controllers\\Requests\\UsersRequests::addUser');
+        $ControllerCollection->post('/', 'API\\Controllers\\UsersController::addUser');
+        $ControllerCollection->get('/{id}', 'API\\Controllers\\UsersController::findUser');
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
         return $ControllerCollection;

@@ -18,6 +18,7 @@ require_once '../config/bootstrap.php';
 $em = $app[ 'orm.em' ];
 
 $app->mount ('/rejestry', new \API\Controllers\Providers\RegistryProvider());
+$app->mount ('/elementy', new \API\Controllers\Providers\RegistryElementProvider());
 $app->mount ('/uzytkownicy', new \API\Controllers\Providers\UsersProvider());
 
 $app->run ();

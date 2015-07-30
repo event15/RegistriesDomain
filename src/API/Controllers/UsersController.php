@@ -33,4 +33,15 @@ class UsersController
             return new Response("Nie znaleziono modyfikatora dostepu '{$rights}'", 404);
         }
     }
+
+    public function findUser(Application $app, Request $request)
+    {
+        /** @var Registry $getRegistry */
+        $getRegistry = $app['repositories.users']->find($request->get('id'));
+
+        return ($getRegistry === null) ?
+            new Response("Nie znaleziono rejestru o id={$request->get('id')}", 404)
+            :
+            new Response(var_dump($getRegistry), 200);
+    }
 }

@@ -39,4 +39,5 @@ $config = Setup::createYAMLMetadataConfiguration($app['orm.em.options']['mapping
 $app['orm.em'] = EntityManager::create($app['db.options'], $config);
 
 $app['repositories.registry'] = new RegistryRepository($app['orm.em']);
+$app['repositories.element'] = new \Infrastructure\Doctrine\Repositories\ElementRepository($app['orm.em']);
 $app['repositories.users'] = new \Infrastructure\Doctrine\Repositories\UsersRepository($app['orm.em']);

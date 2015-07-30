@@ -9,9 +9,12 @@
 namespace Models\Registries;
 
 
-interface ObjectRepositoryInterface
+use Models\Registries\CarRegistry\Car;
+use Models\Registries\CarRegistry\CarRegistry;
+
+interface ElementRepositoryInterface
 {
-    public function save(Registry $registry);
+    public function save(Car $registry);
     public function find();
     public function findAll();
     public function deleteOne();

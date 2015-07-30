@@ -19,6 +19,7 @@ use Models\Users\Users;
 class UsersRepository implements UserRepositoryInterface
 {
     private $em;
+    const MODEL = "\\Models\\Users\\Users";
 
     /**
      * @param EntityManager $entityManager
@@ -38,6 +39,10 @@ class UsersRepository implements UserRepositoryInterface
         } catch (ORMException $e) {
             throw $e;
         }
+    }
+    public function find($id)
+    {
+        return $this->em->getRepository(self::MODEL)->find($id);
     }
 
 
