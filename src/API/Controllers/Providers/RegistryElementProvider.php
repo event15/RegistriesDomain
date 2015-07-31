@@ -29,11 +29,14 @@ class RegistryElementProvider implements ControllerProviderInterface
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         /**
-         * host/web/rejestry/{typ}/
+         * host/web/elementy/
          * host/web/rejestry/{typ}/{id}
          */
-        $ControllerCollection->post('/', 'API\\Controllers\\RegistryElementController::addObject');
-        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        $ControllerCollection->post('/', 'API\\Controllers\\RegistryElementController::addElement');
+        $ControllerCollection->get('/{id}', 'API\\Controllers\\RegistryElementController::findElementById');
+        $ControllerCollection->get('/', 'API\\Controllers\\RegistryElementController::findAllElements');
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
         return $ControllerCollection;
     }
 }

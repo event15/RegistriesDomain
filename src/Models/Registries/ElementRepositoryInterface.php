@@ -15,14 +15,7 @@ use Models\Registries\CarRegistry\CarRegistry;
 interface ElementRepositoryInterface
 {
     public function save(Car $registry);
-    public function find();
+    public function find($element);
     public function findAll();
-    public function deleteOne();
-
-    public function changeBrand();
-    public function changeModel();
-    public function changeRegistrationNumber();
-    public function changeInsurer();
-    public function changeOthers();
-    public function changeAttachments();
+    public function deleteOne(Car $car);
 }

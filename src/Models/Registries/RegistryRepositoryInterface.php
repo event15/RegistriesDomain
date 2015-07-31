@@ -39,12 +39,4 @@ interface RegistryRepositoryInterface
      * @return mixed
      */
     public function deleteOne(Registry $register);
-
-    /**
-     * @param                             $newName
-     * @param \Models\Registries\Registry $register
-     *
-     * @return mixed
-     */
-    public function changeName($newName, Registry $register);
 }

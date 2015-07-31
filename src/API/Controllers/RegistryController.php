@@ -91,10 +91,15 @@ class RegistryController
     {
         /** @var Registry $getRegistry */
         $getRegistry = $app['repositories.registry']->find($request->get('id'));
-        if ($getRegistry === null) {
+
+        if ($getRegistry === null)
+        {
             return new Response("Nie znaleziono rejestru o id={$request->get('id')}", 404);
-        } else {
-            $app['repositories.registry']->changeName($request->get('name'), $getRegistry);
+        }
+        else
+        {
+            $getRegistry->changeName($request->get('name'));
+            $app['repositories.registry']->save($getRegistry);
 
             return new Response('OK', 200);
         }

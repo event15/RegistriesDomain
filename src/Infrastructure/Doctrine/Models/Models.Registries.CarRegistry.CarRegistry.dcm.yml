@@ -1,2 +1,3 @@
 Models\Registries\CarRegistry\CarRegistry:
   type: entity
+

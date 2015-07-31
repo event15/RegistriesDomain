@@ -20,7 +20,6 @@ class RegistryElementController
     public function addObject(Application $app, Request $request)
     {
         $type = $request->get('type');
-        $user = $app['repositories.users']->find(1);
 
         if ($type === RegistryFactory::CAR_REGISTRY ||
             $type === RegistryFactory::DEPOSIT_REGISTRY ||
@@ -33,17 +32,60 @@ class RegistryElementController
                 $request->get('insurer'),
                 $request->get('others'),
                 $request->get('attachments'),
-                app['repositories.users']->find($request->get('userId')),
+                $app['repositories.users']->find($request->get('userId')),
                 $app['repositories.registry']->find($request->get('registryId')),
                 $request->get('terms')
             ]);
 
-            var_dump($obj);
             $app['repositories.element']->save($obj);
 
             return new Response('OK', 201);
         } else {
             return new Response("Nie znaleziono typu '{$type}'", 404);
+        }
+    }
+
+    public function findElementById(Application $app, Request $request, $idRejestru, $idElementu)
+    {
+        $getRegistry = $app['repositories.registry']->find($idRejestru);
+
+        if($getRegistry === null)
+        {
+            return new Response("Nie znaleziono rejestru o id={$request->get('idRejestru')}", 404);
+        }
+        else
+        {
+            /** @var Registry $getRegistry */
+            $getElement = $app['repositories.element']->find($idElementu);
+
+            return ($getElement === null) ?
+                new Response("Nie znaleziono rejestru o id={$request->get('idElementu')}", 404)
+                :
+                $app->json($getElement->toArray());
+        }
+
+    }
+
+    public function findAllElements(Application $app, Request $request, $idRejestru)
+    {
+        $getRegistry = $app['repositories.registry']->find($idRejestru);
+        $getRegistry->getCars();
+
+        if($getRegistry === null)
+        {
+            return new Response("Nie znaleziono rejestru o id={$request->get('idRejestru')}", 404);
+        }
+        else {
+            /** @var Registry $getRegistry */
+            $getElement = $app['repositories.element']->findAll ();
+            $tab = [];
+
+            foreach($getElement as $id => $element) {
+                /** @var Registry $register */
+                $tab[$id] = $element->toArray ();
+            }
+
+            return $app->json ($tab);
         }
     }
 }

@@ -78,25 +78,4 @@ class RegistryRepository implements RegistryRepositoryInterface
             throw $e;
         }
     }
-
-    /**
-     * @param                             $newName
-     * @param \Models\Registries\Registry $register
-     *
-     * @return void
-     * @throws \Doctrine\ORM\ORMException
-     * @throws \Exception
-     */
-    public function changeName($newName, Registry $register)
-    {
-        try {
-            $register->changeName($newName);
-            $this->em->persist($register);
-            $this->em->flush();
-        } catch (ORMInvalidArgumentException $e) {
-            throw $e;
-        } catch (ORMException $e) {
-            throw $e;
-        }
-    }
 }

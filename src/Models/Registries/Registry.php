@@ -58,11 +58,11 @@ abstract class Registry
 
     public function toArray()
     {
-        $registry = array( 'registry_id' => $this->registryId,
-               'registry_name' => $this->registryName,
-               'registerType' => $this->getType(),
-               'registry_created_by' => $this->createdBy,
-               'registry_create_date' => $this->createDate->format('Y-m-d H:i:s')
+        $registry = array( 'id' => $this->registryId,
+               'name' => $this->registryName,
+               'type' => $this->getType(),
+               'created_by' => $this->createdBy,
+               'create_date' => $this->createDate->format('Y-m-d H:i:s')
             );
 
         return $registry;

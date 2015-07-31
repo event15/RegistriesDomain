@@ -141,5 +141,18 @@ class Car
         return $this->terms;
     }
 
+    public function toArray()
+    {
+        return array(
+            'id' => $this->carId,
+            'brand' => $this->brand,
+            'model' => $this->model,
+            'registration_number' => $this->registrationNumber,
+            'insurer' => $this->insurer,
+            'others' => $this->others,
+            'attachments' => $this->attachments,
+            'terms' => $this->terms,
+        );
+    }
 
 }

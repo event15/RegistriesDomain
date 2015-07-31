@@ -56,48 +56,27 @@ class ElementRepository implements ElementRepositoryInterface
         }
     }
 
-    public function find()
+    public function find($elementId)
     {
-        // TODO: Implement find() method.
+        return $this->em->getRepository(self::MODEL)->find($elementId);
     }
 
     public function findAll()
     {
-        // TODO: Implement findAll() method.
+        /*$this->em->getRepository(self::MODEL)->findBy()*/
+        return $this->em->getRepository(self::MODEL)->findAll();
+
     }
 
-    public function deleteOne()
+    public function deleteOne(Car $car)
     {
-        // TODO: Implement deleteOne() method.
-    }
-
-    public function changeBrand()
-    {
-        // TODO: Implement changeBrand() method.
-    }
-
-    public function changeModel()
-    {
-        // TODO: Implement changeModel() method.
-    }
-
-    public function changeRegistrationNumber()
-    {
-        // TODO: Implement changeRegistrationNumber() method.
-    }
-
-    public function changeInsurer()
-    {
-        // TODO: Implement changeInsurer() method.
-    }
-
-    public function changeOthers()
-    {
-        // TODO: Implement changeOthers() method.
-    }
-
-    public function changeAttachments()
-    {
-        // TODO: Implement changeAttachments() method.
+        try{
+            $this->em->remove($car);
+            $this->em->flush();
+        } catch (ORMInvalidArgumentException $e) {
+            throw $e;
+        } catch (ORMException $e) {
+            throw $e;
+        }
     }
 }
