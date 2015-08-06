@@ -8,15 +8,12 @@
 
 namespace Models;
 
-
-class ElementModel
+abstract class ElementModel
 {
-    private $id;
     private $createDate;
 
     public function __construct()
     {
-        $this->createDate = new \DateTime('Y');
-        echo "ElementModel";
+        $this->createDate = new \DateTime();
     }
 }

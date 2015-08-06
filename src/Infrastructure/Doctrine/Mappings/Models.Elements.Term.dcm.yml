@@ -1,16 +1,15 @@
-Models\Registries\Term:
+Models\Elements\Term:
   type: entity
 
   manyToMany:
     cars:
-      targetEntity: Models\Registries\CarRegistry\Car
+      targetEntity: Models\Registries\CarRegistry
       mappedBy: CarTerm
-
 
   id:
     termId:
-      type: integer
       column: term_id
+      type: integer
       generator:
         strategy: AUTO
 

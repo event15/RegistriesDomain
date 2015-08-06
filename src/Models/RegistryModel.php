@@ -8,20 +8,31 @@
 
 namespace Models;
 
-
-use Models\Factories\ElementFactory;
-
 abstract class RegistryModel
 {
-    private $id;
-    private $name;
-    private $createDate;
-    private $type;
+    protected $registryId;
+    protected $registryName;
+    /** @var  \DateTime */
+    protected $createDate;
+    protected $registry_type;
 
-    public function __construct($name)
+    /**
+     * @return string
+     */
+    abstract public function getType();
+
+    public function toArray()
     {
-        $this->name = $name;
-        $this->createDate = new \DateTime('now');
-        echo "RegistryModel";
+        return array(
+            'id' => $this->registryId,
+            'name' => $this->registryName,
+            'createDate' => $this->createDate->format('Y-m-d H:i:s'),
+            'type' => $this->getType()
+            );
+    }
+
+    public function changeName($newName)
+    {
+        $this->registryName = $newName;
     }
 }

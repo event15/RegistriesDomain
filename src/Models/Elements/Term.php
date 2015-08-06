@@ -2,18 +2,14 @@
 /**
  * Created by PhpStorm.
  * User: marek
- * Date: 17.07.15
- * Time: 13:41
+ * Date: 04.08.15
+ * Time: 12:00
  */
 
-namespace Models\Registries;
+namespace Models\Elements;
 
 use Doctrine\Common\Collections\ArrayCollection;
 
-/**
- * Class Term
- * @package Models\Registries
- */
 class Term
 {
     /** @var  integer $termId */
@@ -34,15 +30,10 @@ class Term
     /** @var  integer $reminder */
     private $reminder;
 
-    /** @var ArrayCollection $cars */
     private $cars;
 
-    /**
-     * @param $cars
-     */
-    public function __construct($cars)
+    public function __construct()
     {
         $this->cars = new ArrayCollection();
     }
-
 }

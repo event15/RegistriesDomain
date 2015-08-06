@@ -1,22 +1,16 @@
-Models\Registries\CarRegistry\Car:
+Models\Elements\Car:
   type: entity
 
-  manyToOne:
-    createdBy:
-      targetEntity: Models\Users\Users
-      joinColumn:
-        name: car_created_by
-        referencedColumnName: user_id
-
-    registryId:
-      targetEntity: Models\Registries\Registry
-      joinColumn:
-        name: car_registry_id
-        referencedColumnName: registry_id
+  id:
+    carId:
+      type: integer
+      column: car_id
+      generator:
+        strategy: AUTO
 
   manyToMany:
     terms:
-      targetEntity: Models\Registries\Term
+      targetEntity: Models\Elements\Term
       joinTable:
         name: CarTerm
         joinColumns:
@@ -26,12 +20,13 @@ Models\Registries\CarRegistry\Car:
           term_term_id:
             referencedColumnName: term_id
 
-  id:
-    carId:
-      type: integer
-      column: car_id
-      generator:
-        strategy: AUTO
+  manyToOne:
+    registryId:
+      targetEntity: Models\RegistryModel
+      joinColumn:
+        name: car_registry_id
+        referencedColumnName: registry_id
+
   fields:
     brand:
       type: string

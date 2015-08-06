@@ -1,19 +1,24 @@
 <?php
+/**
+ * Created by PhpStorm.
+ * User: marek
+ * Date: 04.08.15
+ * Time: 14:02
+ */
+
 namespace Infrastructure\Doctrine\Repositories;
 
-
+use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\ORMException;
 use Doctrine\ORM\ORMInvalidArgumentException;
-use Models\Registries\RegistryRepositoryInterface;
-use Models\Registries\Registry;
-use Doctrine\ORM\EntityManager;
-
+use Models\RegistryModel as Registry;
+use Models\Repositories\RegistryRepositoryInterface;
 
 class RegistryRepository implements RegistryRepositoryInterface
 {
     /** @var \Doctrine\ORM\EntityManager $em */
     private $em;
-    const MODEL = "\\Models\\Registries\\Registry";
+    const MODEL = "\\Models\\RegistryModel";
 
     /**
      * @param \Doctrine\ORM\EntityManager $entityManager
@@ -24,10 +29,10 @@ class RegistryRepository implements RegistryRepositoryInterface
     }
 
     /**
-     * @param \Models\Registries\Registry $registry
+     * @param Registry $registry
      *
      * @return void
-     * @throws \Doctrine\ORM\ORMException
+     * @throws ORMException
      * @throws \Exception
      */
     public function save(Registry $registry)
@@ -61,15 +66,15 @@ class RegistryRepository implements RegistryRepositoryInterface
     }
 
     /**
-     * @param \Models\Registries\Registry $register
+     * @param Registry $register
      *
      * @return void
-     * @throws \Doctrine\ORM\ORMException
+     * @throws ORMException
      * @throws \Exception
      */
     public function deleteOne(Registry $register)
     {
-        try{
+        try {
             $this->em->remove($register);
             $this->em->flush();
         } catch (ORMInvalidArgumentException $e) {
@@ -77,5 +82,18 @@ class RegistryRepository implements RegistryRepositoryInterface
         } catch (ORMException $e) {
             throw $e;
         }
+    }
+
+    /**
+     * This function aren't modify data in DB. You must '$app[]->save();' after use this method.
+     *
+     * @param Registry $register
+     * @param          $registerId
+     * @param          $newName
+     */
+    public function modifyOne(Registry $register, $registerId, $newName)
+    {
+        $this->find($registerId);
+        $register->changeName($newName);
     }
 }

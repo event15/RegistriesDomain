@@ -1,4 +1,5 @@
-Models\Registries\Registry:
+Models\RegistryModel:
+  table: Registry
   type: entity
 
   inheritanceType: SINGLE_TABLE
@@ -6,15 +7,7 @@ Models\Registries\Registry:
     name: registry_type
     type: string
   discriminatorMap:
-    samochody: Models\Registries\CarRegistry\CarRegistry
-
-
-  manyToOne:
-    createdBy:
-      targetEntity: Models\Users\Users
-      joinColumn:
-        name: registry_created_by
-        referencedColumnName: user_id
+    samochody: Models\Registries\CarRegistry
 
   id:
     registryId:

@@ -8,7 +8,7 @@
 
 namespace Models\Elements;
 
-
+use Models\DTO\CarElement;
 use Models\ElementModel;
 
 class Car extends ElementModel
@@ -20,38 +20,30 @@ class Car extends ElementModel
     private $insurer;
     private $others;
     private $attachments;
-    private $createdBy;
     private $registryId;
     private $terms;
 
-    private $metadata = [];
-
-    public function __construct(array $ok)
+    public function __construct(CarElement $metadata)
     {
-        array_push($this->metadata, $ok);
-    }
-
-    public function getMetadata()
-    {
-        return $this->metadata;
-    }
-    public function setMetadata(array $metadata)
-    {
-        $this->metadata = $metadata;
+        parent::__construct();
+        $this->brand              = $metadata->brand;
+        $this->model              = $metadata->model;
+        $this->registrationNumber = $metadata->registrationNumber;
+        $this->insurer            = $metadata->insurer;
+        $this->others             = $metadata->others;
+        $this->attachments        = $metadata->attachments;
+        $this->registryId         = $metadata->registryId;
     }
     public function toArray()
     {
-        $this->metadata = array(
-            'id' => $this->carId,
-            'brand' => $this->brand,
-            'model' => $this->model,
+        return array(
+            'id'                 => $this->carId,
+            'brand'              => $this->brand,
+            'model'              => $this->model,
             'registrationNumber' => $this->registrationNumber,
-            'insurer' => $this->insurer,
-            'others' => $this->others,
-            'attachments' => $this->attachments,
-            'createdBy' => $this->createdBy,
-            'registryId' => $this->registryId,
-            'terms' => $this->terms
+            'insurer'            => $this->insurer,
+            'others'             => $this->others,
+            'attachments'        => $this->attachments
         );
     }
 }

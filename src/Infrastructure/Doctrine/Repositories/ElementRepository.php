@@ -1,50 +1,34 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: PFIG
- * Date: 2015-07-28
- * Time: 21:49
+ * User: marek
+ * Date: 05.08.15
+ * Time: 11:12
  */
-
 namespace Infrastructure\Doctrine\Repositories;
-
 
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\ORMException;
 use Doctrine\ORM\ORMInvalidArgumentException;
-use Models\Registries\CarRegistry\Car;
-use Models\Registries\CarRegistry\CarRegistry;
-use Models\Registries\ElementRepositoryInterface;
-use Models\Registries\Registry;
+use Models\ElementModel;
+use Models\Repositories\ElementRepositoryInterface;
 
-/**
- * Class ElementRepository
- *
- * @package Infrastructure\Doctrine\Repositories
- */
 class ElementRepository implements ElementRepositoryInterface
 {
     /** @var \Doctrine\ORM\EntityManager $em */
     private $em;
-    const MODEL = "\\Models\\Registries\\CarRegistry\\Car";
+    const MODEL = "\\Models\\ElementModel";
 
 
     /**
-     * @param EntityManager $entityManager
+     * @param \Doctrine\ORM\EntityManager $entityManager
      */
     public function __construct(EntityManager $entityManager)
     {
         $this->em = $entityManager;
     }
 
-
-    /**
-     * @param Car $registry
-     *
-     * @throws ORMException
-     * @throws \Exception
-     */
-    public function save(Car $registry)
+    public function save(ElementModel $registry)
     {
         try {
             $this->em->persist($registry);
@@ -56,27 +40,18 @@ class ElementRepository implements ElementRepositoryInterface
         }
     }
 
-    public function find($elementId)
+    public function find($model, $id, $idElementu)
     {
-        return $this->em->getRepository(self::MODEL)->find($elementId);
+        return $this->em->getRepository($model)->findBy(array('registryId' => $id, 'carId' => $idElementu));
     }
 
-    public function findAll()
+    public function findAll($model, $id)
     {
-        /*$this->em->getRepository(self::MODEL)->findBy()*/
-        return $this->em->getRepository(self::MODEL)->findAll();
-
+        return $this->em->getRepository($model)->findBy(array('registryId' => $id));
     }
 
-    public function deleteOne(Car $car)
+    public function deleteOne(ElementModel $car)
     {
-        try{
-            $this->em->remove($car);
-            $this->em->flush();
-        } catch (ORMInvalidArgumentException $e) {
-            throw $e;
-        } catch (ORMException $e) {
-            throw $e;
-        }
+        // TODO: Implement deleteOne() method.
     }
 }

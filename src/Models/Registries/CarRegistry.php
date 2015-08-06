@@ -8,8 +8,7 @@
 
 namespace Models\Registries;
 
-
-use Models\Factories\ElementFactory;
+use Models\Elements\Car;
 use Models\Factories\RegistryFactory;
 use Models\RegistryModel;
 
@@ -17,17 +16,20 @@ class CarRegistry extends RegistryModel
 {
     private $cars = [];
 
+    public function __construct($name)
+    {
+        $this->registryName = $name;
+        $this->createDate = new \DateTime('now');
+        $this->registry_type = $this->getType();
+    }
+
     public function getType()
     {
         return RegistryFactory::CAR_REGISTRY;
     }
 
-    public function getMetadata()
+    public function addCar(Car $car)
     {
-        return $this->cars;
-    }
-    public function setMetadata(array $metadata)
-    {
-        $this->cars = $metadata;
+        $this->cars[] = $car;
     }
 }

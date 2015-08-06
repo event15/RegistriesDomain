@@ -2,16 +2,14 @@
 /**
  * Created by PhpStorm.
  * User: marek
- * Date: 27.07.15
- * Time: 10:30
+ * Date: 04.08.15
+ * Time: 13:40
  */
 
-namespace Models\Registries;
+namespace Models\Repositories;
 
-/**
- * Interface RegistryRepository
- * @package Models\Registries
- */
+use Models\RegistryModel as Registry;
+
 interface RegistryRepositoryInterface
 {
     /**
@@ -34,7 +32,7 @@ interface RegistryRepositoryInterface
     public function findAll();
 
     /**
-     * @param \Models\Registries\Registry $register
+     * @param Registry $register
      *
      * @return mixed
      */
