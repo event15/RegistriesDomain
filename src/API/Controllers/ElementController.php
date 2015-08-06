@@ -8,7 +8,6 @@
 
 namespace API\Controllers;
 
-use Infrastructure\Doctrine\Repositories\ElementRepository;
 use Models\Elements\Car;
 use Models\Factories\ElementFactory;
 use Models\Registries\CarRegistry;
@@ -67,7 +66,7 @@ class ElementController
             return new Response("Nie znaleziono rejestru o id={$id}", 404);
         }
 
-        /** @var Car $getElement */
+        /** @var Car array $getElement */
         $getElement = $app['repositories.element']->findAll("Models\\Elements\\Car", $id);
 
         if (count($getElement) === 0) {
@@ -96,6 +95,8 @@ class ElementController
         if ($getRegistry === null) {
             return new Response("Nie znaleziono rejestru o id={$id}", 404);
         }
+
+        // W przypadku, gdyby była potrzeba na wyświetlenie wielu elementów
         $idElementu = explode(',', $idElementu);
 
         $getElement = $app['repositories.element']->find("Models\\Elements\\Car", $id, $idElementu);
@@ -110,5 +111,18 @@ class ElementController
         }
 
         return $app->json([$getRegistry->toArray(), $tab], 200);
+    }
+
+    public function modifyElement(Application $app, $id, $idElementu)
+    {
+        $element = $this->findElementById($app, $id, $idElementu);
+        $tab = [];
+
+        foreach ($element as $i => $key) {
+            $tab[$key] =  $i;
+        }
+        var_dump($tab);
+        return new Response('ok', 200);
+        //$app['repositories.element']->save($element);
     }
 }

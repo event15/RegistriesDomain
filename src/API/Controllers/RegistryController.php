@@ -64,7 +64,7 @@ class RegistryController
 
     public function findAllRegistries(Application $app)
     {
-        /** @var Registry $getRegistry */
+        /** @var Registry array $getRegistry */
         $getRegistry = $app['repositories.registry']->findAll();
         $tab = [];
 
@@ -76,7 +76,6 @@ class RegistryController
         foreach ($getRegistry as $id => $register) {
             $tab[$id] = $register->toArray();
         }
-
         return $app->json($tab);
     }
 
