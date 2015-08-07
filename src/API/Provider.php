@@ -45,6 +45,7 @@ class Provider implements ControllerProviderInterface
         $controller->get('/{id}/elementy', 'API\\Controllers\\ElementController::findAllElements');
         $controller->get('/{id}/elementy/{idElementu}', 'API\\Controllers\\ElementController::findElementById');
         $controller->put('/{id}/elementy/{idElementu}', 'API\\Controllers\\ElementController::modifyElement');
+        $controller->delete('/{id}/elementy/{idElementu}', 'API\\Controllers\\ElementController::deleteElement');
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
