@@ -50,8 +50,15 @@ class ElementRepository implements ElementRepositoryInterface
         return $this->em->getRepository($model)->findBy(array('registryId' => $id));
     }
 
-    public function deleteOne(ElementModel $car)
+    public function deleteOne($element)
     {
-        // TODO: Implement deleteOne() method.
+        try {
+            $this->em->remove($element);
+            $this->em->flush();
+        } catch (ORMInvalidArgumentException $e) {
+            throw $e;
+        } catch (ORMException $e) {
+            throw $e;
+        }
     }
 }
