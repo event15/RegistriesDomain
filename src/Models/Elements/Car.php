@@ -46,4 +46,52 @@ class Car extends ElementModel
             'attachments'        => $this->attachments
         );
     }
+
+    /**
+     * @param mixed $brand
+     */
+    public function setBrand($brand)
+    {
+        $this->brand = $brand;
+    }
+
+    /**
+     * @param mixed $model
+     */
+    public function setModel($model)
+    {
+        $this->model = $model;
+    }
+
+    /**
+     * @param mixed $registrationNumber
+     */
+    public function setRegistrationNumber($registrationNumber)
+    {
+        $this->registrationNumber = $registrationNumber;
+    }
+
+    /**
+     * @param mixed $insurer
+     */
+    public function setInsurer($insurer)
+    {
+        $this->insurer = $insurer;
+    }
+
+    /**
+     * @param mixed $others
+     */
+    public function setOthers($others)
+    {
+        $this->others = $others;
+    }
+
+    /**
+     * @param mixed $attachments
+     */
+    public function setAttachments($attachments)
+    {
+        $this->attachments = $attachments;
+    }
 }
