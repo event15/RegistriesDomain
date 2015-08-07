@@ -8,6 +8,7 @@
 
 namespace Models\Elements;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Models\DTO\CarElement;
 use Models\ElementModel;
 
@@ -33,6 +34,7 @@ class Car extends ElementModel
         $this->others             = $metadata->others;
         $this->attachments        = $metadata->attachments;
         $this->registryId         = $metadata->registryId;
+        $this->terms              = new ArrayCollection();
     }
     public function toArray()
     {
@@ -43,7 +45,8 @@ class Car extends ElementModel
             'registrationNumber' => $this->registrationNumber,
             'insurer'            => $this->insurer,
             'others'             => $this->others,
-            'attachments'        => $this->attachments
+            'attachments'        => $this->attachments,
+            'terms'              => $this->terms
         );
     }
 
@@ -93,5 +96,16 @@ class Car extends ElementModel
     public function setAttachments($attachments)
     {
         $this->attachments = $attachments;
+    }
+
+    public function addTerm(Term $term)
+    {
+        $term->addTerm($this);
+        $this->terms[] = $term;
+    }
+
+    public function getTerm()
+    {
+        return $this->terms;
     }
 }

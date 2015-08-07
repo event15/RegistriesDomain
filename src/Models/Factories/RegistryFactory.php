@@ -20,6 +20,7 @@ class RegistryFactory
 
     public function create($type, $name)
     {
+        /** @noinspection DegradedSwitchInspection */
         switch ($type) {
             case self::CAR_REGISTRY:
                 return new CarRegistry($name);

@@ -20,6 +20,7 @@ class ElementFactory
 
     public function create($registryType, $metadata)
     {
+        /** @noinspection DegradedSwitchInspection */
         switch ($registryType) {
             case self::CAR_ELEMENT:
                 return new Car($metadata);

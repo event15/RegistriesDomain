@@ -14,5 +14,5 @@ interface ElementRepositoryInterface
     public function save(ElementModel $registry);
     public function find($model, $id, $idElementu);
     public function findAll($model, $id);
-    public function deleteOne(ElementModel $car);
+    public function deleteOne($element);
 }

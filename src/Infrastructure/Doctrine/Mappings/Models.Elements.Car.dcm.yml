@@ -10,6 +10,7 @@ Models\Elements\Car:
 
   manyToMany:
     terms:
+      cascade: ["persist", "merge"]
       targetEntity: Models\Elements\Term
       joinTable:
         name: CarTerm

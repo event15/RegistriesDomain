@@ -21,8 +21,6 @@ class CarElement
     public $terms;
 
     /**
-     * CarElement constructor.
-     *
      * @param $brand
      * @param $model
      * @param $registrationNumber

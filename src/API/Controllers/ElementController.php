@@ -9,6 +9,7 @@
 namespace API\Controllers;
 
 use Models\Elements\Car;
+use Models\Elements\Term;
 use Models\Factories\ElementFactory;
 use Models\Registries\CarRegistry;
 use Models\RegistryModel;
@@ -19,6 +20,8 @@ use Models\DTO;
 
 class ElementController
 {
+    const CAR = "Models\\Elements\\Car";
+
     public function addElement(Application $app, Request $request, $id)
     {
         /** @var RegistryModel $getRegistry */
@@ -29,6 +32,7 @@ class ElementController
         } else {
             $elementFactory = new ElementFactory();
 
+            /** @noinspection DegradedSwitchInspection */
             switch ($getRegistry->getType()) {
                 case ElementFactory::CAR_ELEMENT:
                     $element = $elementFactory->create(
@@ -67,7 +71,9 @@ class ElementController
         }
 
         /** @var Car array $getElement */
-        $getElement = $app['repositories.element']->findAll("Models\\Elements\\Car", $id);
+        $getElement = $app['repositories.element']->findAll(self::CAR, $id);
+
+
 
         if (count($getElement) === 0) {
             return new Response('Rejestr jest pusty.', 404);
@@ -99,7 +105,7 @@ class ElementController
         // W przypadku, gdyby była potrzeba na wyświetlenie wielu elementów
         $idElementu = explode(',', $idElementu);
 
-        $getElement = $app['repositories.element']->find("Models\\Elements\\Car", $id, $idElementu);
+        $getElement = $app['repositories.element']->find(self::CAR, $id, $idElementu);
         $tab = [];
 
         /**
@@ -113,6 +119,14 @@ class ElementController
         return $app->json($tab, 200);
     }
 
+    /** @noinspection MoreThanThreeArgumentsInspection
+     * @param Application $app
+     * @param Request     $request
+     * @param             $id
+     * @param             $idElementu
+     *
+     * @return Response
+     */
     public function modifyElement(Application $app, Request $request, $id, $idElementu)
     {
         /** @var RegistryModel $getRegistry */
@@ -120,7 +134,7 @@ class ElementController
         if ($getRegistry === null) {
             return new Response("Nie znaleziono rejestru o id={$id}", 404);
         }
-        $getElement = $app['repositories.element']->find("Models\\Elements\\Car", $id, $idElementu);
+        $getElement = $app['repositories.element']->find(self::CAR, $id, $idElementu);
 
         if (count($getElement) === 0) {
             return new Response('Rejestr jest pusty.', 404);
@@ -163,7 +177,7 @@ class ElementController
         }
         $idElementu = explode(',', $idElementu);
 
-        $getElement = $app['repositories.element']->find("Models\\Elements\\Car", $id, $idElementu);
+        $getElement = $app['repositories.element']->find(self::CAR, $id, $idElementu);
 
         if (count($getElement) === 0) {
             return new Response('Rejestr jest pusty.', 404);
@@ -177,5 +191,35 @@ class ElementController
         }
 
         return new Response('OK', 200);
+    }
+
+    public function addTermin(Application $app, Request $request, $id, $idElementu)
+    {
+        $termin = new Term('oc', new \DateTime(), new \DateTime(), 'dział budowlany', 14);
+
+        /** @var RegistryModel $getRegistry */
+        $getRegistry = $app['repositories.registry']->find($id);
+        if ($getRegistry === null) {
+            return new Response("Nie znaleziono rejestru o id={$id}", 404);
+        }
+        $idElementu = explode(',', $idElementu);
+
+        $getElement = $app['repositories.element']->find(self::CAR, $id, $idElementu);
+
+        if (count($getElement) === 0) {
+            return new Response('Rejestr jest pusty.', 404);
+        }
+
+        /**
+         * @var  $i
+         * @var  Car $element
+         */
+        foreach ($getElement as $i => $element) {
+            $element->addTerm($termin);
+
+        }
+        //var_dump($element->getTerm());
+        $app['repositories.element']->save($element);
+        return new Response('ok', 200);
     }
 }
