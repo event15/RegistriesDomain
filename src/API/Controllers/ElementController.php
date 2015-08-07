@@ -110,19 +110,72 @@ class ElementController
             $tab[$i] = $element->toArray();
         }
 
-        return $app->json([$getRegistry->toArray(), $tab], 200);
+        return $app->json($tab, 200);
     }
 
-    public function modifyElement(Application $app, $id, $idElementu)
+    public function modifyElement(Application $app, Request $request, $id, $idElementu)
     {
-        $element = $this->findElementById($app, $id, $idElementu);
-        $tab = [];
-
-        foreach ($element as $i => $key) {
-            $tab[$key] =  $i;
+        /** @var RegistryModel $getRegistry */
+        $getRegistry = $app['repositories.registry']->find($id);
+        if ($getRegistry === null) {
+            return new Response("Nie znaleziono rejestru o id={$id}", 404);
         }
-        var_dump($tab);
-        return new Response('ok', 200);
-        //$app['repositories.element']->save($element);
+        $getElement = $app['repositories.element']->find("Models\\Elements\\Car", $id, $idElementu);
+
+        if (count($getElement) === 0) {
+            return new Response('Rejestr jest pusty.', 404);
+        }
+
+        /**
+         * @var integer $i
+         * @var Car $element
+         */
+        foreach ($getElement as $i => $element) {
+            $request->get('brand') === null || $request->get('brand') === '' ?:
+                $element->setBrand($request->get('brand'));
+
+            $request->get('model') === null || $request->get('model') === '' ?:
+                $element->setModel($request->get('model'));
+
+            $request->get('registrationNumber') === null || $request->get('registrationNumber') === '' ?:
+                $element->setRegistrationNumber($request->get('registrationNumber'));
+
+            $request->get('insurer') === null || $request->get('insurer') === '' ?:
+                $element->setInsurer($request->get('insurer'));
+
+            $request->get('others') === null || $request->get('others') === '' ?:
+                $element->setOthers($request->get('others'));
+
+            $request->get('attachments') === null || $request->get('attachments') === '' ?:
+                $element->setAttachments($request->get('attachments'));
+        }
+        $app['repositories.element']->save($element);
+
+        return new Response('OK', 200);
+    }
+
+    public function deleteElement(Application $app, $id, $idElementu)
+    {
+        /** @var RegistryModel $getRegistry */
+        $getRegistry = $app['repositories.registry']->find($id);
+        if ($getRegistry === null) {
+            return new Response("Nie znaleziono rejestru o id={$id}", 404);
+        }
+        $idElementu = explode(',', $idElementu);
+
+        $getElement = $app['repositories.element']->find("Models\\Elements\\Car", $id, $idElementu);
+
+        if (count($getElement) === 0) {
+            return new Response('Rejestr jest pusty.', 404);
+        }
+        /**
+         * @var  $i
+         * @var  Car $element
+         */
+        foreach ($getElement as $i => $element) {
+            $app['repositories.element']->deleteOne($element);
+        }
+
+        return new Response('OK', 200);
     }
 }
