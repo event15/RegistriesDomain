@@ -23,7 +23,8 @@
         "behat/mink-goutte-driver": "v1.1.0",
         "behat/mink-selenium2-driver": "v1.2.0",
         "dflydev/doctrine-orm-service-provider": "*",
-        "symfony/yaml": "*"
+        "symfony/yaml": "*",
+        "doctrine/collections": "*"
     },
     "config": {
         "bin-dir": "bin"

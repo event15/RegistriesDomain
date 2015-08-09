@@ -17,15 +17,13 @@ interface PositionCollection
     /**
      * @param Position $position
      * @throws PositionNotFoundException
-     * @return mixed
      */
-    public function removeElement(Position $position);
+    public function removePosition(Position $position);
 
     /**
      * @param Position $position
      * @throws PositionNotAllowedException
-     * @return mixed
      */
-    public function addElement(Position $position);
+    public function addPosition(Position $position);
 
 }

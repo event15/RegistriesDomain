@@ -24,4 +24,45 @@ abstract class Registry
      */
     protected $positions;
 
+    /**
+     * Registry constructor.
+     * @param string $name
+     */
+    public function __construct($name)
+    {
+        $this->name = $name;
+        $this->createdAt = new \DateTime();
+    }
+
+    /**
+     * @param $name
+     */
+    public function changeName($name)
+    {
+        $this->name = $name;
+    }
+
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * @param Position $position
+     * @throws PositionNotAllowedException
+     */
+    public function addPosition(Position $position)
+    {
+        $this->positions->addPosition($position);
+    }
+
+    /**
+     * @param Position $position
+     * @throws PositionNotFoundException
+     */
+    public function removePosition(Position $position)
+    {
+        $this->positions->removePosition($position);
+    }
+
 }

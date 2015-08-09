@@ -1,39 +1,44 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: sczarnop
- * Date: 07.08.15
- * Time: 15:53
- */
 
 namespace Madkom\Registries\Domain\Car;
 
 
 use Madkom\Registries\Domain\Position;
 use Madkom\Registries\Domain\PositionCollection;
+use Doctrine\Common\Collections\ArrayCollection;
+use Madkom\Registries\Domain\PositionNotAllowedException;
 
 /**
  * Class CarCollection
  * @package Madkom\Registries\Domain\Car
  */
-class CarCollection implements PositionCollection
+class CarCollection extends ArrayCollection implements PositionCollection
 {
     /**
      * @param Position $position
-     * @return mixed
+     * @throws PositionNotAllowedException
      */
-    public function removeElement(Position $position)
+    public function removePosition(Position $position)
     {
-        // TODO: Implement removeElement() method.
+        parent::removeElement($position);
     }
 
     /**
      * @param Position $position
-     * @return mixed
+     * @throws PositionNotAllowedException
      */
-    public function addElement(Position $position)
+    public function addPosition(Position $position)
     {
-        // TODO: Implement addElement() method.
+        if($position instanceof Car)
+        {
+            $this->add($position);
+        }
+        else
+        {
+            throw new PositionNotAllowedException;
+        }
+
+
     }
 
 }
