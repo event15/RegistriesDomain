@@ -10,6 +10,11 @@ abstract class Term
 {
 
     /**
+     * @var string
+     */
+    protected $id;
+
+    /**
      * @var \DateTime
      */
     protected $expiryDate;

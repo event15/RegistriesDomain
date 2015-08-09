@@ -12,6 +12,11 @@ abstract class Registry
     /**
      * @var string
      */
+    protected $id;
+
+    /**
+     * @var string
+     */
     protected $name;
 
     /**

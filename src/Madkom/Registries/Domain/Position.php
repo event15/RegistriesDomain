@@ -10,6 +10,11 @@ abstract class Position
 {
 
     /**
+     * @var string
+     */
+    protected $id;
+
+    /**
      * @var TermCollection
      */
     protected $terms;
