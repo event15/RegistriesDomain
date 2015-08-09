@@ -2,6 +2,8 @@
 
 namespace Madkom\Registries\Domain;
 
+use Madkom\Registries\Domain\Department\DepartmentCollection;
+
 /**
  * Class Term
  * @package Madkom\Registries\Domain\Term
@@ -25,7 +27,7 @@ abstract class Term
     protected $notifyBefore;
 
     /**
-     * @var array
+     * @var DepartmentCollection
      */
     protected $whoToNotify;
 
@@ -70,13 +72,11 @@ abstract class Term
     }
 
     /**
-     * @param array $whoToNotify
+     * @param DepartmentCollection $whoToNotify
      */
-    public function changeWhoToNotify($whoToNotify)
+    public function changeWhoToNotify(DepartmentCollection $whoToNotify)
     {
         $this->whoToNotify = $whoToNotify;
     }
-
-
 
 }

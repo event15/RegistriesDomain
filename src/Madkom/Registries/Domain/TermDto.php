@@ -2,6 +2,8 @@
 
 namespace Madkom\Registries\Domain;
 
+use Madkom\Registries\Domain\Department\DepartmentCollection;
+
 class TermDto
 {
     /**
@@ -15,7 +17,7 @@ class TermDto
     public $notifyBefore;
 
     /**
-     * @var array
+     * @var DepartmentCollection
      */
     public $whoToNotify;
 }

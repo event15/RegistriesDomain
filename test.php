@@ -22,6 +22,9 @@ $car = $positionFactory->create($carDto);
 $termDto = new \Madkom\Registries\Domain\TermDto();
 $termDto->expiryDate = new \DateTime();
 $termDto->notifyBefore = new \DateInterval('P1D');
+$termDto->whoToNotify = new \Madkom\Registries\Domain\Department\DepartmentCollection();
+$termDto->whoToNotify->add(new \Madkom\Registries\Domain\Department\Department());
+
 $term = $termFactory->create(\Madkom\Registries\Domain\Car\Term\Insurance::TYPE, $termDto);
 $car->addTerm($term);
 $carRegistry->addPosition($car);
