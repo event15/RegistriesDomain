@@ -25,7 +25,8 @@
         "dflydev/doctrine-orm-service-provider": "*",
         "symfony/yaml": "*",
         "squizlabs/php_codesniffer": "2.3.3",
-        "phpmd/phpmd": "2.2.3"
+        "phpmd/phpmd": "2.2.3",
+        "doctrine/collections": "*"
     },
     "config": {
         "bin-dir": "bin"
