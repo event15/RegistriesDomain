@@ -98,14 +98,11 @@ class Car extends ElementModel
         $this->attachments = $attachments;
     }
 
+    /**
+     * @param Term $term
+     */
     public function addTerm(Term $term)
     {
-        $term->addTerm($this);
         $this->terms[] = $term;
-    }
-
-    public function getTerm()
-    {
-        return $this->terms;
     }
 }

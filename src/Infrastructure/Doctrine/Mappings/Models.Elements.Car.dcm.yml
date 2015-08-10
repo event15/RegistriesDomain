@@ -10,16 +10,23 @@ Models\Elements\Car:
 
   manyToMany:
     terms:
-      cascade: ["persist", "merge"]
       targetEntity: Models\Elements\Term
+      cascade: ["persist", "merge"]
+      inversedBy: cars
       joinTable:
-        name: CarTerm
+        name: CarsTerms
         joinColumns:
           car_car_id:
             referencedColumnName: car_id
+            generator:
+              strategy: AUTO
         inverseJoinColumns:
           term_term_id:
             referencedColumnName: term_id
+            generator:
+              strategy: AUTO
+
+
 
   manyToOne:
     registryId:

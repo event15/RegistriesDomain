@@ -58,7 +58,7 @@ class Provider implements ControllerProviderInterface
         /**
          * host/web/rejestry/{typ}/{id}/
          */
-        $controller->get('/{id}/elementy/{idElementu}/', 'API\\Controllers\\ElementController::addTermin');
+        $controller->post('/{id}/elementy/{idElementu}', 'API\\Controllers\\ElementController::addTermin');
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 

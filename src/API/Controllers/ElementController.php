@@ -195,20 +195,22 @@ class ElementController
 
     public function addTermin(Application $app, Request $request, $id, $idElementu)
     {
-        $termin = new Term('oc', new \DateTime(), new \DateTime(), 'dział budowlany', 14);
+
 
         /** @var RegistryModel $getRegistry */
         $getRegistry = $app['repositories.registry']->find($id);
         if ($getRegistry === null) {
             return new Response("Nie znaleziono rejestru o id={$id}", 404);
         }
-        $idElementu = explode(',', $idElementu);
 
         $getElement = $app['repositories.element']->find(self::CAR, $id, $idElementu);
 
         if (count($getElement) === 0) {
-            return new Response('Rejestr jest pusty.', 404);
+            return new Response('Nie znaleziono elementu o takim id.', 404);
         }
+
+        // TODO: Utworzyć dynamiczne dodawanie terminu na podstawie request'a
+        $termin = new Term('oc', new \DateTime(), new \DateTime(), 'dział handlowy', 15);
 
         /**
          * @var  $i
@@ -218,8 +220,7 @@ class ElementController
             $element->addTerm($termin);
 
         }
-        //var_dump($element->getTerm());
         $app['repositories.element']->save($element);
-        return new Response('ok', 200);
+        return new Response('OK', 200);
     }
 }

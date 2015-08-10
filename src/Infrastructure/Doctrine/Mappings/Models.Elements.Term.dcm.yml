@@ -3,8 +3,8 @@ Models\Elements\Term:
 
   manyToMany:
     cars:
-      targetEntity: Models\Registries\CarRegistry
-      mappedBy: CarTerm
+      targetEntity: Models\Elements\Car
+      mappedBy: terms
 
   id:
     termId:

@@ -54,8 +54,9 @@ class Term
         );
     }
 
-    public function addTerm($element)
+    public function addToCar(Car $car)
     {
-        $this->cars->add($element);
+        $car->addTerm($this);
+        $this->cars[] = $car;
     }
 }
