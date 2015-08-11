@@ -1,0 +1,101 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: event15
+ * Date: 31.07.15
+ * Time: 22:25
+ */
+
+namespace Madkom\Registries\Application\RestApi;
+
+use Silex\Application;
+use Silex\ControllerCollection;
+use Silex\ControllerProviderInterface;
+
+class Provider implements ControllerProviderInterface
+{
+    /**
+     * Returns routes to connect to the given application.
+     *
+     * @param Application $app An Application instance
+     *
+     * @return ControllerCollection A ControllerCollection instance
+     */
+    public function connect(Application $app)
+    {
+        /** @var ControllerCollection $controller */
+        $controller = $app['controllers_factory'];
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+        /**
+         * Operacje na rejestrach
+         *
+         * host/web/rejestry/
+         * host/web/rejestry/{id}
+         */
+        $controller->post(
+            '',
+            'Madkom\\Registries\\Application\\RestApi\\Controllers\\RegistryController::addRegistry'
+        );
+        $controller->get(
+            '',
+            'Madkom\\Registries\\Application\\RestApi\\Controllers\\RegistryController::showRegistries'
+        );
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+        $controller->put(
+            '/{id}',
+            'Madkom\\Registries\\Application\\RestApi\\Controllers\\RegistryController::modifyRegistry'
+        );
+
+        $controller->get(
+            '/{id}',
+            'Madkom\\Registries\\Application\\RestApi\\Controllers\\RegistryController::showRegistry'
+        );
+        $controller->delete(
+            '/{id}',
+            'Madkom\\Registries\\Application\\RestApi\\Controllers\\RegistryController::deleteRegistry'
+        );
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+        /**
+         * Operacje na elementach rejestrów
+         *
+         * host/web/rejestry/{id}/elementy
+         * host/web/rejestry/{id}/elementy/{idElementu}
+         */
+
+        $controller->post(
+            '/{id}/pozycje',
+            'Madkom\\Registries\\Application\\RestApi\\Controllers\\PositionController::addPosition'
+        );
+
+        $controller->get(
+            '/{id}/pozycje',
+            'Madkom\\Registries\\Application\\RestApi\\Controllers\\PositionController::showPositions'
+        );
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+        $controller->get(
+            '/{id}/pozycje/{positionId}',
+            'Madkom\\Registries\\Application\\RestApi\\Controllers\\PositionController::showPositions'
+        );
+
+        $controller->put(
+            '/{id}/pozycje/{positionId}',
+            'Madkom\\Registries\\Application\\RestApi\\Controllers\\PositionController::modifyPosition'
+        );
+
+        $controller->delete(
+            '/{id}/pozycje/{positionId}',
+            'Madkom\\Registries\\Application\\RestApi\\Controllers\\PositionController::deletePosition'
+        );
+
+        return $controller;
+    }
+}

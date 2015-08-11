@@ -6,9 +6,8 @@
  * Time: 13:56
  */
 
-namespace API\Controllers;
+namespace Madkom\Registries\Application\RestApi\Controllers;
 
-use Infrastructure\Doctrine\Repositories\RegistryRepository;
 use Models\Factories\RegistryFactory;
 use Models\RegistryModel as Registry;
 use Models\RegistryModel;
@@ -16,7 +15,7 @@ use Silex\Application;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class RegistryController
+class RegistryControllerOld
 {
     public function isValidType($registerType)
     {

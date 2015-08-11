@@ -10,17 +10,15 @@ use Madkom\Registries\Domain\TermNotAllowedException;
 class CarTermCollection extends ArrayCollection implements TermCollection
 {
     /**
+     * @return void
      * @param Term $term
      * @throws TermNotAllowedException
      */
     public function addTerm(Term $term)
     {
-        if($term instanceof Insurance || $term instanceof Review)
-        {
+        if ($term instanceof OC || $term instanceof Review || $term instanceof AC || $term instanceof ASS) {
             parent::add($term);
-        }
-        else
-        {
+        } else {
             throw new TermNotAllowedException;
         }
     }

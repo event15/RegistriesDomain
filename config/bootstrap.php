@@ -6,8 +6,7 @@ use Dflydev\Silex\Provider\DoctrineOrm\DoctrineOrmServiceProvider;
 use Silex\Provider\DoctrineServiceProvider;
 use Doctrine\ORM\Tools\Setup;
 use Doctrine\ORM\EntityManager;
-use Infrastructure\Doctrine\Repositories\RegistryRepository;
-use Infrastructure\Doctrine\Repositories\ElementRepository;
+use Madkom\Registries\Infrastructure\Doctrine\Repositories\RegistryRepository;
 
 $app = new Silex\Application();
 $app[ 'debug' ] = true;
@@ -28,8 +27,8 @@ $app->register(new DoctrineOrmServiceProvider(), array(
         'mappings' => array(
             array(
                 'type' => 'yml',
-                'namespace' => '\Models',
-                'path' => array(__DIR__ . '/../src/Infrastructure/Doctrine/Mappings'),
+                'namespace' => 'Madkom\Registries\Domain\Registry',
+                'path' => array(__DIR__ . '/../src/Madkom/Registries/Infrastructure/Doctrine/Mappings'),
             )
         )
     )
@@ -39,5 +38,3 @@ $config = Setup::createYAMLMetadataConfiguration($app['orm.em.options']['mapping
 $app['orm.em'] = EntityManager::create($app['db.options'], $config);
 
 $app['repositories.registry'] = new RegistryRepository($app['orm.em']);
-
-$app['repositories.element'] = new ElementRepository($app['orm.em']);

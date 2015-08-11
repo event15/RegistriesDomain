@@ -6,7 +6,7 @@
  * Time: 13:56
  */
 
-namespace API\Controllers;
+namespace Madkom\Registries\Application\RestApi\Controllers;
 
 use Models\Elements\Car;
 use Models\Elements\Term;
@@ -53,6 +53,7 @@ class ElementController
                     return new Response("Nie można rozpoznać podanego typu '{$getRegistry->getType()}'.");
                 break;
             }
+
             /** @var CarRegistry $getRegistry */
             $getRegistry->addCar($element);
             $app['repositories.element']->save($element);

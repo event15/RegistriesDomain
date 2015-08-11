@@ -32,7 +32,13 @@ class Car extends Position
     /**
      * @var string
      */
-    protected $number;
+    protected $registrationNumber;
+
+    /** @var  integer */
+    protected $registryId;
+
+    /** @var  string */
+    protected $others;
 
     public function __construct()
     {
@@ -84,18 +90,32 @@ class Car extends Position
     /**
      * @return string
      */
-    public function getNumber()
+    public function getRegistrationNumber()
     {
-        return $this->number;
+        return $this->registrationNumber;
     }
 
     /**
-     * @param string $number
+     * @param string $registrationNumber
      */
-    public function changeNumber($number)
+    public function changeRegistrationNumber($registrationNumber)
     {
-        $this->number = $number;
+        $this->registrationNumber = $registrationNumber;
     }
 
+    /**
+     * @return string
+     */
+    public function getOthers()
+    {
+        return $this->others;
+    }
 
+    /**
+     * @param string $others
+     */
+    public function changeOthers($others)
+    {
+        $this->others = $others;
+    }
 }

@@ -19,8 +19,7 @@ class RegistryFactory
      */
     public function create($type, $name)
     {
-        switch($type)
-        {
+        switch ($type) {
             case CarRegistry::TYPE_NAME:
                 return new CarRegistry($name);
                 break;

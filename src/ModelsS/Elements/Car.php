@@ -14,15 +14,15 @@ use Models\ElementModel;
 
 class Car extends ElementModel
 {
-    private $carId;
+    private $carId;//
     private $brand;
-    private $model;
-    private $registrationNumber;
+    private $model;//
+    private $registrationNumber;//
     private $insurer;
     private $others;
     private $attachments;
     private $registryId;
-    private $terms;
+    private $terms;//
 
     public function __construct(CarElement $metadata)
     {

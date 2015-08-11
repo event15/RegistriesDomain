@@ -5,7 +5,7 @@
  * Date: 04.08.15
  * Time: 13:41
  */
-namespace Models\Repositories;
+namespace Madkom\Registries\Domain;
 
 use Models\ElementModel;
 

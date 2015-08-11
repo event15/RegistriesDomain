@@ -2,7 +2,6 @@
 
 namespace Madkom\Registries\Domain\Car;
 
-
 use Madkom\Registries\Domain\Position;
 use Madkom\Registries\Domain\PositionCollection;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -29,16 +28,10 @@ class CarCollection extends ArrayCollection implements PositionCollection
      */
     public function addPosition(Position $position)
     {
-        if($position instanceof Car)
-        {
+        if ($position instanceof Car) {
             $this->add($position);
-        }
-        else
-        {
+        } else {
             throw new PositionNotAllowedException;
         }
-
-
     }
-
 }

@@ -1,6 +1,7 @@
 <?php
 
 namespace Madkom\Registries\Domain;
+use Madkom\Registries\Domain\Car\CarRegistry;
 
 /**
  * Interface RegistryRepository
@@ -20,6 +21,8 @@ interface RegistryRepository
      * @return Registry
      */
     public function find($registryId);
+
+    public function findAll();
 
     /**
      * @param PositionCriteria $positionCriteria

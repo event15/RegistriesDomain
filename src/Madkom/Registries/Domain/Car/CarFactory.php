@@ -1,6 +1,7 @@
 <?php
 
 namespace Madkom\Registries\Domain\Car;
+
 use Madkom\Registries\Domain\PositionCreateStrategy;
 use Madkom\Registries\Domain\PositionDto;
 use Madkom\Registries\Domain\PositionTypeNotAllowedException;
@@ -19,14 +20,13 @@ class CarFactory implements PositionCreateStrategy
      */
     public function create(PositionDto $positionDto)
     {
-
-        if($positionDto instanceof CarDto)
-        {
+        if ($positionDto instanceof CarDto) {
             $car = new Car();
 
             $car->changeBrand($positionDto->brand);
             $car->changeModel($positionDto->model);
-            $car->changeNumber($positionDto->number);
+            $car->changeRegistrationNumber($positionDto->registrationNumber);
+            $car->changeOthers($positionDto->others);
 
             return $car;
         }

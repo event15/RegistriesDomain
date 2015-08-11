@@ -5,7 +5,7 @@
  * Date: 05.08.15
  * Time: 11:12
  */
-namespace Infrastructure\Doctrine\Repositories;
+namespace Madkom\Registries\Application\Infrastructure\Doctrine\Repositories;
 
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\ORMException;

@@ -8,7 +8,6 @@ namespace Madkom\Registries\Domain;
  */
 abstract class Position
 {
-
     /**
      * @var string
      */
@@ -22,5 +21,4 @@ abstract class Position
     abstract public function addTerm(Term $term);
 
     abstract public function removeTerm(Term $term);
-
 }
