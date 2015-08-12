@@ -16,7 +16,6 @@ require_once '../config/bootstrap.php';
 
 /** @var \Doctrine\ORM\EntityManager $em */
 $em = $app[ 'orm.em' ];
-$app['debug'] = true;
 $app->mount('/rejestry', new Provider());
 
 $app->run();

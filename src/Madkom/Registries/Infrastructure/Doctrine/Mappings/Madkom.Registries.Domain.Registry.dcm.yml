@@ -1,12 +1,11 @@
 Madkom\Registries\Domain\Registry:
   type: entity
+  cascade: ["persist"]
 
   inheritanceType: SINGLE_TABLE
   discriminatorColumn:
     name: registry_type
     type: string
-  discriminatorMap:
-    car_registry: Madkom\Registries\Domain\Car\CarRegistry
 
   id:
     id:
@@ -19,4 +18,4 @@ Madkom\Registries\Domain\Registry:
       type: string(50)
 
     createdAt:
-      type: string(50)
+      type: datetime

@@ -8,8 +8,8 @@
 
 namespace Madkom\Registries\Application\RestApi\Controllers;
 
-use Doctrine\ORM\ORMException;
 use Madkom\Registries\Domain\Car\CarRegistry;
+use Madkom\Registries\Domain\Registry;
 use Madkom\Registries\Domain\RegistryFactory;
 use Silex\Application;
 use Symfony\Component\HttpFoundation\Request;
@@ -32,26 +32,34 @@ class RegistryController
     public function addRegistry(Application $app, Request $request)
     {
         $registryFactory = new RegistryFactory();
-        if ($this->isValidType($request->get('type')))
-        {
-            $carRegistry = $registryFactory->create(CarRegistry::TYPE_NAME, $request->get('type'));
-            $app['repositories.registry']->save($carRegistry);
 
+        $registry = $registryFactory->create($request->get('type'), $request->get('name'));
+        $app['repositories.registry']->save($registry);
 
-            return new Response('OK', 200);
-        }
-        else
-        {
-            return new Response("Nie istnieje rejestr o typie {$request->get('type')}");
-        }
+        return new Response('OK', 201);
     }
 
-    public function showRegistries(Application $app, Request $request)
+    public function showRegistries(Application $app)
     {
-        /** @var CarRegistry $getRegistry */
         $getRegistry = $app['repositories.registry']->findAll();
-        $getRegistry->toArray();
+        $tab = [];
+        /**
+         * @var  $i
+         * @var CarRegistry $registry
+         */
+        foreach($getRegistry as $i => $registry)
+        {
+            $tab[] = $registry->getRegistry();
+        }
 
-        return new Response('OK', 200);
+        return $app->json($tab, 200);
+    }
+
+    public function showRegistry(Application $app, $id)
+    {
+        /** @var Registry $getRegistry */
+        $getRegistry = $app['repositories.registry']->find($id);
+
+        return $app->json($getRegistry->getRegistry(), 200);
     }
 }

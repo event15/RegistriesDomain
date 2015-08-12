@@ -14,6 +14,8 @@ use Silex\ControllerProviderInterface;
 
 class Provider implements ControllerProviderInterface
 {
+    const CONTROLLERS = 'Madkom\\Registries\\Application\\RestApi\\Controllers\\';
+
     /**
      * Returns routes to connect to the given application.
      *
@@ -26,41 +28,18 @@ class Provider implements ControllerProviderInterface
         /** @var ControllerCollection $controller */
         $controller = $app['controllers_factory'];
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
         /**
          * Operacje na rejestrach
          *
          * host/web/rejestry/
          * host/web/rejestry/{id}
          */
-        $controller->post(
-            '',
-            'Madkom\\Registries\\Application\\RestApi\\Controllers\\RegistryController::addRegistry'
-        );
-        $controller->get(
-            '',
-            'Madkom\\Registries\\Application\\RestApi\\Controllers\\RegistryController::showRegistries'
-        );
+        $controller->post  ('', self::CONTROLLERS . 'RegistryController::addRegistry');
+        $controller->get   ('', self::CONTROLLERS . 'RegistryController::showRegistries');
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-        $controller->put(
-            '/{id}',
-            'Madkom\\Registries\\Application\\RestApi\\Controllers\\RegistryController::modifyRegistry'
-        );
-
-        $controller->get(
-            '/{id}',
-            'Madkom\\Registries\\Application\\RestApi\\Controllers\\RegistryController::showRegistry'
-        );
-        $controller->delete(
-            '/{id}',
-            'Madkom\\Registries\\Application\\RestApi\\Controllers\\RegistryController::deleteRegistry'
-        );
-
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        $controller->put   ('/{id}', self::CONTROLLERS . 'RegistryController::modifyRegistry')->assert('id', '\d+');
+        $controller->get   ('/{id}', self::CONTROLLERS . 'RegistryController::showRegistry')  ->assert('id', '\d+');
+        $controller->delete('/{id}', self::CONTROLLERS . 'RegistryController::deleteRegistry')->assert('id', '\d+');
 
         /**
          * Operacje na elementach rejestrów
@@ -69,32 +48,12 @@ class Provider implements ControllerProviderInterface
          * host/web/rejestry/{id}/elementy/{idElementu}
          */
 
-        $controller->post(
-            '/{id}/pozycje',
-            'Madkom\\Registries\\Application\\RestApi\\Controllers\\PositionController::addPosition'
-        );
+        $controller->post  ('/{id}/pozycje', self::CONTROLLERS . 'PositionController::addPosition');
+        $controller->get   ('/{id}/pozycje', self::CONTROLLERS . 'PositionController::showPositions');
 
-        $controller->get(
-            '/{id}/pozycje',
-            'Madkom\\Registries\\Application\\RestApi\\Controllers\\PositionController::showPositions'
-        );
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-        $controller->get(
-            '/{id}/pozycje/{positionId}',
-            'Madkom\\Registries\\Application\\RestApi\\Controllers\\PositionController::showPositions'
-        );
-
-        $controller->put(
-            '/{id}/pozycje/{positionId}',
-            'Madkom\\Registries\\Application\\RestApi\\Controllers\\PositionController::modifyPosition'
-        );
-
-        $controller->delete(
-            '/{id}/pozycje/{positionId}',
-            'Madkom\\Registries\\Application\\RestApi\\Controllers\\PositionController::deletePosition'
-        );
+        $controller->get   ('/{id}/pozycje/{positionId}', self::CONTROLLERS . 'PositionController::showPositions');
+        $controller->put   ('/{id}/pozycje/{positionId}', self::CONTROLLERS . 'PositionController::modifyPosition');
+        $controller->delete('/{id}/pozycje/{positionId}', self::CONTROLLERS . 'PositionController::deletePosition');
 
         return $controller;
     }

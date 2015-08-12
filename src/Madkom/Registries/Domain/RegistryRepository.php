@@ -1,7 +1,6 @@
 <?php
 
 namespace Madkom\Registries\Domain;
-use Madkom\Registries\Domain\Car\CarRegistry;
 
 /**
  * Interface RegistryRepository
@@ -14,7 +13,7 @@ interface RegistryRepository
      * @param Registry $registry
      * @return mixed
      */
-    public function save(Registry $registry);
+    public function save($registry);
 
     /**
      * @param $registryId

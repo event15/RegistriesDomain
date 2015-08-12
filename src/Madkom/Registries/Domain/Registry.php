@@ -4,6 +4,7 @@ namespace Madkom\Registries\Domain;
 
 /**
  * Class Registry
+ *
  * @package Madkom\Registries\Domain
  */
 abstract class Registry
@@ -30,11 +31,18 @@ abstract class Registry
     protected $positions;
 
     /**
-     * Registry constructor.
-     * @param string $name
+     * @param $name
+     *
+     * @throws EmptyRegistryNameException
      */
     public function __construct($name)
     {
+        $name = trim($name);
+
+        if ($name === null || $name === '' || $name === 0) {
+            throw new EmptyRegistryNameException('Registry name must have a value.');
+        }
+
         $this->name = $name;
         $this->createdAt = new \DateTime();
     }
@@ -69,14 +77,5 @@ abstract class Registry
     {
         $this->positions->removePosition($position);
     }
-
-    public function toArray()
-    {
-        return array(
-            'id'        => $this->id,
-            'name'      => $this->name,
-            'createdAt' => $this->createdAt,
-            'positions' => $this->positions,
-        );
-    }
+    abstract public function getRegistry();
 }

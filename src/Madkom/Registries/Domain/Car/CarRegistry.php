@@ -13,11 +13,23 @@ class CarRegistry extends Registry
     const TYPE_NAME = 'car';
 
     /**
-     * @param string $name
+     * @param $name
+     *
+     * @throws \Madkom\Registries\Domain\EmptyRegistryNameException
      */
     public function __construct($name)
     {
         parent::__construct($name);
         $this->positions = new CarCollection();
+    }
+
+    public function getRegistry()
+    {
+        return array(
+            'id'        => $this->id,
+            'name'      => $this->name,
+            'createdAt' => $this->createdAt,
+            'positions' => $this->positions,
+        );
     }
 }

@@ -9,9 +9,6 @@
 namespace Madkom\Registries\Infrastructure\Doctrine\Repositories;
 
 use Doctrine\ORM\EntityManager;
-use Doctrine\ORM\ORMException;
-use Doctrine\ORM\ORMInvalidArgumentException;
-use Madkom\Registries\Domain\Car\CarRegistry;
 use Madkom\Registries\Domain\PositionCollection;
 use Madkom\Registries\Domain\PositionCriteria;
 use Madkom\Registries\Domain\Registry as Registry;
@@ -31,7 +28,7 @@ class RegistryRepository implements RegistryRepositoryInterface
         $this->em = $entityManager;
     }
 
-    public function save(Registry $registry)
+    public function save($registry)
     {
         $this->em->persist($registry);
         $this->em->flush();
@@ -54,7 +51,7 @@ class RegistryRepository implements RegistryRepositoryInterface
      */
     public function find($registryId)
     {
-        // TODO: Implement find() method.
+        return $this->em->getRepository(self::MODEL)->find($registryId);
     }
 
     public function findAll()
