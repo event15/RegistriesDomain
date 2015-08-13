@@ -13,7 +13,7 @@ interface RegistryRepository
      * @param Registry $registry
      * @return mixed
      */
-    public function save($registry);
+    public function save(Registry $registry);
 
     /**
      * @param $registryId
@@ -28,5 +28,7 @@ interface RegistryRepository
      * @return PositionCollection
      */
     public function findPositions(PositionCriteria $positionCriteria);
+
+    public function delete(Registry $registryId);
 
 }

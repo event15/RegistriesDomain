@@ -28,7 +28,7 @@ class RegistryRepository implements RegistryRepositoryInterface
         $this->em = $entityManager;
     }
 
-    public function save($registry)
+    public function save(Registry $registry)
     {
         $this->em->persist($registry);
         $this->em->flush();
@@ -41,7 +41,13 @@ class RegistryRepository implements RegistryRepositoryInterface
      */
     public function findPositions(PositionCriteria $positionCriteria)
     {
-        // TODO: Implement findPositions() method.
+        //TODO: nie wiem co tu to robi.
+    }
+
+    public function delete(Registry $registry)
+    {
+        $this->em->remove($registry);
+        $this->em->flush();
     }
 
     /**

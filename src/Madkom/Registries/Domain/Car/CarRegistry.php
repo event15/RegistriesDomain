@@ -23,7 +23,7 @@ class CarRegistry extends Registry
         $this->positions = new CarCollection();
     }
 
-    public function getRegistry()
+    public function RegistryToArray()
     {
         return array(
             'id'        => $this->id,
@@ -31,5 +31,10 @@ class CarRegistry extends Registry
             'createdAt' => $this->createdAt,
             'positions' => $this->positions,
         );
+    }
+
+    public function getRegistryType()
+    {
+        return self::TYPE_NAME;
     }
 }

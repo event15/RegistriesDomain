@@ -1,0 +1,16 @@
+Madkom\Registries\Domain\Term:
+  type: entity
+
+  id:
+    id:
+      type: integer
+      generator:
+        strategy: AUTO
+
+  fields:
+    expiryDate:
+      type: datetime
+    notifyBefore:
+      type: datetime
+    whoToNotify:
+      type: text

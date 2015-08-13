@@ -37,9 +37,9 @@ class Provider implements ControllerProviderInterface
         $controller->post  ('', self::CONTROLLERS . 'RegistryController::addRegistry');
         $controller->get   ('', self::CONTROLLERS . 'RegistryController::showRegistries');
 
-        $controller->put   ('/{id}', self::CONTROLLERS . 'RegistryController::modifyRegistry')->assert('id', '\d+');
-        $controller->get   ('/{id}', self::CONTROLLERS . 'RegistryController::showRegistry')  ->assert('id', '\d+');
-        $controller->delete('/{id}', self::CONTROLLERS . 'RegistryController::deleteRegistry')->assert('id', '\d+');
+        $controller->put   ('/{id}', self::CONTROLLERS . 'RegistryController::modifyRegistry');
+        $controller->get   ('/{id}', self::CONTROLLERS . 'RegistryController::showRegistry');
+        $controller->delete('/{id}', self::CONTROLLERS . 'RegistryController::deleteRegistry');
 
         /**
          * Operacje na elementach rejestrów
