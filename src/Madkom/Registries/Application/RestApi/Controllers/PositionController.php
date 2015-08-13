@@ -60,6 +60,7 @@ class PositionController
 
         $term = $termFactory->create(AC::TYPE, $termDTO);
         $position->addTerm($term);
+
         $currentRegistry->addPosition($position);
 
         $app['repositories.registry']->save($currentRegistry);

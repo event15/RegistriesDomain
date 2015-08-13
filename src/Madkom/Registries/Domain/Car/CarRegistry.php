@@ -19,8 +19,8 @@ class CarRegistry extends Registry
      */
     public function __construct($name)
     {
-        parent::__construct($name);
         $this->positions = new CarCollection();
+        parent::__construct($name);
     }
 
     public function RegistryToArray()
