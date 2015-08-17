@@ -48,8 +48,8 @@ class Provider implements ControllerProviderInterface
          * host/web/rejestry/{id}/elementy/{idElementu}
          */
 
-        $controller->post  ('/{id}/pozycje', self::CONTROLLERS . 'PositionController::addPosition');
-        $controller->get   ('/{id}/pozycje', self::CONTROLLERS . 'PositionController::showPositions');
+        $controller->get  ('/{id}/pozycje', self::CONTROLLERS . 'PositionController::addPosition');
+        //$controller->get   ('/{id}/pozycje', self::CONTROLLERS . 'PositionController::showPositions');
 
         $controller->get   ('/{id}/pozycje/{positionId}', self::CONTROLLERS . 'PositionController::showPositions');
         $controller->put   ('/{id}/pozycje/{positionId}', self::CONTROLLERS . 'PositionController::modifyPosition');

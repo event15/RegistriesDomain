@@ -1,7 +1,3 @@
 Madkom\Registries\Domain\Car\CarRegistry:
   type: entity
 
-  oneToMany:
-    positions:
-      targetEntity: Madkom\Registries\Domain\Car\Car
-      mappedBy: id

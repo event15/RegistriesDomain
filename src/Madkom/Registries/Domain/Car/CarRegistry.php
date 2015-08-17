@@ -1,6 +1,7 @@
 <?php
 namespace Madkom\Registries\Domain\Car;
 
+use Madkom\Registries\Domain\Position;
 use Madkom\Registries\Domain\Registry;
 
 /**
@@ -36,5 +37,15 @@ class CarRegistry extends Registry
     public function getRegistryType()
     {
         return self::TYPE_NAME;
+    }
+    public function addPos(Position $position)
+    {
+        $tmp = $this->positions;
+        foreach($tmp as $pos) {
+            $pos->addPosition($position);
+        }
+
+        //$tmp->addPosition($position);
+        //$this->positions->addPosition($position);
     }
 }

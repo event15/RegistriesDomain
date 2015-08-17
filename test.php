@@ -6,7 +6,9 @@ use Madkom\Registries\Domain\Car\CarRegistry;
 
 $registryFactory = new RegistryFactory();
 
-$carRegistry = $registryFactory->create(CarRegistry::TYPE_NAME, 'Rejestr samochodów');
+$carRegistryOne = $registryFactory->create(CarRegistry::TYPE_NAME, 'Rejestr samochodów');
+$reg = $carRegistryOne;
+
 
 
 $carFactory      = new \Madkom\Registries\Domain\Car\CarFactory();
@@ -28,7 +30,7 @@ $termDto->whoToNotify->add(new \Madkom\Registries\Domain\Department\Department('
 $term = $termFactory->create(Madkom\Registries\Domain\Car\Term\AC::TYPE, $termDto);
 $car->addTerm($term);
 
-$carRegistry->addPosition($car);
+$reg->addPosition($car);
 
-var_dump($carRegistry);
+var_dump($reg);
 

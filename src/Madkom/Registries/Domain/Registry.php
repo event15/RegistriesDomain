@@ -60,14 +60,13 @@ abstract class Registry
         return $this->name;
     }
 
-    /**
-     * @param Position $position
-     * @throws PositionNotAllowedException
-     */
-    public function addPosition(Position $position)
-    {
-        $this->positions->addPosition($position);
-    }
+
+//    public function addPosition(Position $position)
+//    {
+//        $this->positions->addPosition($position);
+//    }
+
+    abstract public function addPos(Position $position);
 
     /**
      * @param Position $position

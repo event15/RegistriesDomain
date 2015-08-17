@@ -1,29 +1,18 @@
 Madkom\Registries\Domain\Car\Car:
   type: entity
-  table: Car
 
   manyToOne:
     registryId:
       targetEntity: Madkom\Registries\Domain\Car\CarRegistry
       inversedBy: positions
       joinColumn:
-        name: registry_id
-        referencedColumnName: id
+        name: positions_id
+        referencedColumnName: registry_id
 
-  manyToMany:
-      terms:
-        targetEntity: Madkom\Registries\Domain\Term
-        joinTable:
-          name: cars_terms
-          joinColumns:
-            car_id:
-              referencedColumnName: id
-          inverseJoinColumns:
-            term_id:
-              referencedColumnName: id
 
   id:
     id:
+      column: car_id
       generator:
         strategy: AUTO
 

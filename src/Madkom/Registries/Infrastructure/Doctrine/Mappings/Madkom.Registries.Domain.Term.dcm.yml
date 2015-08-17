@@ -4,6 +4,7 @@ Madkom\Registries\Domain\Term:
   id:
     id:
       type: integer
+      column: term_id
       generator:
         strategy: AUTO
 

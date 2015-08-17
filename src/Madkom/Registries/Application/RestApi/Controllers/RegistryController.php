@@ -66,7 +66,7 @@ class RegistryController
          */
         foreach($getRegistry as $i => $registryPosition)
         {
-            $tab[] = $registryPosition->getRegistry();
+            $tab[] = $registryPosition->RegistryToArray();
         }
 
         return $app->json($tab, 200);
@@ -85,7 +85,7 @@ class RegistryController
         /** @var Registry $getRegistry */
         $getRegistry = $app['repositories.registry']->find($id);
 
-        return $app->json($getRegistry->getRegistry(), 200);
+        return $app->json($getRegistry->RegistryToArray(), 200);
     }
 
     /**

@@ -46,9 +46,9 @@ class PositionController
         $termFactory     = new TermFactory();
 
         $positionDTO = new CarDto();
-        $positionDTO->brand              = $request->get('brand');
-        $positionDTO->model              = $request->get('model');
-        $positionDTO->registrationNumber = $request->get('registrationNumber');
+        $positionDTO->brand              = 'fiat';
+        $positionDTO->model              = '126p';
+        $positionDTO->registrationNumber = 'ZSD 12345';
 
         $position = $positionFactory->create($positionDTO);
 
@@ -61,7 +61,7 @@ class PositionController
         $term = $termFactory->create(AC::TYPE, $termDTO);
         $position->addTerm($term);
 
-        $currentRegistry->addPosition($position);
+        $currentRegistry->addPos($position);
 
         $app['repositories.registry']->save($currentRegistry);
 

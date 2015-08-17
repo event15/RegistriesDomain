@@ -1,6 +1,11 @@
 Madkom\Registries\Domain\Registry:
   type: entity
-  cascade: ["persist"]
+
+# Jeżeli to się nie uda przenieś całość oneToMany do Registry
+  oneToMany:
+    positions:
+      targetEntity: Madkom\Registries\Domain\Car\Car
+      mappedBy: registryId
 
   inheritanceType: SINGLE_TABLE
   discriminatorColumn:
@@ -10,6 +15,7 @@ Madkom\Registries\Domain\Registry:
   id:
     id:
       type: integer
+      column: registry_id
       generator:
         strategy: AUTO
 

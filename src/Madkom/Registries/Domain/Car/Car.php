@@ -45,6 +45,11 @@ class Car extends Position
         $this->terms = new CarTermCollection();
     }
 
+    public function __toString()
+    {
+        return "Marka ='{$this->brand}', Model='{$this->model}', Numer='{$this->registrationNumber}'";
+    }
+
     public function addTerm(Term $term)
     {
         $this->terms->addTerm($term);
