@@ -34,7 +34,7 @@ class Provider implements ControllerProviderInterface
          * host/web/rejestry/
          * host/web/rejestry/{id}
          */
-        $controller->post  ('', self::CONTROLLERS . 'RegistryController::addRegistry');
+        $controller->post  ('', self::CONTROLLERS . 'RegistryController::createRegistry');
         $controller->get   ('', self::CONTROLLERS . 'RegistryController::showRegistries');
 
         $controller->put   ('/{id}', self::CONTROLLERS . 'RegistryController::modifyRegistry');

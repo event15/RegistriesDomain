@@ -26,9 +26,4 @@ class CarRegistryTest extends \PHPUnit_Framework_TestCase
     {
         $this->assertEquals('car', $this->carRegistry->getRegistryType());
     }
-
-    public function testRegistryToArray()
-    {
-
-    }
 }
