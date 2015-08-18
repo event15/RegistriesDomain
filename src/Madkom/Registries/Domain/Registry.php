@@ -37,14 +37,10 @@ abstract class Registry
      */
     public function __construct($name)
     {
-        $name = trim($name);
-
-        if ($name === null || $name === '' || $name === 0) {
-            throw new EmptyRegistryNameException('Registry name must have a value.');
+        if ($this->RegistryHasName($name)) {
+            $this->changeName($name);
+            $this->setCreateTime();
         }
-
-        $this->name = $name;
-        $this->createdAt = new \DateTime();
     }
 
     /**
@@ -53,6 +49,21 @@ abstract class Registry
     public function changeName($name)
     {
         $this->name = $name;
+    }
+    private function RegistryHasName($name)
+    {
+        $name = trim($name);
+
+        if ($name === null || $name === '' || $name === 0) {
+            throw new EmptyRegistryNameException('Registry name must have a value.');
+        }
+
+        return 0;
+    }
+
+    private function setCreateTime()
+    {
+        $this->createdAt = new \DateTime('now');
     }
 
     public function getName()

@@ -1,3 +1,8 @@
 Madkom\Registries\Domain\Car\CarRegistry:
   type: entity
 
+# Jeżeli to się nie uda przenieś całość oneToMany do Registry
+  oneToMany:
+    positions:
+      targetEntity: Madkom\Registries\Domain\Car\Car
+      mappedBy: registryId

@@ -26,7 +26,8 @@
         "silex/silex": "v1.3.0",
         "dflydev/doctrine-orm-service-provider": "*",
         "symfony/yaml": "*",
-        "doctrine/collections": "*"
+        "doctrine/collections": "*",
+        "phpunit/phpunit": "4.8.4"
     },
     "config": {
         "bin-dir": "bin"
