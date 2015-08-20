@@ -41,4 +41,5 @@ $app->register(new DoctrineOrmServiceProvider(), array(
 $config = Setup::createYAMLMetadataConfiguration($app['orm.em.options']['mappings'][0]['path'], $app['debug']);
 $app['orm.em'] = EntityManager::create($app['db.options'], $config);
 
-$app['repositories.registry'] = new \Madkom\Registries\Infrastructure\Doctrine\Repositories\RegistryRepository($app['orm.em']);
+$app['repositories.registry'] = new \Madkom\Registries\Infrastructure\Doctrine\Repositories\RegistryRepositoryImpl($app['orm.em']);
+$app['repositories.position'] = new \Madkom\Registries\Infrastructure\Doctrine\Repositories\PositionRepositoryImpl($app['orm.em']);

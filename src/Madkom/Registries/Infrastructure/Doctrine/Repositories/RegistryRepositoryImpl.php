@@ -12,9 +12,9 @@ use Doctrine\ORM\EntityManager;
 use Madkom\Registries\Domain\PositionCollection;
 use Madkom\Registries\Domain\PositionCriteria;
 use Madkom\Registries\Domain\Registry as Registry;
-use Madkom\Registries\Domain\RegistryRepository as RegistryRepositoryInterface;
+use Madkom\Registries\Domain\RegistryRepository;
 
-class RegistryRepository implements RegistryRepositoryInterface
+class RegistryRepositoryImpl implements RegistryRepository
 {
     /** @var \Doctrine\ORM\EntityManager $em */
     private $em;

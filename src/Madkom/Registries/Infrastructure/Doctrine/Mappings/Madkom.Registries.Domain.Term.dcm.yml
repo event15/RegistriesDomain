@@ -1,5 +1,16 @@
 Madkom\Registries\Domain\Term:
   type: entity
+  cascade: ['persist', 'all']
+
+  inheritanceType: SINGLE_TABLE
+  discriminatorColumn:
+    name: term_type
+    type: string
+
+  manyToMany:
+    cars:
+      targetEntity: Madkom\Registries\Domain\Car\Car
+      mappedBy: CarTerm
 
   id:
     id:

@@ -5,15 +5,15 @@
  * Date: 05.08.15
  * Time: 11:12
  */
-namespace Madkom\Registries\Application\Infrastructure\Doctrine\Repositories;
+namespace Madkom\Registries\Infrastructure\Doctrine\Repositories;
 
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\ORMException;
 use Doctrine\ORM\ORMInvalidArgumentException;
-use Models\ElementModel;
-use Models\Repositories\ElementRepositoryInterface;
+use Madkom\Registries\Domain\Position;
+use Madkom\Registries\Domain\PositionRepository;
 
-class ElementRepository implements ElementRepositoryInterface
+class PositionRepositoryImpl implements PositionRepository
 {
     /** @var \Doctrine\ORM\EntityManager $em */
     private $em;
@@ -28,7 +28,7 @@ class ElementRepository implements ElementRepositoryInterface
         $this->em = $entityManager;
     }
 
-    public function save(ElementModel $registry)
+    public function save(Position $registry)
     {
         try {
             $this->em->persist($registry);

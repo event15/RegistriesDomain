@@ -7,11 +7,10 @@
  */
 namespace Madkom\Registries\Domain;
 
-use Models\ElementModel;
 
-interface ElementRepositoryInterface
+interface PositionRepository
 {
-    public function save(ElementModel $registry);
+    public function save(Position $registry);
     public function find($model, $id, $idElementu);
     public function findAll($model, $id);
     public function deleteOne($element);

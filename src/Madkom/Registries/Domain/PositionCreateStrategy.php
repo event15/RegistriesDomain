@@ -8,7 +8,6 @@ namespace Madkom\Registries\Domain;
  */
 interface PositionCreateStrategy
 {
-
     /**
      * @param PositionDto $positionDto
      * @throws PositionTypeNotAllowedException

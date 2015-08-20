@@ -8,8 +8,13 @@
 
 namespace tests\Madkom\Registries\Application\RestApi\Controllers;
 
-
+/**
+ * @backupGlobals disabled
+ */
 class RegistryControllerTest extends \PHPUnit_Framework_TestCase
 {
-    public function addOneRegistry
+    public function testAddOneRegistry()
+    {
+        $this->assertTrue(true);
+    }
 }

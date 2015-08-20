@@ -31,6 +31,8 @@ abstract class Term
      */
     protected $whoToNotify;
 
+    protected $cars;
+
     /**
      * @return \DateTime
      */
@@ -58,7 +60,7 @@ abstract class Term
     /**
      * @param \DateInterval $notifyBefore
      */
-    public function changeNotifyBefore(\DateInterval $notifyBefore)
+    public function changeNotifyBefore(\DateTime $notifyBefore)
     {
         $this->notifyBefore = $notifyBefore;
     }

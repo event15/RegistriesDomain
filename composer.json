@@ -27,7 +27,8 @@
         "dflydev/doctrine-orm-service-provider": "*",
         "symfony/yaml": "*",
         "doctrine/collections": "*",
-        "phpunit/phpunit": "4.8.4"
+        "phpunit/phpunit": "4.8.4",
+        "halleck45/phpmetrics": "v1.1.1"
     },
     "config": {
         "bin-dir": "bin"
