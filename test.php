@@ -30,7 +30,7 @@ $termDto->whoToNotify->add(new \Madkom\Registries\Domain\Department\Department('
 $term = $termFactory->create(Madkom\Registries\Domain\Car\Term\AC::TYPE, $termDto);
 $car->addTerm($term);
 
-$reg->addPosition($car);
+//$reg->addPosition($car);
 
-var_dump($reg);
+//var_dump($reg);
 

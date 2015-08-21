@@ -24,14 +24,14 @@ class CarRegistry extends Registry
         parent::__construct($name);
     }
 
-    public function RegistryToArray()
+    public function registryToArray()
     {
-        return array(
+        return [
             'id'        => $this->id,
             'name'      => $this->name,
             'createdAt' => $this->createdAt,
             'positions' => $this->positions,
-        );
+        ];
     }
 
     public function getRegistryType()

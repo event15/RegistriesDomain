@@ -14,7 +14,6 @@ use Madkom\Registries\Domain\Car\Term\AC;
 use Madkom\Registries\Domain\Car\Term\OC;
 use Madkom\Registries\Domain\Department\Department;
 use Madkom\Registries\Domain\Department\DepartmentCollection;
-use Madkom\Registries\Domain\EmptyRegistryException;
 use Madkom\Registries\Domain\PositionFactory;
 use Madkom\Registries\Domain\TermDto;
 use Madkom\Registries\Domain\TermFactory;
@@ -28,8 +27,8 @@ class PositionController
     public function addPosition(Application $app, Request $request, $id)
     {
 
-        $currentRegistry = new ControllerHelper();
-        $currentRegistry->getAndCheckRegistry($app, $id);
+        $helper = new ControllerHelper();
+        $currentRegistry = $helper->findAndCheckRegistry($app, $id);
 
         $elementFactory  = new CarFactory();
         $positionFactory = new PositionFactory($elementFactory);
@@ -47,11 +46,11 @@ class PositionController
         $termDTO->expiryDate = new \DateTime('2016-08-12 12:17:50');
 
         $termDTO->notifyBefore = new \DateTime('2016-08-12 12:17:50');
-        var_dump($termDTO->notifyBefore);
+
         $notifyTemp = new \DateInterval('P1Y');
         $notifyTemp->invert = 1;
         $termDTO->notifyBefore->add($notifyTemp);
-        var_dump($termDTO->notifyBefore);
+
 
         $termDTO->whoToNotify = new DepartmentCollection();
         $termDTO->whoToNotify->add(new Department($request->get('department'), 'email'));
@@ -61,8 +60,9 @@ class PositionController
         $position->addTerm($term);
         $position->addTerm($term1);
 
-        $currentRegistry->addPos($position);
-        /** @var EntityManager $em */
+
+
+        /** @var \Doctrine\ORM\EntityManager $em */
         $em = $app['orm.em'];
 
         $em->persist($term);

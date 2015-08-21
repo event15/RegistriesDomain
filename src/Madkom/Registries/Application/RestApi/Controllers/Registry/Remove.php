@@ -8,7 +8,6 @@
 
 namespace Madkom\Registries\Application\RestApi\Controllers\Registry;
 
-
 use Madkom\Registries\Application\RestApi\Controllers\ControllerHelper;
 use Silex\Application;
 use Symfony\Component\HttpFoundation\Response;

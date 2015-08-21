@@ -45,11 +45,6 @@ class Car extends Position
         $this->terms = new CarTermCollection();
     }
 
-    public function __toString()
-    {
-        return "Marka ='{$this->brand}', Model='{$this->model}', Numer='{$this->registrationNumber}'";
-    }
-
     public function addTerm(Term $term)
     {
         $this->terms->addTerm($term);
@@ -61,27 +56,11 @@ class Car extends Position
     }
 
     /**
-     * @return string
-     */
-    public function getBrand()
-    {
-        return $this->brand;
-    }
-
-    /**
      * @param string $brand
      */
     public function changeBrand($brand)
     {
         $this->brand = $brand;
-    }
-
-    /**
-     * @return string
-     */
-    public function getModel()
-    {
-        return $this->model;
     }
 
     /**
@@ -93,27 +72,11 @@ class Car extends Position
     }
 
     /**
-     * @return string
-     */
-    public function getRegistrationNumber()
-    {
-        return $this->registrationNumber;
-    }
-
-    /**
      * @param string $registrationNumber
      */
     public function changeRegistrationNumber($registrationNumber)
     {
         $this->registrationNumber = $registrationNumber;
-    }
-
-    /**
-     * @return string
-     */
-    public function getOthers()
-    {
-        return $this->others;
     }
 
     /**

@@ -15,6 +15,6 @@ class RegistryControllerTest extends \PHPUnit_Framework_TestCase
 {
     public function testAddOneRegistry()
     {
-        $this->assertTrue(true);
+        static::assertTrue(true);
     }
 }

@@ -8,7 +8,6 @@
 
 namespace Madkom\Registries\Application\RestApi\Controllers;
 
-
 use Madkom\Registries\Domain\EmptyRegistryException;
 use Silex\Application;
 
@@ -18,8 +17,7 @@ class ControllerHelper
     {
         $foundRegistry = $this->loadRegistryRepository($app)->find($registryId);
 
-        if($foundRegistry === null)
-        {
+        if ($foundRegistry === null) {
             throw new EmptyRegistryException('Wybrany rejestr jest pusty bądź nie istnieje.');
         }
 

@@ -15,6 +15,7 @@ use Madkom\Registries\Domain\Car\CarRegistry;
  */
 class CarRegistryTest extends \PHPUnit_Framework_TestCase
 {
+    /** @var  CarRegistry $carRegistry */
     protected $carRegistry;
 
     public function setUp()
@@ -24,6 +25,6 @@ class CarRegistryTest extends \PHPUnit_Framework_TestCase
 
     public function testGetRegistryType()
     {
-        $this->assertEquals('car', $this->carRegistry->getRegistryType());
+        static::assertEquals('car', $this->carRegistry->getRegistryType());
     }
 }

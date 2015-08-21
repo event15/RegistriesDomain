@@ -10,9 +10,10 @@ use Madkom\Registries\Domain\Car\Term\Review;
 class TermFactory
 {
     /**
-     * @param string $type
+     * @param         $type
      * @param TermDto $termDto
-     * @return Insurance|Review
+     *
+     * @return AC|ASS|OC|Review
      * @throws UnknownTermTypeException
      */
     public function create($type, TermDto $termDto)

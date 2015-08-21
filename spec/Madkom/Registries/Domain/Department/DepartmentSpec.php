@@ -7,8 +7,9 @@ use Prophecy\Argument;
 
 class DepartmentSpec extends ObjectBehavior
 {
-    function it_is_initializable()
+    public function it_is_initializable()
     {
+        $this->beConstructedWith('marek', 'email');
         $this->shouldHaveType('Madkom\Registries\Domain\Department\Department');
     }
 }

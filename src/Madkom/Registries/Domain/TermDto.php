@@ -12,7 +12,7 @@ class TermDto
     public $expiryDate;
 
     /**
-     * @var \DateInterval
+     * @var \DateTime
      */
     public $notifyBefore;
 

@@ -32,7 +32,7 @@ class Create extends ControllerHelper
 
     private function getRequestValues(array $values, Request $request)
     {
-        foreach($values as $value) {
+        foreach ($values as $value) {
             $this->requestValues[$value] = $request->get($value);
         }
 

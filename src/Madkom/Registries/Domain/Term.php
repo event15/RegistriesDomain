@@ -22,7 +22,7 @@ abstract class Term
     protected $expiryDate;
 
     /**
-     * @var \DateInterval
+     * @var \DateTime
      */
     protected $notifyBefore;
 
@@ -58,7 +58,7 @@ abstract class Term
     }
 
     /**
-     * @param \DateInterval $notifyBefore
+     * @param \DateTime $notifyBefore
      */
     public function changeNotifyBefore(\DateTime $notifyBefore)
     {
