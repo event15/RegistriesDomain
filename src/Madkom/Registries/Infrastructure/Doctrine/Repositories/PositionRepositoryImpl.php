@@ -28,26 +28,29 @@ class PositionRepositoryImpl implements PositionRepository
         $this->em = $entityManager;
     }
 
-    public function save(Position $registry)
+    public function prepareToSave($registry)
     {
-        try {
             $this->em->persist($registry);
+    }
+
+    public function save($registry)
+    {
             $this->em->flush();
-        } catch (ORMInvalidArgumentException $e) {
-            throw $e;
-        } catch (ORMException $e) {
-            throw $e;
-        }
     }
 
     public function find($model, $id, $idElementu)
     {
-        return $this->em->getRepository($model)->findBy(array('registryId' => $id, 'carId' => $idElementu));
+        return $this->em->getRepository($model)->findBy([
+            'registryId' => $id,
+            'carId' => $idElementu
+        ]);
     }
 
     public function findAll($model, $id)
     {
-        return $this->em->getRepository($model)->findBy(array('registryId' => $id));
+        return $this->em->getRepository($model)->findBy([
+            'registryId' => $id
+        ]);
     }
 
     public function deleteOne($element)

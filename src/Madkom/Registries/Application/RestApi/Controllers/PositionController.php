@@ -69,7 +69,7 @@ class PositionController
         $em->persist($term1);
         $em->persist($currentRegistry);
         $em->flush();
-//        $app['repositories.position']->save($position);
+        $app['repositories.position']->save($position);
 //        $app['repositories.registry']->save($currentRegistry);
 
         return new Response('OK', 201);

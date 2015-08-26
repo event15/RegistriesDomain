@@ -21,7 +21,7 @@ class Show extends ControllerHelper
         return $app->json($currentRegistry->RegistryToArray(), 200);
     }
 
-    public function all(Application $app)
+    public function allRegistries(Application $app)
     {
         /** @var $currentRegistry */
         $currentRegistry = $this->loadRegistryRepository($app)->findAll();

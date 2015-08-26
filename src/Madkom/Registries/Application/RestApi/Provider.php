@@ -15,7 +15,7 @@ use Silex\ControllerProviderInterface;
 class Provider implements ControllerProviderInterface
 {
     const REGISTRY    = "Madkom\\Registries\\Application\\RestApi\\Controllers\\Registry\\";
-    const CONTROLLERS = "Madkom\\Registries\\Application\\RestApi\\Controllers\\";
+    const CONTROLLERS = "Madkom\\Registries\\Application\\RestApi\\Controllers\\Position\\";
 
     public function connect(Application $app)
     {
@@ -23,14 +23,14 @@ class Provider implements ControllerProviderInterface
         $controller = $app['controllers_factory'];
 
         $controller->post  ('', self::REGISTRY . 'Create::newRegistry');
-        $controller->get   ('', self::REGISTRY . 'Show::all');
+        $controller->get   ('', self::REGISTRY . 'Show::allRegistries');
 
         $controller->put   ('/{id}', self::REGISTRY . 'Modify::oneById');
         $controller->get   ('/{id}', self::REGISTRY . 'Show::oneById');
         $controller->delete('/{id}', self::REGISTRY . 'Remove::oneById');
 
-        $controller->post  ('/{id}/pozycje', self::CONTROLLERS . 'PositionController::addPosition');
-        $controller->get   ('/{id}/pozycje', self::CONTROLLERS . 'PositionController::showPositions');
+        $controller->post  ('/{id}/pozycje', self::CONTROLLERS . 'Create::newPosition');
+        $controller->get   ('/{id}/pozycje', self::CONTROLLERS . 'Show::allPositions');
 
         $controller->get   ('/{id}/pozycje/{positionId}', self::CONTROLLERS . 'PositionController::showPositions');
         $controller->put   ('/{id}/pozycje/{positionId}', self::CONTROLLERS . 'PositionController::modifyPosition');
