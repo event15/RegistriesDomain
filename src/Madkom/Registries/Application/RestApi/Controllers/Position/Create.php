@@ -19,7 +19,6 @@ use Madkom\Registries\Domain\Department\DepartmentCollection;
 use Madkom\Registries\Domain\EmptyRegistryException;
 use Madkom\Registries\Domain\PositionFactory;
 use Madkom\Registries\Domain\Registry;
-use Madkom\Registries\Domain\Term;
 use Madkom\Registries\Domain\TermDto;
 use Madkom\Registries\Domain\TermFactory;
 use Silex\Application;
@@ -32,7 +31,6 @@ class Create
     private $positionFactory;
     private $positionDto;
     private $currentRegistry;
-    private $termDto;
     private $position;
     private $termFactory;
     private $helper;
@@ -54,7 +52,7 @@ class Create
 
         $this->newTerm(AC::TYPE, $request->get('expiryDate'), $request->get('notify'), $app);
         $this->newTerm(OC::TYPE, $request->get('expiryDate'), $request->get('notify'), $app);
-        var_dump($this->position);
+
 
         return new Response('OK', 201);
     }
@@ -95,23 +93,26 @@ class Create
 
         $registryPositionDto->expiryDate   = new \DateTime($expirationDate);
         $registryPositionDto->notifyBefore = new \DateTime($expirationDate);
-        $registryPositionDto->notifyBefore->sub(new \DateInterval('P' . $notifyDaysInAdvance . 'Y'));
+        $registryPositionDto->notifyBefore->sub(new \DateInterval('P' . $notifyDaysInAdvance . 'D'));
 
         $registryPositionDto->whoToNotify  = new DepartmentCollection();
         $registryPositionDto->whoToNotify->add(new Department('dział handlowy', 'nie@podam.pl'));
 
-        // Create prepared term AND add this to current position AND at last - persist to db
+        // Create prepared term AND add this to current position AND persist to db
         $createdTerm = $this->termFactory->create($term, $registryPositionDto);
-        $this->position->addTerm($createdTerm);
+        //$this->position->addTerm($createdTerm);
 
-        //$app['repositories.position']->prepareToSave($createdTerm);
-        $app['repositories.position']->prepareToSave($createdTerm);
-        $app['repositories.position']->prepareToSave($this->position);
-        //$app['repositories.position']->prepareToSave();
+        $this->currentRegistry->addPos($this->position);
 
-        $app['repositories.registry']->save($this->currentRegistry);
-       // $app['repositories.registry']->save($this->position);
+        // TODO: zrobić to inaczej.
+
+        /** @var \Doctrine\ORM\EntityManager $em */
+        $em = $app['orm.em'];
+
+        $em->persist($createdTerm);
+        $em->persist($this->currentRegistry);
+        $em->flush();
+        //$app['repositories.position']->save($this->position);
+       // $app['repositories.registry']->save($this->currentRegistry);
     }
-
-
 }

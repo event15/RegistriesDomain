@@ -30,7 +30,7 @@ class CarRegistry extends Registry
             'id'        => $this->id,
             'name'      => $this->name,
             'createdAt' => $this->createdAt,
-            'positions' => $this->positions,
+            'positions' => $this->positions
         ];
     }
 
@@ -40,12 +40,12 @@ class CarRegistry extends Registry
     }
     public function addPos(Position $position)
     {
+        $this->positions = new CarCollection();
         $tmp = $this->positions;
-        foreach($tmp as $pos) {
-            $pos->addPosition($position);
-        }
 
-        //$tmp->addPosition($position);
-        //$this->positions->addPosition($position);
+//        foreach ($tmp as $pos) {
+//            $pos->addPosition($position);
+//        }
+        $this->positions->addPosition($position);
     }
 }

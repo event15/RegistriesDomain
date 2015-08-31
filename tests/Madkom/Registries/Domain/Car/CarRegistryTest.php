@@ -25,6 +25,12 @@ class CarRegistryTest extends \PHPUnit_Framework_TestCase
 
     public function testGetRegistryType()
     {
-        static::assertEquals('car', $this->carRegistry->getRegistryType());
+        $expected = 'car';
+
+        static::assertEquals(
+            $expected,
+            $this->carRegistry->getRegistryType(),
+            'Dla obiektu ' . get_class($this->carRegistry) . " powinno zwrócić {$expected}"
+        );
     }
 }

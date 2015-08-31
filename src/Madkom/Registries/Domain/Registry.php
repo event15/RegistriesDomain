@@ -38,7 +38,6 @@ abstract class Registry
     public function __construct($name)
     {
         if ($this->RegistryHasName($name)) {
-
             $this->changeName($name);
             $this->setCreateTime();
         }
@@ -70,12 +69,6 @@ abstract class Registry
     {
         return $this->name;
     }
-
-
-//    public function addPosition(Position $position)
-//    {
-//        $this->positions->addPosition($position);
-//    }
 
     abstract public function addPos(Position $position);
 

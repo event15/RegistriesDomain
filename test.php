@@ -6,10 +6,7 @@ use Madkom\Registries\Domain\Car\CarRegistry;
 
 $registryFactory = new RegistryFactory();
 
-$carRegistryOne = $registryFactory->create(CarRegistry::TYPE_NAME, 'Rejestr samochodów');
-$reg = $carRegistryOne;
-
-
+$car = $registryFactory->create(CarRegistry::TYPE_NAME, 'Rejestr samochodów');
 
 $carFactory      = new \Madkom\Registries\Domain\Car\CarFactory();
 $positionFactory = new \Madkom\Registries\Domain\PositionFactory($carFactory);

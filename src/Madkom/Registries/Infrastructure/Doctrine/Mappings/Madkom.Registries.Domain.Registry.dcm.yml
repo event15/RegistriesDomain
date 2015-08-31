@@ -5,6 +5,9 @@ Madkom\Registries\Domain\Registry:
   discriminatorColumn:
     name: registry_type
     type: string
+  discriminatorMap:
+      registry: Madkom\Registries\Domain\Registry
+      carRegistry: Madkom\Registries\Domain\Car\CarRegistry
 
   id:
     id:

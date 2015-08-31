@@ -86,4 +86,15 @@ class Car extends Position
     {
         $this->others = $others;
     }
+
+    public function toArray()
+    {
+        return [
+            'id' => $this->id,
+            'brand' => $this->brand,
+            'model' => $this->model,
+            'registrationNumber' => $this->registrationNumber,
+            'others' => $this->others
+        ];
+    }
 }

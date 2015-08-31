@@ -28,6 +28,7 @@ class CarCollection extends ArrayCollection implements PositionCollection
      */
     public function addPosition(Position $position)
     {
+
         if ($position instanceof Car) {
             $this->add($position);
         } else {
