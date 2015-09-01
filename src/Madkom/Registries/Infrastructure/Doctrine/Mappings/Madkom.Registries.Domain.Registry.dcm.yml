@@ -9,6 +9,8 @@ Madkom\Registries\Domain\Registry:
       registry: Madkom\Registries\Domain\Registry
       carRegistry: Madkom\Registries\Domain\Car\CarRegistry
 
+
+
   id:
     id:
       type: integer

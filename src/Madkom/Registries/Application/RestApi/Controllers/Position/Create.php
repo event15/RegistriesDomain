@@ -100,7 +100,9 @@ class Create
 
         // Create prepared term AND add this to current position AND persist to db
         $createdTerm = $this->termFactory->create($term, $registryPositionDto);
-        //$this->position->addTerm($createdTerm);
+        $this->position->addTerm($createdTerm);
+
+        var_dump($this->position);
 
         $this->currentRegistry->addPos($this->position);
 
@@ -110,9 +112,12 @@ class Create
         $em = $app['orm.em'];
 
         $em->persist($createdTerm);
-        $em->persist($this->currentRegistry);
-        $em->flush();
-        //$app['repositories.position']->save($this->position);
-       // $app['repositories.registry']->save($this->currentRegistry);
+        $app['repositories.position']->prepareToSave($this->position);
+        $app['repositories.position']->save($this->position);
+
+//        $em->persist($this->currentRegistry);
+//        $em->flush();
+//        $app['repositories.position']->save($this->position);
+//        $app['repositories.registry']->save($this->currentRegistry);
     }
 }

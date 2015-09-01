@@ -2,6 +2,7 @@
 
 namespace Madkom\Registries\Domain;
 
+use Madkom\Registries\Domain\Car\CarCollection;
 use Madkom\Registries\Domain\Department\DepartmentCollection;
 
 /**
@@ -32,6 +33,11 @@ abstract class Term
     protected $whoToNotify;
 
     protected $cars;
+
+    public function __construct()
+    {
+        //$this->cars = new CarCollection();
+    }
 
     /**
      * @return \DateTime
