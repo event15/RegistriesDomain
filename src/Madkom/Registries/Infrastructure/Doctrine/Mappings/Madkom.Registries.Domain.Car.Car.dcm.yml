@@ -1,12 +1,18 @@
 Madkom\Registries\Domain\Car\Car:
   type: entity
 
-  oneTomany:
-
+  manyToOne:
+    registryId:
+      targetEntity: Madkom\Registries\Domain\Registry
+      joinColumn:
+        nullable: false
+        name: registry_id
+        referencedColumnName: registry_id
 
   manyToMany:
     terms:
       targetEntity: Madkom\Registries\Domain\Term
+      cascade: ['persist']
       inversedBy: cars
       joinTable:
         name: CarTerms

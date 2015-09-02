@@ -44,7 +44,6 @@ class CarRegistry extends Registry
         $this->positions = new CarCollection();
 
         $tmp = $this->positions;
-        var_dump($tmp);
 
         foreach ($tmp as $pos) {
             $pos->addPosition($position);

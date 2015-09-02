@@ -27,6 +27,7 @@ class CarFactory implements PositionCreateStrategy
             $car->changeModel($positionDto->model);
             $car->changeRegistrationNumber($positionDto->registrationNumber);
             $car->changeOthers($positionDto->others);
+            $car->setRegistryId($positionDto->registryId);
 
             return $car;
         }

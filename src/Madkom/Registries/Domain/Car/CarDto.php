@@ -27,4 +27,6 @@ class CarDto extends PositionDto
 
     /** @var  string */
     public $others;
+
+    public $registryId;
 }

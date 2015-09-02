@@ -29,5 +29,3 @@ $car->addTerm($term);
 
 //$reg->addPosition($car);
 
-//var_dump($reg);
-

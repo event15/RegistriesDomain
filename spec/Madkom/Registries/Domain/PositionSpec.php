@@ -7,8 +7,8 @@ use Prophecy\Argument;
 
 class PositionSpec extends ObjectBehavior
 {
-    public function it_is_initializable()
+    public function it_be_an_instance_of_Car()
     {
-        $this->shouldHaveType('Madkom\Registries\Domain\Position');
+        $this->beAnInstanceOf('Madkom\Registries\Domain\Car');
     }
 }

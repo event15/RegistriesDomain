@@ -6,8 +6,7 @@ Madkom\Registries\Domain\Registry:
     name: registry_type
     type: string
   discriminatorMap:
-      registry: Madkom\Registries\Domain\Registry
-      carRegistry: Madkom\Registries\Domain\Car\CarRegistry
+      car: Madkom\Registries\Domain\Car\CarRegistry
 
 
 

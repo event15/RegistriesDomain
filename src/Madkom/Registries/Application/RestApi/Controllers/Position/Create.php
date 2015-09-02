@@ -48,10 +48,17 @@ class Create
 
         $this->createPositionFactory($this->currentRegistry);
         $this->getRequests($request);
+        $this->positionDto->registryId = $this->currentRegistry;
         $this->position = $this->positionFactory->create($this->positionDto);
 
         $this->newTerm(AC::TYPE, $request->get('expiryDate'), $request->get('notify'), $app);
         $this->newTerm(OC::TYPE, $request->get('expiryDate'), $request->get('notify'), $app);
+
+        $this->currentRegistry->addPos($this->position);
+
+
+        $app['repositories.position']->prepareToSave($this->position);
+        $app['repositories.registry']->save($this->currentRegistry);
 
 
         return new Response('OK', 201);
@@ -87,7 +94,7 @@ class Create
         }
     }
 
-    private function newTerm($term, $expirationDate, $notifyDaysInAdvance, Application $app)
+    private function newTerm($term, $expirationDate, $notifyDaysInAdvance)
     {
         $registryPositionDto = new TermDto();
 
@@ -98,26 +105,7 @@ class Create
         $registryPositionDto->whoToNotify  = new DepartmentCollection();
         $registryPositionDto->whoToNotify->add(new Department('dział handlowy', 'nie@podam.pl'));
 
-        // Create prepared term AND add this to current position AND persist to db
         $createdTerm = $this->termFactory->create($term, $registryPositionDto);
         $this->position->addTerm($createdTerm);
-
-        var_dump($this->position);
-
-        $this->currentRegistry->addPos($this->position);
-
-        // TODO: zrobić to inaczej.
-
-        /** @var \Doctrine\ORM\EntityManager $em */
-        $em = $app['orm.em'];
-
-        $em->persist($createdTerm);
-        $app['repositories.position']->prepareToSave($this->position);
-        $app['repositories.position']->save($this->position);
-
-//        $em->persist($this->currentRegistry);
-//        $em->flush();
-//        $app['repositories.position']->save($this->position);
-//        $app['repositories.registry']->save($this->currentRegistry);
     }
 }

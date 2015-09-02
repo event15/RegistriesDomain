@@ -47,7 +47,13 @@ class Car extends Position
 
     public function addTerm(Term $term)
     {
+//        $tmp = $this->terms;
+//        foreach ($tmp as $termTemp) {
+//            echo "O";
+//            $termTemp->addTerm($term);
+//        }
         $this->terms->addTerm($term);
+
     }
 
     public function removeTerm(Term $term)
@@ -97,4 +103,14 @@ class Car extends Position
             'others' => $this->others
         ];
     }
+
+    /**
+     * @param int $registryId
+     */
+    public function setRegistryId($registryId)
+    {
+        $this->registryId = $registryId;
+    }
+
+
 }

@@ -26,8 +26,6 @@ class Show extends ControllerHelper
             $tab[$id] = $element->toArray();
         }
 
-        var_dump($getElement);
-
         return $app->json($tab);
     }
 }
