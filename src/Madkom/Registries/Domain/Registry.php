@@ -37,7 +37,7 @@ abstract class Registry
      */
     public function __construct($name)
     {
-        if ($this->RegistryHasName($name)) {
+        if ($this->registryHasName($name)) {
             $this->changeName($name);
             $this->setCreateTime();
         }
@@ -50,11 +50,11 @@ abstract class Registry
     {
         $this->name = $name;
     }
-    private function RegistryHasName($name)
+    private function registryHasName($name)
     {
         $name = trim($name);
 
-        if ($name === null || $name === '' || $name === 0) {
+        if ($name === null || $name === '') {
             throw new EmptyRegistryNameException('Registry name must have a value.');
         }
         return true;
