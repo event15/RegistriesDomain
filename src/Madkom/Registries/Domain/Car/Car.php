@@ -47,13 +47,7 @@ class Car extends Position
 
     public function addTerm(Term $term)
     {
-//        $tmp = $this->terms;
-//        foreach ($tmp as $termTemp) {
-//            echo "O";
-//            $termTemp->addTerm($term);
-//        }
         $this->terms->addTerm($term);
-
     }
 
     public function removeTerm(Term $term)
