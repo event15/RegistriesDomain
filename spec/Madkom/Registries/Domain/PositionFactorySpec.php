@@ -3,8 +3,8 @@
 namespace spec\Madkom\Registries\Domain;
 
 use Madkom\Registries\Domain\Car\Car;
+use Madkom\Registries\Domain\Car\CarDto;
 use Madkom\Registries\Domain\PositionCreateStrategy;
-use Madkom\Registries\Domain\PositionDto;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 
@@ -20,12 +20,11 @@ class PositionFactorySpec extends ObjectBehavior
         $this->shouldHaveType('Madkom\Registries\Domain\PositionFactory');
     }
 
-    public function itShouldReturnCar(
+    public function it_should_return_Car_type_when_PositionDto_is_a_CarDto(
         PositionCreateStrategy $positionCreateStrategy,
-        PositionDto $positionDto,
-        Car $car
+        CarDto                 $positionDto,
+        Car                    $car
     ) {
-        /** @noinspection PhpUndefinedMethodInspection */
         $positionCreateStrategy->create($positionDto)->willReturn($car);
     }
 }
