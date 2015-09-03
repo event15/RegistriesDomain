@@ -32,6 +32,6 @@ class CarFactory implements PositionCreateStrategy
             return $car;
         }
 
-        throw new PositionTypeNotAllowedException;
+        throw new PositionTypeNotAllowedException('This type is not allowed.');
     }
 }
