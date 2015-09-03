@@ -36,7 +36,7 @@ abstract class Term
 
     public function __construct()
     {
-        //$this->cars = new CarCollection();
+        $this->cars = new CarCollection();
     }
 
     /**
