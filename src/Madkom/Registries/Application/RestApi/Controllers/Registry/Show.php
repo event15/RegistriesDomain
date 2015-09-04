@@ -18,7 +18,7 @@ class Show extends ControllerHelper
         /** @var \Madkom\Registries\Domain\Registry $currentRegistry */
         $currentRegistry = $this->findAndCheckRegistry($app, $id);
 
-        return $app->json($currentRegistry->RegistryToArray(), 200);
+        return $app->json($currentRegistry->registryToArray(), 200);
     }
 
     public function allRegistries(Application $app)
@@ -32,7 +32,7 @@ class Show extends ControllerHelper
          * @var \Madkom\Registries\Domain\Registry $registryPosition
          */
         foreach ($currentRegistry as $i => $registryPosition) {
-            $allRegistries[] = $registryPosition->RegistryToArray();
+            $allRegistries[] = $registryPosition->registryToArray();
         }
 
         return $app->json($allRegistries, 200);

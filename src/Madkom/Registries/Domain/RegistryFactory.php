@@ -10,7 +10,6 @@ use Madkom\Registries\Domain\Car\CarRegistry;
  */
 class RegistryFactory
 {
-
     /**
      * @param $type
      * @param $name

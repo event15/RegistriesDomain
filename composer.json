@@ -9,16 +9,15 @@
         "behat/mink": "v1.6.1",
         "behat/mink-extension": "2.0.x-dev",
         "behat/mink-goutte-driver": "v1.1.0",
-        "behat/mink-selenium2-driver": "v1.2.0"
+        "behat/mink-selenium2-driver": "v1.2.0",
+        "phpunit/phpunit": "4.8.4",
+        "halleck45/phpmetrics": "v1.1.1",
+        "henrikbjorn/phpspec-code-coverage": "1.0.1"
     },
     "authors": [
         {
             "name": "Marek Woś",
             "email": "m.wos@madkom.pl"
-        },
-        {
-            "name": "Robert Stańkiewicz",
-            "email": "r.stankiewicz@madkom.pl"
         }
     ],
     "minimum-stability": "dev",
@@ -26,9 +25,7 @@
         "silex/silex": "v1.3.0",
         "dflydev/doctrine-orm-service-provider": "*",
         "symfony/yaml": "*",
-        "doctrine/collections": "*",
-        "phpunit/phpunit": "4.8.4",
-        "halleck45/phpmetrics": "v1.1.1"
+        "doctrine/collections": "*"
     },
     "config": {
         "bin-dir": "bin"

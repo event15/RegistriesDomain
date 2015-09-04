@@ -51,8 +51,8 @@ class Create
         $this->positionDto->registryId = $this->currentRegistry;
         $this->position = $this->positionFactory->create($this->positionDto);
 
-        $this->newTerm(AC::TYPE, $request->get('expiryDate'), $request->get('notify'), $app);
-        $this->newTerm(OC::TYPE, $request->get('expiryDate'), $request->get('notify'), $app);
+        $this->newTerm(AC::TYPE, $request->get('expiryDate'), $request->get('notify'));
+        $this->newTerm(OC::TYPE, $request->get('expiryDate'), $request->get('notify'));
 
         $this->currentRegistry->addPos($this->position);
 

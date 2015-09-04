@@ -80,7 +80,7 @@ abstract class Registry
     {
         $this->positions->removePosition($position);
     }
-    abstract public function RegistryToArray();
+    abstract public function registryToArray();
 
     abstract public function getRegistryType();
 }

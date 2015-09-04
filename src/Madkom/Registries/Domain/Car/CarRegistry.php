@@ -40,7 +40,6 @@ class CarRegistry extends Registry
     }
     public function addPos(Position $position)
     {
-        $this->positions = new CarCollection();
         $tmp = $this->positions;
 
         foreach ($tmp as $pos) {

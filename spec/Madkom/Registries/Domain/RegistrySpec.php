@@ -38,7 +38,7 @@ class RegistrySpec extends ObjectBehavior
     {
         $this->registryToArray()->shouldBeArray();
         $this->registryToArray()->shouldHaveKey('id');
-        $this->registryToArray()->shouldHaveKeyWithValue('name', 'Samochody 2015');
+        $this->registryToArray()->shouldHaveKey('name');
         $this->registryToArray()->shouldHaveKey('createdAt');
         $this->registryToArray()->shouldHaveKey('positions');
     }

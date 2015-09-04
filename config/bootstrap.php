@@ -10,33 +10,33 @@ use Doctrine\ORM\EntityManager;
 $app = new Silex\Application();
 $app[ 'debug' ] = true;
 
-$app->register(new DoctrineServiceProvider(), array(
-    'db.options' => array(
+$app->register(new DoctrineServiceProvider(), [
+    'db.options' => [
         'driver' => 'pdo_mysql',
         'charset' => 'utf8',
         'host' => 'localhost',
         'user' => 'root',
         'password' => 'root',
         'dbname' => 'mistrz'
-    )
-));
+    ]
+]);
 
-$app->register(new DoctrineOrmServiceProvider(), array(
-    'orm.em.options' => array(
-        'mappings' => array(
-            array(
+$app->register(new DoctrineOrmServiceProvider(), [
+    'orm.em.options' => [
+        'mappings' => [
+            [
                 'type' => 'yml',
                 'namespace' => 'Madkom\Registries\Domain',
-                'path' => array(__DIR__ . '/../src/Madkom/Registries/Infrastructure/Doctrine/Mappings'),
-            ),
-            array(
+                'path' => [ __DIR__ . '/../src/Madkom/Registries/Infrastructure/Doctrine/Mappings' ]
+            ],
+            [
                 'type' => 'yml',
                 'namespace' => 'Madkom\Registries\Domain\Car',
-                'path' => array(__DIR__ . '/../src/Madkom/Registries/Infrastructure/Doctrine/Mappings'),
-            )
-        )
-    )
-));
+                'path' => [ __DIR__ . '/../src/Madkom/Registries/Infrastructure/Doctrine/Mappings' ]
+            ]
+        ]
+    ]
+]);
 
 $config = Setup::createYAMLMetadataConfiguration($app['orm.em.options']['mappings'][0]['path'], $app['debug']);
 $app['orm.em'] = EntityManager::create($app['db.options'], $config);

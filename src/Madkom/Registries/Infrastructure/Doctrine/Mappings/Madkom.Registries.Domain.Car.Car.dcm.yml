@@ -3,7 +3,8 @@ Madkom\Registries\Domain\Car\Car:
 
   manyToOne:
     registryId:
-      targetEntity: Madkom\Registries\Domain\Registry
+      targetEntity: Madkom\Registries\Domain\Car\CarRegistry
+      inversedBy: positions
       joinColumn:
         nullable: false
         name: registry_id
