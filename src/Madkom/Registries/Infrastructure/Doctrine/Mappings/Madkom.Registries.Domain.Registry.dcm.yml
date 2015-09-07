@@ -8,8 +8,6 @@ Madkom\Registries\Domain\Registry:
   discriminatorMap:
       car: Madkom\Registries\Domain\Car\CarRegistry
 
-
-
   id:
     id:
       type: integer

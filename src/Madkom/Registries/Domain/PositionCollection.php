@@ -7,23 +7,13 @@
  */
 
 namespace Madkom\Registries\Domain;
+use Doctrine\Common\Collections\Collection;
 
 /**
  * Class PositionCollection
  * @package Madkom\Registries\Domain
  */
-interface PositionCollection
+interface PositionCollection extends Collection
 {
-    /**
-     * @param Position $position
-     * @throws PositionNotFoundException
-     */
-    public function removePosition(Position $position);
-
-    /**
-     * @param Position $position
-     * @throws PositionNotAllowedException
-     */
-    public function addPosition(Position $position);
 
 }

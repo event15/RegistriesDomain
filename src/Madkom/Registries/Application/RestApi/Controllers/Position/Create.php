@@ -54,7 +54,7 @@ class Create
         $this->newTerm(AC::TYPE, $request->get('expiryDate'), $request->get('notify'));
         $this->newTerm(OC::TYPE, $request->get('expiryDate'), $request->get('notify'));
 
-        $this->currentRegistry->addPos($this->position);
+        $this->currentRegistry->addPosition($this->position);
 
 
         $app['repositories.position']->prepareToSave($this->position);

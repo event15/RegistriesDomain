@@ -14,12 +14,12 @@ interface TermCollection
      * @throws TermNotAllowedException
      * @return mixed
      */
-    public function addTerm(Term $term);
+    public function add($term);
 
     /**
      * @param Term $term
      * @return mixed
      */
-    public function removeTerm(Term $term);
+    public function remove($term);
 
 }

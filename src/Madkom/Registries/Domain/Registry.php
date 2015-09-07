@@ -50,6 +50,12 @@ abstract class Registry
     {
         $this->name = $name;
     }
+
+    public function showPositions()
+    {
+        return $this->positions;
+    }
+
     private function registryHasName($name)
     {
         $name = trim($name);
@@ -70,7 +76,7 @@ abstract class Registry
         return $this->name;
     }
 
-    abstract public function addPos(Position $position);
+    abstract public function addPosition(Position $position);
 
     /**
      * @param Position $position

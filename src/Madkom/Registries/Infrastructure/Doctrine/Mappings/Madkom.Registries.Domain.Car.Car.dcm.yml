@@ -6,7 +6,6 @@ Madkom\Registries\Domain\Car\Car:
       targetEntity: Madkom\Registries\Domain\Car\CarRegistry
       inversedBy: positions
       joinColumn:
-        nullable: false
         name: registry_id
         referencedColumnName: registry_id
 

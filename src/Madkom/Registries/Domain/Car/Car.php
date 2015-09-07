@@ -47,7 +47,7 @@ class Car extends Position
 
     public function addTerm(Term $term)
     {
-        $this->terms->addTerm($term);
+        $this->terms->add($term);
     }
 
     public function removeTerm(Term $term)

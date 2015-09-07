@@ -14,14 +14,11 @@ class CarTermCollection extends ArrayCollection implements TermCollection
      * @param Term $term
      * @throws TermNotAllowedException
      */
-    public function addTerm(Term $term)
+    public function add($term)
     {
-        if ($term instanceof OC || $term instanceof Review || $term instanceof AC || $term instanceof ASS)
-        {
+        if ($term instanceof OC || $term instanceof Review || $term instanceof AC || $term instanceof ASS) {
             parent::add($term);
-        }
-        else
-        {
+        } else {
             throw new TermNotAllowedException;
         }
     }
@@ -30,9 +27,9 @@ class CarTermCollection extends ArrayCollection implements TermCollection
      * @param Term $term
      * @return mixed
      */
-    public function removeTerm(Term $term)
+    public function remove($term)
     {
-        parent::removeElement($term);
+        parent::remove($term);
     }
 
 }

@@ -15,7 +15,7 @@ class PositionFactorySpec extends ObjectBehavior
         $this->beConstructedWith($positionCreateStrategy);
     }
 
-    public function itIsInitializable()
+    public function it_is_initializable()
     {
         $this->shouldHaveType('Madkom\Registries\Domain\PositionFactory');
     }

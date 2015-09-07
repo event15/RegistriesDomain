@@ -38,12 +38,9 @@ class CarRegistry extends Registry
     {
         return self::TYPE_NAME;
     }
-    public function addPos(Position $position)
-    {
-        $tmp = $this->positions;
 
-        foreach ($tmp as $pos) {
-            $pos->addPosition($position);
-        }
+    public function addPosition(Position $position)
+    {
+        $this->positions->add($position);
     }
 }

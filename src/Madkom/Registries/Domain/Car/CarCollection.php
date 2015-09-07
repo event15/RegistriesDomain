@@ -13,24 +13,10 @@ use Madkom\Registries\Domain\PositionNotAllowedException;
  */
 class CarCollection extends ArrayCollection implements PositionCollection
 {
-    /**
-     * @param Position $position
-     * @throws PositionNotAllowedException
-     */
-    public function removePosition(Position $position)
+    public function add($element)
     {
-        parent::removeElement($position);
-    }
-
-    /**
-     * @param Position $position
-     * @throws PositionNotAllowedException
-     */
-    public function addPosition(Position $position)
-    {
-
-        if ($position instanceof Car) {
-            $this->add($position);
+        if ($element instanceof Car) {
+            parent::add($element);
         } else {
             throw new PositionNotAllowedException;
         }
