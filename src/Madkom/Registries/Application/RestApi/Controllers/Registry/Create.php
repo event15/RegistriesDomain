@@ -39,11 +39,6 @@ class Create extends ControllerHelper
         return $this->requestValues;
     }
 
-    private function createRegistryFactory()
-    {
-        $this->registryFactory = new RegistryFactory();
-    }
-
     private function prepareRegistry()
     {
         $this->createRegistryFactory();
@@ -54,5 +49,10 @@ class Create extends ControllerHelper
         );
 
         return $this->registry;
+    }
+
+    private function createRegistryFactory()
+    {
+        $this->registryFactory = new RegistryFactory();
     }
 }
