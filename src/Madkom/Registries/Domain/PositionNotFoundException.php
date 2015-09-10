@@ -2,6 +2,6 @@
 
 namespace Madkom\Registries\Domain;
 
-class PositionNotFoundException
+class PositionNotFoundException extends \Exception
 {
 }
