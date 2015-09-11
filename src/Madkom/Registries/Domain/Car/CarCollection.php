@@ -1,8 +1,6 @@
 <?php
 
 namespace Madkom\Registries\Domain\Car;
-
-use Madkom\Registries\Domain\Position;
 use Madkom\Registries\Domain\PositionCollection;
 use Doctrine\Common\Collections\ArrayCollection;
 use Madkom\Registries\Domain\PositionNotAllowedException;
