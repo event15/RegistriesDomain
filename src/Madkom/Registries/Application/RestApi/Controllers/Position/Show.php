@@ -17,8 +17,7 @@ class Show extends ControllerHelper
 {
     public function allPositions(Application $app, Request $request, $id)
     {
-        $currentRegistry = $this->findAndCheckRegistry($app, $id);
-        $getElement = $app['repositories.position']->findAll('Madkom\\Registries\\Domain\\Car\\CarRegistry', $id);
+        $getElement = $app['repositories.position']->findAll('Madkom\\Registries\\Domain\\Car\\Car', $id);
 
         $tab = [];
 
@@ -27,5 +26,16 @@ class Show extends ControllerHelper
         }
 
         return $app->json($tab);
+    }
+
+    public function showPositions(Application $app, $positionId)
+    {
+        /** @var Registry $getRegistry */
+        $getElement = $app['repositories.position']->find('Madkom\\Registries\\Domain\\Car\\Car', $positionId);
+
+        return ($getElement === null) ?
+            new Response("Nie znaleziono rejestru o id={$positionId}", 404)
+            :
+            $app->json($getElement->toArray());
     }
 }
