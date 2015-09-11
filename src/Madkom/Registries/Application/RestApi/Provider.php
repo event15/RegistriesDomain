@@ -31,10 +31,10 @@ class Provider implements ControllerProviderInterface
 
         $controller->post  ('/{id}/pozycje', self::CONTROLLERS . 'Create::newPosition');
         $controller->get   ('/{id}/pozycje', self::CONTROLLERS . 'Show::allPositions');
-//
-//        $controller->get   ('/{id}/pozycje/{positionId}', self::CONTROLLERS . 'PositionController::showPositions');
-//        $controller->put   ('/{id}/pozycje/{positionId}', self::CONTROLLERS . 'PositionController::modifyPosition');
-//        $controller->delete('/{id}/pozycje/{positionId}', self::CONTROLLERS . 'PositionController::deletePosition');
+
+        $controller->get   ('/{id}/pozycje/{positionId}', self::CONTROLLERS . 'Show::positionById');
+        $controller->put   ('/{id}/pozycje/{positionId}', self::CONTROLLERS . 'Modify::positionById');
+        $controller->delete('/{id}/pozycje/{positionId}', self::CONTROLLERS . 'Remove::positionById');
 
         return $controller;
     }
