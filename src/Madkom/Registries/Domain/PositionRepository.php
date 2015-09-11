@@ -11,7 +11,7 @@ namespace Madkom\Registries\Domain;
 interface PositionRepository
 {
     public function save($registry);
-    public function find($model, $id, $idElementu);
+    public function find($model, $id);
     public function findAll($model, $id);
     public function deleteOne($element);
 }
