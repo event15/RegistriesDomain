@@ -8,9 +8,6 @@
 namespace Madkom\Registries\Infrastructure\Doctrine\Repositories;
 
 use Doctrine\ORM\EntityManager;
-use Doctrine\ORM\ORMException;
-use Doctrine\ORM\ORMInvalidArgumentException;
-use Madkom\Registries\Domain\Position;
 use Madkom\Registries\Domain\PositionRepository;
 
 class PositionRepositoryImpl implements PositionRepository
@@ -38,30 +35,19 @@ class PositionRepositoryImpl implements PositionRepository
             $this->em->flush();
     }
 
-    public function find($model, $id, $idElementu)
+    public function find($model, $id)
     {
-        return $this->em->getRepository($model)->findBy([
-            'registryId' => $id,
-            'carId' => $idElementu
-        ]);
+        return $this->em->getRepository($model)->find($id);
     }
 
     public function findAll($model, $id)
     {
-        return $this->em->getRepository($model)->findBy([
-            'registryId' => $id
-        ]);
+        return $this->em->getRepository($model)->findAll();
     }
 
     public function deleteOne($element)
     {
-        try {
-            $this->em->remove($element);
-            $this->em->flush();
-        } catch (ORMInvalidArgumentException $e) {
-            throw $e;
-        } catch (ORMException $e) {
-            throw $e;
-        }
+        $this->em->remove($element);
+        $this->em->flush();
     }
 }
