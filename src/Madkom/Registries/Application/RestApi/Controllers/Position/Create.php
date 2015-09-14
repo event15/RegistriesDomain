@@ -14,6 +14,7 @@ use Madkom\Registries\Domain\Car\CarFactory;
 use Madkom\Registries\Domain\Car\CarRegistry;
 use Madkom\Registries\Domain\Car\Term\AC;
 use Madkom\Registries\Domain\Car\Term\OC;
+use Madkom\Registries\Domain\Car\Term\Review;
 use Madkom\Registries\Domain\Department\Department;
 use Madkom\Registries\Domain\Department\DepartmentCollection;
 use Madkom\Registries\Domain\EmptyRegistryException;
@@ -25,23 +26,52 @@ use Silex\Application;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
+/**
+ * Class Create
+ *
+ * @package Madkom\Registries\Application\RestApi\Controllers\Position
+ */
 class Create
 {
+    /** @var  CarFactory $elementFactory Przechowuje fabrykę pozycji */
     private $elementFactory;
-    private $positionFactory;
-    private $positionDto;
-    private $currentRegistry;
-    private $position;
-    private $termFactory;
-    private $helper;
-    private $type;
 
+    /** @var  PositionFactory */
+    private $positionFactory;
+
+    /** @var  CarDto Składowe DTO pozycji */
+    private $positionDto;
+
+    /** @var  Registry Aktualnie wybrany rejestr */
+    private $currentRegistry;
+
+    /** @var  mixed Utworzona pozycja */
+    private $position;
+
+    /** @var  TermFactory Klasa fabryki dla terminów */
+    private $termFactory;
+
+    /** @var  ControllerHelper Zawiera instancję klasy ControllerHelper */
+    private $helper;
+
+    /** @var  mixed Typ rejestru */
+    private $type;
 
     public function __construct()
     {
         $this->helper = new ControllerHelper();
     }
 
+    /**
+     * @param Application $app
+     * @param Request     $request
+     * @param             $id
+     *
+     * @return Response
+     * @throws EmptyRegistryException
+     * @throws \Madkom\Registries\Domain\PositionTypeNotAllowedException
+     * @throws \Madkom\Registries\Domain\UnknownTermTypeException
+     */
     public function newPosition(Application $app, Request $request, $id)
     {
         $this->currentRegistry = $this->helper->findAndCheckRegistry($app, $id);
@@ -53,6 +83,7 @@ class Create
 
         $this->newTerm(AC::TYPE, $request->get('expiryDate'), $request->get('notify'));
         $this->newTerm(OC::TYPE, $request->get('expiryDate'), $request->get('notify'));
+        $this->newTerm(Review::TYPE, $request->get('expiryDate'), $request->get('notify'));
 
         $this->currentRegistry->addPosition($this->position);
 
@@ -64,6 +95,11 @@ class Create
         return new Response('OK', 201);
     }
 
+    /**
+     * @param Registry $registryType
+     *
+     * @throws EmptyRegistryException
+     */
     private function createPositionFactory(Registry $registryType)
     {
         $type = $registryType->getRegistryType();
@@ -82,6 +118,9 @@ class Create
         $this->type            = $type;
     }
 
+    /**
+     * @param Request $request
+     */
     private function getRequests(Request $request)
     {
         switch ($this->type) {
@@ -94,6 +133,13 @@ class Create
         }
     }
 
+    /**
+     * @param $term
+     * @param $expirationDate
+     * @param $notifyDaysInAdvance
+     *
+     * @throws \Madkom\Registries\Domain\UnknownTermTypeException
+     */
     private function newTerm($term, $expirationDate, $notifyDaysInAdvance)
     {
         $registryPositionDto = new TermDto();

@@ -12,11 +12,21 @@ use Silex\Application;
 use Silex\ControllerCollection;
 use Silex\ControllerProviderInterface;
 
+/**
+ * Class Provider
+ *
+ * @package Madkom\Registries\Application\RestApi
+ */
 class Provider implements ControllerProviderInterface
 {
     const REGISTRY    = "Madkom\\Registries\\Application\\RestApi\\Controllers\\Registry\\";
     const CONTROLLERS = "Madkom\\Registries\\Application\\RestApi\\Controllers\\Position\\";
 
+    /**
+     * @param Application $app
+     *
+     * @return ControllerCollection
+     */
     public function connect(Application $app)
     {
         /** @var ControllerCollection $controller */

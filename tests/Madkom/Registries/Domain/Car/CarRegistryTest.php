@@ -55,9 +55,4 @@ class CarRegistryTest extends \PHPUnit_Framework_TestCase
         static::assertArrayHasKey('createdAt', $object);
         static::assertArrayHasKey('positions', $object);
     }
-
-    public function testAddPosition()
-    {
-        static::assertTrue(true);
-    }
 }

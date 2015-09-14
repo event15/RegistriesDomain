@@ -10,5 +10,13 @@ use Doctrine\Common\Collections\ArrayCollection;
  */
 class DepartmentCollection extends ArrayCollection
 {
+    public function add($department)
+    {
 
+    }
+
+    public function remove($department)
+    {
+
+    }
 }

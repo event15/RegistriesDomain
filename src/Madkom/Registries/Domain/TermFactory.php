@@ -1,4 +1,7 @@
 <?php
+/**
+ * Klasa tworzy nowy typ terminu, w zależności od tego jakie dostanie parametry do funkcji create().
+ */
 
 namespace Madkom\Registries\Domain;
 
@@ -7,9 +10,16 @@ use Madkom\Registries\Domain\Car\Term\OC;
 use Madkom\Registries\Domain\Car\Term\ASS;
 use Madkom\Registries\Domain\Car\Term\Review;
 
+/**
+ * Class TermFactory
+ *
+ * @package Madkom\Registries\Domain
+ */
 class TermFactory
 {
     /**
+     * Funkcja tworzy terminy.
+     *
      * @param         $type
      * @param TermDto $termDto
      *
@@ -18,7 +28,6 @@ class TermFactory
      */
     public function create($type, TermDto $termDto)
     {
-
         switch ($type) {
             case AC::TYPE:
                 $term = new AC();
