@@ -11,6 +11,12 @@ Madkom\Registries\Domain\Term:
       targetEntity: Madkom\Registries\Domain\Car\Car
       mappedBy: terms
 
+  oneToMany:
+    whoToNotify:
+      targetEntity: Madkom\Registries\Domain\Department\Department
+      mappedBy: terms
+      cascade: ['persist', 'all']
+
   id:
     id:
       type: integer
@@ -23,5 +29,3 @@ Madkom\Registries\Domain\Term:
       type: datetime
     notifyBefore:
       type: datetime
-    whoToNotify:
-      type: text

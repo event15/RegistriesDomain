@@ -37,6 +37,7 @@ abstract class Term
     public function __construct()
     {
         $this->cars = new CarCollection();
+        $this->whoToNotify = new DepartmentCollection();
     }
 
     /**

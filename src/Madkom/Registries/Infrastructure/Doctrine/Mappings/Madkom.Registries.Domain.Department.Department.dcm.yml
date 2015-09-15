@@ -1,2 +1,24 @@
 Madkom\Registries\Domain\Department\Department:
-  target: entity
+  type: entity
+
+  manyToOne:
+    terms:
+      targetEntity: Madkom\Registries\Domain\Term
+      inversedBy: whoToNotify
+      joinColumn:
+        name: term
+        referencedColumnName: term_id
+        #nullable: false
+
+  id:
+    id:
+      type: integer
+      column: department_id
+      generator:
+        strategy: AUTO
+
+  fields:
+    name:
+      type: string(50)
+    email:
+      type: string(50)

@@ -12,11 +12,16 @@ class DepartmentCollection extends ArrayCollection
 {
     public function add($department)
     {
-
+        parent::add($department);
     }
 
-    public function remove($department)
+    public function removeElement($department)
     {
+        parent::removeElement($department);
+    }
 
+    public function get($department)
+    {
+        parent::get($department);
     }
 }

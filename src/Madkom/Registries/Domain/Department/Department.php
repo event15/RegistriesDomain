@@ -8,6 +8,9 @@ namespace Madkom\Registries\Domain\Department;
  */
 class Department
 {
+    /** @var  integer */
+    protected $id;
+
     /**
      * @var string
      */
@@ -17,6 +20,8 @@ class Department
      * @var string
      */
     protected $email;
+
+    protected $terms;
 
     /**
      * Department constructor.
@@ -28,5 +33,7 @@ class Department
     {
         $this->name  = $name;
         $this->email = $email;
+        //$this->terms = new DepartmentTermCollection();
+        //$this->terms = new ArrayCollection();
     }
 }
