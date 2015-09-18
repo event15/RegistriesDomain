@@ -1,0 +1,129 @@
+@import "imports/reset";
+/** mixins.css **/
+
+@mixin selection($color, $backgroundColor: invert($color), $elem: "") {
+  #{$elem}::selection {
+    color: $color;
+    background-color: $backgroundColor;
+  }
+
+  #{$elem}::-moz-selection {
+    color: $color;
+    background-color: $backgroundColor;
+  }
+}
+
+@mixin inline-block {
+  display:  inline-block;
+  *display:  inline;
+  zoom: 1;
+}
+
+@mixin border-radius($radius) {
+  -webkit-border-radius: $radius;
+  -moz-border-radius:    $radius;
+  border-radius:         $radius;
+}
+
+@mixin transition($props: all, $speed: 0.2s, $easing: linear) {
+  -webkit-transition: $props $speed $easing;
+  -moz-transition:    $props $speed $easing;
+  -o-transition:      $props $speed $easing;
+  transition:         $props $speed $easing;
+}
+
+@mixin box-shadow($shadows...) {
+  -webkit-box-shadow: $shadows;
+  -moz-box-shadow:    $shadows;
+  box-shadow:         $shadows;
+}
+
+@mixin text-shadow($color, $x: 1px, $y: 1px, $radius: 0) {
+  text-shadow: $x $y $radius $color;
+}
+
+@mixin animate($name) {
+  @-webkit-keyframes #{$name} {
+    @content;
+  }
+  @-moz-keyframes #{$name} {
+    @content;
+  }
+  @-o-keyframes #{$name} {
+    @content;
+  }
+  @keyframes #{$name} {
+    @content;
+  }
+}
+
+/** style.css **/
+
+@include animate(bgAnimate) {
+  from {
+    background-position: 0 0;
+  }
+
+  to {
+    background-position: 1000px 0;
+  }
+}
+
+body {
+  font: 12px/18px Tahoma, sans-serif;
+  color: #494949;
+  background: #6DD4E7 url(../images/bg.jpg) left top repeat-x;
+  -webkit-animation: bgAnimate 10s infinite alternate;
+  -moz-animation: bgAnimate 10s infinite alternate;
+}
+
+@include selection(#fff, $elem: p);
+@include selection(blue, $elem: h1);
+
+h1 {
+  margin: 0 0 40px 0;
+  font: 24px/1 Georgia, serif;
+}
+
+#container {
+  width: 700px;
+  margin: 100px auto;
+
+  div {
+    width: 300px;
+    float: left;
+
+    &:nth-of-type(2n) {
+      margin: 0 0 0 100px;
+    }
+  }
+}
+
+.button {
+  @include inline-block;
+  padding:  15px 35px;
+  position: relative;
+  @include border-radius(8px);
+  @include box-shadow(0 9px 0 rgba(219,31,5,1), 0 9px 25px rgba(0,0,0,.7));
+  @include transition($speed: 0.1s);
+  @include text-shadow(#000, -1px, -1px, 0);
+  background-color: rgba(219, 87, 5, 1);
+
+  font-family:      'Monda';
+  font-weight:      700;
+  font-size:        3em;
+  letter-spacing:   -2px;
+  text-align:       center;
+  text-decoration:  none;
+  outline:          none;
+  color:            rgba(255, 255, 255, 1);
+
+  &:active {
+    @include text-shadow(#000);
+    -webkit-box-shadow: 0 3px 0 rgba(219,31,5,1), 0 3px 6px rgba(0,0,0,.9);
+    -moz-box-shadow:    0 3px 0 rgba(219,31,5,1), 0 3px 6px rgba(0,0,0,.9);
+    box-shadow:         0 3px 0 rgba(219,31,5,1), 0 3px 6px rgba(0,0,0,.9);
+
+    top:                6px;
+  }
+}

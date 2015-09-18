@@ -14,8 +14,6 @@ class PositionRepositoryImpl implements PositionRepository
 {
     /** @var \Doctrine\ORM\EntityManager $em */
     private $em;
-    const MODEL = "\\Models\\ElementModel";
-
 
     /**
      * @param \Doctrine\ORM\EntityManager $entityManager
@@ -42,7 +40,7 @@ class PositionRepositoryImpl implements PositionRepository
 
     public function findAll($model, $id)
     {
-        return $this->em->getRepository($model)->findAll();
+        return $this->em->getRepository($model)->findBy(['registryId' => $id]);
     }
 
     public function deleteOne($element)

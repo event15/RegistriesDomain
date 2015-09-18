@@ -9,8 +9,8 @@
 namespace Madkom\Registries\Application\RestApi\Controllers\Position;
 
 use Madkom\Registries\Application\RestApi\Controllers\ControllerHelper;
+use Madkom\Registries\Domain\EmptyRegistryException;
 use Silex\Application;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 class Show extends ControllerHelper
@@ -18,6 +18,8 @@ class Show extends ControllerHelper
     public function allPositions(Application $app, $id)
     {
         $getElement = $app['repositories.position']->findAll('Madkom\\Registries\\Domain\\Car\\Car', $id);
+
+        if(count($getElement) <= 0) throw new EmptyRegistryException('Rejestr jest pusty albo nie istnieje.');
 
         $tab = [];
 
@@ -32,8 +34,11 @@ class Show extends ControllerHelper
     {
         $getElement = $app['repositories.position']->find('Madkom\\Registries\\Domain\\Car\\Car', $positionId);
 
+        if(count($getElement) <= 0) $app->abort(404, 'Pozycja nie istnieje lub jest pusta');
+
+
         return ($getElement === null) ?
-            new Response("Nie znaleziono rejestru o id={$positionId}", 404)
+            new Response("Nie znaleziono pozycji o id={$positionId}", 404)
             :
             $app->json($getElement->toArray());
     }

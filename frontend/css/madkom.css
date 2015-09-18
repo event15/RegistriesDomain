@@ -1,0 +1,236 @@
+/* http://meyerweb.com/eric/tools/css/reset/
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+
+body {
+  line-height: 1;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+blockquote, q {
+  quotes: none;
+}
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+html {
+  font-size: 16px;
+  height: 100%;
+  width: 100%;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+  height: 100%;
+  width: 100%;
+}
+
+ul {
+  padding: 0;
+  margin: 0;
+}
+
+a {
+  text-decoration: none;
+  outline: none;
+  color: white;
+}
+
+#main {
+  float: left;
+  height: 100%;
+  max-width: 60em;
+  margin: 2em auto;
+  width: 90%;
+  max-height: 100%;
+  background-color: white;
+  position: relative;
+}
+
+.panel {
+  font-family: Verdana, "Bitstream Vera Sans", "DejaVu Sans", Tahoma, Geneva, Arial, Sans-serif;
+  top: 0;
+  display: inline-block;
+  vertical-align: top;
+  height: 100%;
+  background-color: #656565;
+  position: relative;
+}
+.panel.left {
+  background-color: #656565;
+  float: left;
+  left: 0;
+  width: 10%;
+}
+.panel.right {
+  font-size: 0.875rem;
+  float: left;
+  width: 30%;
+  background-color: #f2f2f2;
+  position: absolute;
+  left: 10%;
+  color: #656565;
+}
+
+.left ul {
+  display: block;
+  margin-top: 40px;
+}
+.left ul li a {
+  font-size: 0.8125rem;
+  display: block;
+  padding: 18px 25px;
+  color: white;
+}
+.left ul li a:hover {
+  -webkit-transition: background-color 0.2s ease-in-out;
+  -moz-transition: background-color 0.2s ease-in-out;
+  -o-transition: background-color 0.2s ease-in-out;
+  transition: background-color 0.2s ease-in-out;
+  -webkit-box-shadow: 0 4px 12px rgba(0, 0, 0, 0.7);
+  -moz-box-shadow: 0 4px 12px rgba(0, 0, 0, 0.7);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.7);
+  background-color: #5d5d5d;
+  font-size: 0.875rem;
+}
+.left ul li a.selected {
+  background-color: #f16c1e;
+}
+
+.add {
+  font-size: 0.8125rem;
+  display: block;
+  margin: 17px auto 0 auto;
+  background-color: #f16c1e;
+  width: 140px;
+  text-align: center;
+  padding: 18px 1px;
+  color: white;
+  white-space: nowrap;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+.add:hover {
+  -webkit-box-shadow: 0 4px 12px rgba(0, 0, 0, 0.7);
+  -moz-box-shadow: 0 4px 12px rgba(0, 0, 0, 0.7);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.7);
+}
+
+.right.hide {
+  width: 0px;
+  overflow: hidden;
+  -webkit-transition: width 0.2s ease-in-out;
+  -moz-transition: width 0.2s ease-in-out;
+  -o-transition: width 0.2s ease-in-out;
+  transition: width 0.2s ease-in-out;
+}
+
+.right.show {
+  width: 20%;
+  -webkit-transition: width 0.2s ease-in-out;
+  -moz-transition: width 0.2s ease-in-out;
+  -o-transition: width 0.2s ease-in-out;
+  transition: width 0.2s ease-in-out;
+}
+
+nav ul li {
+  display: inline-block;
+}
+
+.options {
+  font-size: 0.875rem;
+  position: absolute;
+  -webkit-border-radius: 12px;
+  -moz-border-radius: 12px;
+  -ms-border-radius: 12px;
+  border-radius: 12px;
+  border: 1px #c0c0c0 solid;
+  padding: 10px;
+}
+
+.options.top {
+  cursor: pointer;
+  font-weight: bold;
+  color: #656565;
+}
+.options.top:hover {
+  background-color: #f6f6f6;
+  -webkit-transition: all 0.2s ease-in-out;
+  -moz-transition: all 0.2s ease-in-out;
+  -o-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+}
+
+#search {
+  padding-right: 30px;
+  color: #656565;
+  left: 840px;
+  width: 250px;
+  background: url("../images/lupa.png") right 7px center no-repeat;
+  background-size: 20px;
+  border: 1px #e4e4e4 solid;
+}
+
+#add {
+  left: calc(10% + 50px);
+}
+#add i {
+  color: #53bd18;
+}
+
+#remove {
+  left: calc(10% + 350px);
+}
+#remove i {
+  color: #d02a2a;
+}
+
+#edit {
+  left: calc(10% + 165px);
+}
+
+#content {
+  clear: both;
+  margin-top: 40px;
+}
+
+/*# sourceMappingURL=madkom.css.map */

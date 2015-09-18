@@ -8,16 +8,16 @@ use Doctrine\ORM\Tools\Setup;
 use Doctrine\ORM\EntityManager;
 
 $app = new Silex\Application();
-$app[ 'debug' ] = true;
+$app[ 'debug' ] = 0;
 
 $app->register(new DoctrineServiceProvider(), [
     'db.options' => [
-        'driver' => 'pdo_mysql',
-        'charset' => 'utf8',
-        'host' => 'localhost',
-        'user' => 'root',
+        'driver'   => 'pdo_mysql',
+        'charset'  => 'utf8',
+        'host'     => 'localhost',
+        'user'     => 'root',
         'password' => 'root',
-        'dbname' => 'mistrz'
+        'dbname'   => 'mistrz'
     ]
 ]);
 
@@ -25,14 +25,14 @@ $app->register(new DoctrineOrmServiceProvider(), [
     'orm.em.options' => [
         'mappings' => [
             [
-                'type' => 'yml',
+                'type'      => 'yml',
                 'namespace' => 'Madkom\Registries\Domain',
-                'path' => [ __DIR__ . '/../src/Madkom/Registries/Infrastructure/Doctrine/Mappings' ]
+                'path'      => [ __DIR__ . '/../src/Madkom/Registries/Infrastructure/Doctrine/Mappings' ]
             ],
             [
-                'type' => 'yml',
+                'type'      => 'yml',
                 'namespace' => 'Madkom\Registries\Domain\Car',
-                'path' => [ __DIR__ . '/../src/Madkom/Registries/Infrastructure/Doctrine/Mappings' ]
+                'path'      => [ __DIR__ . '/../src/Madkom/Registries/Infrastructure/Doctrine/Mappings' ]
             ]
         ]
     ]

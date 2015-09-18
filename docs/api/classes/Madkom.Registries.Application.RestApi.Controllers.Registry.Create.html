@@ -1,0 +1,933 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <meta charset="utf-8"/>
+    <title>API Documentation</title>
+    <meta name="author" content=""/>
+    <meta name="description" content=""/>
+
+    <link href="../css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
+    <link href="../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../css/prism.css" rel="stylesheet" media="all"/>
+    <link href="../css/template.css" rel="stylesheet" media="all"/>
+    
+    <!--[if lt IE 9]>
+    <script src="../js/html5.js"></script>
+    <![endif]-->
+    <script src="../js/jquery-1.11.0.min.js"></script>
+    <script src="../js/ui/1.10.4/jquery-ui.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/jquery.smooth-scroll.js"></script>
+    <script src="../js/prism.min.js"></script>
+    <!-- TODO: Add http://jscrollpane.kelvinluck.com/ to style the scrollbars for browsers not using webkit-->
+    <script type="text/javascript">
+    function loadExternalCodeSnippets() {
+        Array.prototype.slice.call(document.querySelectorAll('pre[data-src]')).forEach(function (pre) {
+            var src = pre.getAttribute('data-src');
+            var extension = (src.match(/\.(\w+)$/) || [, ''])[1];
+            var language = 'php';
+
+            var code = document.createElement('code');
+            code.className = 'language-' + language;
+
+            pre.textContent = '';
+
+            code.textContent = 'Loading…';
+
+            pre.appendChild(code);
+
+            var xhr = new XMLHttpRequest();
+
+            xhr.open('GET', src, true);
+
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4) {
+
+                    if (xhr.status < 400 && xhr.responseText) {
+                        code.textContent = xhr.responseText;
+
+                        Prism.highlightElement(code);
+                    }
+                    else if (xhr.status >= 400) {
+                        code.textContent = '✖ Error ' + xhr.status + ' while fetching file: ' + xhr.statusText;
+                    }
+                    else {
+                        code.textContent = '✖ Error: File does not exist or is empty';
+                    }
+                }
+            };
+
+            xhr.send(null);
+        });
+    }
+
+    $(document).ready(function(){
+        loadExternalCodeSnippets();
+    });
+    $('#source-view').on('shown', function () {
+        loadExternalCodeSnippets();
+    })
+</script>
+
+    <link rel="shortcut icon" href="../images/favicon.ico"/>
+    <link rel="apple-touch-icon" href="../images/apple-touch-icon.png"/>
+    <link rel="apple-touch-icon" sizes="72x72" href="../images/apple-touch-icon-72x72.png"/>
+    <link rel="apple-touch-icon" sizes="114x114" href="../images/apple-touch-icon-114x114.png"/>
+</head>
+<body>
+
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <i class="icon-ellipsis-vertical"></i>
+            </a>
+            <a class="brand" href="../index.html">API Documentation</a>
+
+            <div class="nav-collapse">
+                <ul class="nav pull-right">
+                                        <li class="dropdown">
+                        <a href="../index.html" class="dropdown-toggle" data-toggle="dropdown">
+                            API Documentation <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                                                        <li><a href="../namespaces/Madkom.html">\Madkom</a></li>
+                                                    </ul>
+                    </li>
+                                        <li class="dropdown" id="charts-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Charts <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../graphs/class.html">
+                                    <i class="icon-list-alt"></i>&#160;Class hierarchy diagram
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown" id="reports-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Reports <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../reports/errors.html">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <i class="icon-list-alt"></i>&#160;Errors <span class="label label-info pull-right">208</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="../reports/markers.html">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <i class="icon-list-alt"></i>&#160;Markers <span class="label label-info pull-right">1</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="../reports/deprecated.html">
+                                                                                                            <i class="icon-list-alt"></i>&#160;Deprecated <span class="label label-info pull-right">0</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--<div class="go_to_top">-->
+    <!--<a href="#___" style="color: inherit">Back to top&#160;&#160;<i class="icon-upload icon-white"></i></a>-->
+    <!--</div>-->
+</div>
+
+<div id="___" class="container-fluid">
+        <section class="row-fluid">
+        <div class="span2 sidebar">
+                                <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-892247613"></a>
+                                <a href="../namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
+            </div>
+            <div id="namespace-892247613" class="accordion-body collapse in">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-203768900"></a>
+                                <a href="../namespaces/Madkom.html" style="margin-left: 30px; padding-left: 0">Madkom</a>
+            </div>
+            <div id="namespace-203768900" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1798754100"></a>
+                                <a href="../namespaces/Madkom.Registries.html" style="margin-left: 30px; padding-left: 0">Registries</a>
+            </div>
+            <div id="namespace-1798754100" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-318104610"></a>
+                                <a href="../namespaces/Madkom.Registries.Application.html" style="margin-left: 30px; padding-left: 0">Application</a>
+            </div>
+            <div id="namespace-318104610" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1842516647"></a>
+                                <a href="../namespaces/Madkom.Registries.Application.RestApi.html" style="margin-left: 30px; padding-left: 0">RestApi</a>
+            </div>
+            <div id="namespace-1842516647" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1560262652"></a>
+                                <a href="../namespaces/Madkom.Registries.Application.RestApi.Controllers.html" style="margin-left: 30px; padding-left: 0">Controllers</a>
+            </div>
+            <div id="namespace-1560262652" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-273579377"></a>
+                                <a href="../namespaces/Madkom.Registries.Application.RestApi.Controllers.Position.html" style="margin-left: 30px; padding-left: 0">Position</a>
+            </div>
+            <div id="namespace-273579377" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Madkom.Registries.Application.RestApi.Controllers.Position.Create.html">Create</a></li>
+                                                    <li class="class"><a href="../classes/Madkom.Registries.Application.RestApi.Controllers.Position.Modify.html">Modify</a></li>
+                                                    <li class="class"><a href="../classes/Madkom.Registries.Application.RestApi.Controllers.Position.Remove.html">Remove</a></li>
+                                                    <li class="class"><a href="../classes/Madkom.Registries.Application.RestApi.Controllers.Position.Show.html">Show</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-524519813"></a>
+                                <a href="../namespaces/Madkom.Registries.Application.RestApi.Controllers.Registry.html" style="margin-left: 30px; padding-left: 0">Registry</a>
+            </div>
+            <div id="namespace-524519813" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Madkom.Registries.Application.RestApi.Controllers.Registry.Create.html">Create</a></li>
+                                                    <li class="class"><a href="../classes/Madkom.Registries.Application.RestApi.Controllers.Registry.Modify.html">Modify</a></li>
+                                                    <li class="class"><a href="../classes/Madkom.Registries.Application.RestApi.Controllers.Registry.Remove.html">Remove</a></li>
+                                                    <li class="class"><a href="../classes/Madkom.Registries.Application.RestApi.Controllers.Registry.Show.html">Show</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Madkom.Registries.Application.RestApi.Controllers.ControllerHelper.html">ControllerHelper</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Madkom.Registries.Application.RestApi.Provider.html">Provider</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-2029028753"></a>
+                                <a href="../namespaces/Madkom.Registries.Domain.html" style="margin-left: 30px; padding-left: 0">Domain</a>
+            </div>
+            <div id="namespace-2029028753" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-869222448"></a>
+                                <a href="../namespaces/Madkom.Registries.Domain.Car.html" style="margin-left: 30px; padding-left: 0">Car</a>
+            </div>
+            <div id="namespace-869222448" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-419509797"></a>
+                                <a href="../namespaces/Madkom.Registries.Domain.Car.Term.html" style="margin-left: 30px; padding-left: 0">Term</a>
+            </div>
+            <div id="namespace-419509797" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Madkom.Registries.Domain.Car.Term.AC.html">AC</a></li>
+                                                    <li class="class"><a href="../classes/Madkom.Registries.Domain.Car.Term.ASS.html">ASS</a></li>
+                                                    <li class="class"><a href="../classes/Madkom.Registries.Domain.Car.Term.CarTermCollection.html">CarTermCollection</a></li>
+                                                    <li class="class"><a href="../classes/Madkom.Registries.Domain.Car.Term.OC.html">OC</a></li>
+                                                    <li class="class"><a href="../classes/Madkom.Registries.Domain.Car.Term.Review.html">Review</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Madkom.Registries.Domain.Car.Car.html">Car</a></li>
+                                                    <li class="class"><a href="../classes/Madkom.Registries.Domain.Car.CarCollection.html">CarCollection</a></li>
+                                                    <li class="class"><a href="../classes/Madkom.Registries.Domain.Car.CarDto.html">CarDto</a></li>
+                                                    <li class="class"><a href="../classes/Madkom.Registries.Domain.Car.CarFactory.html">CarFactory</a></li>
+                                                    <li class="class"><a href="../classes/Madkom.Registries.Domain.Car.CarRegistry.html">CarRegistry</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-349283213"></a>
+                                <a href="../namespaces/Madkom.Registries.Domain.Department.html" style="margin-left: 30px; padding-left: 0">Department</a>
+            </div>
+            <div id="namespace-349283213" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Madkom.Registries.Domain.Department.Department.html">Department</a></li>
+                                                    <li class="class"><a href="../classes/Madkom.Registries.Domain.Department.DepartmentCollection.html">DepartmentCollection</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1729788007"></a>
+                                <a href="../namespaces/Madkom.Registries.Domain.Policy.html" style="margin-left: 30px; padding-left: 0">Policy</a>
+            </div>
+            <div id="namespace-1729788007" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Madkom.Registries.Domain.Policy.PolicyDto.html">PolicyDto</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                    <li class="interface"><a href="../classes/Madkom.Registries.Domain.PositionCollection.html">PositionCollection</a></li>
+                                                    <li class="interface"><a href="../classes/Madkom.Registries.Domain.PositionCreateStrategy.html">PositionCreateStrategy</a></li>
+                                                    <li class="interface"><a href="../classes/Madkom.Registries.Domain.PositionRepository.html">PositionRepository</a></li>
+                                                    <li class="interface"><a href="../classes/Madkom.Registries.Domain.RegistryRepository.html">RegistryRepository</a></li>
+                                                    <li class="interface"><a href="../classes/Madkom.Registries.Domain.TermCollection.html">TermCollection</a></li>
+                                                                                                    <li class="class"><a href="../classes/Madkom.Registries.Domain.EmptyRegistryException.html">EmptyRegistryException</a></li>
+                                                    <li class="class"><a href="../classes/Madkom.Registries.Domain.EmptyRegistryNameException.html">EmptyRegistryNameException</a></li>
+                                                    <li class="class"><a href="../classes/Madkom.Registries.Domain.EmptyRegistryTypeException.html">EmptyRegistryTypeException</a></li>
+                                                    <li class="class"><a href="../classes/Madkom.Registries.Domain.Position.html">Position</a></li>
+                                                    <li class="class"><a href="../classes/Madkom.Registries.Domain.PositionCriteria.html">PositionCriteria</a></li>
+                                                    <li class="class"><a href="../classes/Madkom.Registries.Domain.PositionDto.html">PositionDto</a></li>
+                                                    <li class="class"><a href="../classes/Madkom.Registries.Domain.PositionFactory.html">PositionFactory</a></li>
+                                                    <li class="class"><a href="../classes/Madkom.Registries.Domain.PositionNotAllowedException.html">PositionNotAllowedException</a></li>
+                                                    <li class="class"><a href="../classes/Madkom.Registries.Domain.PositionNotFoundException.html">PositionNotFoundException</a></li>
+                                                    <li class="class"><a href="../classes/Madkom.Registries.Domain.PositionTypeNotAllowedException.html">PositionTypeNotAllowedException</a></li>
+                                                    <li class="class"><a href="../classes/Madkom.Registries.Domain.Registry.html">Registry</a></li>
+                                                    <li class="class"><a href="../classes/Madkom.Registries.Domain.RegistryFactory.html">RegistryFactory</a></li>
+                                                    <li class="class"><a href="../classes/Madkom.Registries.Domain.Term.html">Term</a></li>
+                                                    <li class="class"><a href="../classes/Madkom.Registries.Domain.TermDto.html">TermDto</a></li>
+                                                    <li class="class"><a href="../classes/Madkom.Registries.Domain.TermFactory.html">TermFactory</a></li>
+                                                    <li class="class"><a href="../classes/Madkom.Registries.Domain.TermNotAllowedException.html">TermNotAllowedException</a></li>
+                                                    <li class="class"><a href="../classes/Madkom.Registries.Domain.UnknownRegistryTypeException.html">UnknownRegistryTypeException</a></li>
+                                                    <li class="class"><a href="../classes/Madkom.Registries.Domain.UnknownTermTypeException.html">UnknownTermTypeException</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-2012073679"></a>
+                                <a href="../namespaces/Madkom.Registries.Infrastructure.html" style="margin-left: 30px; padding-left: 0">Infrastructure</a>
+            </div>
+            <div id="namespace-2012073679" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-696158401"></a>
+                                <a href="../namespaces/Madkom.Registries.Infrastructure.Doctrine.html" style="margin-left: 30px; padding-left: 0">Doctrine</a>
+            </div>
+            <div id="namespace-696158401" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1917715708"></a>
+                                <a href="../namespaces/Madkom.Registries.Infrastructure.Doctrine.Repositories.html" style="margin-left: 30px; padding-left: 0">Repositories</a>
+            </div>
+            <div id="namespace-1917715708" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Madkom.Registries.Infrastructure.Doctrine.Repositories.PositionRepositoryImpl.html">PositionRepositoryImpl</a></li>
+                                                    <li class="class"><a href="../classes/Madkom.Registries.Infrastructure.Doctrine.Repositories.RegistryRepositoryImpl.html">RegistryRepositoryImpl</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+        </div>
+    </section>
+    <section class="row-fluid">
+        <div class="span10 offset2">
+            <div class="row-fluid">
+                <div class="span8 content class">
+                    <nav>
+                                                <a href="../namespaces/Madkom.Registries.Application.RestApi.Controllers.Registry.html">\Madkom\Registries\Application\RestApi\Controllers\Registry</a> <i class="icon-level-up"></i>
+                                            </nav>
+                    <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal"><i class="icon-code"></i></a>
+
+                    <h1><small>\Madkom\Registries\Application\RestApi\Controllers\Registry</small>Create</h1>
+                    <p><em>Class Create</em></p>
+                    
+                    
+                                        
+                    <section id="summary">
+                        <h2>Summary</h2>
+                        <section class="row-fluid heading">
+                            <section class="span4">
+                                <a href="#methods">Methods</a>
+                            </section>
+                            <section class="span4">
+                                <a href="#properties">Properties</a>
+                            </section>
+                            <section class="span4">
+                                <a href="#constants">Constants</a>
+                            </section>
+                        </section>
+                        <section class="row-fluid public">
+                            <section class="span4">
+                                                                    <a href="../classes/Madkom.Registries.Application.RestApi.Controllers.ControllerHelper.html#method_findAndCheckRegistry" class="">findAndCheckRegistry()</a><br />
+                                                                    <a href="../classes/Madkom.Registries.Application.RestApi.Controllers.ControllerHelper.html#method_loadRegistryRepository" class="">loadRegistryRepository()</a><br />
+                                                                    <a href="../classes/Madkom.Registries.Application.RestApi.Controllers.Registry.Create.html#method_newRegistry" class="">newRegistry()</a><br />
+                                                            </section>
+                            <section class="span4">
+                                                                    <em>No public properties found</em>
+                                                            </section>
+                            <section class="span4">
+                                                                    <em>No constants found</em>
+                                                            </section>
+                        </section>
+                        <section class="row-fluid protected">
+                            <section class="span4">
+                                                                    <em>No protected methods found</em>
+                                                            </section>
+                            <section class="span4">
+                                                                    <a href="../classes/Madkom.Registries.Application.RestApi.Controllers.Registry.Create.html#property_registryFactory" class="">$registryFactory</a><br />
+                                                            </section>
+                            <section class="span4">
+                                <em>N/A</em>
+                            </section>
+                        </section>
+                        <section class="row-fluid private">
+                            <section class="span4">
+                                                                    <a href="../classes/Madkom.Registries.Application.RestApi.Controllers.Registry.Create.html#method_getRequestValues" class="">getRequestValues()</a><br />
+                                                                    <a href="../classes/Madkom.Registries.Application.RestApi.Controllers.Registry.Create.html#method_prepareRegistry" class="">prepareRegistry()</a><br />
+                                                                    <a href="../classes/Madkom.Registries.Application.RestApi.Controllers.Registry.Create.html#method_createRegistryFactory" class="">createRegistryFactory()</a><br />
+                                                            </section>
+                            <section class="span4">
+                                                                    <a href="../classes/Madkom.Registries.Application.RestApi.Controllers.Registry.Create.html#property_registry" class="">$registry</a><br />
+                                                                    <a href="../classes/Madkom.Registries.Application.RestApi.Controllers.Registry.Create.html#property_requestValues" class="">$requestValues</a><br />
+                                                            </section>
+                            <section class="span4">
+                                <em>N/A</em>
+                            </section>
+                        </section>
+                    </section>
+                </div>
+                <aside class="span4 detailsbar">
+                                        
+                    
+                    <dl>
+                        <dt>File</dt>
+                            <dd><a href="../files/Application.RestApi.Controllers.Registry.Create.html"><div class="path-wrapper">Application/RestApi/Controllers/Registry/Create.php</div></a></dd>
+                                                <dt>Package</dt>
+                            <dd><div class="namespace-wrapper">Controllers\Registry</div></dd>
+                                                <dt>Class hierarchy</dt>
+                            <dd class="hierarchy">
+                                                                                                                                                                                                                                                                                                
+                                        <div class="namespace-wrapper"><a href="../classes/Madkom.Registries.Application.RestApi.Controllers.ControllerHelper.html">\Madkom\Registries\Application\RestApi\Controllers\ControllerHelper</a></div>
+                                                                                                    <div class="namespace-wrapper">\Madkom\Registries\Application\RestApi\Controllers\Registry\Create</div>
+                            </dd>
+
+                        
+                        
+                        
+                        
+                                                                        </dl>
+                    <h2>Tags</h2>
+                    <table class="table table-condensed">
+                                            <tr><td colspan="2"><em>None found</em></td></tr>
+                                        </table>
+                </aside>
+            </div>
+
+                        
+                                    <a id="properties" name="properties"></a>
+            <div class="row-fluid">
+                <div class="span8 content class">
+                    <h2>Properties</h2>
+                </div>
+                <aside class="span4 detailsbar"></aside>
+            </div>
+
+                                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_registryFactory" name="property_registryFactory" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$registryFactory</h3>
+                <pre class="signature">$registryFactory : \Madkom\Registries\Domain\RegistryFactory</pre>
+                <p><em></em></p>
+                
+
+                                <h4>Type</h4>
+                <a href="../classes/Madkom.Registries.Domain.RegistryFactory.html">\Madkom\Registries\Domain\RegistryFactory</a>
+                &mdash; Przechowuje fabrykę.                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_registry" name="property_registry" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$registry</h3>
+                <pre class="signature">$registry : \Madkom\Registries\Application\RestApi\Controllers\Registry\Registry</pre>
+                <p><em></em></p>
+                
+
+                                <h4>Type</h4>
+                \Madkom\Registries\Application\RestApi\Controllers\Registry\Registry
+                &mdash; przechowuje rejestr                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_requestValues" name="property_requestValues" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$requestValues</h3>
+                <pre class="signature">$requestValues : array</pre>
+                <p><em></em></p>
+                
+
+                                <h4>Type</h4>
+                array
+                &mdash; zawiera tablicę requestów                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                            
+                                    <a id="methods" name="methods"></a>
+            <div class="row-fluid">
+                <div class="span8 content class"><h2>Methods</h2></div>
+                <aside class="span4 detailsbar"></aside>
+            </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_findAndCheckRegistry" name="method_findAndCheckRegistry" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">findAndCheckRegistry()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">findAndCheckRegistry(\Silex\Application  <span class="argument">$app</span>,   <span class="argument">$registryId</span>) </pre>
+                <p><em></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>\Silex\Application</td>
+                                <td>$app </td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td></td>
+                                <td>$registryId </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Madkom.Registries.Application.RestApi.Controllers.ControllerHelper.html"><div class="path-wrapper">\Madkom\Registries\Application\RestApi\Controllers\ControllerHelper</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_loadRegistryRepository" name="method_loadRegistryRepository" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">loadRegistryRepository()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">loadRegistryRepository(\Silex\Application  <span class="argument">$app</span>) </pre>
+                <p><em></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>\Silex\Application</td>
+                                <td>$app </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Madkom.Registries.Application.RestApi.Controllers.ControllerHelper.html"><div class="path-wrapper">\Madkom\Registries\Application\RestApi\Controllers\ControllerHelper</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_newRegistry" name="method_newRegistry" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">newRegistry()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">newRegistry(\Silex\Application  <span class="argument">$app</span>, \Symfony\Component\HttpFoundation\Request  <span class="argument">$request</span>) : \Symfony\Component\HttpFoundation\Response</pre>
+                <p><em>Tworzy nowy rejestr.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>\Silex\Application</td>
+                                <td>$app </td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td>\Symfony\Component\HttpFoundation\Request</td>
+                                <td>$request </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                                    <h4>Throws</h4>
+                    <dl>
+                                                    <dt>\Madkom\Registries\Domain\EmptyRegistryTypeException</dt>
+                            <dd></dd>
+                                                    <dt>\Madkom\Registries\Domain\UnknownRegistryTypeException</dt>
+                            <dd></dd>
+                                                                    </dl>
+                
+                                    <h4>Returns</h4>
+                    \Symfony\Component\HttpFoundation\Response
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getRequestValues" name="method_getRequestValues" class="anchor"></a>
+            <article class="method">
+                <h3 class="private ">getRequestValues()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getRequestValues(array  <span class="argument">$values</span>, \Symfony\Component\HttpFoundation\Request  <span class="argument">$request</span>) : array</pre>
+                <p><em>Pobiera dane z requesta i zwraca tablicę.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>array</td>
+                                <td>$values </td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td>\Symfony\Component\HttpFoundation\Request</td>
+                                <td>$request </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    array
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_prepareRegistry" name="method_prepareRegistry" class="anchor"></a>
+            <article class="method">
+                <h3 class="private ">prepareRegistry()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">prepareRegistry() : \Madkom\Registries\Application\RestApi\Controllers\Registry\Registry|\Madkom\Registries\Domain\Car\CarRegistry</pre>
+                <p><em>Funkcja przygotowuje rejestr i tworzy go w zmiennej $this-&gt;registry.</em></p>
+                
+
+                
+                                    <h4>Throws</h4>
+                    <dl>
+                                                    <dt>\Madkom\Registries\Domain\EmptyRegistryTypeException</dt>
+                            <dd></dd>
+                                                    <dt>\Madkom\Registries\Domain\UnknownRegistryTypeException</dt>
+                            <dd></dd>
+                                                                    </dl>
+                
+                                    <h4>Returns</h4>
+                    \Madkom\Registries\Application\RestApi\Controllers\Registry\Registry|<a href="../classes/Madkom.Registries.Domain.Car.CarRegistry.html">\Madkom\Registries\Domain\Car\CarRegistry</a>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_createRegistryFactory" name="method_createRegistryFactory" class="anchor"></a>
+            <article class="method">
+                <h3 class="private ">createRegistryFactory()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">createRegistryFactory() </pre>
+                <p><em>Generuje nową fabrykę RegistryFactory.</em></p>
+                
+
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    </div>
+    </section>
+
+    <div id="source-view" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="source-view-label" aria-hidden="true">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h3 id="source-view-label">Create.php</h3>
+        </div>
+        <div class="modal-body">
+            <pre data-src="../files/Application/RestApi/Controllers/Registry/Create.php.txt" class="language-php line-numbers"></pre>
+        </div>
+    </div>
+
+    <footer class="row-fluid">
+        <section class="span10 offset2">
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <section class="row-fluid footer-sections">
+                        <section class="span4">
+                                                        <h1><i class="icon-code"></i></h1>
+                            <div>
+                                <ul>
+                                                                            <li><a href="../namespaces/Madkom.html">\Madkom</a></li>
+                                                                    </ul>
+                            </div>
+                        </section>
+                        <section class="span4">
+                                                        <h1><i class="icon-bar-chart"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="../graphs/class.html">Class Hierarchy Diagram</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                        <section class="span4">
+                                                        <h1><i class="icon-pushpin"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="../reports/errors.html">Errors</a></li>
+                                    <li><a href="../reports/markers.html">Markers</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                    </section>
+                </section>
+            </section>
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <hr />
+                    Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and authored
+                    on September 14th, 2015 at 11:15.
+                </section>
+            </section>
+        </section>
+    </footer>
+</div>
+
+</body>
+</html>

@@ -31,9 +31,14 @@ class Department
      */
     public function __construct($name, $email)
     {
-        $this->name  = $name;
+        $this->name = $name;
         $this->email = $email;
-        //$this->terms = new DepartmentTermCollection();
+        //  $this->terms = new DepartmentTermCollection();
         //$this->terms = new ArrayCollection();
+    }
+
+    public function modify($name)
+    {
+
     }
 }
