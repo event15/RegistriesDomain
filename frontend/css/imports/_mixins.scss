@@ -2,11 +2,11 @@
   font-size: ($size / $mainFont) + rem;
 }
 
-@mixin transition($prop) {
-  -webkit-transition: $prop 0.2s ease-in-out;
-  -moz-transition: $prop 0.2s ease-in-out;
-  -o-transition: $prop 0.2s ease-in-out;
-  transition: $prop 0.2s ease-in-out;
+@mixin transition($prop, $time: 0.2s) {
+  -webkit-transition: $prop $time ease-in-out;
+  -moz-transition: $prop $time ease-in-out;
+  -o-transition: $prop $time ease-in-out;
+  transition: $prop $time ease-in-out;
 }
 
 @mixin box-shadow($shadows...) {
@@ -20,4 +20,16 @@
   -moz-border-radius: $radius;
   -ms-border-radius: $radius;
   border-radius: $radius;
+}
+
+@mixin placeholder-center() {
+  ::-moz-placeholder {
+    text-align: center;
+  }
+  ::-webkit-input-placeholder {
+    text-align: center;
+  }
+  :-ms-input-placeholder {
+    text-align: center;
+  }
 }

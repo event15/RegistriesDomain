@@ -24,168 +24,210 @@ $border: 1px #c4c4c4 solid;
 
 html {
   font-size:   $mainFont + px;
-  height:      100%;
-  width:       100%;
   font-family: Arial, Helvetica, sans-serif;
 }
 
 body {
-  height: 100%;
-  width:  100%;
+  width:  $large;
 }
-ul {
-  padding: 0;
-  margin: 0;
+
+.left {
+  float: left;
+  font-family: $basic;
+
+  .show_registries {
+    background-color: $leftPanelColor;
+    min-height: 100%;
+    width: 19.091796875%;
+    position: absolute;
+    text-align: center;
+  }
+
+  .add_registries {
+    text-align: center;
+    margin: auto;
+    background-color: $rightPanelColor;
+    width: 19.091796875%;
+    min-height: 100%;
+    left: 19.091796875%;
+    position: absolute;
+    z-index: 1;
+  }
 }
-a {
-  text-decoration: none;
-  outline:         none;
-  color:           white;
+.push_down {
+  padding-top: 23.3px;
 }
-#main {
-  float:            left;
-  height:           100%;
-  max-width: 60em;
-  margin: 2em auto;
-  width:            90%;
-  max-height:       100%;
+.title {
+  width: 100%;
+  background-color: $searchFrameColor;
+  color: $leftPanelColor;
+  height: 46.6px;
+  line-height: 46.6px;
+  margin-top: 23.3px;
+  //@include font-size(17);
+}
+.show_registries {
+  header {
+    color: white;
+  }
+}
+
+.add_registries section {
+  padding-top: 23.3px;
+}
+
+.pos_title {
+  width: 100%;
+  background-color: $searchFrameColor;
+  color: $leftPanelColor;
+  height: 46.6px;
+  line-height: 46.6px;
+  top: 23.3px;
+  @include font-size(17);
+}
+
+.add_position {
+  text-align: center;
+  background-color: $rightPanelColor;
+  width: 100%;
+  min-height: 20%;
+  z-index: 1;
+}
+
+.position_form {
+  padding-top: 23.3px;
+}
+
+
+.content {
+  left: 19.091796875%;
+  float: left;
   background-color: white;
-  position: relative;
+  height: 100%;
+  position: absolute;
+  width: 80.908203125%;
 }
 
-.panel {
-  font-family:      $basic;
-  top:              0;
-  display:          inline-block;
-  vertical-align:   top;
-  height:           100%;
-  background-color: $secColor;
-  position: relative;
-
-  &.left {
-    background-color: $secColor;
-    float:            left;
-    left:             0;
-    width:            10%;
-  }
-
-  &.right {
-    @include font-size(14);
-
-    float:            left;
-    width:            30%;
-    background-color: #f2f2f2;
-    position:         absolute;
-    left:             10%;
-    color:            $secColor;
-  }
+.hide, .add_registries.hide {
+  width: 0;
+  @include transition(width, .05s);
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+}
+.show, .add_registries.show {
+  width: 19.091796875%;
+  @include transition(width, .1s);
 }
 
-.left ul {
-  display: block;
-  margin-top: 40px;
+button {
+  width: 150px;
+  height: 46.6px;;
+  background-color: $primColor;
+  border: none;
+  outline: none;
+  color: white;
+
+  &:hover {
+    @include box-shadow(0 3px 6px rgba(0, 0, 0, 0.9));
+  }
+}
+.add {
+  margin: 23.3px auto;
+
+}
+
+ul[class="list"] {
+  padding: 0;
+  text-align: center;
+
 
   li {
+    height: 46.6px;
+    line-height: 46.6px;
+    &:hover {
+      @include box-shadow(0 3px 6px rgba(0, 0, 0, 0.9));
+      @include font-size(17);
+    }
+
     a {
-      @include font-size(13);
-      display: block;
-      padding: 18px 25px;
+      text-decoration: none;
+      outline: none;
       color: white;
-
       &:hover {
-        @include transition(background-color);
-        @include box-shadow(0 4px 12px rgba(0,0,0,.7));
-        background-color: #5d5d5d;
-        @include font-size(14);
-      }
 
-      &.selected {
-        background-color: $primColor;
       }
     }
   }
 }
-
-.add {
-  @include font-size(13);
-  display:          block;
-  //border-radius:    10px;
-  margin:           17px auto 0 auto;
+.selected {
   background-color: $primColor;
-  width:            140px;
-  text-align:       center;
-  padding:          18px 1px;
-  color:            white;
-  white-space:      nowrap;
-  letter-spacing:   1px;
-  text-transform:   uppercase;
+}
 
-  &:hover {
-    @include box-shadow(0 4px 12px rgba(0,0,0,.7));
+.buttons {
+  height: 46.6px;
+}
+
+main {;
+  height: calc(100% - 46.6px);
+}
+
+::-webkit-input-placeholder { text-align: center;}
+::-moz-placeholder { text-align: center;} /* firefox 19+ */
+:-ms-input-placeholder {  text-align: center;} /* ie */
+input:-moz-placeholder { text-align: center;}
+
+fieldset[name="registry"] {
+  font:80%/1 sans-serif;
+
+  input, select{
+    box-sizing: border-box;
+    padding: .1em;
+    width: 155px;
+    height: calc(93px / 2);
+    border: 1px solid $searchFrameColor;
+    @include border-radius(10px);
+    outline: none;
   }
 }
 
-.right.hide {
-  width: 0px;
-  overflow: hidden;
-  @include transition(width)
-}
-.right.show {
-  width: 20%;
-  @include transition(width)
-}
+fieldset[name="position"] {
+  font: $basic;
 
-nav ul {
-  li {
-    display: inline-block;
+  input, select {
+    font: $basic;
+    box-sizing: border-box;
+    padding: .1em;
+    width: 155px;
+    height: calc(93px / 2);
+    border: 1px solid $searchFrameColor;
+    @include border-radius(10px);
+    -webkit-border-radius: 0px 10px 10px 0;
+    -moz-border-radius: 0px 10px 10px 0;
+    border-radius: 0px 10px 10px 0;
+    outline: none;
+    @include font-size(16);
+    text-align: center;
+  }
+  input[type="date"] {
+    width: 180px;
   }
 
-}
-
-.options {
-  @include font-size(14);
-  position: absolute;
-  @include border-radius(12px);
-  border: 1px #c0c0c0 solid;
-  padding: 10px;
-}
-.options.top {
-  cursor: pointer;
-  font-weight: bold;
-  color: $secColor;
-
-  &:hover {
-    background-color: #f6f6f6;
-    @include transition(all);
+  textarea {
+    box-sizing: border-box;
+    padding: .1em;
+    width: 155px;
+    border: 1px solid $searchFrameColor;
+    @include border-radius(10px);
+    outline: none;
   }
 }
-#search {
-  padding-right: 30px;
-  color: $secColor;
-  left: 840px;
-  width: 250px;
-  background: url("../images/lupa.png") right 7px center no-repeat;
-  background-size: 20px;
-  border: 1px #e4e4e4 solid
-}
-
-#add {
-  left: calc(10% + 50px);
-  i {
-    color: $greenColor;
-  }
-}
-#remove {
-  left: calc(10% + 350px);
-  i {
-    color: $hotColor;
-  }
-}
-#edit {
-  left: calc(10% + 165px);
-}
-
-#content {
-  clear: both;
-  margin-top: 40px;
+label {
+  padding-left: 15px;
+  margin: .1em;
+  display: inline-block;
+  line-height:calc(93px / 2);
+  background-color: $searchFrameColor;
+  @include border-radius(10px);
+  color: $leftPanelColor;
 }

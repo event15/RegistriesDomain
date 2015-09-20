@@ -5,83 +5,152 @@
     <title>MADKOM S.A</title>
 
     <!-- Style sheets -->
-    <!--<link href="css/imports/bootstrap.css" rel="stylesheet"/>-->
+    <!--<link rel="stylesheet" href="css/imports/bootstrap.css">-->
     <link rel="stylesheet" href="css/madkom.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 </head>
 <body>
+    <section class="left">
 
-    <aside class="panel left">
-        <div class="button add"><a href="#">+ Dodaj rejestr</a></div>
-        <article>
-            <ul>
-                <li><a href="#" class="selected">Rejestr 1</a></li>
-                <li><a href="#">Rejestr 1</a></li>
-                <li><a href="#">Rejestr 1</a></li>
-                <li><a href="#">Rejestr 1</a></li>
-                <li><a href="#">Rejestr 1</a></li>
-                <li><a href="#">Rejestr 1</a></li>
-                <li><a href="#">Rejestr 1</a></li>
-                <li><a href="#">Rejestr 1</a></li>
-                <li><a href="#">Rejestr 1</a></li>
-                <li><a href="#">Rejestr 1</a></li>
-                <li><a href="#">Rejestr 1</a></li>
-            </ul>
-        </article>
-    </aside>
-    <aside class="panel right hide">
-        <header>
-            <h1>DODAWANIE REJESTRU</h1>
-        </header>
-        <main>
-            <form action="#">
-                <ul>
-                    <li>
-                        <label for="">Opis: </label>
-                        <input type="text" placeholder="Wprowadz dane">
-                    </li>
-                    <li>
-                        <label for="">Opis: </label>
-                        <input type="text" placeholder="Wprowadz dane">
-                    </li>
-                    <li>
-                        <label for="">Opis: </label>
-                        <input type="text" placeholder="Wprowadz dane">
-                    </li>
-                    <li>
-                        <label for="">Opis: </label>
-                        <input type="text" placeholder="Wprowadz dane">
-                    </li>
-                    <li>
-                        <label for="">Opis: </label>
-                        <input type="text" placeholder="Wprowadz dane">
-                    </li>
-                    <li>
-                        <label for="">Opis: </label>
-                        <input type="text" placeholder="Wprowadz dane">
-                    </li>
+        <h1 class="hide">Strona główna</h1>
+
+        <!-- SHOW ALL REGISTRIES -->
+        <div class="show_registries" style="position: fixed;"></div>
+        <article class="show_registries">
+            <header>
+                <button class="add register"><i>+</i> DODAJ REJESTR</button>
+            </header>
+
+            <section>
+                <h2 class="hide">Lista rejestro</h2>
+                <ul class="list">
+                    <li><a href="#">Rejestr samochodów 2015</a></li>
+                    <li class="selected"><a href="#">Rejestr samochodów 2014</a></li>
+                    <li><a href="#">Rejestr samochodów 2014</a></li>
+                    <li><a href="#">Rejestr samochodów 2014</a></li>
+                    <li><a href="#">Rejestr samochodów 2014</a></li>
+                    <li><a href="#">Rejestr samochodów 2015</a></li>
+                    <li><a href="#">Rejestr samochodów 2014</a></li>
+                    <li><a href="#">Rejestr samochodów 2014</a></li>
+                    <li><a href="#">Rejestr samochodów 2014</a></li>
+                    <li><a href="#">Rejestr samochodów 2014</a></li>
+                    <li><a href="#">Rejestr samochodów 2014</a></li>
+                    <li><a href="#">Rejestr samochodów 2014</a></li>
+                    <li><a href="#">Rejestr samochodów 2014</a></li>
                 </ul>
-                <div class="button add"><a href="#">ZAPISZ</a></div>
-            </form>
-        </main>
-    </aside>
+            </section>
+        </article>
 
-    <section id="main">
-        <nav>
-            <ul>
-                <li><a  id="add" class="options top"><i class="fa fa-plus"></i> Dodaj wpis</a></li>
-                <li><a  id="edit" class="options top"><i class="fa fa-sort-amount-asc"></i> Zaznacz widoczne</a></li>
-                <li><a  id="remove" class="options top"><i class="fa fa-trash-o"></i> Usuń zaznaczone</a></li>
-            </ul>
-            <label for="search"></label>
-            <input type="search" id="search" class="options top" placeholder="Wyszukaj...">
-        </nav>
-        <br>
-        <main id="content">
-            <p>Główna treść</p>
-        </main>
+        <!-- TOGGLED PANEL FOR ADD REGISTRY FORM -->
+        <article class="add_registries hide">
+            <header>
+                <h2 class="title">DODAWANIE REJESTRU</h2>
+            </header>
+
+            <section>
+                <h2 class="hide">Dodaj pozycję w rejestrze</h2>
+                <form action="#">
+                    <fieldset name="registry">
+                        <div>
+                            <input type="text" placeholder="Wpisz nazwę rejestru" name="name" id="name" />
+                        </div>
+
+                        <br />
+
+                        <div>
+                            <select id="type" name="type[]">
+                                <option value="volvo" selected="selected" disabled>Wybierz typ rejestru</option>
+                                <option value="car">Rejestr samochodów</option>
+                                <option value="policy">Rejestr polis</option>
+                            </select>
+                        </div>
+
+                    </fieldset>
+                    <button class="add">ZAPISZ</button>
+                </form>
+            </section>
+        </article>
     </section>
 
+    <section class="content">
+        <h2 class="hide">Main content</h2>
+        <article class="add_position hidepos">
+            <header>
+                <div class="push_down"></div>
+                <h2 class="pos_title">DODAWANIE POZYCJI</h2>
+            </header>
+
+            <div class="position_form">
+                <form action="#">
+                    <fieldset name="position">
+                        <div style="display: inline-block;">
+                            <label>
+                                <div style="width: 150px; display: inline-block;">Marka:</div>
+                                <input type="text" placeholder="" name="name" id="name" />
+                            </label>
+                            <br>
+                            <label>
+                                <div style="width: 150px; display: inline-block;">Model:</div>
+                                <input type="text" placeholder="" name="name" id="name" />
+                            </label>
+                            <br>
+                            <label>
+                                <div style="width: 150px; display: inline-block;">Model:</div>
+                                <input type="text" placeholder="" name="name" id="name" />
+                            </label>
+                        </div>
+                        <div style="display: inline-block;">
+                            <label>
+                                <div style="width: 150px; display: inline-block;">Termin OC:</div>
+                                <input type="date" placeholder="" name="name" id="name" />
+                            </label>
+                            <br>
+                            <label>
+                                <div style="width: 150px; display: inline-block;">Termin AC:</div>
+                                <input type="date" placeholder="" name="name" id="name" />
+                            </label>
+                            <br>
+                            <label>
+                                <div style="width: 150px; display: inline-block;">Termin przeglądu:</div>
+                                <input type="date" placeholder="" name="name" id="name" />
+                            </label>
+                        </div>
+
+                    </fieldset>
+                    <button class="position">ZAPISZ</button>
+                </form>
+            </div>
+        </article>
+
+        <header class="buttons">
+            <a href="#" class="position">Dodaj</a>
+            <a href="">Usun</a>
+            <a href="">Modyfikuj</a>
+        </header>
+
+
+        <main>
+            <table>
+                <caption></caption>
+                <thead>
+                    <tr>
+                        <td>ID</td>
+                        <td>Model</td>
+                        <td>Marka</td>
+                        <td>Opis</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>fiat</td>
+                        <td>126p</td>
+                        <td>maly jeździk</td>
+                    </tr>
+                </tbody>
+            </table>
+        </main>
+    </section>
 
 
     <!-- Library Scripts -->
@@ -93,19 +162,22 @@
     <script src="js/bootstrap.js"></script>
     <script src="js/ui-utils.js"></script>
     <script src="js/ui-bootstrap-tpls-0.11.0.js"></script>
-    <script src="js/toastr.js"></script>
     <script src="js/d3.js"></script>
     <script src="js/angular-charts.min.js"></script>
 
     <script>
-        $(document).on('click', '.button.add', function(){
-            if( $(".panel.right").hasClass( "hide")){
-                $(".panel.right").removeClass("hide").addClass("show");
-                $("#main").css("padding-left", "50%").css("width", "40%").delay(300);
+        $(document).on("click", ".add", function() {
+            if( $(".add_registries").hasClass( "hide")) {
+                $(".add_registries").removeClass("hide").addClass("show");
+                $(".add.register").css("background-color", "#C45B1A");
             } else {
-                $(".panel.right").removeClass("show").addClass("hide");
-                $("#main").css("padding-left", "0").css("width", "90%").delay(200);
+                $(".add_registries").removeClass("show").addClass("hide");
+                $(".add.register").css("background-color", "#f16c1e");
             }
+        }).on("click", ".position", function() {
+            $(".add_position").toggle(function(){
+                $(".add_position").css("display: none");
+            })
         });
     </script>
 </body>
