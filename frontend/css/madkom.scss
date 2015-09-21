@@ -87,6 +87,7 @@ body {
 }
 
 .add_position {
+  display: none;
   text-align: center;
   background-color: $rightPanelColor;
   width: 100%;
@@ -96,6 +97,10 @@ body {
 
 .position_form {
   padding-top: 23.3px;
+}
+
+.position {
+  margin: 23.3px;
 }
 
 
@@ -193,11 +198,11 @@ fieldset[name="registry"] {
 
 fieldset[name="position"] {
   font: $basic;
+  vertical-align: middle;
 
-  input, select {
+  input, select, input[type="file"] {
     font: $basic;
     box-sizing: border-box;
-    padding: .1em;
     width: 155px;
     height: calc(93px / 2);
     border: 1px solid $searchFrameColor;
@@ -213,18 +218,36 @@ fieldset[name="position"] {
     width: 180px;
   }
 
+  > div {
+    display: inline-block;
+  }
+
   textarea {
-    box-sizing: border-box;
-    padding: .1em;
-    width: 155px;
+   width: 505px;
     border: 1px solid $searchFrameColor;
-    @include border-radius(10px);
+    vertical-align: middle;
+    font: $basic;
+    -webkit-border-radius: 0px 10px 10px 0;
+    -moz-border-radius: 0px 10px 10px 0;
+    border-radius: 0px 10px 10px 0;
+    @include font-size(16);
     outline: none;
   }
+
+  input[type="file"] {
+    background-color: #fff;
+    margin: 0;
+    padding: 0;
+    outline: none;
+    //visibility: hidden;
+  }
 }
-label {
-  padding-left: 15px;
+label  {
+
+  vertical-align: middle;
+  text-align: right;
   margin: .1em;
+  padding: 0;
   display: inline-block;
   line-height:calc(93px / 2);
   background-color: $searchFrameColor;

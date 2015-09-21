@@ -74,7 +74,7 @@
 
     <section class="content">
         <h2 class="hide">Main content</h2>
-        <article class="add_position hidepos">
+        <article class="add_position">
             <header>
                 <div class="push_down"></div>
                 <h2 class="pos_title">DODAWANIE POZYCJI</h2>
@@ -83,49 +83,63 @@
             <div class="position_form">
                 <form action="#">
                     <fieldset name="position">
-                        <div style="display: inline-block;">
+                        <div>
                             <label>
-                                <div style="width: 150px; display: inline-block;">Marka:</div>
-                                <input type="text" placeholder="" name="name" id="name" />
+                                <span style="width: 155px; display: inline-block;">Marka:</span>
+                                <input type="text" placeholder="np. Fiat" name="name" id="name" />
                             </label>
                             <br>
                             <label>
-                                <div style="width: 150px; display: inline-block;">Model:</div>
-                                <input type="text" placeholder="" name="name" id="name" />
+                                <span style="width: 155px; display: inline-block;">Model:</span>
+                                <input type="text" placeholder="np. 126p" name="name" id="name" />
                             </label>
                             <br>
                             <label>
-                                <div style="width: 150px; display: inline-block;">Model:</div>
-                                <input type="text" placeholder="" name="name" id="name" />
+                                <span style="width: 155px; display: inline-block;">Numer rejestracyjny:</span>
+                                <input type="text" placeholder="np. GD 12345" name="name" id="name" />
                             </label>
+                            <br>
                         </div>
-                        <div style="display: inline-block;">
+                        <div>
                             <label>
-                                <div style="width: 150px; display: inline-block;">Termin OC:</div>
-                                <input type="date" placeholder="" name="name" id="name" />
+                                <span style="width: 155px; display: inline-block;">Termin OC:</span>
+                                <input type="date"  name="name" id="name" />
                             </label>
                             <br>
                             <label>
-                                <div style="width: 150px; display: inline-block;">Termin AC:</div>
-                                <input type="date" placeholder="" name="name" id="name" />
+                                <span style="width: 155px; display: inline-block;">Termin AC:</span>
+                                <input type="date"  name="name" id="name" />
                             </label>
                             <br>
                             <label>
-                                <div style="width: 150px; display: inline-block;">Termin przeglądu:</div>
-                                <input type="date" placeholder="" name="name" id="name" />
+                                <span style="width: 155px; display: inline-block;">Termin przeglądu:</span>
+                                <input type="date"  name="name" id="name" />
                             </label>
+                            <br>
+                        </div>
+                        <br>
+                        <div>
+                            <label for="title">
+                                <span style="width: 155px; display: inline-block;">Opis samochodu:</span>
+                                <textarea rows="5" id="title" name="title"></textarea>
+                            </label>
+                            <br>
+
                         </div>
 
                     </fieldset>
-                    <button class="position">ZAPISZ</button>
+                    <div class="upload">
+                        <input type="file" name="name" id="name"/>
+                        <button class="position right">ZAPISZ</button>
+                    </div>
                 </form>
             </div>
         </article>
 
         <header class="buttons">
-            <a href="#" class="position">Dodaj</a>
-            <a href="">Usun</a>
-            <a href="">Modyfikuj</a>
+            <a href="#" class="button position">Dodaj</a>
+            <a href="#" class="button">Usun</a>
+            <a href="#" class="button">Modyfikuj</a>
         </header>
 
 
@@ -175,7 +189,7 @@
                 $(".add.register").css("background-color", "#f16c1e");
             }
         }).on("click", ".position", function() {
-            $(".add_position").toggle(function(){
+            $(".add_position").toggle(120, function(){
                 $(".add_position").css("display: none");
             })
         });
