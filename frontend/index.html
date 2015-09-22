@@ -9,8 +9,8 @@
     <link rel="stylesheet" href="css/madkom.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 </head>
-<body>
-    <section class="left">
+<body ng-app="positionManagement">
+    <section class="left" >
 
         <h1 class="hide">Strona główna</h1>
 
@@ -22,12 +22,11 @@
             </header>
 
             <section>
-                <h2 class="hide">Lista rejestro</h2>
-                <ul class="list">
-                    <li class="selected"><a href="#">Rejestr samochodów 2014</a></li>
-                    <li><a href="#">Rejestr samochodów 2015</a></li>
-                    <li><a href="#">Rejestr samochodów 2014</a></li>
-                    <li><a href="#">Rejestr samochodów 2014</a></li>
+                <h2 class="hide">Lista rejestrów</h2>
+                <ul class="list" >
+                    <li class="{{ registry.selected }}" ng-repeat="registry in vm.registries">
+                        <a href="#">{{ registry.name }}</a>
+                    </li>
                 </ul>
             </section>
         </article>
@@ -51,8 +50,8 @@
                         <div>
                             <select id="type" name="type[]">
                                 <option value="volvo" selected="selected" disabled>Wybierz typ rejestru</option>
-                                <option value="car">Rejestr samochodów</option>
-                                <option value="policy">Rejestr polis</option>
+                                <option ng-repeat="registry in registries" value="{{ registry.type }}">{{
+                                    registry.typeName }}</option>
                             </select>
                         </div>
 
@@ -129,7 +128,12 @@
 
         <header class="buttons">
             <a href="#" class="btn addpos"><i class="fa fa-plus"></i>Dodaj pozycję</a>
-            <a href="#" class="btn removepos"><i class="fa fa-trash-o"></i>Usuń zaznaczone</a>
+            <!--<a href="#" class="btn removepos"><i class="fa fa-trash-o"></i>Usuń zaznaczone</a>-->
+
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+                Launch demo modal
+            </button>
         </header>
 
 
@@ -161,85 +165,50 @@
                     <th>Termin przeglądu</th>
                 </tr>
                 </thead>
-                <tbody>
-                <tr>
+                <tbody ng-controller="PositionListController as vm">
+                <tr ng-repeat="position in vm.positions">
                     <td width="20px"><input type="checkbox" ></td>
-                    <td>1</td>
-                    <td contenteditable="false">Fiat</td>
-                    <td contenteditable="false">126p</td>
-                    <td contenteditable="false">ZSD 12345</td>
-                    <td contenteditable="false">Mały samochodzik do wielkich rzecz (...)</td>
-                    <td contenteditable="false">PZU</td>
-                    <td contenteditable="false">23.09.2016</td>
-                    <td contenteditable="false">24.09.2016</td>
-                    <td contenteditable="false">25.09.2016</td>
-                    <td contenteditable="false">26.09.2016</td>
+                    <td>{{ position.id }}</td>
+                    <td contenteditable="false">{{ position.brand }}</td>
+                    <td contenteditable="false">{{ position.model }}</td>
+                    <td contenteditable="false">{{ position.registerNo }}</td>
+                    <td contenteditable="false">{{ position.description }}</td>
+                    <td contenteditable="false">{{ position.insurer }}</td>
+                    <td contenteditable="false">{{ position.terms['OC'] }}</td>
+                    <td contenteditable="false">{{ position.terms['AC'] }}</td>
+                    <td contenteditable="false">{{ position.terms['ASS'] }}</td>
+                    <td contenteditable="false">{{ position.terms['Review'] }}</td>
                 </tr>
                 <tr id="1" class="hide">
                     <td colspan="11" class="down">
                         <div class="check"><a href="#" class="check"><i class="fa fa-check"></i></a></div>
                     </td>
                 </tr>
-
-                <tr>
-                    <td width="20px"><input type="checkbox" ></td>
-                    <td>2</td>
-                    <td>Fiat</td>
-                    <td>126p</td>
-                    <td>ZSD 12345</td>
-                    <td>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus asperiores debitis deserunt dolore exercitationem fugiat impedit, ipsam itaque maiores minima modi nisi nobis nulla porro praesentium, quo tempore temporibus voluptates!</td>
-                    <td>PZU</td>
-                    <td>23.09.2016</td>
-                    <td>24.09.2016</td>
-                    <td>25.09.2016</td>
-                    <td>26.09.2016</td>
-                </tr>
-                <tr id="1" class="hide">
-                    <td colspan="10" class="down">
-                        <div class="check"><a href="#" class="check"><i class="fa fa-check"></i></a></div>
-                    </td>
-                </tr>
-                <tr>
-                    <td width="20px"><input type="checkbox" ></td>
-                    <td>3</td>
-                    <td>Fiat</td>
-                    <td>126p</td>
-                    <td>ZSD 12345</td>
-                    <td>Mały samochodzik do wielkich rzecz (...)</td>
-                    <td>PZU</td>
-                    <td>23.09.2016</td>
-                    <td>24.09.2016</td>
-                    <td>25.09.2016</td>
-                    <td>26.09.2016</td>
-                </tr>
-                <tr id="2" class="hide">
-                    <td colspan="10" class="down">
-                        <div class="check"><a href="#" class="check"><i class="fa fa-check"></i></a></div>
-                    </td>
-                </tr>
-                <tr>
-                    <td width="20px"><input type="checkbox" ></td>
-                    <td>4</td>
-                    <td>Fiat</td>
-                    <td>126p</td>
-                    <td>ZSD 12345</td>
-                    <td>Mały samochodzik do wielkich rzecz (...)</td>
-                    <td>PZU</td>
-                    <td>23.09.2016</td>
-                    <td>24.09.2016</td>
-                    <td>25.09.2016</td>
-                    <td>26.09.2016</td>
-                </tr>
-                <tr id="3" class="hide">
-                    <td colspan="10" class="down">
-                        <div class="check"><a href="#" class="check"><i class="fa fa-check"></i></a></div>
-                    </td>
-                </tr>
-
                 </tbody>
             </table>
         </main>
     </section>
+
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <span type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+                </div>
+                <div class="modal-body">
+                    ...
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
 
 
     <!-- Library Scripts -->
@@ -253,6 +222,10 @@
     <script src="js/ui-bootstrap-tpls-0.11.0.js"></script>
     <script src="js/d3.js"></script>
     <script src="js/angular-charts.min.js"></script>
+    <!-- Application -->
+    <script src="app/app.js"></script>
+    <script src="app/positions/controllers/positionListCtrl.js"></script>
+    <script src="app/registries/controllers/registryListCtrl.js"></script>
 
     <script>
         $(document).on("click", ".add", function() {
