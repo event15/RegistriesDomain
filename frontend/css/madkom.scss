@@ -127,7 +127,7 @@ body {
 
 button {
   width: 150px;
-  height: 46.6px;;
+  height: 46.6px;
   background-color: $primColor;
   border: none;
   outline: none;
@@ -168,9 +168,77 @@ ul[class="list"] {
 .selected {
   background-color: $primColor;
 }
-
 .buttons {
+  margin: 23.3px 10px 23.3px 23.3px;
+}
+.btn {
+  @include font-size(14);
+  display: inline-block;
+
+  border: 1px #c0c0c0 solid;
+  i {
+    margin-right: 5px;
+  }
+}
+
+.addpos, .removepos, .modifypos {
+  cursor: pointer;
+  font-weight:bold;
+  width: 150px;
   height: 46.6px;
+  background-color:#f6f6f6;
+  color: $secColor;
+
+  &:hover {
+    background-color: #e0e0e0;
+    @include transition(all);
+  }
+}
+
+.addpos {
+  i {
+    margin-right: 5px;
+    color: $greenColor;
+  }
+}
+
+.check {
+  cursor: pointer;
+  width: 150px;
+  height: 46.6px;
+  text-align: center;
+  margin: 0 auto;
+  padding: 0 auto;
+
+  i {
+    color: $hotColor;
+    text-align: center;
+    @include font-size(25);
+    margin: 0 auto;
+    padding: 0 auto;
+    &:hover {
+      color: $greenColor;
+    }
+  }
+}
+.down {
+  background-color: #f2f2f2;
+}
+
+
+.removepos {
+  i {
+    margin-right: 5px;
+    color: $hotColor;
+  }
+}
+
+a{
+  text-decoration: none;
+  outline: none;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 46.6px;
 }
 
 main {;
@@ -207,9 +275,9 @@ fieldset[name="position"] {
     height: calc(93px / 2);
     border: 1px solid $searchFrameColor;
     @include border-radius(10px);
-    -webkit-border-radius: 0px 10px 10px 0;
-    -moz-border-radius: 0px 10px 10px 0;
-    border-radius: 0px 10px 10px 0;
+    -webkit-border-radius: 0 10px 10px 0;
+    -moz-border-radius: 0 10px 10px 0;
+    border-radius: 0 10px 10px 0;
     outline: none;
     @include font-size(16);
     text-align: center;
@@ -227,9 +295,9 @@ fieldset[name="position"] {
     border: 1px solid $searchFrameColor;
     vertical-align: middle;
     font: $basic;
-    -webkit-border-radius: 0px 10px 10px 0;
-    -moz-border-radius: 0px 10px 10px 0;
-    border-radius: 0px 10px 10px 0;
+    -webkit-border-radius: 0 10px 10px 0;
+    -moz-border-radius: 0 10px 10px 0;
+    border-radius: 0 10px 10px 0;
     @include font-size(16);
     outline: none;
   }

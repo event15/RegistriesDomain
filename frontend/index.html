@@ -5,7 +5,7 @@
     <title>MADKOM S.A</title>
 
     <!-- Style sheets -->
-    <!--<link rel="stylesheet" href="css/imports/bootstrap.css">-->
+    <link rel="stylesheet" href="css/imports/bootstrap.css">
     <link rel="stylesheet" href="css/madkom.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 </head>
@@ -24,17 +24,8 @@
             <section>
                 <h2 class="hide">Lista rejestro</h2>
                 <ul class="list">
-                    <li><a href="#">Rejestr samochodów 2015</a></li>
                     <li class="selected"><a href="#">Rejestr samochodów 2014</a></li>
-                    <li><a href="#">Rejestr samochodów 2014</a></li>
-                    <li><a href="#">Rejestr samochodów 2014</a></li>
-                    <li><a href="#">Rejestr samochodów 2014</a></li>
                     <li><a href="#">Rejestr samochodów 2015</a></li>
-                    <li><a href="#">Rejestr samochodów 2014</a></li>
-                    <li><a href="#">Rejestr samochodów 2014</a></li>
-                    <li><a href="#">Rejestr samochodów 2014</a></li>
-                    <li><a href="#">Rejestr samochodów 2014</a></li>
-                    <li><a href="#">Rejestr samochodów 2014</a></li>
                     <li><a href="#">Rejestr samochodów 2014</a></li>
                     <li><a href="#">Rejestr samochodów 2014</a></li>
                 </ul>
@@ -137,30 +128,114 @@
         </article>
 
         <header class="buttons">
-            <a href="#" class="button position">Dodaj</a>
-            <a href="#" class="button">Usun</a>
-            <a href="#" class="button">Modyfikuj</a>
+            <a href="#" class="btn addpos"><i class="fa fa-plus"></i>Dodaj pozycję</a>
+            <a href="#" class="btn removepos"><i class="fa fa-trash-o"></i>Usuń zaznaczone</a>
         </header>
 
 
         <main>
-            <table>
-                <caption></caption>
+            <table class="table table-responsive table-hover">
+                <col style="width:1%">
+                <col style="width:1%">
+                <col style="width:1%">
+                <col style="width:3%">
+                <col style="width:6%">
+                <col style="width:15%">
+                <col style="width:1%">
+                <col style="width:5%">
+                <col style="width:5%">
+                <col style="width:5%">
+                <col style="width:6%">
                 <thead>
-                    <tr>
-                        <td>ID</td>
-                        <td>Model</td>
-                        <td>Marka</td>
-                        <td>Opis</td>
-                    </tr>
+                <tr style="font-weight: bold;">
+                    <th><input type="checkbox"></th>
+                    <th>ID</th>
+                    <th contenteditable="false">Marka</th>
+                    <th>Model</th>
+                    <th>Numer rejestracyjny</th>
+                    <th>Opis</th>
+                    <th>Ubezpieczyciel</th>
+                    <th>Termin OC</th>
+                    <th>Termin AC</th>
+                    <th>Termin ASS</th>
+                    <th>Termin przeglądu</th>
+                </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>fiat</td>
-                        <td>126p</td>
-                        <td>maly jeździk</td>
-                    </tr>
+                <tr>
+                    <td width="20px"><input type="checkbox" ></td>
+                    <td>1</td>
+                    <td contenteditable="false">Fiat</td>
+                    <td contenteditable="false">126p</td>
+                    <td contenteditable="false">ZSD 12345</td>
+                    <td contenteditable="false">Mały samochodzik do wielkich rzecz (...)</td>
+                    <td contenteditable="false">PZU</td>
+                    <td contenteditable="false">23.09.2016</td>
+                    <td contenteditable="false">24.09.2016</td>
+                    <td contenteditable="false">25.09.2016</td>
+                    <td contenteditable="false">26.09.2016</td>
+                </tr>
+                <tr id="1" class="hide">
+                    <td colspan="11" class="down">
+                        <div class="check"><a href="#" class="check"><i class="fa fa-check"></i></a></div>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td width="20px"><input type="checkbox" ></td>
+                    <td>2</td>
+                    <td>Fiat</td>
+                    <td>126p</td>
+                    <td>ZSD 12345</td>
+                    <td>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus asperiores debitis deserunt dolore exercitationem fugiat impedit, ipsam itaque maiores minima modi nisi nobis nulla porro praesentium, quo tempore temporibus voluptates!</td>
+                    <td>PZU</td>
+                    <td>23.09.2016</td>
+                    <td>24.09.2016</td>
+                    <td>25.09.2016</td>
+                    <td>26.09.2016</td>
+                </tr>
+                <tr id="1" class="hide">
+                    <td colspan="10" class="down">
+                        <div class="check"><a href="#" class="check"><i class="fa fa-check"></i></a></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="20px"><input type="checkbox" ></td>
+                    <td>3</td>
+                    <td>Fiat</td>
+                    <td>126p</td>
+                    <td>ZSD 12345</td>
+                    <td>Mały samochodzik do wielkich rzecz (...)</td>
+                    <td>PZU</td>
+                    <td>23.09.2016</td>
+                    <td>24.09.2016</td>
+                    <td>25.09.2016</td>
+                    <td>26.09.2016</td>
+                </tr>
+                <tr id="2" class="hide">
+                    <td colspan="10" class="down">
+                        <div class="check"><a href="#" class="check"><i class="fa fa-check"></i></a></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="20px"><input type="checkbox" ></td>
+                    <td>4</td>
+                    <td>Fiat</td>
+                    <td>126p</td>
+                    <td>ZSD 12345</td>
+                    <td>Mały samochodzik do wielkich rzecz (...)</td>
+                    <td>PZU</td>
+                    <td>23.09.2016</td>
+                    <td>24.09.2016</td>
+                    <td>25.09.2016</td>
+                    <td>26.09.2016</td>
+                </tr>
+                <tr id="3" class="hide">
+                    <td colspan="10" class="down">
+                        <div class="check"><a href="#" class="check"><i class="fa fa-check"></i></a></div>
+                    </td>
+                </tr>
+
                 </tbody>
             </table>
         </main>
@@ -188,11 +263,25 @@
                 $(".add_registries").removeClass("show").addClass("hide");
                 $(".add.register").css("background-color", "#f16c1e");
             }
-        }).on("click", ".position", function() {
+        }).on("click", ".addpos", function() {
             $(".add_position").toggle(120, function(){
                 $(".add_position").css("display: none");
             })
+        }).on("dblclick", "td", function() {
+
+            var val = $(this);
+            if (val.attr("contentEditable") == "true") {
+                val.attr('contentEditable', false);
+            } else {
+                val.attr('contentEditable', true);
+                val.focus();
+
+            }
+            $("#1").toggleClass("hide", 1, "easeOutSine");
+
         });
+
+
     </script>
 </body>
 </html>

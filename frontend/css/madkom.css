@@ -202,7 +202,73 @@ ul[class="list"] li a {
 }
 
 .buttons {
+  margin: 23.3px 10px 23.3px 23.3px;
+}
+
+.btn {
+  font-size: 0.875rem;
+  display: inline-block;
+  border: 1px #c0c0c0 solid;
+}
+.btn i {
+  margin-right: 5px;
+}
+
+.addpos, .removepos, .modifypos {
+  cursor: pointer;
+  font-weight: bold;
+  width: 150px;
   height: 46.6px;
+  background-color: #f6f6f6;
+  color: #656565;
+}
+.addpos:hover, .removepos:hover, .modifypos:hover {
+  background-color: #e0e0e0;
+  -webkit-transition: all 0.2s ease-in-out;
+  -moz-transition: all 0.2s ease-in-out;
+  -o-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+}
+
+.addpos i {
+  margin-right: 5px;
+  color: #53bd18;
+}
+
+.check {
+  cursor: pointer;
+  width: 150px;
+  height: 46.6px;
+  text-align: center;
+  margin: 0 auto;
+  padding: 0 auto;
+}
+.check i {
+  color: #d02a2a;
+  text-align: center;
+  font-size: 1.5625rem;
+  margin: 0 auto;
+  padding: 0 auto;
+}
+.check i:hover {
+  color: #53bd18;
+}
+
+.down {
+  background-color: #f2f2f2;
+}
+
+.removepos i {
+  margin-right: 5px;
+  color: #d02a2a;
+}
+
+a {
+  text-decoration: none;
+  outline: none;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 46.6px;
 }
 
 main {
@@ -257,9 +323,9 @@ fieldset[name="position"] input, fieldset[name="position"] select, fieldset[name
   -moz-border-radius: 10px;
   -ms-border-radius: 10px;
   border-radius: 10px;
-  -webkit-border-radius: 0px 10px 10px 0;
-  -moz-border-radius: 0px 10px 10px 0;
-  border-radius: 0px 10px 10px 0;
+  -webkit-border-radius: 0 10px 10px 0;
+  -moz-border-radius: 0 10px 10px 0;
+  border-radius: 0 10px 10px 0;
   outline: none;
   font-size: 1rem;
   text-align: center;
@@ -275,9 +341,9 @@ fieldset[name="position"] textarea {
   border: 1px solid #e4e4e4;
   vertical-align: middle;
   font: Verdana, "Bitstream Vera Sans", "DejaVu Sans", Tahoma, Geneva, Arial, Sans-serif;
-  -webkit-border-radius: 0px 10px 10px 0;
-  -moz-border-radius: 0px 10px 10px 0;
-  border-radius: 0px 10px 10px 0;
+  -webkit-border-radius: 0 10px 10px 0;
+  -moz-border-radius: 0 10px 10px 0;
+  border-radius: 0 10px 10px 0;
   font-size: 1rem;
   outline: none;
 }
