@@ -1,3 +1,8 @@
-/**
- * Created by marek on 18.09.15.
- */
+(function() {
+    "use strict";
+
+    angular
+        .module("common.services", [
+            "ngResource"
+        ]);
+})();

@@ -53,5 +53,11 @@
 
             }
         ];
+
+        vm.contentEditable = false;
+
+        vm.toggleEditable = function() {
+            vm.contentEditable = ! vm.contentEditable;
+        };
     }
 }());

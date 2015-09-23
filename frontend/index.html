@@ -9,14 +9,14 @@
     <link rel="stylesheet" href="css/madkom.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 </head>
-<body ng-app="positionManagement">
-    <section class="left" >
+<body >
+    <section class="left" ng-app="registryManagement">
 
         <h1 class="hide">Strona główna</h1>
 
         <!-- SHOW ALL REGISTRIES -->
         <div class="show_registries" style="position: fixed;"></div>
-        <article class="show_registries">
+        <article class="show_registries" ng-controller="RegistryListController as vm">
             <header>
                 <button class="add register"><i>+</i> DODAJ REJESTR</button>
             </header>
@@ -32,7 +32,7 @@
         </article>
 
         <!-- TOGGLED PANEL FOR ADD REGISTRY FORM -->
-        <article class="add_registries hide">
+        <article class="add_registries hide" ng-controller="RegistryListController as vm">
             <header>
                 <h2 class="title">DODAWANIE REJESTRU</h2>
             </header>
@@ -50,7 +50,7 @@
                         <div>
                             <select id="type" name="type[]">
                                 <option value="volvo" selected="selected" disabled>Wybierz typ rejestru</option>
-                                <option ng-repeat="registry in registries" value="{{ registry.type }}">{{
+                                <option ng-repeat="registry in vm.registries" value="{{ registry.type }}">{{
                                     registry.typeName }}</option>
                             </select>
                         </div>
@@ -76,7 +76,7 @@
                         <div>
                             <label>
                                 <span style="width: 155px; display: inline-block;">Marka:</span>
-                                <input type="text" placeholder="np. Fiat" name="name" id="name" />
+                                <input type="text" placeholder="np. Fiat" name="name" id="name" data-placement="right" data-toggle="tooltip" title="Marka samochodu oznacza producenta."/>
                             </label>
                             <br>
                             <label>
@@ -165,11 +165,11 @@
                     <th>Termin przeglądu</th>
                 </tr>
                 </thead>
-                <tbody ng-controller="PositionListController as vm">
-                <tr ng-repeat="position in vm.positions">
+                <tbody ng-repeat="position in vm.positions">
+                <tr>
                     <td width="20px"><input type="checkbox" ></td>
                     <td>{{ position.id }}</td>
-                    <td contenteditable="false">{{ position.brand }}</td>
+                    <td contenteditable="false" >{{ position.brand }}</td>
                     <td contenteditable="false">{{ position.model }}</td>
                     <td contenteditable="false">{{ position.registerNo }}</td>
                     <td contenteditable="false">{{ position.description }}</td>
@@ -179,7 +179,7 @@
                     <td contenteditable="false">{{ position.terms['ASS'] }}</td>
                     <td contenteditable="false">{{ position.terms['Review'] }}</td>
                 </tr>
-                <tr id="1" class="hide">
+                <tr ng-attr-id="{{ position.id }}" class="hide">
                     <td colspan="11" class="down">
                         <div class="check"><a href="#" class="check"><i class="fa fa-check"></i></a></div>
                     </td>
@@ -194,12 +194,60 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <span type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                            aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+                    <h4 class="modal-title" id="myModalLabel">Dodawanie pozycji</h4>
                 </div>
                 <div class="modal-body">
-                    ...
+                    <div class="position_form">
+                        <form action="#">
+                            <fieldset name="position">
+                                <div>
+                                    <label>
+                                        <span style="width: 90px; display: inline-block;">Marka:</span>
+                                        <input type="text" placeholder="np. Fiat" name="name" id="name" />
+                                    </label>
+                                    <br>
+                                    <label>
+                                        <span style="width: 90px; display: inline-block;">Model:</span>
+                                        <input type="text" placeholder="np. 126p" name="name" id="name" />
+                                    </label>
+                                    <br>
+                                    <label>
+                                        <span style="width: 90px; display: inline-block;">Numer rejestracyjny:</span>
+                                        <input type="text" placeholder="np. GD 12345" name="name" id="name" />
+                                    </label>
+                                    <br>
+                                </div>
+                                <div>
+                                    <label>
+                                        <span style="width: 90px; display: inline-block;">Termin OC:</span>
+                                        <input type="date"  name="name" id="name" />
+                                    </label>
+                                    <br>
+                                    <label>
+                                        <span style="width: 90px; display: inline-block;">Termin AC:</span>
+                                        <input type="date"  name="name" id="name" />
+                                    </label>
+                                    <br>
+                                    <label>
+                                        <span style="width: 90px; display: inline-block;">Termin przeglądu:</span>
+                                        <input type="date"  name="name" id="name" />
+                                    </label>
+                                    <br>
+                                </div>
+                                <br>
+                                <div>
+                                    <label for="title">
+                                        <textarea rows="5" id="title" name="title" placeholder="Opis rejestru" style="width: 535px"></textarea>
+                                    </label>
+                                    <br>
+                                </div>
+
+                            </fieldset>
+                            <div class="upload">
+                                <input type="file" name="name" id="name"/>
+                            </div>
+                        </form>
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -222,10 +270,18 @@
     <script src="js/ui-bootstrap-tpls-0.11.0.js"></script>
     <script src="js/d3.js"></script>
     <script src="js/angular-charts.min.js"></script>
-    <!-- Application -->
+
+    <!-- Application script -->
     <script src="app/app.js"></script>
-    <script src="app/positions/controllers/positionListCtrl.js"></script>
+
+    <!-- Services -->
+    <script src="common/services/common.services.js"></script>
+    <script src="common/services/registryResource.js"></script>
+    <script src="common/services/registryResourceMock.js"></script>
+
+    <!-- Controllers -->
     <script src="app/registries/controllers/registryListCtrl.js"></script>
+
 
     <script>
         $(document).on("click", ".add", function() {
@@ -254,7 +310,9 @@
 
         });
 
-
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
     </script>
 </body>
 </html>

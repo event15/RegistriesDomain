@@ -1,3 +1,13 @@
-/**
- * Created by marek on 18.09.15.
- */
+(function() {
+    "use strict";
+
+    angular
+        .module("common.services")
+        .factory("positionResource",
+            ["$resource", positionResource]);
+
+
+    function positionResource($resource) {
+        return $resource("/rejestry/:registerId/pozycje/:positionId");
+    }
+})();

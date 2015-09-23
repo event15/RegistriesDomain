@@ -2,5 +2,8 @@
     "use strict";
 
     var app = angular
-                .module("positionManagement", []);
+                .module("registryManagement",
+                       ["common.services",
+                        "registryResourceMock"]);
+
 }());
