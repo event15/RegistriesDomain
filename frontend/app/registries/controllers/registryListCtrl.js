@@ -2,10 +2,8 @@
     "use strict";
 
     angular
-        .module("registryManagement")
-        .controller("RegistryListController",
-                        ["registryResource",
-                            RegistryListController]);
+        .module("registriesFrontend")
+        .controller("RegistryListController", ["registryResource", RegistryListController]);
 
     function RegistryListController(registryResource) {
         var vm = this;

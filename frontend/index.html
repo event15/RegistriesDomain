@@ -9,35 +9,35 @@
     <link rel="stylesheet" href="css/madkom.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 </head>
-<body >
-    <section class="left" ng-app="registryManagement">
+<body ng-app="registriesFrontend">
+    <section class="left" ng-controller="RegistryListController as vm">
 
         <h1 class="hide">Strona główna</h1>
 
         <!-- SHOW ALL REGISTRIES -->
         <div class="show_registries" style="position: fixed;"></div>
-        <article class="show_registries" ng-controller="RegistryListController as vm">
+        <article class="show_registries">
             <header>
                 <button class="add register"><i>+</i> DODAJ REJESTR</button>
             </header>
 
-            <section>
+            <section ng-repeat="registry in vm.registries">
                 <h2 class="hide">Lista rejestrów</h2>
                 <ul class="list" >
-                    <li class="{{ registry.selected }}" ng-repeat="registry in vm.registries">
-                        <a href="#">{{ registry.name }}</a>
+                    <li class="{{ registry.selected }}" >
+                        <a href="../web/rejestry/{{ registry.id }}">{{ registry.name }}</a>
                     </li>
                 </ul>
             </section>
         </article>
 
         <!-- TOGGLED PANEL FOR ADD REGISTRY FORM -->
-        <article class="add_registries hide" ng-controller="RegistryListController as vm">
+        <article class="add_registries hide">
             <header>
                 <h2 class="title">DODAWANIE REJESTRU</h2>
             </header>
 
-            <section>
+            <section ng-repeat="registry in vm.registries">
                 <h2 class="hide">Dodaj pozycję w rejestrze</h2>
                 <form action="#">
                     <fieldset name="registry">
@@ -50,7 +50,7 @@
                         <div>
                             <select id="type" name="type[]">
                                 <option value="volvo" selected="selected" disabled>Wybierz typ rejestru</option>
-                                <option ng-repeat="registry in vm.registries" value="{{ registry.type }}">{{
+                                <option value="{{ registry.type }}">{{
                                     registry.typeName }}</option>
                             </select>
                         </div>
@@ -62,7 +62,7 @@
         </article>
     </section>
 
-    <section class="content">
+    <section class="content" ng-controller="PositionListController as vm">
         <h2 class="hide">Main content</h2>
         <article class="add_position">
             <header>
@@ -165,8 +165,8 @@
                     <th>Termin przeglądu</th>
                 </tr>
                 </thead>
-                <tbody ng-repeat="position in vm.positions">
-                <tr>
+                <tbody>
+                <tr ng-repeat="position in vm.positions">
                     <td width="20px"><input type="checkbox" ></td>
                     <td>{{ position.id }}</td>
                     <td contenteditable="false" >{{ position.brand }}</td>
@@ -179,7 +179,7 @@
                     <td contenteditable="false">{{ position.terms['ASS'] }}</td>
                     <td contenteditable="false">{{ position.terms['Review'] }}</td>
                 </tr>
-                <tr ng-attr-id="{{ position.id }}" class="hide">
+                <tr class="hide">
                     <td colspan="11" class="down">
                         <div class="check"><a href="#" class="check"><i class="fa fa-check"></i></a></div>
                     </td>
@@ -276,11 +276,16 @@
 
     <!-- Services -->
     <script src="common/services/common.services.js"></script>
+
+    <script src="common/services/positionResource.js"></script>
     <script src="common/services/registryResource.js"></script>
+
+    <script src="common/services/positionResourceMock.js"></script>
     <script src="common/services/registryResourceMock.js"></script>
 
     <!-- Controllers -->
     <script src="app/registries/controllers/registryListCtrl.js"></script>
+    <script src="app/positions/controllers/positionListCtrl.js"></script>
 
 
     <script>

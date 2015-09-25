@@ -2,62 +2,14 @@
     "use strict";
 
     angular
-        .module("positionManagement")
-        .controller("PositionListController", PositionListController);
+        .module("registriesFrontend")
+        .controller("PositionListController", ["positionResource", PositionListController]);
 
-    function PositionListController() {
+    function PositionListController(positionResource) {
         var vm = this;
 
-        vm.positions = [
-            {
-                "id": 1,
-                "brand": "Fiat",
-                "model": "126p",
-                "registerNo": "ZSD 12345",
-                "description": "Mały samochodzik do wielkich rzeczy",
-                "insurer": "PZU",
-                "terms": {
-                    "OC": "22/09/2015",
-                    "AC": "23/09/2015",
-                    "ASS": "24/09/2015",
-                    "Review": "25/09/2015"
-                }
-            },
-            {
-                "id": 2,
-                "brand": "Fiat",
-                "model": "126p",
-                "registerNo": "ZSD 12345",
-                "description": "Mały samochodzik do wielkich rzeczy",
-                "insurer": "PZU",
-                "terms": {
-                    "OC": "22/09/2015",
-                    "AC": "23/09/2015",
-                    "ASS": "24/09/2015",
-                    "Review": "25/09/2015"
-                }
-            },
-            {
-                "id": 3,
-                "brand": "Fiat",
-                "model": "126p",
-                "registerNo": "ZSD 12345",
-                "description": "Mały samochodzik do wielkich rzeczy",
-                "insurer": "PZU",
-                "terms": {
-                    "OC": "22/09/2015",
-                    "AC": "23/09/2015",
-                    "ASS": "24/09/2015",
-                    "Review": "25/09/2015"
-                }
-
-            }
-        ];
-
-        vm.contentEditable = false;
-
-        vm.toggleEditable = function() {
-            vm.contentEditable = ! vm.contentEditable;
-        };
+        positionResource.query(function(data) {
+            vm.positions = data;
+        });
     }
 }());

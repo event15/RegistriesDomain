@@ -2,8 +2,6 @@
     "use strict";
 
     var app = angular
-                .module("registryManagement",
-                       ["common.services",
-                        "registryResourceMock"]);
+                .module("registriesFrontend", ["common.services", "registryResourceMock", "positionResourceMock"]);
 
 }());

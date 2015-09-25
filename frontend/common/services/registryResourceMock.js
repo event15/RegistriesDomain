@@ -1,9 +1,10 @@
 (function() {
     "use strict";
 
-    var app = angular.module("registryResourceMock", [/*"ngMockE2E"*/]);
+    var app = angular.module("registryResourceMock", ["ngMockE2E"]);
 
-    app.run(function($http) {
+    app.run(function($httpBackend) {
+
         var registries = [
             {
                 "id": 1,
@@ -35,11 +36,8 @@
             }
         ];
 
-        var registryUrl = "/api/registries";
-        //var registryUrl = "/registries/web/rejestry/";
+        var registryUrl = "/registry";
 
-        //$httpBackend.whenGET(registryUrl).respond(registries);
-        $http.get("/registries/web/rejestry/");
-       // $http.get(registryUrl); //.respond(registries);
-    })
+        $httpBackend.whenGET(registryUrl).respond(registries);
+    });
 })();
