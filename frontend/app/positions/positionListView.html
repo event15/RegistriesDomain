@@ -1,10 +1,52 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title></title>
-</head>
-<body>
-
-</body>
-</html>
+<main>
+    <table class="table table-responsive table-hover">
+        <colgroup>
+            <col style="width:1%">
+            <col style="width:1%">
+            <col style="width:3%">
+            <col style="width:3%">
+            <col style="width:10%">
+            <col style="width:28%">
+            <col style="width:10%">
+            <col style="width:10%">
+            <col style="width:10%">
+            <col style="width:10%">
+            <col style="width:16%">
+        </colgroup>
+        <thead>
+        <tr style="font-weight: bold;">
+            <th><input type="checkbox"></th>
+            <th>ID</th>
+            <th contenteditable="false">Marka</th>
+            <th>Model</th>
+            <th>Numer rejestracyjny</th>
+            <th>Opis</th>
+            <th>Ubezpieczyciel</th>
+            <th>Termin OC</th>
+            <th>Termin AC</th>
+            <th>Termin ASS</th>
+            <th>Termin przeglądu</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="position in vm.positions">
+            <td width="20px"><input type="checkbox" id="{{ position.id }}"></td>
+            <td>{{ position.id }}</td>
+            <td contenteditable="false" >{{ position.brand }}</td>
+            <td contenteditable="false">{{ position.model }}</td>
+            <td contenteditable="false">{{ position.registerNo }}</td>
+            <td contenteditable="false">{{ position.description }}</td>
+            <td contenteditable="false">{{ position.insurer }}</td>
+            <td contenteditable="false">{{ position.terms['OC'] }}</td>
+            <td contenteditable="false">{{ position.terms['AC'] }}</td>
+            <td contenteditable="false">{{ position.terms['ASS'] }}</td>
+            <td contenteditable="false">{{ position.terms['Review'] }}</td>
+        </tr>
+        <tr class="hide">
+            <td colspan="11" class="down">
+                <div class="check"><a href="#" class="check"><i class="fa fa-check"></i></a></div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</main>

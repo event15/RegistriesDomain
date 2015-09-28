@@ -1,10 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title></title>
-</head>
-<body>
+<h1 class="hide">Strona główna</h1>
 
-</body>
-</html>
+<!-- SHOW ALL REGISTRIES -->
+<div class="show_registries" style="position: fixed;"></div>
+<article class="show_registries">
+    <header>
+        <button class="add register"><i>+</i> DODAJ REJESTR</button>
+    </header>
+
+    <section ng-repeat="registry in vm.registries">
+        <h2 class="hide">Lista rejestrów</h2>
+        <ul class="list" >
+            <li class="{{ registry.selected }}" >
+                <a href="../web/rejestry/{{ registry.id }}">{{ registry.name }}</a>
+            </li>
+        </ul>
+    </section>
+</article>

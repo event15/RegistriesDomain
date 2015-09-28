@@ -39,5 +39,6 @@
         var registryUrl = "/registry";
 
         $httpBackend.whenGET(registryUrl).respond(registries);
+        $httpBackend.whenGET(/app/).passThrough();
     });
 })();
