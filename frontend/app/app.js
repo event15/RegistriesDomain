@@ -11,7 +11,7 @@
                 $urlRouterProvider.otherwise("/");
 
                 $stateProvider
-                    .state("main", {
+                    .state("home", {
                         url: "/",
                         views: {
                             "showRegistries": {
@@ -25,11 +25,13 @@
                         }
 
                     })
-                    .state("main.addRegistry", {
-                            url: "/dodaj",
-                            templateUrl: "app/registries/registryEditView.html",
-                            controller: "RegistryListController as vm"
+
+                    .state("home.registry", {
+                        url: "rejestry/dodaj",
+                        templateUrl: "app/registries/registryEditView.html"
                     })
+
+
             }]
     );
 

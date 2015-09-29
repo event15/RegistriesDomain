@@ -258,7 +258,7 @@ fieldset[name="registry"] {
     width: 155px;
     height: calc(93px / 2);
     border: 1px solid $searchFrameColor;
-    @include border-radius(10px);
+    //@include border-radius(10px);
     outline: none;
   }
 }
@@ -273,10 +273,10 @@ fieldset[name="position"] {
     width: 155px;
     height: calc(93px / 2);
     border: 1px solid $searchFrameColor;
-    @include border-radius(10px);
-    -webkit-border-radius: 0 10px 10px 0;
-    -moz-border-radius: 0 10px 10px 0;
-    border-radius: 0 10px 10px 0;
+    //@include border-radius(10px);
+    //-webkit-border-radius: 0 10px 10px 0;
+    //-moz-border-radius: 0 10px 10px 0;
+    //border-radius: 0 10px 10px 0;
     outline: none;
     @include font-size(16);
     text-align: center;
@@ -294,9 +294,9 @@ fieldset[name="position"] {
     border: 1px solid $searchFrameColor;
     vertical-align: middle;
     font: $basic;
-    -webkit-border-radius: 0 10px 10px 0;
+    /*-webkit-border-radius: 0 10px 10px 0;
     -moz-border-radius: 0 10px 10px 0;
-    border-radius: 0 10px 10px 0;
+    border-radius: 0 10px 10px 0;*/
     @include font-size(16);
     outline: none;
   }
@@ -318,6 +318,6 @@ label  {
   display: inline-block;
   line-height:calc(93px / 2);
   background-color: $searchFrameColor;
-  @include border-radius(10px);
+ // @include border-radius(10px);
   color: $leftPanelColor;
 }

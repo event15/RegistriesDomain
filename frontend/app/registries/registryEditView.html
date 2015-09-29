@@ -1,28 +1,20 @@
-<article class="add_registries hide">
-    <header>
-        <h2 class="title">DODAWANIE REJESTRU</h2>
-    </header>
+<h2 class="hide">Dodaj pozycję w rejestrze</h2>
+<form action="#">
+    <fieldset name="registry">
+        <div>
+            <input type="text" placeholder="Wpisz nazwę rejestru" name="name" id="name" />
+        </div>
 
-    <section>
-        <h2 class="hide">Dodaj pozycję w rejestrze</h2>
-        <form action="#">
-            <fieldset name="registry">
-                <div>
-                    <input type="text" placeholder="Wpisz nazwę rejestru" name="name" id="name" />
-                </div>
+        <br />
 
-                <br />
+        <div>
+            <select id="type" name="type[]">
+                <option value="volvo" selected="selected" disabled>Wybierz typ rejestru</option>
+                <option ng-repeat="registry in vm.registries" value="{{ registry.type }}">{{
+                    registry.typeName }}</option>
+            </select>
+        </div>
 
-                <div>
-                    <select id="type" name="type[]">
-                        <option value="volvo" selected="selected" disabled>Wybierz typ rejestru</option>
-                        <option ng-repeat="registry in vm.registries" value="{{ registry.type }}">{{
-                            registry.typeName }}</option>
-                    </select>
-                </div>
-
-            </fieldset>
-            <button class="add">ZAPISZ</button>
-        </form>
-    </section>
-</article>
+    </fieldset>
+    <button type="submit" class="add" ui-sref="home">ZAPISZ</button>
+</form>

@@ -20,148 +20,14 @@
 
     <section class="content">
         <h2 class="hide">Main content</h2>
-        <article class="add_position">
-            <header>
-                <div class="push_down"></div>
-                <h2 class="pos_title">DODAWANIE POZYCJI</h2>
-            </header>
-
-            <div class="position_form">
-                <form action="#">
-                    <fieldset name="position">
-                        <div>
-                            <label>
-                                <span style="width: 155px; display: inline-block;">Marka:</span>
-                                <input type="text" placeholder="np. Fiat" name="name" id="name" data-placement="right" data-toggle="tooltip" title="Marka samochodu oznacza producenta."/>
-                            </label>
-                            <br>
-                            <label>
-                                <span style="width: 155px; display: inline-block;">Model:</span>
-                                <input type="text" placeholder="np. 126p" name="name" id="name" />
-                            </label>
-                            <br>
-                            <label>
-                                <span style="width: 155px; display: inline-block;">Numer rejestracyjny:</span>
-                                <input type="text" placeholder="np. GD 12345" name="name" id="name" />
-                            </label>
-                            <br>
-                        </div>
-                        <div>
-                            <label>
-                                <span style="width: 155px; display: inline-block;">Termin OC:</span>
-                                <input type="date"  name="name" id="name" />
-                            </label>
-                            <br>
-                            <label>
-                                <span style="width: 155px; display: inline-block;">Termin AC:</span>
-                                <input type="date"  name="name" id="name" />
-                            </label>
-                            <br>
-                            <label>
-                                <span style="width: 155px; display: inline-block;">Termin przeglądu:</span>
-                                <input type="date"  name="name" id="name" />
-                            </label>
-                            <br>
-                        </div>
-                        <br>
-                        <div>
-                            <label for="title">
-                                <span style="width: 155px; display: inline-block;">Opis samochodu:</span>
-                                <textarea rows="5" id="title" name="title"></textarea>
-                            </label>
-                            <br>
-
-                        </div>
-
-                    </fieldset>
-                    <div class="upload">
-                        <input type="file" name="name" id="name"/>
-                        <button class="position right">ZAPISZ</button>
-                    </div>
-                </form>
-            </div>
-        </article>
 
         <header class="buttons">
             <a href="#" class="btn addpos"><i class="fa fa-plus"></i>Dodaj pozycję</a>
             <!--<a href="#" class="btn removepos"><i class="fa fa-trash-o"></i>Usuń zaznaczone</a>-->
-
-            <!-- Button trigger modal -->
-            <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
-                Launch demo modal
-            </button>
         </header>
 
         <div ui-view="showPositions"></div>
     </section>
-
-    <!-- Modal -->
-    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title" id="myModalLabel">Dodawanie pozycji</h4>
-                </div>
-                <div class="modal-body">
-                    <div class="position_form">
-                        <form action="#">
-                            <fieldset name="position">
-                                <div>
-                                    <label>
-                                        <span style="width: 90px; display: inline-block;">Marka:</span>
-                                        <input type="text" placeholder="np. Fiat" name="name" id="name" />
-                                    </label>
-                                    <br>
-                                    <label>
-                                        <span style="width: 90px; display: inline-block;">Model:</span>
-                                        <input type="text" placeholder="np. 126p" name="name" id="name" />
-                                    </label>
-                                    <br>
-                                    <label>
-                                        <span style="width: 90px; display: inline-block;">Numer rejestracyjny:</span>
-                                        <input type="text" placeholder="np. GD 12345" name="name" id="name" />
-                                    </label>
-                                    <br>
-                                </div>
-                                <div>
-                                    <label>
-                                        <span style="width: 90px; display: inline-block;">Termin OC:</span>
-                                        <input type="date"  name="name" id="name" />
-                                    </label>
-                                    <br>
-                                    <label>
-                                        <span style="width: 90px; display: inline-block;">Termin AC:</span>
-                                        <input type="date"  name="name" id="name" />
-                                    </label>
-                                    <br>
-                                    <label>
-                                        <span style="width: 90px; display: inline-block;">Termin przeglądu:</span>
-                                        <input type="date"  name="name" id="name" />
-                                    </label>
-                                    <br>
-                                </div>
-                                <br>
-                                <div>
-                                    <label for="title">
-                                        <textarea rows="5" id="title" name="title" placeholder="Opis rejestru" style="width: 535px"></textarea>
-                                    </label>
-                                    <br>
-                                </div>
-
-                            </fieldset>
-                            <div class="upload">
-                                <input type="file" name="name" id="name"/>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
-                </div>
-            </div>
-        </div>
-    </div>
 
 
 
