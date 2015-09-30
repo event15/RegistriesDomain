@@ -8,6 +8,6 @@
                         positionResource]);
 
     function positionResource($resource) {
-        return $resource("/positions/:positionId");
+        return $resource("/registries/web/rejestry/1/pozycje/:positionId");
     }
 })();

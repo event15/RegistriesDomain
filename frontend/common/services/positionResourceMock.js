@@ -1,58 +1,13 @@
 (function() {
     "use strict";
 
-    var app = angular.module("positionResourceMock", ["ngMockE2E"]);
+    var app = angular.module("positionResourceMock", [/*"ngMockE2E"*/]);
 
-    app.run(function($httpBackend) {
+    app.run(function($http) {
 
-        var positions = [
-            {
-                "id": 1,
-                "brand": "Fiat",
-                "model": "126p",
-                "registerNo": "ZSD 12345",
-                "description": "Mały samochodzik do wielkich rzeczy",
-                "insurer": "PZU",
-                "terms": {
-                    "OC": "22/09/2015",
-                    "AC": "23/09/2015",
-                    "ASS": "24/09/2015",
-                    "Review": "25/09/2015"
-                }
-            },
-            {
-                "id": 2,
-                "brand": "Fiat",
-                "model": "126p",
-                "registerNo": "ZSD 12345",
-                "description": "Mały samochodzik do wielkich rzeczy",
-                "insurer": "PZU",
-                "terms": {
-                    "OC": "22/09/2015",
-                    "AC": "23/09/2015",
-                    "ASS": "24/09/2015",
-                    "Review": "25/09/2015"
-                }
-            },
-            {
-                "id": 3,
-                "brand": "Fiat",
-                "model": "126p",
-                "registerNo": "ZSD 12345",
-                "description": "Mały samochodzik do wielkich rzeczy",
-                "insurer": "PZU",
-                "terms": {
-                    "OC": "22/09/2015",
-                    "AC": "23/09/2015",
-                    "ASS": "24/09/2015",
-                    "Review": "25/09/2015"
-                }
-            }
-        ];
+        var positionUrl = "/registries/web/rejestry/:registryId/pozycje";
 
-        var positionUrl = "/positions";
-
-        $httpBackend.whenGET(positionUrl).respond(positions);
+        $http.get(positionUrl);
 
         var editingRegex = new RegExp(positionUrl + "/[0-9][0-9]*", '');
         $httpBackend.whenGET(editingRegex).respond(function(method, url, data) {

@@ -8,6 +8,7 @@
             registryResource]);
 
     function registryResource($resource) {
-        return $resource("/registry/:registryId");
+        return $resource("/registries/web/rejestry/:registryId");
     }
+
 })();

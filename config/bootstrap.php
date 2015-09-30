@@ -8,7 +8,7 @@ use Doctrine\ORM\Tools\Setup;
 use Doctrine\ORM\EntityManager;
 
 $app = new Silex\Application();
-$app[ 'debug' ] = 0;
+$app[ 'debug' ] = 1;
 
 $app->register(new DoctrineServiceProvider(), [
     'db.options' => [
