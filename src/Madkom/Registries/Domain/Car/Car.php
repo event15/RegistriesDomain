@@ -11,6 +11,7 @@ namespace Madkom\Registries\Domain\Car;
 use Madkom\Registries\Domain\Car\Term\CarTermCollection;
 use Madkom\Registries\Domain\Position;
 use Madkom\Registries\Domain\Term;
+use Madkom\Registries\Domain\TermCollection;
 
 /**
  * Class Car
@@ -87,24 +88,43 @@ class Car extends Position
         $this->others = $others;
     }
 
-    public function toArray()
+    /**
+     * @return string
+     */
+    public function getBrand()
     {
-        return [
-            'id' => $this->id,
-            'brand' => $this->brand,
-            'model' => $this->model,
-            'registrationNumber' => $this->registrationNumber,
-            'others' => $this->others
-        ];
+        return $this->brand;
     }
 
     /**
-     * @param int $registryId
+     * @return string
      */
-    public function setRegistryId($registryId)
+    public function getModel()
     {
-        $this->registryId = $registryId;
+        return $this->model;
     }
 
+    /**
+     * @return string
+     */
+    public function getRegistrationNumber()
+    {
+        return $this->registrationNumber;
+    }
 
+    /**
+     * @return int
+     */
+    public function getRegistryId()
+    {
+        return $this->registryId;
+    }
+
+    /**
+     * @return string
+     */
+    public function getOthers()
+    {
+        return $this->others;
+    }
 }

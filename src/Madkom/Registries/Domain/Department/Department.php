@@ -33,12 +33,10 @@ class Department
     {
         $this->name = $name;
         $this->email = $email;
-        //  $this->terms = new DepartmentTermCollection();
-        //$this->terms = new ArrayCollection();
     }
 
-    public function modify($name)
+    public function getDepartment()
     {
-
+        ;
     }
 }

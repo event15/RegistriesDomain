@@ -11,11 +11,10 @@ Madkom\Registries\Domain\Term:
       targetEntity: Madkom\Registries\Domain\Car\Car
       mappedBy: terms
 
-  oneToMany:
+  manyToOne:
     whoToNotify:
       targetEntity: Madkom\Registries\Domain\Department\Department
-      mappedBy: terms
-      cascade: ['persist', 'all']
+      inversedBy: terms
 
   id:
     id:

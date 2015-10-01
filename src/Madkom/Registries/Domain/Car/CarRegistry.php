@@ -26,11 +26,20 @@ class CarRegistry extends Registry
 
     public function registryToArray()
     {
+        $position = $this->showPositions();
+        $x = [];
+        foreach($position as $p)
+        {
+            $x[] = [
+                'model' => $p->getModel()
+            ];
+        }
+
         return [
             'id'        => $this->id,
             'name'      => $this->name,
             'createdAt' => $this->createdAt,
-            'positions' => $this->positions
+            'positions' => $x
         ];
     }
 

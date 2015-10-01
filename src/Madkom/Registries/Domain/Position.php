@@ -21,4 +21,20 @@ abstract class Position
     abstract public function addTerm(Term $term);
 
     abstract public function removeTerm(Term $term);
+
+    /**
+     * @return string
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * @return TermCollection
+     */
+    public function getTerms()
+    {
+        return $this->terms;
+    }
 }

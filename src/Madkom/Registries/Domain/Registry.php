@@ -76,6 +76,11 @@ abstract class Registry
         return $this->name;
     }
 
+    public function getId()
+    {
+        return $this->id;
+    }
+
     abstract public function addPosition(Position $position);
 
     /**
@@ -89,4 +94,6 @@ abstract class Registry
     abstract public function registryToArray();
 
     abstract public function getRegistryType();
+
+
 }

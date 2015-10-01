@@ -87,5 +87,4 @@ abstract class Term
     {
         $this->whoToNotify = $whoToNotify;
     }
-
 }

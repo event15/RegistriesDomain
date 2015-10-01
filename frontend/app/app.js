@@ -36,8 +36,6 @@
                         url: "pozycje/",
                         templateUrl: "app/positions/positionListView.html"
                     })
-
-
             }]
     );
 

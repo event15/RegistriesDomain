@@ -1,14 +1,12 @@
 Madkom\Registries\Domain\Department\Department:
   type: entity
 
-  manyToOne:
+
+  oneToMany:
     terms:
       targetEntity: Madkom\Registries\Domain\Term
-      inversedBy: whoToNotify
-      joinColumn:
-        name: term
-        referencedColumnName: term_id
-        #nullable: false
+      mappedBy: whoToNotify
+      cascade: ['persist', 'all']
 
   id:
     id:

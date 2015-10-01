@@ -8,6 +8,8 @@
 
 namespace Madkom\Registries\Application\RestApi\Controllers\Position;
 
+use Doctrine\ORM\AbstractQuery;
+use Doctrine\ORM\EntityManager;
 use Madkom\Registries\Application\RestApi\Controllers\ControllerHelper;
 use Madkom\Registries\Domain\EmptyRegistryException;
 use Silex\Application;
@@ -15,31 +17,39 @@ use Symfony\Component\HttpFoundation\Response;
 
 class Show extends ControllerHelper
 {
-    public function allPositions(Application $app, $id)
+    public function allPositions(Application $app)
     {
-        $getElement = $app['repositories.position']->findAll('Madkom\\Registries\\Domain\\Car\\Car', $id);
 
-        if(count($getElement) <= 0) throw new EmptyRegistryException('Rejestr jest pusty albo nie istnieje.');
+        /** @var EntityManager $em */
+        $em = $app['orm.em'];
 
-        $tab = [];
+        $cars = $em->createQueryBuilder()
+            ->from('Madkom\\Registries\\Domain\\Car\\Car', 'c')
+            ->select('c')
+            ->getQuery()
+            ->getArrayResult();
 
-        foreach ($getElement as $id => $element) {
-            $tab[$id] = $element->toArray();
-        }
-
-        return $app->json($tab);
+        return $app->json($cars);
     }
 
-    public function positionById(Application $app, $positionId)
+    public function positionById(Application $app, $id, $positionId)
     {
-        $getElement = $app['repositories.position']->find('Madkom\\Registries\\Domain\\Car\\Car', $positionId);
+        /** @var EntityManager $em */
+        $em = $app['orm.em'];
 
-        if(count($getElement) <= 0) $app->abort(404, 'Pozycja nie istnieje lub jest pusta');
+//        $car = $em->createQueryBuilder()
+//                   ->from('Madkom\\Registries\\Domain\\Registry', 'r')
+//                   ->select('r')
+//                   ->where('c.id = :position')
+//                   ->setParameter('position', $positionId)
+//                   ->andWhere('c.registryId = :registry')
+//                   ->setParameter('registry', $id)
+//                   ->getQuery()
+//                   ->getSingleResult();
+        $registry = $em->find('Madkom\\Registries\\Domain\\Registry' ,$id);
 
 
-        return ($getElement === null) ?
-            new Response("Nie znaleziono pozycji o id={$positionId}", 404)
-            :
-            $app->json($getElement->toArray());
+        var_dump($registry->showPositions()[0]->getModel());
+        return $app->json(1);
     }
 }

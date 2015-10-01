@@ -62,16 +62,7 @@ class Create
         $this->helper = new ControllerHelper();
     }
 
-    /**
-     * @param Application $app
-     * @param Request     $request
-     * @param             $id
-     *
-     * @return Response
-     * @throws EmptyRegistryException
-     * @throws \Madkom\Registries\Domain\PositionTypeNotAllowedException
-     * @throws \Madkom\Registries\Domain\UnknownTermTypeException
-     */
+
     public function newPosition(Application $app, Request $request, $id)
     {
         $this->currentRegistry = $this->helper->findAndCheckRegistry($app, $id);
@@ -88,7 +79,7 @@ class Create
         $this->currentRegistry->addPosition($this->position);
 
 
-        $app['repositories.position']->prepareToSave($this->position);
+//        $app['repositories.position']->prepareToSave($this->position);
         $app['repositories.registry']->save($this->currentRegistry);
 
 
