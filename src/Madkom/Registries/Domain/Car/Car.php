@@ -121,6 +121,14 @@ class Car extends Position
     }
 
     /**
+     * @return int
+     */
+    public function setRegistryId($id)
+    {
+        $this->registryId = $id;
+    }
+
+    /**
      * @return string
      */
     public function getOthers()

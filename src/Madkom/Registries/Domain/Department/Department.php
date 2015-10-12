@@ -35,8 +35,29 @@ class Department
         $this->email = $email;
     }
 
-    public function getDepartment()
+    /**
+     * @return string
+     */
+    public function getName()
     {
-        ;
+        return $this->name;
     }
+
+    /**
+     * @return string
+     */
+    public function getEmail()
+    {
+        return $this->email;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTerms()
+    {
+        return $this->terms;
+    }
+
+
 }

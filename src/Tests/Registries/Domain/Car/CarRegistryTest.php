@@ -6,7 +6,7 @@
  * Time: 13:52
  */
 
-namespace tests\Madkom\Registries\Domain\Car;
+namespace Tests\Registries\Domain\Car;
 
 use Madkom\Registries\Domain\Car\CarRegistry;
 
@@ -25,7 +25,7 @@ class CarRegistryTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException        \Madkom\Registries\Domain\EmptyRegistryNameException
+     * @expectedException              \Madkom\Registries\Domain\EmptyRegistryNameException
      * @expectedExceptionMessageRegExp #Registry name must have a value.#
      */
     public function testThrowAnEmptyRegistryNameExceptionWhenCarRegistryNameIsEmpty()

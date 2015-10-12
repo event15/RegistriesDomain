@@ -23,13 +23,14 @@
         "silex/silex": "v1.3.0",
         "dflydev/doctrine-orm-service-provider": "*",
         "symfony/yaml": "*",
-        "doctrine/collections": "*"
+        "doctrine/collections": "*",
+        "odino/phpunit-notifications": "1.0.0"
     },
     "config": {
         "bin-dir": "bin"
     },
     "autoload": {
-        "psr-0": {
+        "psr-4": {
             "": "src/"
         }
     }

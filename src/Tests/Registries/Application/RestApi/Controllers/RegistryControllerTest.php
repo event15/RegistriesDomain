@@ -6,7 +6,7 @@
  * Time: 14:13
  */
 
-namespace tests\Madkom\Registries\Application\RestApi\Controllers;
+namespace Tests\Madkom\Registries\Application\RestApi\Controllers;
 
 /**
  * @backupGlobals disabled
