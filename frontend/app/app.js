@@ -10,49 +10,50 @@
 
                 $urlRouterProvider.otherwise("/");
 
+                // TODO: modyfikuj wybrany rejestr i pozycję
                 $stateProvider
 
                     /**
-                     * Okno główne programu
-                     *   - Widok listy rejestrów
-                     *   - Widok listy pozycji w rejestrze
-                     *
                      *   url: host/#/
                      */
-                    .state("home", {
+                    .state("homeView", {
+
                         url: "/",
                         views: {
-                            "sidebar": {
-                                templateUrl: "app/registries/registryListView.html"
-                                //controller: "RegistryListController as vm"
+                            "sidebarView": {
+                                templateUrl: "app/sidebarView.html",
+                                controller: "RegistryListController as vm"
                             },
-                            "main": {
-                                templateUrl: "app/positions/positionListView.html"
-                                //controller: "PositionListController as vm"
+                            "contentView": {
+                                templateUrl: "app/contentView.html"
+                            }
+                        }
+                    })
+
+                    /**
+                     *   url: host/#/rejestry/dodaj
+                     */
+                    .state("homeView.registry", {
+                        url: "rejestry/",
+                        views:{
+                            "registryListView": {
+                                templateUrl: "app/registries/views/registryListView.html"
+                            },
+                            "addRegistryView": {
+                                templateUrl: "app/registries/views/registryAddView.html"
                             }
                         }
 
+
                     })
 
                     /**
-                     *   Wysuwany panel dodawania rejestru
-                     *
-                     *   url: host/#/rejestry/dodaj
+                     *   url: host/#/pozycje/dodaj
                      */
-                    .state("home.registry", {
-                        url: "rejestry/dodaj",
-                        templateUrl: "app/registries/registryEditView.html"
-                    })
-
-                    /**
-                     *   Wysuwany top dodawania pozycji w rejestrze.
-                     *   W przyszłości musi być więcej
-                     *
-                     *   url: host/#/rejestry/dodaj
-                     */
-                    .state("home.positions", {
+                    .state("homeView.positions", {
                         url: "pozycje/dodaj",
-                        templateUrl: "app/positions/positionListView.html"
+                        templateUrl: "app/positions/views/positionListView.html"
+
                     })
             }]
     );

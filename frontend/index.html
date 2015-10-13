@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="registriesFrontend">
 <head>
     <meta charset="UTF-8">
     <title>MADKOM S.A</title>
@@ -9,185 +9,13 @@
     <link rel="stylesheet" href="css/madkom.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 </head>
-<body ng-app="registriesFrontend">
-    <section class="left">
-        <!-- Show registries with list -->
-        <div>
-            <h1 class="hide">Strona główna</h1>
-
-            <!-- SHOW ALL REGISTRIES -->
-            <div class="show_registries" style="position: fixed;"></div>
-            <article class="show_registries">
-                <header>
-                    <button class="add register" ui-sref="home.registry"><i>+</i> DODAJ REJESTR</button>
-                </header>
-
-                <section ng-repeat="registry in vm.registries">
-                    <h2 class="hide">Lista rejestrów</h2>
-                    <ul class="list">
-                        <li class="{{ registry.selected }}" >
-                            <a href="../web/rejestry/{{ registry.id }}">{{ registry.name }}</a>
-                        </li>
-                    </ul>
-                </section>
-            </article>
-
-            <article class="add_registries hide">
-                <header>
-                    <h2 class="title">DODAWANIE REJESTRU</h2>
-                </header>
-                <section ui-view></section>
-            </article>
-        </div>
-
-        <!-- Panel to add new registry -->
-        <div>
-            <h2 class="hide">Dodaj pozycję w rejestrze</h2>
-            <form action="#">
-                <fieldset name="registry">
-                    <div>
-                        <input type="text" placeholder="Wpisz nazwę rejestru" name="name" id="name" />
-                    </div>
-
-                    <br />
-
-                    <div>
-                        <select id="type" name="type[]">
-                            <option value="volvo" selected="selected" disabled>Wybierz typ rejestru</option>
-                            <option ng-repeat="registry in vm.registries" value="{{ registry.type }}">{{
-                                registry.typeName }}</option>
-                        </select>
-                    </div>
-
-                </fieldset>
-                <button type="submit" class="add" ui-sref="home">ZAPISZ</button>
-            </form>
-        </div>
+<body ui-view="homeView">
+    <section class="left" ui-view="sidebarView">
+        <!-- left sidebar -->
     </section>
 
-    <section class="content">
-        <h2 class="hide">Main content</h2>
-        <article class="add_position">
-            <header>
-                <div class="push_down"></div>
-                <h2 class="pos_title">DODAWANIE POZYCJI</h2>
-            </header>
-
-            <div class="position_form">
-                <form action="#">
-                    <fieldset name="position">
-                        <div>
-                            <label>
-                                <span style="width: 155px; display: inline-block;">Marka:</span>
-                                <input type="text" placeholder="np. Fiat" name="name" id="name" data-placement="right" data-toggle="tooltip" title="Marka samochodu oznacza producenta."/>
-                            </label>
-                            <br>
-                            <label>
-                                <span style="width: 155px; display: inline-block;">Model:</span>
-                                <input type="text" placeholder="np. 126p" name="name" id="name" />
-                            </label>
-                            <br>
-                            <label>
-                                <span style="width: 155px; display: inline-block;">Numer rejestracyjny:</span>
-                                <input type="text" placeholder="np. GD 12345" name="name" id="name" />
-                            </label>
-                            <br>
-                        </div>
-                        <div>
-                            <label>
-                                <span style="width: 155px; display: inline-block;">Termin OC:</span>
-                                <input type="date"  name="name" id="name" />
-                            </label>
-                            <br>
-                            <label>
-                                <span style="width: 155px; display: inline-block;">Termin AC:</span>
-                                <input type="date"  name="name" id="name" />
-                            </label>
-                            <br>
-                            <label>
-                                <span style="width: 155px; display: inline-block;">Termin przeglądu:</span>
-                                <input type="date"  name="name" id="name" />
-                            </label>
-                            <br>
-                        </div>
-                        <br>
-                        <div>
-                            <label for="title">
-                                <span style="width: 155px; display: inline-block;">Opis samochodu:</span>
-                                <textarea rows="5" id="title" name="title"></textarea>
-                            </label>
-                            <br>
-
-                        </div>
-
-                    </fieldset>
-                    <div class="upload">
-                        <input type="file" name="name" id="name"/>
-                        <button class="position right">ZAPISZ</button>
-                    </div>
-                </form>
-            </div>
-        </article>
-
-        <header class="buttons">
-            <a ui-sref="home.positions" class="btn addpos"><i class="fa fa-plus"></i>Dodaj pozycję</a>
-            <!--<a href="#" class="btn removepos"><i class="fa fa-trash-o"></i>Usuń zaznaczone</a>-->
-        </header>
-
-        <div>
-            <main>
-                <table class="table table-responsive table-hover">
-                    <colgroup>
-                        <col style="width:1%">
-                        <col style="width:1%">
-                        <col style="width:3%">
-                        <col style="width:3%">
-                        <col style="width:10%">
-                        <col style="width:28%">
-                        <col style="width:10%">
-                        <col style="width:10%">
-                        <col style="width:10%">
-                        <col style="width:10%">
-                        <col style="width:16%">
-                    </colgroup>
-                    <thead>
-                    <tr style="font-weight: bold;">
-                        <th><input type="checkbox"></th>
-                        <th>ID</th>
-                        <th contenteditable="false">Marka</th>
-                        <th>Model</th>
-                        <th>Numer rejestracyjny</th>
-                        <th>Opis</th>
-                        <th>Ubezpieczyciel</th>
-                        <th>Termin OC</th>
-                        <th>Termin AC</th>
-                        <th>Termin ASS</th>
-                        <th>Termin przeglądu</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr ng-repeat="position in vm.positions">
-                        <td width="20px"><input type="checkbox" id="{{ position.id }}"></td>
-                        <td>{{ position.id }}</td>
-                        <td contenteditable="false" >{{ position.brand }}</td>
-                        <td contenteditable="false">{{ position.model }}</td>
-                        <td contenteditable="false">{{ position.registrationNumber }}</td>
-                        <td contenteditable="false">{{ position.others }}</td>
-                        <td contenteditable="false">{{ position.insurer }}</td>
-                        <td contenteditable="false">{{ position.terms['OC'] }}</td>
-                        <td contenteditable="false">{{ position.terms['AC'] }}</td>
-                        <td contenteditable="false">{{ position.terms['ASS'] }}</td>
-                        <td contenteditable="false">{{ position.terms['Review'] }}</td>
-                    </tr>
-                    <tr class="hide">
-                        <td colspan="11" class="down">
-                            <div class="check"><a href="#" class="check"><i class="fa fa-check"></i></a></div>
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
-            </main>
-        </div>
+    <section class="content" ui-view="contentView">
+        <!-- main content of page -->
     </section>
 
 
