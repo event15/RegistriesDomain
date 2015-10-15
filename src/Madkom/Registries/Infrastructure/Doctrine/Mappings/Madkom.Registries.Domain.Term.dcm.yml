@@ -15,6 +15,9 @@ Madkom\Registries\Domain\Term:
     whoToNotify:
       targetEntity: Madkom\Registries\Domain\Department\Department
       inversedBy: terms
+      joinColumn:
+        name: department_id
+        referencedColumnName: department_id
 
   id:
     id:
