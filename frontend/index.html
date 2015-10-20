@@ -8,79 +8,83 @@
     <link rel="stylesheet" href="css/imports/bootstrap.css">
     <link rel="stylesheet" href="css/madkom.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="bower_components/ng-table/dist/ng-table.css">
+    <link rel="stylesheet" href="bower_components/angular-ui-grid/ui-grid.css">
 </head>
 <body ui-view="homeView">
-    <section class="left" ui-view="sidebarView">
-        <!-- left sidebar -->
-    </section>
-
-    <section class="content" ui-view="contentView">
-        <!-- main content of page -->
-    </section>
 
 
+<section class="left" ui-view="sidebarView">
+    <!-- left sidebar -->
+</section>
 
-    <!-- Library Scripts -->
-    <script src="js/jquery.js"></script>
-    <script src="js/angular.js"></script>
-    <script src="js/angular-resource.js"></script>
-    <script src="js/angular-mocks.js"></script>
-    <script src="js/angular-ui-router.js"></script>
-    <script src="js/bootstrap.js"></script>
-    <script src="js/ui-utils.js"></script>
-    <script src="js/ui-bootstrap-tpls-0.11.0.js"></script>
-    <script src="js/d3.js"></script>
-    <script src="js/angular-charts.min.js"></script>
-    <script src="bower_components/ng-table/dist/ng-table.js"></script>
-
-    <!-- Application script -->
-    <script src="app/app.js"></script>
-
-    <!-- Services -->
-    <script src="common/services/common.services.js"></script>
-
-    <script src="common/services/positionResource.js"></script>
-    <script src="common/services/registryResource.js"></script>
-
-    <script src="common/services/positionResourceMock.js"></script>
-    <script src="common/services/registryResourceMock.js"></script>
-
-    <!-- Controllers -->
-    <script src="app/registries/registryListCtrl.js"></script>
-    <script src="app/positions/controllers/positionListCtrl.js"></script>
+<section class="content" ui-view="contentView">
+    <!-- main content of page -->
+</section>
 
 
-    <script>
-        $(document).on("click", ".add", function() {
-            if( $(".add_registries").hasClass( "hide")) {
-                $(".add_registries").removeClass("hide").addClass("show");
-                $(".add.register").css("background-color", "#C45B1A");
-            } else {
-                $(".add_registries").removeClass("show").addClass("hide");
-                $(".add.register").css("background-color", "#f16c1e");
-            }
-        }).on("click", ".addpos", function() {
-            $(".add_position").toggle(120, function(){
-                $(".add_position").css("display: none");
-            })
-        }).on("dblclick", "td", function() {
+<!-- Library Scripts -->
+<script src="js/jquery.js"></script>
+<script src="js/angular.js"></script>
+<script src="js/angular-resource.js"></script>
+<script src="js/angular-mocks.js"></script>
+<script src="js/angular-ui-router.js"></script>
+<script src="js/bootstrap.js"></script>
+<script src="js/ui-utils.js"></script>
+<script src="js/ui-bootstrap-tpls-0.11.0.js"></script>
+<script src="js/d3.js"></script>
+<script src="js/angular-charts.min.js"></script>
+<script src="bower_components/ng-table/dist/ng-table.js"></script>
+<script src="bower_components/angular-ui-grid/ui-grid.js"></script>
 
-            var val = $(this);
-            if (val.attr("contentEditable") == "true") {
-                val.attr('contentEditable', false);
-            } else {
-                val.attr('contentEditable', true);
-                val.focus();
+<!-- Application script -->
+<script src="app/app.js"></script>
 
-            }
-            $("#1").toggleClass("hide", 1, "easeOutSine");
+<!-- Services -->
+<script src="common/services/common.services.js"></script>
 
-        });
+<script src="common/services/positionResource.js"></script>
+<script src="common/services/registryResource.js"></script>
 
-        $(function () {
-            $('[data-toggle="tooltip"]').tooltip()
+<script src="common/services/positionResourceMock.js"></script>
+<script src="common/services/registryResourceMock.js"></script>
+
+<!-- Controllers -->
+<script src="app/registries/registryListCtrl.js"></script>
+<script src="app/positions/controllers/positionListCtrl.js"></script>
+
+
+<script>
+    $(document).on("click", ".add", function () {
+        if ($(".add_registries").hasClass("hide")) {
+            $(".add_registries").removeClass("hide").addClass("show");
+            $(".add.register").css("background-color", "#C45B1A");
+        } else {
+            $(".add_registries").removeClass("show").addClass("hide");
+            $(".add.register").css("background-color", "#f16c1e");
+        }
+    }).on("click", ".addpos", function () {
+        $(".add_position").toggle(120, function () {
+            $(".add_position").css("display: none");
         })
-    </script>
+    }).on("dblclick", "td", function () {
+
+        var val = $(this);
+        if (val.attr("contentEditable") == "true") {
+            val.attr('contentEditable', false);
+        } else {
+            val.attr('contentEditable', true);
+            val.focus();
+
+        }
+        $("#1").toggleClass("hide", 1, "easeOutSine");
+
+    });
+
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+    })
+
+
+</script>
 </body>
 </html>

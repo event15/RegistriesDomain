@@ -6,8 +6,8 @@
 namespace Madkom\Registries\Domain;
 
 use Madkom\Registries\Domain\Car\Term\AC;
-use Madkom\Registries\Domain\Car\Term\OC;
 use Madkom\Registries\Domain\Car\Term\ASS;
+use Madkom\Registries\Domain\Car\Term\OC;
 use Madkom\Registries\Domain\Car\Term\Review;
 
 /**
@@ -46,7 +46,7 @@ class TermFactory
                 break;
 
             default:
-                throw new UnknownTermTypeException('Unknown term type: '. $type);
+                throw new UnknownTermTypeException('Unknown term type: ' . $type);
                 break;
         }
 

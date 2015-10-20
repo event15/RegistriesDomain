@@ -21,7 +21,8 @@ class Modify extends ControllerHelper
         $currentRegistry = $this->findAndCheckRegistry($app, $id);
 
         $currentRegistry->changeName($request->get('name'));
-        $this->loadRegistryRepository($app)->save($currentRegistry);
+        $this->loadRegistryRepository($app)
+             ->save($currentRegistry);
 
         return new Response('OK', 200);
     }

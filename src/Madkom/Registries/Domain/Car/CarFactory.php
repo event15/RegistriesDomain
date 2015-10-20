@@ -8,13 +8,14 @@ use Madkom\Registries\Domain\PositionTypeNotAllowedException;
 
 /**
  * Class CarFactory
+ *
  * @package Madkom\Registries\Domain\Car
  */
 class CarFactory implements PositionCreateStrategy
 {
-
     /**
      * @param PositionDto $positionDto
+     *
      * @return Car
      * @throws PositionTypeNotAllowedException
      */

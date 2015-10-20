@@ -30,19 +30,22 @@ class TermSpec extends ObjectBehavior
         $this->termDto     = new \Madkom\Registries\Domain\TermDto();
     }
 
-    private function prepareTerm()
-    {
-        $this->termDto->expiryDate    = new \DateTime();
-        $this->termDto->notifyBefore  = new \DateTime();
-        $this->termDto->notifyBefore->sub(new \DateInterval('P14D'));
-
-        $this->termDto->whoToNotify   = new \Madkom\Registries\Domain\Department\DepartmentCollection();
-        $this->termDto->whoToNotify->add(new \Madkom\Registries\Domain\Department\Department('Dział handlowy', 'diler@madkom.pl'));
-    }
-
     public function it_is_initializable()
     {
         $this->prepareTerm();
         $this->term = $this->termFactory->create(AC::TYPE, $this->termDto);
+    }
+
+    private function prepareTerm()
+    {
+        $this->termDto->expiryDate   = new \DateTime();
+        $this->termDto->notifyBefore = new \DateTime();
+        $this->termDto->notifyBefore->sub(new \DateInterval('P14D'));
+
+        $this->termDto->whoToNotify = new \Madkom\Registries\Domain\Department\DepartmentCollection();
+        $this->termDto->whoToNotify->add(new \Madkom\Registries\Domain\Department\Department('Dział handlowy',
+                                                                                             'diler@madkom.pl'
+                                         )
+        );
     }
 }

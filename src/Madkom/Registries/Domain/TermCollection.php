@@ -4,6 +4,7 @@ namespace Madkom\Registries\Domain;
 
 /**
  * Interface TermCollection
+ *
  * @package Madkom\Registries\Domain\Term
  */
 interface TermCollection
@@ -11,6 +12,7 @@ interface TermCollection
 
     /**
      * @param Term $term
+     *
      * @throws TermNotAllowedException
      * @return mixed
      */
@@ -18,8 +20,8 @@ interface TermCollection
 
     /**
      * @param Term $term
+     *
      * @return mixed
      */
     public function remove($term);
-
 }

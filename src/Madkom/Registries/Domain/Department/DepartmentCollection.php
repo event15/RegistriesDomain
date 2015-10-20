@@ -6,6 +6,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Class DepartmentCollection
+ *
  * @package Madkom\Registries\Domain\Department
  */
 class DepartmentCollection extends ArrayCollection

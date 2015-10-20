@@ -6,6 +6,7 @@ use Madkom\Registries\Domain\Registry;
 
 /**
  * Class CarRegistry
+ *
  * @package Madkom\Registries\Domain\Car
  */
 class CarRegistry extends Registry
@@ -27,9 +28,8 @@ class CarRegistry extends Registry
     public function registryToArray()
     {
         $position = $this->showPositions();
-        $x = [];
-        foreach($position as $p)
-        {
+        $x        = [];
+        foreach ($position as $p) {
             $x[] = [
                 'model' => $p->getModel()
             ];

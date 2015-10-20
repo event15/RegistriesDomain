@@ -43,6 +43,17 @@ abstract class Registry
         }
     }
 
+    private function registryHasName($name)
+    {
+        $name = trim($name);
+
+        if ($name === null || $name === '') {
+            throw new EmptyRegistryNameException('Registry name must have a value.');
+        }
+
+        return true;
+    }
+
     /**
      * @param $name
      */
@@ -51,24 +62,14 @@ abstract class Registry
         $this->name = $name;
     }
 
-    public function showPositions()
-    {
-        return $this->positions;
-    }
-
-    private function registryHasName($name)
-    {
-        $name = trim($name);
-
-        if ($name === null || $name === '') {
-            throw new EmptyRegistryNameException('Registry name must have a value.');
-        }
-        return true;
-    }
-
     private function setCreateTime()
     {
         $this->createdAt = new \DateTime('now');
+    }
+
+    public function showPositions()
+    {
+        return $this->positions;
     }
 
     public function getName()
@@ -85,15 +86,16 @@ abstract class Registry
 
     /**
      * @param Position $position
+     *
      * @throws PositionNotFoundException
      */
     public function removePosition(Position $position)
     {
         $this->positions->removePosition($position);
     }
+
     abstract public function registryToArray();
 
     abstract public function getRegistryType();
-
 
 }

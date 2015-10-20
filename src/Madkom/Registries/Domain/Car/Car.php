@@ -11,10 +11,10 @@ namespace Madkom\Registries\Domain\Car;
 use Madkom\Registries\Domain\Car\Term\CarTermCollection;
 use Madkom\Registries\Domain\Position;
 use Madkom\Registries\Domain\Term;
-use Madkom\Registries\Domain\TermCollection;
 
 /**
  * Class Car
+ *
  * @package Madkom\Registries\Domain\Car
  */
 class Car extends Position

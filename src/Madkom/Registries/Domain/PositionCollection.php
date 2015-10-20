@@ -7,10 +7,12 @@
  */
 
 namespace Madkom\Registries\Domain;
+
 use Doctrine\Common\Collections\Collection;
 
 /**
  * Class PositionCollection
+ *
  * @package Madkom\Registries\Domain
  */
 interface PositionCollection extends Collection

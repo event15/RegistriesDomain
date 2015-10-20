@@ -6,6 +6,7 @@ use Madkom\Registries\Domain\PositionDto;
 
 /**
  * Class CarDto
+ *
  * @package Madkom\Registries\Domain\Car
  */
 class CarDto extends PositionDto

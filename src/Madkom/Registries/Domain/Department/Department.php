@@ -4,6 +4,7 @@ namespace Madkom\Registries\Domain\Department;
 
 /**
  * Class Department
+ *
  * @package Madkom\Registries\Domain\Department
  */
 class Department
@@ -31,7 +32,7 @@ class Department
      */
     public function __construct($name, $email)
     {
-        $this->name = $name;
+        $this->name  = $name;
         $this->email = $email;
     }
 
@@ -58,6 +59,4 @@ class Department
     {
         return $this->terms;
     }
-
-
 }

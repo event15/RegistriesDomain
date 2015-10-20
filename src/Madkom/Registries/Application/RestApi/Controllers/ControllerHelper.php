@@ -16,7 +16,8 @@ class ControllerHelper
 {
     public function findAndCheckRegistry(Application $app, $registryId)
     {
-        $foundRegistry = $this->loadRegistryRepository($app)->find($registryId);
+        $foundRegistry = $this->loadRegistryRepository($app)
+                              ->find($registryId);
 
         if ($foundRegistry === null) {
             throw new EmptyRegistryException('Wybrany rejestr jest pusty bądź nie istnieje.');
@@ -33,12 +34,12 @@ class ControllerHelper
     public function carToArray(Car $car)
     {
         return [
-            'id' => $car->getId(),
-            'brand' => $car->getBrand(),
-            'model' => $car->getModel(),
+            'id'                 => $car->getId(),
+            'brand'              => $car->getBrand(),
+            'model'              => $car->getModel(),
             'registrationNumber' => $car->getRegistrationNumber(),
-            'others' => $car->getOthers(),
-            'terms' => $car->getTerms()
+            'others'             => $car->getOthers(),
+            'terms'              => $car->getTerms()
         ];
     }
 

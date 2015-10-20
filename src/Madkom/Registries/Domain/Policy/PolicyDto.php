@@ -8,7 +8,6 @@
 
 namespace Madkom\Registries\Domain\Policy;
 
-
 use Madkom\Registries\Domain\PositionDto;
 
 class PolicyDto extends PositionDto

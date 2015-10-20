@@ -25,22 +25,24 @@ class PositionRepositoryImpl implements PositionRepository
 
     public function prepareToSave($registry)
     {
-            $this->em->persist($registry);
+        $this->em->persist($registry);
     }
 
     public function save($registry)
     {
-            $this->em->flush();
+        $this->em->flush();
     }
 
     public function find($model, $id)
     {
-        return $this->em->getRepository($model)->find($id);
+        return $this->em->getRepository($model)
+                        ->find($id);
     }
 
     public function findAll($model, $id)
     {
-        return $this->em->getRepository($model)->findBy(['registryId' => $id]);
+        return $this->em->getRepository($model)
+                        ->findBy(['registryId' => $id]);
     }
 
     public function deleteOne($element)

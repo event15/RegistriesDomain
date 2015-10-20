@@ -22,9 +22,10 @@ class PositionFactorySpec extends ObjectBehavior
 
     public function it_should_return_Car_type_when_PositionDto_is_a_CarDto(
         PositionCreateStrategy $positionCreateStrategy,
-        CarDto                 $positionDto,
-        Car                    $car
+        CarDto $positionDto,
+        Car $car
     ) {
-        $positionCreateStrategy->create($positionDto)->willReturn($car);
+        $positionCreateStrategy->create($positionDto)
+                               ->willReturn($car);
     }
 }

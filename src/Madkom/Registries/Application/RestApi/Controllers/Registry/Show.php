@@ -24,11 +24,12 @@ class Show extends ControllerHelper
     public function allRegistries(Application $app)
     {
         /** @var $currentRegistry */
-        $currentRegistry = $this->loadRegistryRepository($app)->findAll();
-        $allRegistries = [];
+        $currentRegistry = $this->loadRegistryRepository($app)
+                                ->findAll();
+        $allRegistries   = [];
 
         /**
-         * @var  $i
+         * @var                                    $i
          * @var \Madkom\Registries\Domain\Registry $registryPosition
          */
         foreach ($currentRegistry as $i => $registryPosition) {

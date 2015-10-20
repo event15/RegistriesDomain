@@ -11,7 +11,9 @@ class CarTermCollection extends ArrayCollection implements TermCollection
 {
     /**
      * @return void
+     *
      * @param Term $term
+     *
      * @throws TermNotAllowedException
      */
     public function add($term)
@@ -25,11 +27,11 @@ class CarTermCollection extends ArrayCollection implements TermCollection
 
     /**
      * @param Term $term
+     *
      * @return mixed
      */
     public function remove($term)
     {
         parent::remove($term);
     }
-
 }

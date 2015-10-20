@@ -70,38 +70,11 @@
     <main ui-view="list">
 
 
-        <table class="table table-responsive table-hover">
-            <colgroup>
-                <col style="width:1%">
-                <col style="width:1%">
-                <col style="width:3%">
-                <col style="width:3%">
-                <col style="width:10%">
-                <col style="width:28%">
-                <col style="width:10%">
-                <col style="width:10%">
-                <col style="width:10%">
-                <col style="width:10%">
-                <col style="width:16%">
-            </colgroup>
-            <thead>
-            <tr style="font-weight: bold;">
-                <th><input type="checkbox"></th>
-                <th>ID</th>
-                <th contenteditable="false">Marka</th>
-                <th>Model</th>
-                <th>Numer rejestracyjny</th>
-                <th>Opis</th>
-                <th>Ubezpieczyciel</th>
-                <th>Termin OC</th>
-                <th>Termin AC</th>
-                <th>Termin ASS</th>
-                <th>Termin przeglądu</th>
-            </tr>
-            </thead>
-            <tbody ui-view>
+        <div ng-controller="MainCtrl">
+            <div id="grid1" ui-grid="{ data: myData }" class="grid"></div>
+        </div>
 
-            </tbody>
-        </table>
+
+
     </main>
 </div>

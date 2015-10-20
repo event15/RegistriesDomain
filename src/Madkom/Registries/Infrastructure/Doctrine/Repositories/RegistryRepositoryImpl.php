@@ -16,9 +16,9 @@ use Madkom\Registries\Domain\RegistryRepository;
 
 class RegistryRepositoryImpl implements RegistryRepository
 {
+    const MODEL = 'Madkom\Registries\Domain\Registry';
     /** @var \Doctrine\ORM\EntityManager $em */
     private $em;
-    const MODEL = 'Madkom\Registries\Domain\Registry';
 
     /**
      * @param \Doctrine\ORM\EntityManager $entityManager
@@ -57,11 +57,13 @@ class RegistryRepositoryImpl implements RegistryRepository
      */
     public function find($registryId)
     {
-        return $this->em->getRepository(self::MODEL)->find($registryId);
+        return $this->em->getRepository(self::MODEL)
+                        ->find($registryId);
     }
 
     public function findAll()
     {
-        return $this->em->getRepository(self::MODEL)->findAll();
+        return $this->em->getRepository(self::MODEL)
+                        ->findAll();
     }
 }

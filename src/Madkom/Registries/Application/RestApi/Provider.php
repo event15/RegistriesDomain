@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: event15
- * Date: 31.07.15
- * Time: 22:25
- */
 
 namespace Madkom\Registries\Application\RestApi;
 
@@ -32,20 +26,28 @@ class Provider implements ControllerProviderInterface
         /** @var ControllerCollection $controller */
         $controller = $app['controllers_factory'];
 
-        $controller->post  ('', self::REGISTRY . 'Create::newRegistry');
-        $controller->get   ('', self::REGISTRY . 'Show::allRegistries');
+        $controller->post('', self::REGISTRY . 'Create::newRegistry');
+        $controller->get('', self::REGISTRY . 'Show::allRegistries');
 
-        $controller->put   ('/{id}', self::REGISTRY . 'Modify::oneById');
-        $controller->get   ('/{id}', self::REGISTRY . 'Show::oneById');
-        $controller->delete('/{id}', self::REGISTRY . 'Remove::oneById');
+        $this->selectedRegistry($controller);
 
-        $controller->post  ('/{id}/pozycje', self::CONTROLLERS . 'Create::newPosition');
-        $controller->get   ('/{id}/pozycje', self::CONTROLLERS . 'Show::allPositions');
+        $controller->post('/{id}/pozycje', self::CONTROLLERS . 'Create::newPosition');
+        $controller->get('/{id}/pozycje', self::CONTROLLERS . 'Show::allPositions');
 
-        $controller->get   ('/{id}/pozycje/{positionId}', self::CONTROLLERS . 'Show::positionById');
-        $controller->put   ('/{id}/pozycje/{positionId}', self::CONTROLLERS . 'Modify::positionById');
+        $controller->get('/{id}/pozycje/{positionId}', self::CONTROLLERS . 'Show::positionById');
+        $controller->put('/{id}/pozycje/{positionId}', self::CONTROLLERS . 'Modify::positionById');
         $controller->delete('/{id}/pozycje/{positionId}', self::CONTROLLERS . 'Remove::positionById');
 
         return $controller;
+    }
+
+    /**
+     * @param $controller
+     */
+    private function selectedRegistry($controller)
+    {
+        $controller->put('/{id}', self::REGISTRY . 'Modify::oneById');
+        $controller->get('/{id}', self::REGISTRY . 'Show::oneById');
+        $controller->delete('/{id}', self::REGISTRY . 'Remove::oneById');
     }
 }

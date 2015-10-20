@@ -6,6 +6,7 @@ use Madkom\Registries\Domain\Term;
 
 /**
  * Class Review
+ *
  * @package Madkom\Registries\Domain\Car\Term
  */
 class Review extends Term

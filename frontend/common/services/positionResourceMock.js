@@ -22,7 +22,7 @@
                         position = positions[i];
                         break;
                     }
-                };
+                }
             }
 
             return [200, position, {}];

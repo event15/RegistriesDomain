@@ -2,7 +2,7 @@
     "use strict";
 
     var app = angular
-                .module("registriesFrontend", ["common.services", "ui.router"]);
+        .module("registriesFrontend", ["common.services", "ui.router", "ui.grid"]);
 
     app.config(
         ["$stateProvider", "$urlRouterProvider",
@@ -41,8 +41,31 @@
                     .state("homeView.positions", {
                         url: "pozycje/dodaj",
                         templateUrl: "app/positions/views/positionListView.html"
-
                     })
             }]
     );
+
+    app.controller('MainCtrl', ['$scope', function ($scope) {
+
+        $scope.myData = [
+            {
+                "firstName": "Cox",
+                "lastName": "Carney",
+                "company": "Enormo",
+                "employed": true
+            },
+            {
+                "firstName": "Lorraine",
+                "lastName": "Wise",
+                "company": "Comveyer",
+                "employed": false
+            },
+            {
+                "firstName": "Nancy",
+                "lastName": "Waters",
+                "company": "Fuelton",
+                "employed": false
+            }
+        ];
+    }]);
 }());

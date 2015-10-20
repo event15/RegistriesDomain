@@ -8,7 +8,6 @@
 
 namespace Madkom\Registries\Domain;
 
-
 class EmptyRegistryNameException extends \Exception
 {
 }

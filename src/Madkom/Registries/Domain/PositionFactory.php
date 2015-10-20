@@ -4,6 +4,7 @@ namespace Madkom\Registries\Domain;
 
 /**
  * Class PositionFactory
+ *
  * @package Madkom\Registries\Domain
  */
 class PositionFactory
@@ -24,6 +25,7 @@ class PositionFactory
 
     /**
      * @param PositionDto $positionDto
+     *
      * @throws PositionTypeNotAllowedException
      * @return Position
      */

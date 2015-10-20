@@ -7,6 +7,7 @@ use Madkom\Registries\Domain\Department\DepartmentCollection;
 
 /**
  * Class Term
+ *
  * @package Madkom\Registries\Domain\Term
  */
 abstract class Term
@@ -36,7 +37,7 @@ abstract class Term
 
     public function __construct()
     {
-        $this->cars = new CarCollection();
+        $this->cars        = new CarCollection();
         $this->whoToNotify = new DepartmentCollection();
     }
 

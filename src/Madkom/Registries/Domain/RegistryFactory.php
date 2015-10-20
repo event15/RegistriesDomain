@@ -6,6 +6,7 @@ use Madkom\Registries\Domain\Car\CarRegistry;
 
 /**
  * Class RegistryFactory
+ *
  * @package Madkom\Registries\Domain
  */
 class RegistryFactory
@@ -17,6 +18,7 @@ class RegistryFactory
      * @return CarRegistry
      * @throws EmptyRegistryTypeException
      * @throws UnknownRegistryTypeException
+     * @throws \Madkom\Registries\Domain\EmptyRegistryNameException
      */
     public function create($type, $name)
     {

@@ -25,7 +25,8 @@ class Create extends ControllerHelper
     {
         $this->getRequestValues(['name', 'type'], $request);
         $this->prepareRegistry();
-        $this->loadRegistryRepository($app)->save($this->registry);
+        $this->loadRegistryRepository($app)
+             ->save($this->registry);
 
         return new Response('OK', 201);
     }
