@@ -24,8 +24,7 @@ $app->register(new DoctrineServiceProvider(),
 );
 
 $app->register(new DoctrineOrmServiceProvider(),
-               [
-                   'orm.em.options' => [
+               ['orm.em.options' => [
                        'mappings' => [
                            [
                                'type'      => 'yml',

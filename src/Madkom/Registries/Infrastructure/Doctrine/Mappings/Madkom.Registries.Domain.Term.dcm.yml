@@ -13,7 +13,7 @@ Madkom\Registries\Domain\Term:
 
   manyToOne:
     whoToNotify:
-      targetEntity: Madkom\Registries\Domain\Department\Department
+      targetEntity: Madkom\Registries\Domain\Department\DepartmentCollection
       inversedBy: terms
       joinColumn:
         name: department_id
