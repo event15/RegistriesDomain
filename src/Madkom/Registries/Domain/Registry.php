@@ -95,6 +95,7 @@ abstract class Registry
     }
 
     abstract public function registryToArray();
+    abstract public function getRegistriesNamesToArray();
 
     abstract public function getRegistryType();
 

@@ -42,7 +42,7 @@ class CarRegistryTest extends \PHPUnit_Framework_TestCase
 
         static::assertInternalType('array', $object);
         static::assertEquals(4, count($object));
-        static::assertArrayHasKey('id', object);
+        static::assertArrayHasKey('id', $object);
         static::assertArrayHasKey('name', $object);
         static::assertArrayHasKey('createdAt', $object);
         static::assertArrayHasKey('positions', $object);

@@ -123,9 +123,9 @@ class Car extends Position
     /**
      * @return int
      */
-    public function setRegistryId($id)
+    public function setRegistryId($registryId)
     {
-        $this->registryId = $id;
+        $this->registryId = $registryId;
     }
 
     /**

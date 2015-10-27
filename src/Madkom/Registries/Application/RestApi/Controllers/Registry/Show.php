@@ -33,7 +33,7 @@ class Show extends ControllerHelper
          * @var \Madkom\Registries\Domain\Registry $registryPosition
          */
         foreach ($currentRegistry as $registryPosition) {
-            $allRegistries[] = $registryPosition->registryToArray();
+            $allRegistries[] = $registryPosition->getRegistriesNamesToArray();
         }
 
         return $app->json($allRegistries, 200);
