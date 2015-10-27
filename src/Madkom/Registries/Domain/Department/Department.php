@@ -10,7 +10,7 @@ namespace Madkom\Registries\Domain\Department;
 class Department
 {
     /** @var  integer */
-    protected $id;
+    protected $department_id;
 
     /**
      * @var string

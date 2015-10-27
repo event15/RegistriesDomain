@@ -1,17 +1,14 @@
 Madkom\Registries\Domain\Department\Department:
   type: entity
 
-
-  oneToMany:
+  manyToMany:
     terms:
       targetEntity: Madkom\Registries\Domain\Term
       mappedBy: whoToNotify
-      cascade: ['persist', 'all']
 
   id:
-    id:
+    department_id:
       type: integer
-      column: department_id
       generator:
         strategy: AUTO
 

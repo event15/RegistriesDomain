@@ -32,7 +32,7 @@ class Show extends ControllerHelper
          * @var                                    $i
          * @var \Madkom\Registries\Domain\Registry $registryPosition
          */
-        foreach ($currentRegistry as $i => $registryPosition) {
+        foreach ($currentRegistry as $registryPosition) {
             $allRegistries[] = $registryPosition->registryToArray();
         }
 

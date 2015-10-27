@@ -8,6 +8,7 @@
 
 namespace Madkom\Registries\Application\RestApi\Controllers\Position;
 
+use Doctrine\ORM\EntityManager;
 use Madkom\Registries\Application\RestApi\Controllers\ControllerHelper;
 use Madkom\Registries\Domain\Car\CarDto;
 use Madkom\Registries\Domain\Car\CarFactory;
@@ -18,6 +19,7 @@ use Madkom\Registries\Domain\Car\Term\Review;
 use Madkom\Registries\Domain\Department\Department;
 use Madkom\Registries\Domain\Department\DepartmentCollection;
 use Madkom\Registries\Domain\EmptyRegistryException;
+use Madkom\Registries\Domain\Position;
 use Madkom\Registries\Domain\PositionFactory;
 use Madkom\Registries\Domain\Registry;
 use Madkom\Registries\Domain\TermDto;
@@ -42,10 +44,12 @@ class Create
     /** @var  CarDto Składowe DTO pozycji */
     private $positionDto;
 
+    private $termDto;
+
     /** @var  Registry Aktualnie wybrany rejestr */
     private $currentRegistry;
 
-    /** @var  mixed Utworzona pozycja */
+    /** @var  Position pozycja */
     private $position;
 
     /** @var  TermFactory Klasa fabryki dla terminów */
@@ -57,6 +61,11 @@ class Create
     /** @var  mixed Typ rejestru */
     private $type;
 
+    /**
+     * @var EntityManager
+     */
+    private $em;
+
     public function __construct()
     {
         $this->helper = new ControllerHelper();
@@ -65,21 +74,17 @@ class Create
 
     public function newPosition(Application $app, Request $request, $id)
     {
+        $this->em = $app['orm.em'];
         $this->currentRegistry = $this->helper->findAndCheckRegistry($app, $id);
 
         $this->createPositionFactory($this->currentRegistry);
-        $this->getRequests($request);
+        $this->getPositionDto($request);
         $this->positionDto->registryId = $this->currentRegistry;
         $this->position = $this->positionFactory->create($this->positionDto);
-
-        $this->newTerm(AC::TYPE, $request->get('expiryDate'), $request->get('notify'));
-        $this->newTerm(OC::TYPE, $request->get('expiryDate'), $request->get('notify'));
-        $this->newTerm(Review::TYPE, $request->get('expiryDate'), $request->get('notify'));
+        $this->addTermsToPostion($request);
 
         $this->currentRegistry->addPosition($this->position);
 
-
-//        $app['repositories.position']->prepareToSave($this->position);
         $app['repositories.registry']->save($this->currentRegistry);
 
 
@@ -112,7 +117,7 @@ class Create
     /**
      * @param Request $request
      */
-    private function getRequests(Request $request)
+    private function getPositionDto(Request $request)
     {
         switch ($this->type) {
             case CarRegistry::TYPE_NAME:
@@ -124,25 +129,31 @@ class Create
         }
     }
 
-    /**
-     * @param $term
-     * @param $expirationDate
-     * @param $notifyDaysInAdvance
-     *
-     * @throws \Madkom\Registries\Domain\UnknownTermTypeException
-     */
-    private function newTerm($term, $expirationDate, $notifyDaysInAdvance)
+    private function addTermsToPostion(Request $request)
+    {
+        foreach($request->get('terms') as $term)
+        {
+            $this->position->addTerm($this->newTerm($term['type'], $term['date'], $term['departments']));
+        }
+    }
+
+    private function newTerm($term, $expirationDate, $departmentId)
     {
         $registryPositionDto = new TermDto();
 
         $registryPositionDto->expiryDate   = new \DateTime($expirationDate);
         $registryPositionDto->notifyBefore = new \DateTime($expirationDate);
-        $registryPositionDto->notifyBefore->sub(new \DateInterval('P' . $notifyDaysInAdvance . 'D'));
-
-        $registryPositionDto->whoToNotify  = new DepartmentCollection();
-        $registryPositionDto->whoToNotify->add(new Department('dział handlowy', 'nie@podam.pl'));
+        $registryPositionDto->notifyBefore->sub(new \DateInterval('P14D'));
+        $registryPositionDto->whoToNotify = new DepartmentCollection();
+        foreach($departmentId as $id)
+        {
+            $registryPositionDto->whoToNotify->add($this->em->find('\Madkom\Registries\Domain\Department\Department', $id));
+        }
 
         $createdTerm = $this->termFactory->create($term, $registryPositionDto);
-        $this->position->addTerm($createdTerm);
+
+        $this->em->persist($createdTerm);
+
+        return $createdTerm;
     }
 }

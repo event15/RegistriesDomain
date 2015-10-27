@@ -51,3 +51,5 @@ class Provider implements ControllerProviderInterface
         $controller->delete('/{id}', self::REGISTRY . 'Remove::oneById');
     }
 }
+
+

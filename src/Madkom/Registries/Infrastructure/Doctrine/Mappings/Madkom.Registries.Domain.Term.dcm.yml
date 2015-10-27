@@ -11,13 +11,19 @@ Madkom\Registries\Domain\Term:
       targetEntity: Madkom\Registries\Domain\Car\Car
       mappedBy: terms
 
-  manyToOne:
     whoToNotify:
-      targetEntity: Madkom\Registries\Domain\Department\DepartmentCollection
+      targetEntity: Madkom\Registries\Domain\Department\Department
+      cascade: ["persist"]
       inversedBy: terms
-      joinColumn:
-        name: department_id
-        referencedColumnName: department_id
+      joinTable:
+        name: DepartmentTerms
+        joinColumns:
+          term_term_id:
+            referencedColumnName: term_id
+        inverseJoinColumns:
+          department_department_id:
+            referencedColumnName: department_id
+
 
   id:
     id:

@@ -8,6 +8,7 @@
 
 namespace Madkom\Registries\Application\RestApi\Controllers;
 
+use Doctrine\ORM\EntityManager;
 use Madkom\Registries\Domain\Car\Car;
 use Madkom\Registries\Domain\EmptyRegistryException;
 use Silex\Application;
