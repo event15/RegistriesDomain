@@ -67,7 +67,7 @@ abstract class Registry
         $this->createdAt = new \DateTime('now');
     }
 
-    public function showPositions()
+    public function getPositions()
     {
         return $this->positions;
     }

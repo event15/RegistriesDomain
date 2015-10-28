@@ -13,10 +13,6 @@ use Madkom\Registries\Application\RestApi\Controllers\ControllerHelper;
 use Madkom\Registries\Domain\Car\CarDto;
 use Madkom\Registries\Domain\Car\CarFactory;
 use Madkom\Registries\Domain\Car\CarRegistry;
-use Madkom\Registries\Domain\Car\Term\AC;
-use Madkom\Registries\Domain\Car\Term\OC;
-use Madkom\Registries\Domain\Car\Term\Review;
-use Madkom\Registries\Domain\Department\Department;
 use Madkom\Registries\Domain\Department\DepartmentCollection;
 use Madkom\Registries\Domain\EmptyRegistryException;
 use Madkom\Registries\Domain\Position;
@@ -44,8 +40,6 @@ class Create
     /** @var  CarDto Składowe DTO pozycji */
     private $positionDto;
 
-    private $termDto;
-
     /** @var  Registry Aktualnie wybrany rejestr */
     private $currentRegistry;
 
@@ -64,7 +58,7 @@ class Create
     /**
      * @var EntityManager
      */
-    private $em;
+    private $entity;
 
     public function __construct()
     {
@@ -72,10 +66,10 @@ class Create
     }
 
 
-    public function newPosition(Application $app, Request $request, $id)
+    public function newPosition(Application $app, Request $request, $registryId)
     {
-        $this->em = $app['orm.em'];
-        $this->currentRegistry = $this->helper->findAndCheckRegistry($app, $id);
+        $this->entity = $app['orm.em'];
+        $this->currentRegistry = $this->helper->findAndCheckRegistry($app, $registryId);
 
         $this->createPositionFactory($this->currentRegistry);
         $this->getPositionDto($request);
@@ -140,20 +134,27 @@ class Create
     private function newTerm($term, $expirationDate, $departmentId)
     {
         $registryPositionDto = new TermDto();
+        $this->setNotifyDate($expirationDate, $registryPositionDto);
 
-        $registryPositionDto->expiryDate   = new \DateTime($expirationDate);
-        $registryPositionDto->notifyBefore = new \DateTime($expirationDate);
-        $registryPositionDto->notifyBefore->sub(new \DateInterval('P14D'));
-        $registryPositionDto->whoToNotify = new DepartmentCollection();
-        foreach($departmentId as $id)
-        {
-            $registryPositionDto->whoToNotify->add($this->em->find('\Madkom\Registries\Domain\Department\Department', $id));
+        foreach ($departmentId as $id) {
+            $registryPositionDto->whoToNotify->add($this->entity->find('\Madkom\Registries\Domain\Department\Department', $id));
         }
 
         $createdTerm = $this->termFactory->create($term, $registryPositionDto);
-
-        $this->em->persist($createdTerm);
+        $this->entity->persist($createdTerm);
 
         return $createdTerm;
+    }
+
+    /**
+     * @param $expirationDate
+     * @param $registryPositionDto
+     */
+    private function setNotifyDate($expirationDate, $registryPositionDto)
+    {
+        $registryPositionDto->expiryDate      = new \DateTime($expirationDate);
+        $registryPositionDto->notifyBefore    = new \DateTime($expirationDate);
+        $registryPositionDto->notifyBefore->sub(new \DateInterval('P14D'));
+        $registryPositionDto->whoToNotify     = new DepartmentCollection();
     }
 }

@@ -17,28 +17,36 @@ use Symfony\Component\HttpFoundation\Response;
 
 class Show extends ControllerHelper
 {
-    public function allPositions(Application $app)
+    public function allPositions(Application $app, $registryId)
     {
 
         /** @var EntityManager $em */
-        $em = $app['orm.em'];
+        $entity = $app['orm.em'];
 
-        $cars = $em->createQueryBuilder()
+        $cars = $entity->createQueryBuilder()
             ->from('Madkom\\Registries\\Domain\\Car\\Car', 'c')
             ->select('c')
+            ->where('c.registryId = :registry_id')
+            ->setParameter('registry_id', $registryId)
             ->getQuery()
             ->getArrayResult();
+
+        if(!$cars) throw new EmptyRegistryException('Nie znaleziono wpisów w rejestrze.');
 
         return $app->json($cars);
     }
 
-    public function positionById(Application $app, $id, $positionId)
+    public function positionById(Application $app, $registryId, $positionId)
     {
         /** @var EntityManager $em */
-        $entityMgr = $app['orm.em'];
+        $entity = $app['orm.em'];
 
-        $registry = $entityMgr->find('Madkom\\Registries\\Domain\\Registry' ,$id);
+        $registry = $entity->find('Madkom\\Registries\\Domain\\Registry', $registryId);
 
-        return $app->json($registry->showPositions()[$positionId]->getModel());
+        $currentPosition = $registry->getPositions()[$positionId];
+
+
+
+        return $app->json($currentPosition->showMetadata());
     }
 }

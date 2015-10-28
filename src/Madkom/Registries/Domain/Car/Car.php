@@ -135,4 +135,39 @@ class Car extends Position
     {
         return $this->others;
     }
+
+    public function showMetadata()
+    {
+        /** @var array $terms */
+        $terms = $this->getTerms();
+
+        $termTemp = $this->prepareTermsArray($terms);
+
+        return [
+            'id'                 => $this->id,
+            'brand'              => $this->brand,
+            'model'              => $this->model,
+            'registrationNumber' => $this->registrationNumber,
+            'others'             => $this->others,
+            'terms'              => $termTemp
+        ];
+    }
+
+    private function prepareTermsArray($terms)
+    {
+        $termTemp = [];
+
+
+        foreach ($terms as $term) {
+            $dep = $term->getWhoToNotify();
+
+            $termTemp[] = [
+                'expirationDate'     => $term->getExpiryDate(),
+            ];
+        }
+
+        return $termTemp;
+    }
+
+
 }

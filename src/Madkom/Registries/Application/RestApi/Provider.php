@@ -31,12 +31,12 @@ class Provider implements ControllerProviderInterface
 
         $this->selectedRegistry($controller);
 
-        $controller->post('/{id}/pozycje', self::CONTROLLERS . 'Create::newPosition');
-        $controller->get('/{id}/pozycje', self::CONTROLLERS . 'Show::allPositions');
+        $controller->post('/{registryId}/pozycje', self::CONTROLLERS . 'Create::newPosition');
+        $controller->get('/{registryId}/pozycje', self::CONTROLLERS . 'Show::allPositions');
 
-        $controller->get('/{id}/pozycje/{positionId}', self::CONTROLLERS . 'Show::positionById');
-        $controller->put('/{id}/pozycje/{positionId}', self::CONTROLLERS . 'Modify::positionById');
-        $controller->delete('/{id}/pozycje/{positionId}', self::CONTROLLERS . 'Remove::positionById');
+        $controller->get('/{registryId}/pozycje/{positionId}', self::CONTROLLERS . 'Show::positionById');
+        $controller->put('/{registryId}/pozycje/{positionId}', self::CONTROLLERS . 'Modify::positionById');
+        $controller->delete('/{registryId}/pozycje/{positionId}', self::CONTROLLERS . 'Remove::positionById');
 
         return $controller;
     }
@@ -46,9 +46,9 @@ class Provider implements ControllerProviderInterface
      */
     private function selectedRegistry($controller)
     {
-        $controller->put('/{id}', self::REGISTRY . 'Modify::oneById');
-        $controller->get('/{id}', self::REGISTRY . 'Show::oneById');
-        $controller->delete('/{id}', self::REGISTRY . 'Remove::oneById');
+        $controller->put('/{registryId}', self::REGISTRY . 'Modify::oneById');
+        $controller->get('/{registryId}', self::REGISTRY . 'Show::oneById');
+        $controller->delete('/{registryId}', self::REGISTRY . 'Remove::oneById');
     }
 }
 

@@ -27,18 +27,6 @@ class CarRegistry extends Registry
 
     public function registryToArray()
     {
-        /* To pozwalało dodać do returna wszystkie pozycje połączone z rejestrem
-         * Można usunąć, ale warto widzieć zależność.
-         *
-         *
-        $position = $this->showPositions();
-        $x        = [];
-        foreach ($position as $p) {
-            $x[] = [
-                'model' => $p->getModel()
-            ];
-        }*/
-
         return [
                 'id'        => $this->id,
                 'name'      => $this->name,
