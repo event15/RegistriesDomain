@@ -141,6 +141,7 @@ class Car extends Position
         /** @var array $terms */
         $terms = $this->getTerms();
 
+
         $termTemp = $this->prepareTermsArray($terms);
 
         return [
@@ -149,7 +150,7 @@ class Car extends Position
             'model'              => $this->model,
             'registrationNumber' => $this->registrationNumber,
             'others'             => $this->others,
-            'terms'              => $termTemp
+            'terms'              => $termTemp // array
         ];
     }
 
@@ -157,17 +158,29 @@ class Car extends Position
     {
         $termTemp = [];
 
-
         foreach ($terms as $term) {
-            $dep = $term->getWhoToNotify();
+
+            $departmentTemp = [];
+            $departmentTemp = $this->prepareDepartmentsArray($term, $departmentTemp);
 
             $termTemp[] = [
-                'expirationDate'     => $term->getExpiryDate(),
+                'expirationDate' => $term->getExpiryDate(),
+                'notify' => $departmentTemp // array
             ];
         }
 
         return $termTemp;
     }
 
+    private function prepareDepartmentsArray($term, $departmentTemp)
+    {
+        foreach ($term->getWhoToNotify() as $department) {
+            $departmentTemp[] = [
+                $department->getName(),
+                $department->getEmail()
+            ];
+        }
 
+        return $departmentTemp;
+    }
 }

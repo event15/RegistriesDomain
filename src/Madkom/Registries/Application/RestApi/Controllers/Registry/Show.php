@@ -13,10 +13,10 @@ use Silex\Application;
 
 class Show extends ControllerHelper
 {
-    public function oneById(Application $app, $id)
+    public function oneById(Application $app, $registryId)
     {
         /** @var \Madkom\Registries\Domain\Registry $currentRegistry */
-        $currentRegistry = $this->findAndCheckRegistry($app, $id);
+        $currentRegistry = $this->findAndCheckRegistry($app, $registryId);
 
         return $app->json($currentRegistry->registryToArray(), 200);
     }

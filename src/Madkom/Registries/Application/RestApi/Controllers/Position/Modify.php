@@ -11,10 +11,10 @@ use Symfony\Component\HttpFoundation\Response;
 
 class Modify extends ControllerHelper
 {
-    public function positionById(Application $app, Request $request, $id, $positionId)
+    public function positionById(Application $app, Request $request, $registryId, $positionId)
     {
         $helper = new ControllerHelper();
-        $currentRegistry = $helper->findAndCheckRegistry($app, $id);
+        $currentRegistry = $helper->findAndCheckRegistry($app, $registryId);
 
         /** @var \Madkom\Registries\Domain\Car\Car $getElement */
         $getElement = $app['repositories.position']->find('Madkom\\Registries\\Domain\\Car\\Car', $positionId);

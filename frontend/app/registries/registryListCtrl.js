@@ -8,7 +8,7 @@
     function RegistryListController(registryResource) {
         var vm = this;
 
-        registryResource.query(function(data) {
+        registryResource.query(function (data) {
             vm.registries = data;
         });
     }
