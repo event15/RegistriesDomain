@@ -14,10 +14,10 @@ use Symfony\Component\HttpFoundation\Response;
 
 class Remove extends ControllerHelper
 {
-    public function oneById(Application $app, $id)
+    public function oneById(Application $app, $registryId)
     {
         /** @var \Madkom\Registries\Domain\Registry $currentRegistry */
-        $currentRegistry = $this->findAndCheckRegistry($app, $id);
+        $currentRegistry = $this->findAndCheckRegistry($app, $registryId);
         $app['repositories.registry']->delete($currentRegistry);
 
         return new Response('OK', 200);

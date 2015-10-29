@@ -15,10 +15,10 @@ use Symfony\Component\HttpFoundation\Response;
 
 class Modify extends ControllerHelper
 {
-    public function oneById(Application $app, Request $request, $id)
+    public function oneById(Application $app, Request $request, $registryId)
     {
         /** @var \Madkom\Registries\Domain\Registry $currentRegistry */
-        $currentRegistry = $this->findAndCheckRegistry($app, $id);
+        $currentRegistry = $this->findAndCheckRegistry($app, $registryId);
 
         $currentRegistry->changeName($request->get('name'));
         $this->loadRegistryRepository($app)
