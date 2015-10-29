@@ -5,7 +5,7 @@
 
     app.run(function($http) {
 
-        var positionUrl = "/registries/web/rejestry/:registryId/pozycje";
+        var positionUrl = "/registries/web/rejestry/:registryId/pozycje/";
 
         $http.get(positionUrl);
 
