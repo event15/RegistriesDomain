@@ -1,0 +1,3 @@
+Madkom\Registries\Domain\Car\Term\Review:
+  type: entity
+  cascade: ['persist', 'all']

@@ -1,0 +1,37 @@
+{
+    "name": "madkom/registries",
+    "description": "Rejestr firmowy",
+    "require-dev": {
+        "behat/behat": "^3.0@dev",
+        "phpspec/phpspec": "^2.2@dev",
+        "squizlabs/php_codesniffer": "2.3.3",
+        "phpmd/phpmd": "2.2.3",
+        "behat/mink": "v1.6.1",
+        "behat/mink-extension": "*",
+        "behat/mink-goutte-driver": "v1.1.0",
+        "behat/mink-selenium2-driver": "v1.2.0",
+        "phpunit/phpunit": "4.8.4"
+    },
+    "authors": [
+        {
+            "name": "Marek Woś",
+            "email": "m.wos@madkom.pl"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "silex/silex": "v1.3.0",
+        "dflydev/doctrine-orm-service-provider": "*",
+        "symfony/yaml": "*",
+        "doctrine/collections": "*",
+        "odino/phpunit-notifications": "1.0.0"
+    },
+    "config": {
+        "bin-dir": "bin"
+    },
+    "autoload": {
+        "psr-4": {
+            "": "src/"
+        }
+    }
+}

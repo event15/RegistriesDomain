@@ -1,0 +1,39 @@
+Madkom\Registries\Domain\Term:
+  type: entity
+
+  inheritanceType: SINGLE_TABLE
+  discriminatorColumn:
+    name: term_type
+    type: string
+
+  manyToMany:
+    cars:
+      targetEntity: Madkom\Registries\Domain\Car\Car
+      mappedBy: terms
+
+    whoToNotify:
+      targetEntity: Madkom\Registries\Domain\Department\Department
+      cascade: ["persist"]
+      inversedBy: terms
+      joinTable:
+        name: DepartmentTerms
+        joinColumns:
+          term_term_id:
+            referencedColumnName: term_id
+        inverseJoinColumns:
+          department_department_id:
+            referencedColumnName: department_id
+
+
+  id:
+    id:
+      type: integer
+      column: term_id
+      generator:
+        strategy: AUTO
+
+  fields:
+    expiryDate:
+      type: datetime
+    notifyBefore:
+      type: datetime
