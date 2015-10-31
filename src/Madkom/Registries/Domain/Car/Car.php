@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: sczarnop
- * Date: 07.08.15
- * Time: 15:50
- */
 
 namespace Madkom\Registries\Domain\Car;
 
