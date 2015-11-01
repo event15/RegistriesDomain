@@ -43,9 +43,4 @@ class ControllerHelper
             'terms'              => $car->getTerms()
         ];
     }
-
-    public function registryToArray()
-    {
-
-    }
 }

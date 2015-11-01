@@ -2,6 +2,7 @@
 
 namespace Madkom\Registries\Domain\Car;
 
+use Madkom\Registries\Domain\Attachment\Attachment;
 use Madkom\Registries\Domain\Car\Term\CarTermCollection;
 use Madkom\Registries\Domain\Position;
 use Madkom\Registries\Domain\Term;
@@ -47,7 +48,17 @@ class Car extends Position
 
     public function removeTerm(Term $term)
     {
-        $this->terms->removeTerm($term);
+        $this->terms->remove($term);
+    }
+
+    public function addAttachment(Attachment $attachment)
+    {
+        $this->attachments->add($attachment);
+    }
+
+    public function removeAttachment(Attachment $attachment)
+    {
+        $this->attachments->remove($attachment);
     }
 
     /**

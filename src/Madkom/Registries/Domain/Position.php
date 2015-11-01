@@ -1,6 +1,8 @@
 <?php
 
 namespace Madkom\Registries\Domain;
+use Madkom\Registries\Domain\Attachment\Attachment;
+use Madkom\Registries\Domain\Attachment\AttachmentCollection;
 
 /**
  * Class Position
@@ -19,9 +21,16 @@ abstract class Position
      */
     protected $terms;
 
+    /** @var  AttachmentCollection */
+    protected $attachments;
+
     abstract public function addTerm(Term $term);
 
     abstract public function removeTerm(Term $term);
+
+    abstract public function addAttachment(Attachment $attachment);
+
+    abstract public function removeAttachment(Attachment $attachment);
 
     /**
      * @return string

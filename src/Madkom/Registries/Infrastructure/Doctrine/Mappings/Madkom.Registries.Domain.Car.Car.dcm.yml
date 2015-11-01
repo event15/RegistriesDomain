@@ -23,6 +23,19 @@ Madkom\Registries\Domain\Car\Car:
           term_term_id:
             referencedColumnName: term_id
 
+    attachments:
+      targetEntity: Madkom\Registries\Domain\Attachment\Attachment
+      cascade: ['persist']
+      inversedBy: cars
+      joinTable:
+        name: AttachmentsCars
+        joinColumns:
+          car_car_id:
+            referencedColumnName: car_id
+        inverseJoinColumns:
+            attach_attachment_id:
+              referencedColumnName: attachment_id
+
   id:
     id:
       column: car_id

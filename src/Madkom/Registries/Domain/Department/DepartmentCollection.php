@@ -16,13 +16,13 @@ class DepartmentCollection extends ArrayCollection
         parent::add($department);
     }
 
-    public function removeElement($department)
+    public function removeElement($attachment)
     {
-        parent::removeElement($department);
+        parent::removeElement($attachment);
     }
 
-    public function get($department)
+    public function get($attachment)
     {
-        parent::get($department);
+        parent::get($attachment);
     }
 }
