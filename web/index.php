@@ -14,5 +14,5 @@ require_once __DIR__ .'/../config/bootstrap.php';
 
 /** @var \Doctrine\ORM\EntityManager $em */
 $em = $app[ 'orm.em' ];
-$app->mount('/rejestry', new Provider());
+$app->mount('/api/', new Provider());
 $app->run();

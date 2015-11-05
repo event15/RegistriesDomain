@@ -7,13 +7,11 @@
  */
 
 namespace Madkom\Registries\Application\RestApi\Controllers\Position;
-https://helion.pl/users/get.cgi?ident=SZABKO_EBOOK&control=004c01b36cc4d0388267d35d21882be57b7ed13dc1f3dca244c618b6ff7175c0&format=mobi
-use Doctrine\ORM\AbstractQuery;
+
 use Doctrine\ORM\EntityManager;
 use Madkom\Registries\Application\RestApi\Controllers\ControllerHelper;
 use Madkom\Registries\Domain\EmptyRegistryException;
 use Silex\Application;
-use Symfony\Component\HttpFoundation\Response;
 
 class Show extends ControllerHelper
 {
@@ -21,9 +19,7 @@ class Show extends ControllerHelper
     {
         $cars = $this->oki($app, $registryId);
 
-        if(!$cars) throw new EmptyRegistryException('Nie znaleziono wpisów w rejestrze.');
-
-        return $app->json($cars);
+        return ($cars) ? $app->json($cars) : $app->json('Nie znaleziono wpisów w rejestrze.', 404);
     }
 
     public function positionById(Application $app, $registryId, $positionId)

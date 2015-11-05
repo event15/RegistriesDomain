@@ -30,6 +30,7 @@ class CarRegistry extends Registry
         return [
                 'id'        => $this->id,
                 'name'      => $this->name,
+                'type'      => $this->getRegistryType(),
                 'createdAt' => $this->createdAt
                ];
     }

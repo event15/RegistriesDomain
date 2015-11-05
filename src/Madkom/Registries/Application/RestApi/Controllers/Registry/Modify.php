@@ -20,7 +20,9 @@ class Modify extends ControllerHelper
         /** @var \Madkom\Registries\Domain\Registry $currentRegistry */
         $currentRegistry = $this->findAndCheckRegistry($app, $registryId);
 
-        $currentRegistry->changeName($request->get('name'));
+        $registry = json_decode($request->getContent());
+
+        $currentRegistry->changeName($registry->name);
         $this->loadRegistryRepository($app)
              ->save($currentRegistry);
 

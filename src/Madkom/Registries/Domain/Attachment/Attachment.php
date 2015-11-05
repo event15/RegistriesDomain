@@ -21,7 +21,7 @@ class Attachment
     protected $uploadDate;
 
     /** @var  string */
-    protected $url;
+    protected $path;
 
 
     protected $carId;
@@ -33,7 +33,7 @@ class Attachment
      */
     public function __construct($url, $name)
     {
-        $this->url  = $url;
+        $this->path  = $url;
         $this->name = $name;
         $this->uploadDate = new \DateTime('now');
     }
@@ -47,7 +47,7 @@ class Attachment
             'id'          => $this->attachmentId,
             'name'        => $this->name,
             'description' => $this->description,
-            'url'         => $this->url
+            'url'         => $this->path
         ];
     }
 }

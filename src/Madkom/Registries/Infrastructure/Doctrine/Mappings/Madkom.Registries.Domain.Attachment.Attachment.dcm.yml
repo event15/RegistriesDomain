@@ -1,9 +1,6 @@
 Madkom\Registries\Domain\Attachment\Attachment:
   type: entity
 
-  manyToMany:
-
-
   id:
     attachmentId:
       column: attachment_id
@@ -16,7 +13,7 @@ Madkom\Registries\Domain\Attachment\Attachment:
       type: string(50)
     description:
       type: string(255)
-    url:
+    path:
       type: text
     uploadDate:
       type: datetime

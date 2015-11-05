@@ -26,17 +26,17 @@ class Provider implements ControllerProviderInterface
         /** @var ControllerCollection $controller */
         $controller = $app['controllers_factory'];
 
-        $controller->post('', self::REGISTRY . 'Create::newRegistry');
-        $controller->get('', self::REGISTRY . 'Show::allRegistries');
+        $controller->get('/rejestry', self::REGISTRY . 'Show::allRegistries');
+        $controller->post('/rejestry', self::REGISTRY . 'Create::newRegistry');
 
         $this->selectedRegistry($controller);
 
-        $controller->post('/{registryId}/pozycje', self::CONTROLLERS . 'Create::newPosition');
-        $controller->get('/{registryId}/pozycje', self::CONTROLLERS . 'Show::allPositions');
+        $controller->post('/rejestry/{registryId}/pozycje', self::CONTROLLERS . 'Create::newPosition');
+        $controller->get('/rejestry/{registryId}/pozycje', self::CONTROLLERS . 'Show::allPositions');
 
-        $controller->get('/{registryId}/pozycje/{positionId}', self::CONTROLLERS . 'Show::positionById');
-        $controller->put('/{registryId}/pozycje/{positionId}', self::CONTROLLERS . 'Modify::positionById');
-        $controller->delete('/{registryId}/pozycje/{positionId}', self::CONTROLLERS . 'Remove::positionById');
+        $controller->get('/rejestry/{registryId}/pozycje/{positionId}', self::CONTROLLERS . 'Show::positionById');
+        $controller->put('/rejestry/{registryId}/pozycje/{positionId}', self::CONTROLLERS . 'Modify::positionById');
+        $controller->delete('/rejestry/{registryId}/pozycje/{positionId}', self::CONTROLLERS . 'Remove::positionById');
 
         return $controller;
     }
@@ -46,9 +46,9 @@ class Provider implements ControllerProviderInterface
      */
     private function selectedRegistry($controller)
     {
-        $controller->put('/{registryId}', self::REGISTRY . 'Modify::oneById');
-        $controller->get('/{registryId}', self::REGISTRY . 'Show::oneById');
-        $controller->delete('/{registryId}', self::REGISTRY . 'Remove::oneById');
+        $controller->put('/rejestry/{registryId}', self::REGISTRY . 'Modify::oneById');
+        $controller->get('/rejestry/{registryId}', self::REGISTRY . 'Show::oneById');
+        $controller->delete('/rejestry/{registryId}', self::REGISTRY . 'Remove::oneById');
     }
 }
 
