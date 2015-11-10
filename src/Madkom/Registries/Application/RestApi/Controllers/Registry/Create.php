@@ -24,7 +24,6 @@ class Create extends ControllerHelper
     public function newRegistry(Application $app, Request $request)
     {
         $registry = json_decode($request->getContent());
-
         $this->requestValues['type'] = $registry->type;
         $this->requestValues['name'] = $registry->name;
 

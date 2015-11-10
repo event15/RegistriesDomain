@@ -19,7 +19,7 @@ class Show extends ControllerHelper
     {
         $cars = $this->oki($app, $registryId);
 
-        return ($cars) ? $app->json($cars) : $app->json('Nie znaleziono wpisów w rejestrze.', 404);
+        return ($cars) ? $app->json($cars) : $app->json([], 204);
     }
 
     public function positionById(Application $app, $registryId, $positionId)
@@ -53,7 +53,6 @@ class Show extends ControllerHelper
                        ->setParameter('registry_id', $registryId)
                        ->getQuery()
                        ->getArrayResult();
-
         return $cars;
     }
 }
