@@ -28,16 +28,17 @@ class Show extends ControllerHelper
         $entity = $app['orm.em'];
 
         $registry = $entity->find('Madkom\\Registries\\Domain\\Registry', $registryId);
-        $this->isExist($positionId, $registry);
+        //$this->isExist($app, $positionId, $registry);
         $currentPosition = $registry->getPositions()[$positionId-1];
 
-        return $app->json($currentPosition->showMetadata());
+
+        return ($currentPosition) ? $app->json($currentPosition->showMetadata()) : $app->json([], 204);
     }
 
-    private function isExist($positionId, $registry)
+    private function isExist($app, $positionId, $registry)
     {
         if (! $registry->getPositions()[$positionId - 1]) {
-            throw new EmptyRegistryException('Wybrana pozycja nie istnieje.');
+            return $app->json([], 204);
         }
     }
 

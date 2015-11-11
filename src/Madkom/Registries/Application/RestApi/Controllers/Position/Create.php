@@ -113,21 +113,25 @@ class Create
      */
     private function getPositionDto(Request $request)
     {
+        $getPos = json_decode($request->getContent());
+
         switch ($this->type) {
             case CarRegistry::TYPE_NAME:
-                $this->positionDto->brand              = $request->get('brand');
-                $this->positionDto->model              = $request->get('model');
-                $this->positionDto->others             = $request->get('others');
-                $this->positionDto->registrationNumber = $request->get('registrationNumber');
+                $this->positionDto->brand              = $getPos->brand; //$request->get('brand');
+                $this->positionDto->model              = $getPos->model; //$request->get('model');
+                $this->positionDto->others             = $getPos->others; //$request->get('others');
+                $this->positionDto->registrationNumber = $getPos->registrationNumber; //$request->get('registrationNumber');
                 break;
         }
     }
 
     private function addTermsToPostion(Request $request)
     {
-        foreach($request->get('terms') as $term)
+        $getPos = json_decode($request->getContent());
+
+        foreach($getPos->terms as $term)
         {
-            $this->position->addTerm($this->newTerm($term['type'], $term['date'], $term['departments']));
+            $this->position->addTerm($this->newTerm($term->type, $term->date, $term->departments));
         }
     }
 
