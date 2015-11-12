@@ -10,7 +10,7 @@ namespace Madkom\Registries\Application\RestApi\Controllers\Position;
 
 use Doctrine\ORM\EntityManager;
 use Madkom\Registries\Application\RestApi\Controllers\ControllerHelper;
-use Madkom\Registries\Domain\EmptyRegistryException;
+
 use Silex\Application;
 
 class Show extends ControllerHelper
@@ -24,36 +24,30 @@ class Show extends ControllerHelper
 
     public function positionById(Application $app, $registryId, $positionId)
     {
-        /** @var EntityManager $em */
-        $entity = $app['orm.em'];
+        $currentPosition = $this->oki($app, $registryId, $positionId);
 
-        $registry = $entity->find('Madkom\\Registries\\Domain\\Registry', $registryId);
-        //$this->isExist($app, $positionId, $registry);
-        $currentPosition = $registry->getPositions()[$positionId-1];
-
-
-        return ($currentPosition) ? $app->json($currentPosition->showMetadata()) : $app->json([], 204);
+        return ($currentPosition) ? $app->json($currentPosition) : $app->json([], 204);
     }
 
-    private function isExist($app, $positionId, $registry)
-    {
-        if (! $registry->getPositions()[$positionId - 1]) {
-            return $app->json([], 204);
-        }
-    }
-
-    private function oki(Application $app, $registryId)
+    private function oki(Application $app, $registryId, $positionId = null)
     {
         /** @var EntityManager $em */
         $entity = $app['orm.em'];
 
-        $cars = $entity->createQueryBuilder()
+        $queryBuilder = $entity->createQueryBuilder()
                        ->from('Madkom\\Registries\\Domain\\Car\\Car', 'c')
                        ->select('c')
                        ->where('c.registryId = :registry_id')
-                       ->setParameter('registry_id', $registryId)
-                       ->getQuery()
+                       ->setParameter('registry_id', $registryId);
+
+                        if($positionId) {
+                            $queryBuilder->andWhere('c.id = :position_id')
+                                         ->setParameter('position_id', $positionId);
+                        }
+
+                        $cars = $queryBuilder->getQuery()
                        ->getArrayResult();
+
         return $cars;
     }
 }

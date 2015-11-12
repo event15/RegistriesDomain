@@ -23,6 +23,8 @@ class Modify extends ControllerHelper
             throw new EmptyRegistryException('Wybrany element nie istnieje.');
         }
 
+        
+
 
         $getElement->changeBrand($request->get('brand'));
         $getElement->changeModel($request->get('model'));

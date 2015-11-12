@@ -114,6 +114,7 @@ class Create
     private function getPositionDto(Request $request)
     {
         $getPos = json_decode($request->getContent());
+        var_dump($getPos);
 
         switch ($this->type) {
             case CarRegistry::TYPE_NAME:
@@ -127,6 +128,7 @@ class Create
 
     private function addTermsToPostion(Request $request)
     {
+        /** @var array $getPos */
         $getPos = json_decode($request->getContent());
 
         foreach($getPos->terms as $term)
