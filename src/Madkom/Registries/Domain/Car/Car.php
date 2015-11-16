@@ -36,9 +36,19 @@ class Car extends Position
     /** @var  string */
     protected $others;
 
+    protected $ac;
+
+    protected $oc;
+
+    protected $assistance;
+
+    protected $review;
+
     public function __construct()
     {
-        $this->terms = new CarTermCollection();
+        //$this->terms = new CarTermCollection();
+        $this->ac = new AcCollection();
+        $this->oc = new OcCollection();
     }
 
     public function addTerm(Term $term)

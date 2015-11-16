@@ -46,7 +46,7 @@ class Show extends ControllerHelper
                         }
 
                         $cars = $queryBuilder->getQuery()
-                       ->getArrayResult();
+                       ->getResult();
 
         return $cars;
     }
