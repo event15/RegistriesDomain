@@ -1,3 +1,0 @@
-Madkom\Registries\Domain\Car\Term\OC:
-  type: entity
-  cascade: ['persist', 'all']

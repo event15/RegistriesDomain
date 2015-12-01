@@ -1,8 +1,0 @@
-Madkom\Registries\Domain\Car\CarRegistry:
-  type: entity
-
-  oneToMany:
-    positions:
-      cascade: ["persist"]
-      targetEntity: Madkom\Registries\Domain\Car\Car
-      mappedBy: registryId
