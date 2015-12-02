@@ -3,7 +3,6 @@
 namespace Madkom\RegistryApplication\Domain\CarManagement\Insurances;
 
 use Madkom\RegistryApplication\Domain\CarManagement\CarExceptions\InvalidDatesException;
-use Madkom\RegistryApplication\Domain\CarManagement\CarExceptions\RemovingNonexistentElementException;
 use Madkom\RegistryApplication\Domain\CarManagement\Insurances\Exceptions\EmptyInsurerException;
 
 /**
@@ -22,7 +21,7 @@ class Insurance
     /** @var  string */
     private $insurerId;
 
-    /** @var  Document[] */
+    /** @var  \Madkom\RegistryApplication\Domain\CarManagement\Insurances\InsuranceDocument[] */
     private $documents = [];
 
     /** @var  string */
@@ -56,19 +55,6 @@ class Insurance
     public function getId()
     {
         return $this->insurerId;
-    }
-
-
-    /**
-     * @throws \Madkom\RegistryApplication\Domain\CarManagement\CarExceptions\RemovingNonexistentElementException
-     */
-    public function changeInsurer()
-    {
-        if (! $this->insurerId) {
-            throw new RemovingNonexistentElementException;
-        }
-
-        $this->insurerId = null;
     }
 
     /**
@@ -108,8 +94,6 @@ class Insurance
         return $this->insuranceCoverage;
     }
 
-
-
     public function addInsuranceDocument(InsuranceDocument $newCarDocument)
     {
         $this->documents[] = $newCarDocument;
@@ -120,13 +104,20 @@ class Insurance
         return $this->documents;
     }
 
-    public function removeSelectedInsuranceDocument()
+    public function removeSelectedInsuranceDocument($documentId)
     {
-        //TODO: write a function body
+        foreach ($this->documents as $document) {
+            if($document->getId() === $documentId) {
+                unset($document);
+                return 0;
+            }
+        }
+
+        throw new \InvalidArgumentException("Nie odnaleziono dokumentu o podanym ID = {$documentId}");
     }
 
-    public function changeInsuranceCoverage()
+    public function changeInsuranceCoverage($coverage)
     {
-        //TODO: write a function body
+        $this->insuranceCoverage = $coverage;
     }
 }

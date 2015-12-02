@@ -187,6 +187,28 @@ class CarSpec extends ObjectBehavior
              ->during('getInsuranceDocuments', ['NonexistentID', $document]);
     }
 
+    public function it_should_be_possible_to_remove_InsuranceDocument_from_Insurance()
+    {
+        $insuranceId = '123-123-123';
+        $dateFrom  = new \DateTime('23-11-2015');
+        $dateTo    = new \DateTime('23-11-2016');
+
+        $insuranceFactory    = new InsuranceFactory();
+        $carInsurance        = $insuranceFactory->create('AC', $dateFrom, $dateTo, $insuranceId);
+        $this->addInsurance($carInsurance);
+        $this->getInsurance()->shouldContain($carInsurance);
+
+        $carInsuranceDocument = new DocumentFactory();
+        $document = $carInsuranceDocument
+            ->create(DocumentFactory::INSURANCE_DOCUMENT, 'AC-123', 'AC wrzesień 2015', 'Uzupełnić o nowe dane.', 'path/to/ac_document/1.pdf');
+
+        $this->addInsuranceDocument($carInsurance->getId(), $document);
+        $this->getInsuranceDocuments($carInsurance->getId())
+             ->shouldContain($document);
+
+        $this->removeInsuranceDocument($carInsurance->getId(), $document->getId());
+    }
+
     public function it_should_be_possible_to_add_new_CarDocument_to_Car()
     {
         $insuranceId = '123-123-123';

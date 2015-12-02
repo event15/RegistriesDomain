@@ -222,9 +222,11 @@ class Car
         return $this->carDocuments;
     }
 
-    public function removeInsuranceDocument()
+    public function removeInsuranceDocument($insuranceId, $documentId)
     {
-
+        /** @var \Madkom\RegistryApplication\Domain\CarManagement\Insurances\InsuranceDocument $document */
+        $document = $this->getInsuranceDocuments($insuranceId);
+        var_dump($document);
     }
 
     public function getInsurance()

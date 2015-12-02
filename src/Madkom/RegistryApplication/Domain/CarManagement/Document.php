@@ -30,4 +30,9 @@ abstract class Document
     {
         $this->description = $newDescription;
     }
+
+    public function getId()
+    {
+        return $this->id;
+    }
 }

@@ -21,13 +21,24 @@ class InsuranceSpec extends ObjectBehavior
     {
         $dateFrom = new \DateTime('01-12-2014');
         $dateTo   = new \DateTime('01-12-2015');
-        $insuranceId = '123-123-123';
+        $insurerId = '123-123-123';
 
-        $this->beConstructedWith($dateFrom, $dateTo, $insuranceId);
+        $this->beConstructedWith($dateFrom, $dateTo, $insurerId);
     }
 
     public function it_is_initializable()
     {
         $this->shouldHaveType('Madkom\RegistryApplication\Domain\CarManagement\Insurances\Insurance');
+    }
+
+    public function it_is_possible_to_change_Coverage_for_Insurance()
+    {
+        $this->changeInsuranceCoverage('Zakres, który obejmuje ubezpieczenie');
+        $this->getInsuranceCoverage()->shouldReturn('Zakres, który obejmuje ubezpieczenie');
+    }
+
+    public function it_should_be_possible_to_get_InsurerId()
+    {
+        $this->getInsurer()->shouldReturn('123-123-123');
     }
 }
