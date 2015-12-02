@@ -3,6 +3,7 @@
 namespace Madkom\RegistryApplication\Domain\CarManagement\Insurances;
 
 use Madkom\RegistryApplication\Domain\CarManagement\CarExceptions\InvalidDatesException;
+use Madkom\RegistryApplication\Domain\CarManagement\CarExceptions\NonexistentInsuranceException;
 
 /**
  * Class Insurance
@@ -97,6 +98,18 @@ class Insurance
     public function getInsuranceDocuments()
     {
         return $this->documents;
+    }
+
+    public function removeInsuranceDocument($documentId)
+    {
+        foreach ($this->documents as $key => $document) {
+            if($document->getId() === $documentId) {
+                unset($this->documents[$key]);
+                return 0;
+            }
+        }
+
+        throw new NonexistentInsuranceException();
     }
 
     public function changeInsuranceCoverage($coverage)

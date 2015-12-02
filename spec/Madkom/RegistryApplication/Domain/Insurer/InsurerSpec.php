@@ -26,5 +26,7 @@ class InsurerSpec extends ObjectBehavior
     public function it_is_possible_to_change_company_name()
     {
         $this->changeCompany('Nowa nazwa ubezpieczyciela');
+        $this->changeEmail('oki');
+        $this->changeMobile('oki');
     }
 }

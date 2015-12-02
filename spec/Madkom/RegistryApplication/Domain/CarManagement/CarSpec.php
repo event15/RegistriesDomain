@@ -141,7 +141,7 @@ class CarSpec extends ObjectBehavior
         $this->addInsurance($carInsurance);
         $this->getInsurance()->shouldContain($carInsurance);
 
-        $this->removeInsurance($carInsurance);
+        $this->removeInsurance($carInsurance->getId())->shouldReturn(0);
         $this->getInsurance()->shouldNotContain($carInsurance);
     }
 
@@ -156,10 +156,10 @@ class CarSpec extends ObjectBehavior
         $this->addInsurance($carInsurance);
         $this->getInsurance()->shouldContain($carInsurance);
 
-        $this->removeInsurance($carInsurance);
+        $this->removeInsurance($carInsurance->getId())->shouldReturn(0);
         $this->getInsurance()->shouldNotContain($carInsurance);
 
-        $this->shouldThrow('\InvalidArgumentException')->during('removeInsurance', [$carInsurance]);
+        $this->shouldThrow('\InvalidArgumentException')->during('removeInsurance', [$carInsurance->getId()]);
     }
 
     public function it_should_be_possible_to_add_InsuranceDocument_to_Insurance()
@@ -206,7 +206,10 @@ class CarSpec extends ObjectBehavior
         $this->getInsuranceDocuments($carInsurance->getId())
              ->shouldContain($document);
 
-        $this->removeInsuranceDocument($carInsurance->getId(), $document->getId());
+        $this->removeInsuranceDocument($carInsurance->getId(), $document->getId())->shouldReturn(0);
+
+
+        $this->getInsuranceDocuments($carInsurance->getId())->shouldNotContain($document);
     }
 
     public function it_should_be_possible_to_add_new_CarDocument_to_Car()

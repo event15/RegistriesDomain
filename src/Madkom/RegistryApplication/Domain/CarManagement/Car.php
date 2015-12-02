@@ -145,9 +145,9 @@ class Car
      * @throws \Madkom\RegistryApplication\Domain\CarManagement\CarExceptions\RemovingNonexistentElementException
      */
     public function removeVehicleInspection(VehicleInspection $vehicleInspection)
-    {
-        if($key = in_array($vehicleInspection, $this->vehicleInspection, true) !== false) {
-            unset($this->vehicleInspection[$key - 1]);
+    { // REFACTOR: przekazywać tylko ID
+        if( ($key = array_search($vehicleInspection, $this->vehicleInspection, true)) !== false) {
+            unset($this->vehicleInspection[$key]);
         } else {
             throw new RemovingNonexistentElementException;
         }
@@ -170,17 +170,16 @@ class Car
         $this->insurances[] = $newInsurance;
     }
 
-    public function removeInsurance(Insurance $selectedInsurance)
+    public function removeInsurance($selectedInsuranceId)
     {
-            foreach ($this->insurances as &$insurance) {
-                if ($insurance !== null) {
-                    if ($insurance->getId() === $selectedInsurance->getId()) {
-                        $insurance = null;
-                    }
-                } else {
-                    throw new \InvalidArgumentException;
-                }
+        foreach ($this->insurances as $key => $insurance) {
+            if($insurance->getId() === $selectedInsuranceId) {
+                unset($this->insurances[$key]);
+                return 0;
             }
+        }
+
+        throw new \InvalidArgumentException;
     }
 
     public function addInsuranceDocument($insuranceId, InsuranceDocument $insuranceDocument)
@@ -197,7 +196,7 @@ class Car
 
     public function getInsuranceDocuments($insuranceId)
     {
-        foreach ($this->insurances as &$insurance) {
+        foreach ($this->insurances as $insurance) {
             if($insurance->getId() === $insuranceId) {
                 return $insurance->getInsuranceDocuments();
             }
@@ -213,15 +212,14 @@ class Car
 
     public function removeCarDocument($carDocumentId)
     {
-        foreach ($this->carDocuments as &$document) {
-            if ($document !== null) {
-                if ($document->getId() === $carDocumentId) {
-                    $document = null;
-                }
-            } else {
-                throw new \InvalidArgumentException;
+        foreach ($this->carDocuments as $key => $document) {
+            if ($document->getId() === $carDocumentId) {
+                unset($this->carDocuments[$key]);
+                return 0;
             }
         }
+
+        throw new \InvalidArgumentException;
     }
 
     public function getCarDocument()
@@ -231,13 +229,14 @@ class Car
 
     public function removeInsuranceDocument($insuranceId, $documentId)
     {
-        /** @var \Madkom\RegistryApplication\Domain\CarManagement\Insurances\InsuranceDocument[] $document */
-        $document = $this->getInsuranceDocuments($insuranceId);
-        foreach ($document as $item) {
-            if($item->getId() === $documentId) {
-                unset($item);
+        foreach ($this->insurances as $insurance) {
+            if($insurance->getId() === $insuranceId) {
+                $insurance->removeInsuranceDocument($documentId);
+                return 0;
             }
         }
+
+        throw new NonexistentInsuranceException('Nie odnaleziono wybranego ubezpieczenia.');
     }
 
     public function getInsurance()
