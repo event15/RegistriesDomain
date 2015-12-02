@@ -224,9 +224,13 @@ class Car
 
     public function removeInsuranceDocument($insuranceId, $documentId)
     {
-        /** @var \Madkom\RegistryApplication\Domain\CarManagement\Insurances\InsuranceDocument $document */
+        /** @var \Madkom\RegistryApplication\Domain\CarManagement\Insurances\InsuranceDocument[] $document */
         $document = $this->getInsuranceDocuments($insuranceId);
-        var_dump($document);
+        foreach ($document as $item) {
+            if($item->getId() === $documentId) {
+                unset($item);
+            }
+        }
     }
 
     public function getInsurance()
