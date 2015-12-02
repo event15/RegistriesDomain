@@ -172,7 +172,6 @@ class Car
 
     public function removeInsurance(Insurance $selectedInsurance)
     {
-
             foreach ($this->insurances as &$insurance) {
                 if ($insurance !== null) {
                     if ($insurance->getId() === $selectedInsurance->getId()) {
@@ -214,7 +213,15 @@ class Car
 
     public function removeCarDocument($carDocumentId)
     {
-
+        foreach ($this->carDocuments as &$document) {
+            if ($document !== null) {
+                if ($document->getId() === $carDocumentId) {
+                    $document = null;
+                }
+            } else {
+                throw new \InvalidArgumentException;
+            }
+        }
     }
 
     public function getCarDocument()
