@@ -116,4 +116,5 @@ class Insurance
     {
         $this->insuranceCoverage = $coverage;
     }
+
 }

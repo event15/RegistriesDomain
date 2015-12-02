@@ -18,6 +18,9 @@ class Car
     private $id;
 
     /** @var  string */
+    private $responsiblePerson;
+
+    /** @var  string */
     private $model;
 
     /** @var  string */
@@ -70,6 +73,7 @@ class Car
      */
     private function __construct(
         $id,
+        $responsiblePerson,
         $model,
         $brand,
         $registrationNumber,
@@ -79,6 +83,7 @@ class Car
         $department
     ) {
             $this->id                 = $id;
+            $this->responsiblePerson  = $responsiblePerson;
             $this->model              = $model;
             $this->brand              = $brand;
             $this->registrationNumber = $registrationNumber;
@@ -102,6 +107,7 @@ class Car
      */
     public static function createCustom(
         $id,
+        $responsiblePerson,
         $model,
         $brand,
         $registrationNumber,
@@ -112,6 +118,7 @@ class Car
     ) {
         return new self(
             $id,
+            $responsiblePerson,
             $model,
             $brand,
             $registrationNumber,
