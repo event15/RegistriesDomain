@@ -260,4 +260,9 @@ class Car
     {
         $this->department = $department;
     }
+
+    public function getId()
+    {
+        return $this->id;
+    }
 }

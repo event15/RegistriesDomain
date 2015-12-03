@@ -9,7 +9,7 @@ namespace Madkom\RegistryApplication\Application\CarManagement\Command;
 
 use Madkom\RegistryApplication\Application\CarManagement\CarDTO;
 use Madkom\RegistryApplication\Domain\CarManagement\Car;
-use Madkom\RegistryApplication\Infrastructure\CarManagement\CarRepository;
+use Madkom\RegistryApplication\Domain\CarManagement\CarRepositoryInterface;
 
 class AddCarCommand implements CommandInterface
 {
@@ -17,7 +17,7 @@ class AddCarCommand implements CommandInterface
     private $carRepository;
 
 
-    public function __construct(CarDTO $preparedCar, CarRepository $carRepository)
+    public function __construct(CarDTO $preparedCar, CarRepositoryInterface $carRepository)
     {
         $this->preparedCar   = $preparedCar;
         $this->carRepository = $carRepository;
