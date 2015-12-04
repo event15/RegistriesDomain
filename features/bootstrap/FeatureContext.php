@@ -41,16 +41,15 @@ class FeatureContext implements Context, SnippetAcceptingContext
     {
         $car = $table->getHash();
         foreach ($car as $item) {
-            extract($item);
-            $dto = new CarDTO($id,
-                              $responsiblePerson,
-                              $model,
-                              $brand,
-                              $registrationNumber,
-                              $productionDate,
-                              $warrantyPeriod,
-                              $city,
-                              $department
+            $dto = new CarDTO($item['id'],
+                              $item['responsiblePerson'],
+                              $item['model'],
+                              $item['brand'],
+                              $item['registrationNumber'],
+                              $item['productionDate'],
+                              $item['warrantyPeriod'],
+                              $item['city'],
+                              $item['department']
             );
 
             $newCar = new AddCarCommand($dto, self::$carRepository);

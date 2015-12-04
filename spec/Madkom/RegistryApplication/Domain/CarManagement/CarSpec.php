@@ -21,6 +21,7 @@ class CarSpec extends ObjectBehavior
         $this->beConstructedThrough(
             'createCustom', [
                 '123-123',
+                'PER-123',
                 'fiat',
                 '123p',
                 'gd 12345',

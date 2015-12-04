@@ -77,8 +77,8 @@ class Car
         $model,
         $brand,
         $registrationNumber,
-        \DateTime $productionDate,
-        \DateTime $warrantyPeriod,
+        $productionDate,
+        $warrantyPeriod,
         $city,
         $department
     ) {
@@ -111,8 +111,8 @@ class Car
         $model,
         $brand,
         $registrationNumber,
-        \DateTime $productionDate,
-        \DateTime $warrantyPeriod,
+        $productionDate,
+        $warrantyPeriod,
         $city,
         $department
     ) {
