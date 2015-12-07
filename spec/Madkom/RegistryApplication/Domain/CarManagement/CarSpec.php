@@ -267,8 +267,8 @@ class CarSpec extends ObjectBehavior
     {
         return VehicleInspection::createVehicleInspection(
             $id,
-            new \DateTime($lastInspection),
-            new \DateTime($upcomingInspection)
+            $lastInspection,
+            $upcomingInspection
         );
     }
 }

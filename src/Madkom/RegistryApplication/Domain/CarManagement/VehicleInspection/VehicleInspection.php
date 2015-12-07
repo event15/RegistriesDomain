@@ -8,6 +8,8 @@
 
 namespace Madkom\RegistryApplication\Domain\CarManagement\VehicleInspection;
 
+use Madkom\RegistryApplication\Domain\CarManagement\CarExceptions\InvalidDatesException;
+
 class VehicleInspection
 {
     /** @var  string */
@@ -39,13 +41,14 @@ class VehicleInspection
      * @param $upcomingInspection
      *
      * @return \Madkom\RegistryApplication\Domain\CarManagement\VehicleInspection\VehicleInspection
+     * @throws \Madkom\RegistryApplication\Domain\CarManagement\CarExceptions\InvalidDatesException
      */
-    public static function createVehicleInspection($id, $lastInspection, $upcomingInspection)
+    public static function createVehicleInspection($id, $lastInspection = 'now', $upcomingInspection)
     {
         return new self(
             $id,
-            $lastInspection,
-            $upcomingInspection
+            new \DateTime($lastInspection),
+            new \DateTime($upcomingInspection)
         );
     }
 

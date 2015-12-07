@@ -129,6 +129,15 @@ class Car
         );
     }
 
+    /**
+     * @param string $responsiblePerson
+     */
+    public function changeResponsiblePersonTo($responsiblePerson)
+    {
+        $this->responsiblePerson = $responsiblePerson;
+    }
+
+
     public function addVehicleInspection(VehicleInspection $newVehicleInspection)
     {
         $duplicationChecker = new VehicleInspectionDuplicationChecker();

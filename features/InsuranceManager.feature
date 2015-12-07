@@ -12,7 +12,7 @@ Potrzeba biznesowa: Zarządzanie ubezpieczeniami
   Założenia:
     Kiedy mam następujące dane samochodów, chcę je dodać do repozytorium:
       | id           | responsiblePerson | model | brand | registrationNumber | productionDate | warrantyPeriod | city   | department |
-      | CAR-GDY-0001 | PERSON-123        | 126p  | Fiat  | GD 12345           | 2000           | 2015-12-30     | Gdynia | DRO        |
-      | CAR-GDY-0002 | PERSON-123        | 126p  | Fiat  | GD 12345           | 2010           | 2015-12-30     | Gdynia | DRO        |
-      | CAR-KRA-0001 | PERSON-123        | 126p  | Fiat  | GD 12345           | 2011           | 2015-12-30     | Gdynia | DRO        |
-      | CAR-KRA-0002 | PERSON-123        | 126p  | Fiat  | GD 12345           | 2008           | 2015-12-30     | Gdynia | DRO        |
+      | CAR-GDY-0001 | 1                 | 126p  | Fiat  | GD 12345           | 2000           | 2015-12-30     | Gdynia | DRO        |
+      | CAR-GDY-0002 | 2                 | 126p  | Fiat  | GD 12345           | 2010           | 2015-12-30     | Gdynia | DRO        |
+      | CAR-KRA-0001 | 4                 | 126p  | Fiat  | GD 12345           | 2011           | 2015-12-30     | Gdynia | DRO        |
+      | CAR-KRA-0002 | 5                 | 126p  | Fiat  | GD 12345           | 2008           | 2015-12-30     | Gdynia | DRO        |

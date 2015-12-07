@@ -9,33 +9,33 @@ Potrzeba biznesowa: Zarządzanie samochodami
   + pobrać wszystkie istniejące samochody z repozytorium
   + otrzymać informację o nieistniejącym samochodzie w czasie pobierania samochodu o ID który nie istnieje
   + zmodyfikować wybrany przez siebie samochód
-  - dodać do samochodu przegląd
-  - dodać do samochodu drugi przegląd (data może być wcześniejsza lub późniejsza niż data przeglądu poprzedniego)
-  - dodać do samochodu plik ze skanem dowodu rejestracyjnego
-  - dodać do samochodu drugi plik ze skanem dowodu rejestracyjnego
-  - usunąć z samochodu plik ze skanem dowodu rejestracyjnego
+  + dodać do samochodu przegląd
+  + dodać do samochodu drugi przegląd (data może być wcześniejsza lub późniejsza niż data przeglądu poprzedniego)
+  + dodać do samochodu plik ze skanem dowodu rejestracyjnego
+  + dodać do samochodu drugi plik ze skanem dowodu rejestracyjnego
+  + usunąć z samochodu plik ze skanem dowodu rejestracyjnego
 
 
   Założenia:
     Kiedy mam następujące dane samochodów, chcę je dodać do repozytorium:
       | id | responsiblePerson | model | brand | registrationNumber | productionDate | warrantyPeriod | city   | department |
-      | 1  | PERSON-123        | 126p  | Fiat  | GD 12345           | 2000           | 2015-12-30     | Gdynia | DRO        |
-      | 2  | PERSON-123        | 126p  | Fiat  | GD 12345           | 2010           | 2015-12-30     | Gdynia | DRO        |
-      | 3  | PERSON-123        | 126p  | Fiat  | GD 12345           | 2011           | 2015-12-30     | Gdynia | DRO        |
-      | 4  | PERSON-123        | 126p  | Fiat  | GD 12345           | 2008           | 2015-12-30     | Gdynia | DRO        |
+      | 1  | 1                 | 126p  | Fiat  | GD 12345           | 2000           | 2015-12-30     | Gdynia | DRO        |
+      | 2  | 2                 | 126p  | Fiat  | GD 12345           | 2010           | 2015-12-30     | Gdynia | DRO        |
+      | 3  | 4                 | 126p  | Fiat  | GD 12345           | 2011           | 2015-12-30     | Gdynia | DRO        |
+      | 4  | 3                 | 126p  | Fiat  | GD 12345           | 2008           | 2015-12-30     | Gdynia | DRO        |
 
   Scenariusz: Pobieranie wybranego samochodu z repozytorium
     Mając w repozytorium dodane samochody
-    Wtedy chciałbym pobrać samochód "CAR-GDY-0001"
-    Oraz chciałbym pobrać samochód "CAR-GDY-0002"
-    Oraz chciałbym pobrać samochód "CAR-KRA-0001"
-    Oraz chciałbym pobrać samochód "CAR-KRA-0002"
-    Oraz chciałbym aby nie było możliwe pobranie samochodu "CAR-125"
+    Wtedy chciałbym pobrać samochód "1"
+    Oraz chciałbym pobrać samochód "2"
+    Oraz chciałbym pobrać samochód "3"
+    Oraz chciałbym pobrać samochód "4"
+    Oraz chciałbym aby nie było możliwe pobranie samochodu "5"
 
   Scenariusz: Usuwanie wybranego samochodu z repozytorium
     Mając w repozytorium dodane samochody
-    Wtedy chciałbym usunąć samochód "CAR-GDY-0001"
-    Oraz chciałbym aby nie było możliwe pobranie samochodu "CAR-GDY-0001"
+    Wtedy chciałbym usunąć samochód "4"
+    Oraz chciałbym aby nie było możliwe pobranie samochodu "4"
 
   Scenariusz: Pobieranie wszystkich samochodów z repozytorium
     Mając w repozytorium dodane samochody
@@ -43,41 +43,50 @@ Potrzeba biznesowa: Zarządzanie samochodami
 
   Szablon scenariusza: Modyfikowanie wybranego samochodu
     Mając w repozytorium dodane samochody
-    Wtedy chciałbym zmienić osobę odpowiedzialną <responsible_person> w samochodzie <id>
-    Oraz chciałbym zmienić miasto <city> w którym się znajduje samochód <id>
-    Oraz w samochodzie <id> chciałbym zmienić dział <department> odpowiedzialny
+    Wtedy chciałbym zmienić osobę odpowiedzialną na "<responsiblePerson>" w samochodzie "<id>"
+    Oraz chciałbym zmienić miasto na "<city>" w którym się znajduje samochód "<id>"
+    Oraz w samochodzie "<id>" chciałbym zmienić dział odpowiedzialny na "<department>"
 
     Przykłady:
-      | id | responsible_person | city   | department |
-      | 1  | PERSON-001         | Kraków | TI         |
-      | 1  | PERSON-002         |        |            |
-      | 1  |                    | Gdynia |            |
-      | 1  |                    |        | IT         |
-      | 1  | PERSON-004         | Kraków |            |
-      | 1  |                    | Gdynia | HR         |
-      | 1  | PERSON-006         |        |   DRO      |
+      | id | responsiblePerson | city   | department |
+      | 1  | 1                 | Kraków | TI         |
+      | 1  | 2                 | Kraków | TI         |
+      | 1  | 2                 | Gdynia | TI         |
+      | 1  | 2                 | Gdynia | BIR        |
+      | 1  | 4                 | Kraków | BIR        |
+      | 1  | 4                 | Gdynia | HR         |
+      | 1  | 6                 | Gdynia | DRO        |
 
   Szablon scenariusza: Dodanie do samochodu informacji o nowym przeglądzie
     Mając w repozytorium dodane samochody
-    Wtedy chciałbym dodać informację o przeglądzie z numerem <id>, w którym data ostatniego to <last_inspection>, a data następnego to <upcoming_inspection>
+    Wtedy chciałbym w samochodzie <carId> dodać informację o przeglądzie z numerem "<id>", w którym data ostatniego to "<lastInspection>", a data następnego to "<upcomingInspection>"
+    Oraz chciałbym aby nie było możliwe dodanie dwóch przeglądów o takim samym "<id>" do jednego samochodu "<carId>"
+    Oraz chciałbym aby nie było możliwe dodanie samochodu z datą ostatniego przeglądu "<lastInspection>" większą lub równą od przyszłego "<upcomingInspection>"
 
     Przykłady:
-      | id           | last_inspection | upcoming_inspection |
-      | CAR-INS-0001 |                 | 2015-12-30          |
-      | CAR-INS-0002 | 2015-12-30      | 2016-12-30          |
-      | CAR-INS-0003 | 2016-12-30      | 2017-12-30          |
-      | CAR-INS-0004 | 2017-12-15      | 2018-12-30          |
-      | CAR-INS-0004 | 2018-12-31      | 2019-12-30          |
+      | carId | id | lastInspection | upcomingInspection |
+      | 1     | 1  | now            | 2015-12-30         |
+      | 1     | 2  | 2015-12-30     | 2016-12-30         |
+      | 1     | 3  | 2016-12-30     | 2017-12-30         |
+      | 1     | 4  | 2017-12-15     | 2018-12-30         |
+      | 1     | 4  | 2018-12-31     | 2019-12-30         |
 
 
   Szablon scenariusza: Dodanie do samochodu nowego pliku dowodu rejestracyjnego
     Mając w repozytorium dodane samochody
-    Wtedy przygotuję <id> nowego pliku dowodu rejestracyjnego
-    Oraz podam ścieżkę <source> do pliku, który wyślę na serwer
-    Oraz podam tytuł <title> i opis <description>
+    Wtedy przygotuję "<id>" nowego pliku dowodu rejestracyjnego
+    Oraz podam ścieżkę "<source>" do pliku, który wyślę na serwer
+    Oraz podam tytuł "<title>" z opisem "<description>"
 
     Przykłady:
-      | id           | source                | title                    | description    |
-      | CAR-DOC-0001 | /resources/documents/ | Dowód rejestracyjny 2014 | Zapłacono 98zł |
-      | CAR-DOC-0002 | /resources/documents/ |                          |                |
+      | id | source                | title                    | description    |
+      | 1  | /resources/documents/ | Dowód rejestracyjny 2014 | Zapłacono 98zł |
+      | 2  | /resources/documents/ | null                     | null           |
+
+  Scenariusz: Usunięcie wybranego pliku dowodu rejestracyjnego
+    Mając w repozytorium dodane samochody
+    Oraz mając dodane pliki z dowodem rejestracyjnym do samochodu
+    Wtedy chciałbym usunąć plik "1" ze skanem dowodu rejestracyjnego
+    Oraz chciałbym aby nie było możliwe usunięcie nieistniejącego pliku "5"
+
 
