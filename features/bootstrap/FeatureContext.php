@@ -1,15 +1,18 @@
 <?php
 
-use Behat\Behat\Tester\Exception\PendingException;
 use Behat\Behat\Context\Context;
 use Behat\Behat\Context\SnippetAcceptingContext;
+use Behat\Behat\Tester\Exception\PendingException;
 use Behat\Gherkin\Node\TableNode;
+use Madkom\RegistryApplication\Application\CarManagement\CarDocumentDTO;
 use Madkom\RegistryApplication\Application\CarManagement\CarDTO;
 use Madkom\RegistryApplication\Application\CarManagement\Command\AddCarCommand;
-use Madkom\RegistryApplication\Infrastructure\CarManagement\CarInMemoryRepository;
-use Madkom\RegistryApplication\Domain\CarManagement\CarExceptions\CarNotFoundException;
 use Madkom\RegistryApplication\Domain\CarManagement\CarExceptions\CarFoundException;
+use Madkom\RegistryApplication\Domain\CarManagement\CarExceptions\CarNotFoundException;
+use Madkom\RegistryApplication\Domain\CarManagement\CarExceptions\DuplicatedVehicleInspectionException;
 use Madkom\RegistryApplication\Domain\CarManagement\VehicleInspection\VehicleInspection;
+use Madkom\RegistryApplication\Infrastructure\CarManagement\CarInMemoryRepository;
+use Madkom\RegistryApplication\Application\CarManagement\Command\AddCarDocumentCommand;
 
 /**
  * Class FeatureContext
@@ -143,15 +146,26 @@ class FeatureContext implements Context, SnippetAcceptingContext
     }
 
     /**
-     * @Then chciałbym w samochodzie :carId dodać informację o przeglądzie z numerem :inspectionId, w którym data ostatniego to :lastInspection, a data następnego to :upcomingInspection
+     * @Then chciałbym w samochodzie :carId dodać informację o przeglądzie z numerem :inspectionId, w którym data
+     *       ostatniego to :lastInspection, a data następnego to :upcomingInspection
      * @throws \Madkom\RegistryApplication\Domain\CarManagement\CarExceptions\InvalidDatesException
      */
-    public function chcialbymWSamochodzieDodacInformacjeOPrzegladzieZNumeremWKtorymDataOstatniegoToADataNastepnegoTo($carId, $inspectionId, $lastInspection, $upcomingInspection)
-    {
-        echo '<' . $inspectionId . '>';
+    public function chcialbymWSamochodzieDodacInformacjeOPrzegladzieZNumeremWKtorymDataOstatniegoToADataNastepnegoTo(
+        $carId,
+        $inspectionId,
+        $lastInspection,
+        $upcomingInspection
+    ) {
         $selectedCar   = self::$carRepository->find($carId);
-        $newInspection = VehicleInspection::createVehicleInspection($inspectionId, $lastInspection, $upcomingInspection);
-        $selectedCar->addVehicleInspection($newInspection);
+        $newInspection = VehicleInspection::createVehicleInspection($inspectionId,
+                                                                    $lastInspection,
+                                                                    $upcomingInspection
+        );
+        try {
+            $selectedCar->addVehicleInspection($newInspection);
+        } catch (\Madkom\RegistryApplication\Domain\CarManagement\CarExceptions\InvalidDatesException $e) {
+
+        }
     }
 
     /**
@@ -160,40 +174,29 @@ class FeatureContext implements Context, SnippetAcceptingContext
     public function chcialbymAbyNieByloMozliweDodanieDwochPrzegladowOTakimSamym($carId, $inspectionId)
     {
         $selectedCar   = self::$carRepository->find($carId);
-
-
+        $newInspection = VehicleInspection::createVehicleInspection($inspectionId, '2015-12-30', '2016-12-30');
+        try {
+            $selectedCar->addVehicleInspection($newInspection);
+        } catch (DuplicatedVehicleInspectionException $e) {
+        }
     }
 
     /**
-     * @Then chciałbym aby nie było możliwe dodanie samochodu z datą ostatniego przeglądu :arg1 większą lub równą od przyszłego :arg2
+     * @Then przygotuję nowy plik dowodu rejestracyjnego o następujących parametrach:
      */
-    public function chcialbymAbyNieByloMozliweDodanieSamochoduZDataOstatniegoPrzegladuWiekszaLubRownaOdPrzyszlego($arg1, $arg2)
+    public function przygotujeNowyPlikDowoduRejestracyjnegoONastepujacychParametrach(TableNode $table)
     {
-        throw new PendingException();
-    }
+        $documents = $table->getHash();
+        foreach ($documents as $document) {
+            $dto = new CarDocumentDTO($document['id'],
+                                      $document['source'],
+                                      $document['title'],
+                                      $document['description']
+            );
 
-    /**
-     * @Then przygotuję :arg1 nowego pliku dowodu rejestracyjnego
-     */
-    public function przygotujeNowegoPlikuDowoduRejestracyjnego($arg1)
-    {
-        throw new PendingException();
-    }
-
-    /**
-     * @Then podam ścieżkę :arg1 do pliku, który wyślę na serwer
-     */
-    public function podamSciezkeDoPlikuKtoryWysleNaSerwer($arg1)
-    {
-        throw new PendingException();
-    }
-
-    /**
-     * @Then podam tytuł :arg1 z opisem :arg2
-     */
-    public function podamTytulZOpisem($arg1, $arg2)
-    {
-        throw new PendingException();
+            $carDocument = new AddCarDocumentCommand(self::$carRepository, $document['carId'], $dto);
+            $carDocument->execute();
+        }
     }
 
     /**
@@ -221,9 +224,9 @@ class FeatureContext implements Context, SnippetAcceptingContext
     }
 
     /**
-     * @Then chciałbym zmienić miasto na Kraków w którym się znajduje samochód :arg1
+     * @Then chciałbym w samochodzie :arg4 dodać informację o przeglądzie z numerem :arg1, w którym data ostatniego to :arg2, a data następnego to :arg3
      */
-    public function chcialbymZmienicMiastoNaKrakowWKtorymSieZnajdujeSamochod($arg1)
+    public function chcialbymWSamochodzieDodacInformacjeOPrzegladzieZNumeremWKtorymDataOstatniegoToADataNastepnegoTo2($arg1, $arg2, $arg3, $arg4)
     {
         throw new PendingException();
     }

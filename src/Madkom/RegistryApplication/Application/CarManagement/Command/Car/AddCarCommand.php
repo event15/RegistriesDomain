@@ -1,13 +1,9 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: marek
- * Date: 18.11.15
- * Time: 15:32
- */
-namespace Madkom\RegistryApplication\Application\CarManagement\Command;
+
+namespace Madkom\RegistryApplication\Application\CarManagement\Command\Car;
 
 use Madkom\RegistryApplication\Application\CarManagement\CarDTO;
+use Madkom\RegistryApplication\Application\CarManagement\Command\CommandInterface;
 use Madkom\RegistryApplication\Domain\CarManagement\Car;
 use Madkom\RegistryApplication\Domain\CarManagement\CarRepositoryInterface;
 
@@ -17,7 +13,7 @@ class AddCarCommand implements CommandInterface
     private $carRepository;
 
 
-    public function __construct(CarDTO $preparedCar, CarRepositoryInterface $carRepository)
+    public function __construct(CarRepositoryInterface $carRepository, CarDTO $preparedCar)
     {
         $this->preparedCar   = $preparedCar;
         $this->carRepository = $carRepository;
@@ -31,8 +27,8 @@ class AddCarCommand implements CommandInterface
             $this->preparedCar->model,
             $this->preparedCar->brand,
             $this->preparedCar->registrationNumber,
-            new \DateTime($this->preparedCar->productionDate),
-            new \DateTime($this->preparedCar->warrantyPeriod),
+            $this->preparedCar->productionDate,
+            $this->preparedCar->warrantyPeriod,
             $this->preparedCar->city,
             $this->preparedCar->department
         );

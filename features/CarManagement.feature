@@ -61,7 +61,6 @@ Potrzeba biznesowa: Zarządzanie samochodami
     Mając w repozytorium dodane samochody
     Wtedy chciałbym w samochodzie <carId> dodać informację o przeglądzie z numerem "<id>", w którym data ostatniego to "<lastInspection>", a data następnego to "<upcomingInspection>"
     Oraz chciałbym aby nie było możliwe dodanie dwóch przeglądów o takim samym "<id>" do jednego samochodu "<carId>"
-    Oraz chciałbym aby nie było możliwe dodanie samochodu z datą ostatniego przeglądu "<lastInspection>" większą lub równą od przyszłego "<upcomingInspection>"
 
     Przykłady:
       | carId | id | lastInspection | upcomingInspection |
@@ -70,18 +69,15 @@ Potrzeba biznesowa: Zarządzanie samochodami
       | 1     | 3  | 2016-12-30     | 2017-12-30         |
       | 1     | 4  | 2017-12-15     | 2018-12-30         |
       | 1     | 4  | 2018-12-31     | 2019-12-30         |
+      | 1     | 5  | 2020-12-31     | 2019-12-30         |
 
 
-  Szablon scenariusza: Dodanie do samochodu nowego pliku dowodu rejestracyjnego
+  Scenariusz: Dodanie do samochodu nowego pliku dowodu rejestracyjnego
     Mając w repozytorium dodane samochody
-    Wtedy przygotuję "<id>" nowego pliku dowodu rejestracyjnego
-    Oraz podam ścieżkę "<source>" do pliku, który wyślę na serwer
-    Oraz podam tytuł "<title>" z opisem "<description>"
-
-    Przykłady:
-      | id | source                | title                    | description    |
-      | 1  | /resources/documents/ | Dowód rejestracyjny 2014 | Zapłacono 98zł |
-      | 2  | /resources/documents/ | null                     | null           |
+    Wtedy przygotuję nowy plik dowodu rejestracyjnego o następujących parametrach:
+      | id | carId | source                | title                    | description    |
+      | 1  | 1     | /resources/documents/ | Dowód rejestracyjny 2014 | Zapłacono 98zł |
+      | 2  | 1     | /resources/documents/ | null                     | null           |
 
   Scenariusz: Usunięcie wybranego pliku dowodu rejestracyjnego
     Mając w repozytorium dodane samochody

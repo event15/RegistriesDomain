@@ -16,3 +16,5 @@ Potrzeba biznesowa: Zarządzanie ubezpieczeniami
       | CAR-GDY-0002 | 2                 | 126p  | Fiat  | GD 12345           | 2010           | 2015-12-30     | Gdynia | DRO        |
       | CAR-KRA-0001 | 4                 | 126p  | Fiat  | GD 12345           | 2011           | 2015-12-30     | Gdynia | DRO        |
       | CAR-KRA-0002 | 5                 | 126p  | Fiat  | GD 12345           | 2008           | 2015-12-30     | Gdynia | DRO        |
+
+  Scenariusz:

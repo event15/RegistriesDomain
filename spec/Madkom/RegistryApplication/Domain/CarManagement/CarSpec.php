@@ -208,50 +208,23 @@ class CarSpec extends ObjectBehavior
              ->shouldContain($document);
 
         $this->removeInsuranceDocument($carInsurance->getId(), $document->getId())->shouldReturn(0);
-
-
         $this->getInsuranceDocuments($carInsurance->getId())->shouldNotContain($document);
     }
 
     public function it_should_be_possible_to_add_new_CarDocument_to_Car()
     {
-        $insuranceId = '123-123-123';
-        $dateFrom  = new \DateTime('23-11-2015');
-        $dateTo    = new \DateTime('23-11-2016');
-
-        $insuranceFactory    = new InsuranceFactory();
-        $carInsurance        = $insuranceFactory->create('AC', $dateFrom, $dateTo, $insuranceId);
-        $this->addInsurance($carInsurance);
-        $this->getInsurance()->shouldContain($carInsurance);
-
-        $carInsuranceDocument = new DocumentFactory();
-        $document = $carInsuranceDocument
-            ->create(DocumentFactory::CAR_DOCUMENT, 'AC-123', 'AC wrzesień 2015', 'Uzupełnić o nowe dane.', 'path/to/ac_document/1.pdf');
-
+        $document = $this->prepareDocument('DOC-123', 'Dowód rejestracyjny 2014', 'Jakiś zakres danych', '/path/to/car/document/1.pdf');
         $this->addCarDocument($document);
-        $this->getCarDocument()
-             ->shouldContain($document);
+
+        $this->getCarDocument()->shouldContain($document);
     }
 
     public function it_should_be_possible_to_remove_CarDocument()
     {
-        $insuranceId = '123-123-123';
-        $dateFrom  = new \DateTime('23-11-2015');
-        $dateTo    = new \DateTime('23-11-2016');
-
-        $insuranceFactory    = new InsuranceFactory();
-        $carInsurance        = $insuranceFactory->create('AC', $dateFrom, $dateTo, $insuranceId);
-        $this->addInsurance($carInsurance);
-        $this->getInsurance()->shouldContain($carInsurance);
-
-        $carInsuranceDocument = new DocumentFactory();
-        $document = $carInsuranceDocument
-            ->create(DocumentFactory::CAR_DOCUMENT, 'AC-123', 'AC wrzesień 2015', 'Uzupełnić o nowe dane.', 'path/to/ac_document/1.pdf');
+        $document = $this->prepareDocument('DOC-123', 'Dowód rejestracyjny 2014', 'Jakiś zakres danych', '/path/to/car/document/1.pdf');
 
         $this->addCarDocument($document);
-        $this->getCarDocument()
-             ->shouldContain($document);
-
+        $this->getCarDocument()->shouldContain($document);
         $this->removeCarDocument($document->getId());
 
         $this->shouldThrow('InvalidArgumentException')->during('removeCarDocument', ['invalid_CarDocument_Id']);
@@ -270,5 +243,23 @@ class CarSpec extends ObjectBehavior
             $lastInspection,
             $upcomingInspection
         );
+    }
+
+    /**
+     * @return \Madkom\RegistryApplication\Domain\CarManagement\CarDocument|\Madkom\RegistryApplication\Domain\CarManagement\Insurances\InsuranceDocument
+     * @throws \Madkom\RegistryApplication\Domain\CarManagement\CarExceptions\EmptyDocumentTypeException
+     * @throws \Madkom\RegistryApplication\Domain\CarManagement\CarExceptions\UnknownDocumentTypeException
+     */
+    private function prepareDocument($docId, $title, $description, $source)
+    {
+        $carDocument = new DocumentFactory();
+        $document    = $carDocument->create(DocumentFactory::CAR_DOCUMENT,
+                                            $docId,
+                                            $title,
+                                            $description,
+                                            $source
+            );
+
+        return $document;
     }
 }
