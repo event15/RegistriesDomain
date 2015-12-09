@@ -1,25 +1,24 @@
 <?php
+namespace Madkom\RegistryApplication\Domain\CarManagement\Behat;
 
 use Behat\Behat\Context\Context;
-use Behat\Behat\Context\SnippetAcceptingContext;
-use Behat\Behat\Tester\Exception\PendingException;
 use Behat\Gherkin\Node\TableNode;
 use Madkom\RegistryApplication\Application\CarManagement\CarDocumentDTO;
 use Madkom\RegistryApplication\Application\CarManagement\CarDTO;
-use Madkom\RegistryApplication\Application\CarManagement\Command\AddCarCommand;
+use Madkom\RegistryApplication\Application\CarManagement\Command\Car\AddCarCommand;
 use Madkom\RegistryApplication\Domain\CarManagement\CarExceptions\CarFoundException;
 use Madkom\RegistryApplication\Domain\CarManagement\CarExceptions\CarNotFoundException;
 use Madkom\RegistryApplication\Domain\CarManagement\CarExceptions\DuplicatedVehicleInspectionException;
 use Madkom\RegistryApplication\Domain\CarManagement\VehicleInspection\VehicleInspection;
 use Madkom\RegistryApplication\Infrastructure\CarManagement\CarInMemoryRepository;
-use Madkom\RegistryApplication\Application\CarManagement\Command\AddCarDocumentCommand;
+use Madkom\RegistryApplication\Application\CarManagement\Command\Car\AddCarDocumentCommand;
 
 /**
- * Class FeatureContext
+ * Class CarManagementContext
  *
  * Defines application features from the specific context.
  */
-class FeatureContext implements Context, SnippetAcceptingContext
+class CarManagementContext implements Context
 {
     /** @var  \Madkom\RegistryApplication\Infrastructure\CarManagement\CarInMemoryRepository */
     public static $carRepository;
@@ -59,7 +58,7 @@ class FeatureContext implements Context, SnippetAcceptingContext
                               $item['department']
             );
 
-            $newCar = new AddCarCommand($dto, self::$carRepository);
+            $newCar = new AddCarCommand(self::$carRepository, $dto);
             $newCar->execute();
         }
     }
@@ -146,11 +145,11 @@ class FeatureContext implements Context, SnippetAcceptingContext
     }
 
     /**
-     * @Then chciałbym w samochodzie :carId dodać informację o przeglądzie z numerem :inspectionId, w którym data
-     *       ostatniego to :lastInspection, a data następnego to :upcomingInspection
+     * @Then chciałbym w samochodzie :carId dodać informację o przeglądzie z numerem :inspectionId, w którym data ostatniego to :lastInspection, a data następnego to :upcomingInspection
      * @throws \Madkom\RegistryApplication\Domain\CarManagement\CarExceptions\InvalidDatesException
      */
-    public function chcialbymWSamochodzieDodacInformacjeOPrzegladzieZNumeremWKtorymDataOstatniegoToADataNastepnegoTo(
+    public function chcialbymWSamochodzieDodacInformacjeOPrzegladzieZNumeremWKtorymDataOstatniegoToADataNastępnegoTo
+(
         $carId,
         $inspectionId,
         $lastInspection,
@@ -200,34 +199,33 @@ class FeatureContext implements Context, SnippetAcceptingContext
     }
 
     /**
-     * @Given mając dodane pliki z dowodem rejestracyjnym do samochodu
+     * @Then chciałbym usunąć plik :documentId skanu dowodu rejestracyjnego z samochodu :carId
      */
-    public function majacDodanePlikiZDowodemRejestracyjnymDoSamochodu()
+    public function chcialbymUsunacPlikSkanuDowoduRejestracyjnegoZSamochodu($carId, $documentId)
     {
-        throw new PendingException();
+        $repository  = self::$carRepository;
+        $selectedCar = $repository->find($carId);
+        $selectedCar->getCarDocument($documentId);
+
+        try {
+            $selectedCar->removeCarDocument($documentId);
+            throw new \InvalidArgumentException;
+        } catch (\Exception $e) {
+
+        }
     }
 
     /**
-     * @Then chciałbym usunąć plik :arg1 ze skanem dowodu rejestracyjnego
+     * @Then chciałbym, aby nie było możliwe usunięcie nieistniejącego pliku :documentId z samochodu :carId
      */
-    public function chcialbymUsunacPlikZeSkanemDowoduRejestracyjnego($arg1)
+    public function chcialbymAbyNieByloMozliweUsuniecieNieistniejacegoPlikuZSamochodu($carId, $documentId)
     {
-        throw new PendingException();
-    }
+        $repository  = self::$carRepository;
+        $selectedCar = $repository->find($carId);
 
-    /**
-     * @Then chciałbym aby nie było możliwe usunięcie nieistniejącego pliku :arg1
-     */
-    public function chcialbymAbyNieByloMozliweUsuniecieNieistniejacegoPliku($arg1)
-    {
-        throw new PendingException();
-    }
-
-    /**
-     * @Then chciałbym w samochodzie :arg4 dodać informację o przeglądzie z numerem :arg1, w którym data ostatniego to :arg2, a data następnego to :arg3
-     */
-    public function chcialbymWSamochodzieDodacInformacjeOPrzegladzieZNumeremWKtorymDataOstatniegoToADataNastepnegoTo2($arg1, $arg2, $arg3, $arg4)
-    {
-        throw new PendingException();
+        try {
+            $selectedCar->removeCarDocument($documentId);
+            throw new \InvalidArgumentException;
+        } catch (\Exception $e) {}
     }
 }

@@ -1,0 +1,8 @@
+# behat.yml
+
+default:
+  suites:
+    Car_Management:
+      contexts:
+        - Madkom\RegistryApplication\Domain\CarManagement\Behat\CarManagementContext
+        - Madkom\RegistryApplication\Domain\CarManagement\Behat\InsuranceManagerContext

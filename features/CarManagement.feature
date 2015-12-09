@@ -81,8 +81,5 @@ Potrzeba biznesowa: Zarządzanie samochodami
 
   Scenariusz: Usunięcie wybranego pliku dowodu rejestracyjnego
     Mając w repozytorium dodane samochody
-    Oraz mając dodane pliki z dowodem rejestracyjnym do samochodu
-    Wtedy chciałbym usunąć plik "1" ze skanem dowodu rejestracyjnego
-    Oraz chciałbym aby nie było możliwe usunięcie nieistniejącego pliku "5"
-
-
+    Wtedy chciałbym usunąć plik "1" skanu dowodu rejestracyjnego z samochodu "1"
+    Oraz chciałbym, aby nie było możliwe usunięcie nieistniejącego pliku "5" z samochodu "1"
