@@ -2,6 +2,7 @@
 
 namespace Madkom\RegistryApplication\Domain\CarManagement\Insurances;
 
+use Madkom\RegistryApplication\Domain\CarManagement\CarExceptions\InvalidDatesException;
 use Madkom\RegistryApplication\Domain\CarManagement\Insurances\Exceptions\EmptyInsuranceDateException;
 use Madkom\RegistryApplication\Domain\CarManagement\Insurances\Exceptions\UnknownInsuranceTypeException;
 
@@ -28,6 +29,7 @@ class InsuranceFactory
     {
         $this->areEmpty($dateFrom, $dateTo);
         $this->hasValidDateFormat($dateFrom, $dateTo);
+        $this->isEqualToOneYear($dateFrom, $dateTo);
 
         switch($insuranceType) {
             case CarInsurance::INSURANCE_TYPE:
@@ -73,6 +75,22 @@ class InsuranceFactory
         if (! ($dateFrom instanceof \DateTime) or ! ($dateTo instanceof \DateTime)) {
             throw new \InvalidArgumentException('The \'date from\' or \'date to\' has not be instance of DateTime class.'
             );
+        }
+    }
+
+    private function isEqualToOneYear($dateFrom, $dateTo)
+    {
+        $interval = $dateTo->diff($dateFrom);
+
+        if($interval->days < 365 or $interval->days > 366) {
+            throw new InvalidDatesException('Umowa z ubezpieczeniem może być tylko na rok.');
+        }
+    }
+
+    private function isValidOrder($dateFrom, $dateTo)
+    {
+        if($dateFrom >= $dateTo) {
+            throw new InvalidDatesException('Data początku umowy jest większa lub równa daty jej zakończenia.');
         }
     }
 }

@@ -127,8 +127,10 @@ class CarSpec extends ObjectBehavior
         $badCarInsurance     = $insuranceFactory->create('AC', $invalidDateFrom, $invalidDateTo, $insurerId);
 
         $this->addInsurance($carInsurance);
-        $this->shouldThrow('InvalidArgumentException')->during('addInsurance', [$theSameCarInsurance]);
-        $this->shouldThrow('InvalidArgumentException')->during('addInsurance', [$badCarInsurance]);
+        $this->shouldThrow('Madkom\RegistryApplication\Domain\CarManagement\Insurances\Exceptions\DuplicatedInsuranceException')
+             ->during('addInsurance', [$theSameCarInsurance]);
+        $this->shouldThrow('Madkom\RegistryApplication\Domain\CarManagement\Insurances\Exceptions\DuplicatedInsuranceException')
+             ->during('addInsurance', [$badCarInsurance]);
     }
 
     public function it_should_be_possible_to_remove_Insurance()

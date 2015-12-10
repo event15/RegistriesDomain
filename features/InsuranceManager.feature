@@ -25,7 +25,7 @@ Potrzeba biznesowa: Zarządzanie ubezpieczeniami
       | 2  | OC   | 2014-01-01 | 2015-01-01 |
       | 3  | ASS  | 2014-01-01 | 2015-01-01 |
       | 4  | NWW  | 2014-01-01 | 2015-01-01 |
-    Oraz nie można dodać ubezpieczenia do samochodu "1", gdy różnica między "<dateFrom>" i "<dateTo>" jest inna niż jeden rok:
+    Oraz nie można dodać ubezpieczenia do samochodu "1", gdy różnica między dateFrom i dateTo jest inna niż jeden rok:
       | id | type | dateFrom   | dateTo     |
       | 5  | AC   | 2013-01-01 | 2014-01-31 |
       | 6  | AC   | 2013-01-01 | 2013-12-31 |
@@ -34,8 +34,8 @@ Potrzeba biznesowa: Zarządzanie ubezpieczeniami
     Mając w repozytorium dodane samochody
     Wtedy chciałbym do samochodu "1" dodać ubezpieczenie o następujących danych:
       | id | type | dateFrom   | dateTo     |
-      | 1  | AC   | 2014-01-01 | 2014-01-01 |
-    Oraz chciałbym do samochodu "1" dodać kolejne ubezpieczenie o następujących danych:
+      | 1  | AC   | 2014-01-01 | 2015-01-01 |
+    Oraz chciałbym do samochodu "1" dodać ubezpieczenie o następujących danych:
       | id | type | dateFrom   | dateTo     |
       | 2  | AC   | 2014-01-02 | 2015-01-02 |
     #

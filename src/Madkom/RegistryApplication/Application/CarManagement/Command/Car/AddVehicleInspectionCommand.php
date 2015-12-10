@@ -12,7 +12,6 @@ use Madkom\RegistryApplication\Application\CarManagement\Command\CommandInterfac
 
 class AddVehicleInspectionCommand implements CommandInterface
 {
-
     public function execute()
     {
         // TODO: Implement execute() method.

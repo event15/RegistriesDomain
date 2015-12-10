@@ -6,8 +6,10 @@ use Madkom\RegistryApplication\Domain\CarManagement\CarExceptions\DuplicatedVehi
 use Madkom\RegistryApplication\Domain\CarManagement\CarExceptions\InvalidDatesException;
 use Madkom\RegistryApplication\Domain\CarManagement\CarExceptions\NonexistentInsuranceException;
 use Madkom\RegistryApplication\Domain\CarManagement\CarExceptions\RemovingNonexistentElementException;
+use Madkom\RegistryApplication\Domain\CarManagement\Insurances\Exceptions\DuplicatedInsuranceException;
 use Madkom\RegistryApplication\Domain\CarManagement\Insurances\Insurance;
 use Madkom\RegistryApplication\Domain\CarManagement\Insurances\InsuranceDocument;
+use Madkom\RegistryApplication\Domain\CarManagement\Insurances\InsuranceDuplicationChecker;
 use Madkom\RegistryApplication\Domain\CarManagement\VehicleInspection\VehicleInspection;
 use Madkom\RegistryApplication\Domain\CarManagement\VehicleInspection\VehicleInspectionDateChecker;
 use Madkom\RegistryApplication\Domain\CarManagement\VehicleInspection\VehicleInspectionDuplicationChecker;
@@ -176,13 +178,12 @@ class Car
 
     public function addInsurance(Insurance $newInsurance)
     {
-        foreach ($this->insurances as $insurance) {
-            if(($newInsurance->getDateFrom() < $insurance->getDateTo()) &&
-               ($newInsurance->getType() === $insurance->getType())
-            ) {
-                throw new \InvalidArgumentException;
-            }
+        $duplicationChecker = new InsuranceDuplicationChecker();
+        $isDuplicated       = $duplicationChecker->checkForDuplicates($this->insurances, $newInsurance);
+        if($isDuplicated) {
+            throw new DuplicatedInsuranceException;
         }
+
         $this->insurances[] = $newInsurance;
     }
 

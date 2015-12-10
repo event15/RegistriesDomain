@@ -10,7 +10,6 @@ use Madkom\RegistryApplication\Domain\CarManagement\CarExceptions\CarFoundExcept
 use Madkom\RegistryApplication\Domain\CarManagement\CarExceptions\CarNotFoundException;
 use Madkom\RegistryApplication\Domain\CarManagement\CarExceptions\DuplicatedVehicleInspectionException;
 use Madkom\RegistryApplication\Domain\CarManagement\VehicleInspection\VehicleInspection;
-use Madkom\RegistryApplication\Infrastructure\CarManagement\CarInMemoryRepository;
 use Madkom\RegistryApplication\Application\CarManagement\Command\Car\AddCarDocumentCommand;
 
 /**
@@ -18,25 +17,15 @@ use Madkom\RegistryApplication\Application\CarManagement\Command\Car\AddCarDocum
  *
  * Defines application features from the specific context.
  */
-class CarManagementContext implements Context
+class CarManagementContext extends ContextRepositoryInterface implements Context
 {
-    /** @var  \Madkom\RegistryApplication\Infrastructure\CarManagement\CarInMemoryRepository */
-    public static $carRepository;
-
     /**
      * Initializes context.
      *
      */
     public function __construct()
     {
-    }
-
-    /**
-     * @BeforeSuite
-     */
-    public static function setUp()
-    {
-        self::$carRepository = new CarInMemoryRepository();
+        parent::__construct();
     }
 
     /**

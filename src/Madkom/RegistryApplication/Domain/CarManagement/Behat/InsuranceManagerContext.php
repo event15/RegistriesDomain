@@ -6,39 +6,85 @@ use Behat\Behat\Tester\Exception\PendingException;
 use Behat\Behat\Context\Context;
 use Behat\Behat\Context\SnippetAcceptingContext;
 use Behat\Gherkin\Node\TableNode;
+use Madkom\RegistryApplication\Application\CarManagement\Command\Insurance\AddInsuranceCommand;
+use Madkom\RegistryApplication\Application\CarManagement\InsuranceDTO;
+use Madkom\RegistryApplication\Domain\CarManagement\CarExceptions\InvalidDatesException;
 
-class InsuranceManagerContext implements Context, SnippetAcceptingContext
+class InsuranceManagerContext extends ContextRepositoryInterface implements Context, SnippetAcceptingContext
 {
     /**
      * @Then chciałbym do samochodu :carId dodać ubezpieczenie o następujących danych:
      */
     public function chcialbymDoSamochoduDodacUbezpieczenieONastepujacychDanych($carId, TableNode $table)
     {
-        throw new PendingException();
+        $insurance = $table->getHash();
+
+        foreach ($insurance as $item) {
+            $dto = new InsuranceDTO($item['id'],
+                                    $item['dateFrom'],
+                                    $item['dateTo'],
+                                    $item['type']
+            );
+
+            $newInsurance = new AddInsuranceCommand(self::$carRepository, $carId, $dto);
+            $newInsurance->execute();
+        }
     }
 
     /**
-     * @Then nie można dodać ubezpieczenia do samochodu :carId, gdy różnica między :dateFrom i :dateTo jest inna niż jeden rok:
+     * @Then nie można dodać ubezpieczenia do samochodu :carId, gdy różnica między dateFrom i dateTo jest inna niż jeden rok:
+     *
+     * @throws \Madkom\RegistryApplication\Domain\CarManagement\CarExceptions\InvalidDatesException
+     * @throws \InvalidArgumentException
      */
-    public function nieMoznaDodacUbezpieczeniaDoSamochoduGdyRoznicaMiedzyIJestInnaNizJedenRok($carId, $dateFrom, $dateTo, TableNode $table)
+    public function nieMoznaDodacUbezpieczeniaDoSamochoduGdyRoznicaMiedzyDateFromIDateToJestInnaNizJedenRok($carId, TableNode $table)
     {
-        throw new PendingException();
+        $insurance = $table->getHash();
+
+        foreach ($insurance as $item) {
+            $dto = new InsuranceDTO($item['id'],
+                                    $item['dateFrom'],
+                                    $item['dateTo'],
+                                    $item['type']
+            );
+
+            $newInsurance = new AddInsuranceCommand(self::$carRepository, $carId, $dto);
+
+            try {
+                $newInsurance->execute();
+                throw new \InvalidArgumentException('W tym teście spodziewano się wyjątku InvalidDatesException, ale go nie otrzymano');
+            } catch (InvalidDatesException $datesException) {
+
+            }
+        }
+
     }
 
     /**
-     * @Then chciałbym do samochodu :arg1 dodać kolejne ubezpieczenie o następujących danych:
+     * @Then nie można dodać kolejnego ubezpieczenia do samochodu :carId, którego data rozpoczęcia będzie wcześniej niż data końca poprzedniego:
+     * @throws \Madkom\RegistryApplication\Domain\CarManagement\CarExceptions\InvalidDatesException
+     * @throws \InvalidArgumentException
      */
-    public function chcialbymDoSamochoduDodacKolejneUbezpieczenieONastepujacychDanych($arg1, TableNode $table)
+    public function nieMoznaDodacKolejnegoUbezpieczeniaDoSamochoduKtoregoDataRozpoczeciaBedzieWczesniejNizDataKoncaPoprzedniego($carId, TableNode $table)
     {
-        throw new PendingException();
-    }
+        $insurance = $table->getHash();
 
-    /**
-     * @Then nie można dodać kolejnego ubezpieczenia do samochodu :arg1, którego data rozpoczęcia będzie wcześniej niż data końca poprzedniego:
-     */
-    public function nieMoznaDodacKolejnegoUbezpieczeniaDoSamochoduKtoregoDataRozpoczeciaBedzieWczesniejNizDataKoncaPoprzedniego($arg1, TableNode $table)
-    {
-        throw new PendingException();
+        foreach ($insurance as $item) {
+            $dto = new InsuranceDTO($item['id'],
+                                    $item['dateFrom'],
+                                    $item['dateTo'],
+                                    $item['type']
+            );
+
+            $newInsurance = new AddInsuranceCommand(self::$carRepository, $carId, $dto);
+
+            try {
+                $newInsurance->execute();
+                throw new \InvalidArgumentException('W tym teście spodziewano się wyjątku InvalidDatesException, ale go nie otrzymano');
+            } catch (InvalidDatesException $datesException) {
+
+            }
+        }
     }
 
     /**
@@ -93,6 +139,30 @@ class InsuranceManagerContext implements Context, SnippetAcceptingContext
      * @Then chciałbym aby nie była możliwa podmiana istniejącego pliku :arg1
      */
     public function chcialbymAbyNieBylaMozliwaPodmianaIstniejacegoPliku($arg1)
+    {
+        throw new PendingException();
+    }
+
+    /**
+     * @Then chciałbym usunąć plik :arg1
+     */
+    public function chcialbymUsunacPlik($arg1)
+    {
+        throw new PendingException();
+    }
+
+    /**
+     * @Then chciałbym aby nie było możliwe pobranie pliku :arg1
+     */
+    public function chcialbymAbyNieByloMozliwePobraniePliku($arg1)
+    {
+        throw new PendingException();
+    }
+
+    /**
+     * @Then chciałbym aby nie było możliwe usunięcie pliku :arg1
+     */
+    public function chcialbymAbyNieByloMozliweUsunieciePliku($arg1)
     {
         throw new PendingException();
     }
