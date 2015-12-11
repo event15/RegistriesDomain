@@ -21,10 +21,10 @@ Potrzeba biznesowa: Zarządzanie ubezpieczeniami
     Mając w repozytorium dodane samochody
     Wtedy chciałbym do samochodu "1" dodać ubezpieczenie o następujących danych:
       | id | type | dateFrom   | dateTo     |
-      | 1  | AC   | 2014-01-01 | 2015-01-01 |
-      | 2  | OC   | 2014-01-01 | 2015-01-01 |
-      | 3  | ASS  | 2014-01-01 | 2015-01-01 |
-      | 4  | NWW  | 2014-01-01 | 2015-01-01 |
+      | 2  | AC   | 2015-01-02 | 2016-01-02 |
+      | 3  | OC   | 2014-01-01 | 2015-01-01 |
+      | 4  | ASS  | 2014-01-01 | 2015-01-01 |
+      | 5  | NWW  | 2014-01-01 | 2015-01-01 |
     Oraz nie można dodać ubezpieczenia do samochodu "1", gdy różnica między dateFrom i dateTo jest inna niż jeden rok:
       | id | type | dateFrom   | dateTo     |
       | 5  | AC   | 2013-01-01 | 2014-01-31 |
@@ -34,10 +34,7 @@ Potrzeba biznesowa: Zarządzanie ubezpieczeniami
     Mając w repozytorium dodane samochody
     Wtedy chciałbym do samochodu "1" dodać ubezpieczenie o następujących danych:
       | id | type | dateFrom   | dateTo     |
-      | 1  | AC   | 2014-01-01 | 2015-01-01 |
-    Oraz chciałbym do samochodu "1" dodać ubezpieczenie o następujących danych:
-      | id | type | dateFrom   | dateTo     |
-      | 2  | AC   | 2014-01-02 | 2015-01-02 |
+      | 7  | AC   | 2016-01-03 | 2017-01-03 |
     #
     # Przypadki negatywne:
     #
@@ -72,5 +69,3 @@ Potrzeba biznesowa: Zarządzanie ubezpieczeniami
     Wtedy chciałbym usunąć plik "2"
     Oraz chciałbym aby nie było możliwe pobranie pliku "2"
     Oraz chciałbym aby nie było możliwe usunięcie pliku "666"
-
-  Scenariusz:

@@ -9,6 +9,7 @@ use Behat\Gherkin\Node\TableNode;
 use Madkom\RegistryApplication\Application\CarManagement\Command\Insurance\AddInsuranceCommand;
 use Madkom\RegistryApplication\Application\CarManagement\InsuranceDTO;
 use Madkom\RegistryApplication\Domain\CarManagement\CarExceptions\InvalidDatesException;
+use Madkom\RegistryApplication\Domain\CarManagement\Insurances\Exceptions\DuplicatedInsuranceException;
 
 class InsuranceManagerContext extends ContextRepositoryInterface implements Context, SnippetAcceptingContext
 {
@@ -62,6 +63,7 @@ class InsuranceManagerContext extends ContextRepositoryInterface implements Cont
 
     /**
      * @Then nie można dodać kolejnego ubezpieczenia do samochodu :carId, którego data rozpoczęcia będzie wcześniej niż data końca poprzedniego:
+     * @Then nie można dodać kolejnego ubezpieczenia do samochodu :carId, którego data rozpoczęcia będzie później niż data końca poprzedniego:
      * @throws \Madkom\RegistryApplication\Domain\CarManagement\CarExceptions\InvalidDatesException
      * @throws \InvalidArgumentException
      */
@@ -83,16 +85,10 @@ class InsuranceManagerContext extends ContextRepositoryInterface implements Cont
                 throw new \InvalidArgumentException('W tym teście spodziewano się wyjątku InvalidDatesException, ale go nie otrzymano');
             } catch (InvalidDatesException $datesException) {
 
+            } catch (DuplicatedInsuranceException $duplicatesException) {
+
             }
         }
-    }
-
-    /**
-     * @Then nie można dodać kolejnego ubezpieczenia do samochodu :arg1, którego data rozpoczęcia będzie później niż data końca poprzedniego:
-     */
-    public function nieMoznaDodacKolejnegoUbezpieczeniaDoSamochoduKtoregoDataRozpoczeciaBedziePozniejNizDataKoncaPoprzedniego($arg1, TableNode $table)
-    {
-        throw new PendingException();
     }
 
     /**

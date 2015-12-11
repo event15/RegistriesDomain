@@ -20,10 +20,14 @@ class InsuranceDuplicationChecker
      */
     public function checkForDuplicates(array $existingInsurance, Insurance $newInsurance)
     {
+        /** @var \Madkom\RegistryApplication\Domain\CarManagement\Insurances\Insurance $insurance */
         foreach ($existingInsurance as $insurance) {
             if (($newInsurance->getDateFrom() <= $insurance->getDateTo())
                 && ($newInsurance->getType() === $insurance->getType())
             ) {
+                return true;
+            }
+            if($newInsurance->getId() === $insurance->getId()) {
                 return true;
             }
         }
