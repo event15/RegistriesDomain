@@ -3,7 +3,7 @@ namespace Madkom\RegistryApplication\Domain\CarManagement\Behat;
 
 use Behat\Behat\Context\Context;
 use Behat\Gherkin\Node\TableNode;
-use Madkom\RegistryApplication\Application\CarManagement\CarDocumentDTO;
+use Madkom\RegistryApplication\Application\CarManagement\DocumentDTO;
 use Madkom\RegistryApplication\Application\CarManagement\CarDTO;
 use Madkom\RegistryApplication\Application\CarManagement\Command\Car\AddCarCommand;
 use Madkom\RegistryApplication\Domain\CarManagement\CarExceptions\CarFoundException;
@@ -176,7 +176,7 @@ class CarManagementContext extends ContextRepositoryInterface implements Context
     {
         $documents = $table->getHash();
         foreach ($documents as $document) {
-            $dto = new CarDocumentDTO($document['id'],
+            $dto = new DocumentDTO($document['id'],
                                       $document['source'],
                                       $document['title'],
                                       $document['description']

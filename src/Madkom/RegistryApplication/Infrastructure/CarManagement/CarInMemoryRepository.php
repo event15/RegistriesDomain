@@ -15,7 +15,7 @@ class CarInMemoryRepository implements CarRepositoryInterface
 {
     private $repository = [];
 
-    public function save(Car $car)
+    public function add(Car $car)
     {
         $this->repository[$car->getId()] = $car;
     }

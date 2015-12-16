@@ -8,7 +8,7 @@
 
 namespace Madkom\RegistryApplication\Application\CarManagement;
 
-class CarDocumentDTO
+class DocumentDTO
 {
     public $docId;
     public $title;
@@ -30,5 +30,4 @@ class CarDocumentDTO
         $this->description = $description;
         $this->source      = $source;
     }
-
 }

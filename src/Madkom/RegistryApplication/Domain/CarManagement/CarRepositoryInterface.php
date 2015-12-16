@@ -15,7 +15,7 @@ interface CarRepositoryInterface
      *
      * @return mixed
      */
-    public function save(Car $car);
+    public function add(Car $car);
 
     /**
      * @param $carId

@@ -33,6 +33,6 @@ class AddCarCommand implements CommandInterface
             $this->preparedCar->department
         );
 
-        $this->carRepository->save($car);
+        $this->carRepository->add($car);
     }
 }

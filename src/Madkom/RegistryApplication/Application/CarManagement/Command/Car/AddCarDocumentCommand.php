@@ -2,7 +2,7 @@
 
 namespace Madkom\RegistryApplication\Application\CarManagement\Command\Car;
 
-use Madkom\RegistryApplication\Application\CarManagement\CarDocumentDTO;
+use Madkom\RegistryApplication\Application\CarManagement\DocumentDTO;
 use Madkom\RegistryApplication\Application\CarManagement\Command\CommandInterface;
 use Madkom\RegistryApplication\Domain\CarManagement\DocumentFactory;
 use Madkom\RegistryApplication\Infrastructure\CarManagement\CarInMemoryRepository;
@@ -13,7 +13,7 @@ class AddCarDocumentCommand implements CommandInterface
     private $repository;
     private $carId;
 
-    public function __construct(CarInMemoryRepository $repository, $carId, CarDocumentDTO $preparedDocument)
+    public function __construct(CarInMemoryRepository $repository, $carId, DocumentDTO $preparedDocument)
     {
         $this->preparedDocument = $preparedDocument;
         $this->repository       = $repository;
@@ -33,6 +33,6 @@ class AddCarDocumentCommand implements CommandInterface
         $car = $this->repository->find($this->carId);
         $car->addCarDocument($carDocument);
 
-        $this->repository->save($car);
+        $this->repository->add($car);
     }
 }

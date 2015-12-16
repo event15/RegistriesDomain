@@ -9,34 +9,86 @@
 namespace Madkom\RegistryApplication\Application\CarManagement\Command\Insurance;
 
 use Madkom\RegistryApplication\Application\CarManagement\Command\CommandInterface;
+use Madkom\RegistryApplication\Application\CarManagement\DocumentDTO;
 use Madkom\RegistryApplication\Application\CarManagement\InsuranceDTO;
+use Madkom\RegistryApplication\Domain\CarManagement\DocumentFactory;
 use Madkom\RegistryApplication\Domain\CarManagement\Insurances\InsuranceFactory;
 use Madkom\RegistryApplication\Infrastructure\CarManagement\CarInMemoryRepository;
 
-class AddInsuranceCommand implements CommandInterface
+/**
+ * Class AddInsuranceCommand
+ *
+ * @package Madkom\RegistryApplication\Application\CarManagement\Command\Insurance
+ */
+final class AddInsuranceCommand implements CommandInterface
 {
-    private $dto;
+    /** @var  \Madkom\RegistryApplication\Application\CarManagement\InsuranceDTO $insuranceDTO */
+    private $insuranceDTO;
+
+    /** @var  \Madkom\RegistryApplication\Infrastructure\CarManagement\CarInMemoryRepository $repository */
     private $repository;
+
+    /** @var  \Madkom\RegistryApplication\Domain\CarManagement\Car $car */
     private $car;
 
-    public function __construct(CarInMemoryRepository $repository, $carId, InsuranceDTO $dto)
+    private $documentDTO;
+
+    private $documentFile;
+
+    private function __construct()
     {
-        $this->repository = $repository;
-        $this->dto        = $dto;
-        $this->car        = $this->repository->find($carId);
+    }
+
+    public static function addWithFile(
+        CarInMemoryRepository $repository,
+        $carId,
+        InsuranceDTO $insuranceDTO,
+        DocumentDTO $documentDTO
+    ) {
+        $command              = new AddInsuranceCommand();
+        $carInsuranceDocument = new DocumentFactory();
+
+        $command->repository   = $repository;
+        $command->insuranceDTO = $insuranceDTO;
+        $command->documentDTO  = $documentDTO;
+        $command->car          = $command->repository->find($carId);
+
+        $command->documentFile = $carInsuranceDocument->create(DocumentFactory::INSURANCE_DOCUMENT,
+                                                               $command->documentDTO->docId,
+                                                               $command->documentDTO->title,
+                                                               $documentDTO->description,
+                                                               $documentDTO->source
+        );
+
+        return $command;
+    }
+
+    public static function add(CarInMemoryRepository $repository, $carId, InsuranceDTO $dto)
+    {
+        $command = new AddInsuranceCommand();
+
+        $command->repository   = $repository;
+        $command->insuranceDTO = $dto;
+        $command->car          = $command->repository->find($carId);
+
+        return $command;
     }
 
     public function execute()
     {
-        $meta = $this->dto;
+        $insurance             = $this->insuranceDTO;
         $insuranceFactory = new InsuranceFactory();
-        $newInsurance = $insuranceFactory->create($meta->type,
-                                                  new \DateTime($meta->dateFrom),
-                                                  new \DateTime($meta->dateTo),
-                                                  $meta->insurerId
+        $newInsurance     = $insuranceFactory->create($insurance->type,
+                                                      new \DateTime($insurance->dateFrom),
+                                                      new \DateTime($insurance->dateTo),
+                                                      $insurance->insurerId
         );
-        $this->car->addInsurance($newInsurance);
 
-        $this->repository->save($this->car);
+        $this->car->addInsurance($newInsurance);
+        if($this->documentFile) {
+            $this->car->addInsuranceDocument($newInsurance->getId(), $this->documentFile);
+        }
+
+        $this->repository->add($this->car);
     }
 }

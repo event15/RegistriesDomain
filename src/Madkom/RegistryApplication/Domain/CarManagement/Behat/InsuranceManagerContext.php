@@ -27,7 +27,7 @@ class InsuranceManagerContext extends ContextRepositoryInterface implements Cont
                                     $item['type']
             );
 
-            $newInsurance = new AddInsuranceCommand(self::$carRepository, $carId, $dto);
+            $newInsurance = AddInsuranceCommand::add(self::$carRepository, $carId, $dto);
             $newInsurance->execute();
         }
     }
@@ -49,7 +49,7 @@ class InsuranceManagerContext extends ContextRepositoryInterface implements Cont
                                     $item['type']
             );
 
-            $newInsurance = new AddInsuranceCommand(self::$carRepository, $carId, $dto);
+            $newInsurance = AddInsuranceCommand::add(self::$carRepository, $carId, $dto);
 
             try {
                 $newInsurance->execute();
@@ -78,7 +78,7 @@ class InsuranceManagerContext extends ContextRepositoryInterface implements Cont
                                     $item['type']
             );
 
-            $newInsurance = new AddInsuranceCommand(self::$carRepository, $carId, $dto);
+            $newInsurance = AddInsuranceCommand::add(self::$carRepository, $carId, $dto);
 
             try {
                 $newInsurance->execute();
@@ -96,7 +96,8 @@ class InsuranceManagerContext extends ContextRepositoryInterface implements Cont
      */
     public function wRepozytoriumDodaneUbezpieczenia()
     {
-        throw new PendingException();
+        $car = self::$carRepository->find(1);
+        $car->getInsurance();
     }
 
     /**
