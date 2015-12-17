@@ -3,7 +3,6 @@
   "description": "Rejestr firmowy",
   "minimum-stability": "dev",
   "license": "proprietary",
-
   "require-dev": {
     "behat/behat": "3.*",
     "phpspec/phpspec": "2.*"

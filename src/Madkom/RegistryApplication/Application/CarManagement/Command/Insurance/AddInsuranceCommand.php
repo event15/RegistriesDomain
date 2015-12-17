@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: marek
- * Date: 08.12.15
- * Time: 15:42
- */
 
 namespace Madkom\RegistryApplication\Application\CarManagement\Command\Insurance;
 
@@ -76,7 +70,7 @@ final class AddInsuranceCommand implements CommandInterface
 
     public function execute()
     {
-        $insurance             = $this->insuranceDTO;
+        $insurance        = $this->insuranceDTO;
         $insuranceFactory = new InsuranceFactory();
         $newInsurance     = $insuranceFactory->create($insurance->type,
                                                       new \DateTime($insurance->dateFrom),
@@ -85,7 +79,7 @@ final class AddInsuranceCommand implements CommandInterface
         );
 
         $this->car->addInsurance($newInsurance);
-        if($this->documentFile) {
+        if ($this->documentFile) {
             $this->car->addInsuranceDocument($newInsurance->getId(), $this->documentFile);
         }
 

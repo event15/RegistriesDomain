@@ -105,7 +105,8 @@ class InsuranceManagerContext extends ContextRepositoryInterface implements Cont
      */
     public function chcialbymDoIstniejacegoUbezpieczeniaDodacPlik(TableNode $table)
     {
-        throw new PendingException();
+        $table->getHash();
+
     }
 
     /**

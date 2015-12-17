@@ -19,6 +19,6 @@ class VehicleInspectionDateChecker
         $interval = $newVehicleInspection->getUpcomingInspection()->diff($newVehicleInspection->getLastInspection());
         $interval = $interval->format('%R%a');
 
-        return ((int) $interval >= 0) ? true : false;
+        return ((int) $interval >= 0) ?: false;
     }
 }

@@ -11,6 +11,7 @@ use Madkom\RegistryApplication\Domain\CarManagement\CarExceptions\CarNotFoundExc
 use Madkom\RegistryApplication\Domain\CarManagement\CarExceptions\DuplicatedVehicleInspectionException;
 use Madkom\RegistryApplication\Domain\CarManagement\VehicleInspection\VehicleInspection;
 use Madkom\RegistryApplication\Application\CarManagement\Command\Car\AddCarDocumentCommand;
+use Madkom\RegistryApplication\Domain\CarManagement\CarExceptions\InvalidDatesException;
 
 /**
  * Class CarManagementContext
@@ -23,10 +24,10 @@ class CarManagementContext extends ContextRepositoryInterface implements Context
      * Initializes context.
      *
      */
-    public function __construct()
+/*    public function __construct()
     {
         parent::__construct();
-    }
+    }*/
 
     /**
      * @When /^mam następujące dane samochodów, chcę je dodać do repozytorium:$/
@@ -151,7 +152,7 @@ class CarManagementContext extends ContextRepositoryInterface implements Context
         );
         try {
             $selectedCar->addVehicleInspection($newInspection);
-        } catch (\Madkom\RegistryApplication\Domain\CarManagement\CarExceptions\InvalidDatesException $e) {
+        } catch (InvalidDatesException $e) {
 
         }
     }
@@ -194,7 +195,7 @@ class CarManagementContext extends ContextRepositoryInterface implements Context
     {
         $repository  = self::$carRepository;
         $selectedCar = $repository->find($carId);
-        $selectedCar->getCarDocument($documentId);
+        $selectedCar->getCarDocument();
 
         try {
             $selectedCar->removeCarDocument($documentId);
