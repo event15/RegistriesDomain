@@ -7,9 +7,11 @@ use Behat\Behat\Context\Context;
 use Behat\Behat\Context\SnippetAcceptingContext;
 use Behat\Gherkin\Node\TableNode;
 use Madkom\RegistryApplication\Application\CarManagement\Command\Insurance\AddInsuranceCommand;
+use Madkom\RegistryApplication\Application\CarManagement\DocumentDTO;
 use Madkom\RegistryApplication\Application\CarManagement\InsuranceDTO;
 use Madkom\RegistryApplication\Domain\CarManagement\CarExceptions\InvalidDatesException;
 use Madkom\RegistryApplication\Domain\CarManagement\Insurances\Exceptions\DuplicatedInsuranceException;
+use Madkom\RegistryApplication\Domain\CarManagement\Insurances\Insurance;
 
 class InsuranceManagerContext extends ContextRepositoryInterface implements Context, SnippetAcceptingContext
 {
@@ -105,7 +107,23 @@ class InsuranceManagerContext extends ContextRepositoryInterface implements Cont
      */
     public function chcialbymDoIstniejacegoUbezpieczeniaDodacPlik(TableNode $table)
     {
-        $table->getHash();
+        $car = self::$carRepository->find(1);
+
+        /** @var \Madkom\RegistryApplication\Domain\CarManagement\Insurances\Insurance $insurance */
+        $insurance = $car->getInsurance();
+
+        $dto = new InsuranceDTO($item['id'], $item['dateFrom'], $item['dateTo'], $item['type']);
+        $documentDTO = new DocumentDTO();
+
+        $newInsurance = AddInsuranceCommand::addWithFile(self::$carRepository, $carId, $dto, $documentDTO);
+
+        try {
+            $newInsurance->execute();
+            throw new \InvalidArgumentException('W tym teście spodziewano się wyjątku InvalidDatesException, ale go nie otrzymano');
+
+        } catch (InvalidDatesException $datesException) {
+
+        }
 
     }
 
