@@ -256,7 +256,7 @@ class Car
         throw new NonexistentInsuranceException('Nie odnaleziono wybranego ubezpieczenia.');
     }
 
-    public function getInsurance()
+    public function getInsurances()
     {
         return $this->insurances;
     }

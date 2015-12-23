@@ -7,9 +7,11 @@ use Behat\Behat\Context\Context;
 use Behat\Behat\Context\SnippetAcceptingContext;
 use Behat\Gherkin\Node\TableNode;
 use Madkom\RegistryApplication\Application\CarManagement\Command\Insurance\AddInsuranceCommand;
+use Madkom\RegistryApplication\Application\CarManagement\Command\Insurance\AddInsuranceDocumentCommand;
 use Madkom\RegistryApplication\Application\CarManagement\DocumentDTO;
 use Madkom\RegistryApplication\Application\CarManagement\InsuranceDTO;
 use Madkom\RegistryApplication\Domain\CarManagement\CarExceptions\InvalidDatesException;
+use Madkom\RegistryApplication\Domain\CarManagement\CarExceptions\NonexistentInsuranceException;
 use Madkom\RegistryApplication\Domain\CarManagement\Insurances\Exceptions\DuplicatedInsuranceException;
 use Madkom\RegistryApplication\Domain\CarManagement\Insurances\Insurance;
 
@@ -99,78 +101,44 @@ class InsuranceManagerContext extends ContextRepositoryInterface implements Cont
     public function wRepozytoriumDodaneUbezpieczenia()
     {
         $car = self::$carRepository->find(1);
-        $car->getInsurance();
+        $car->getInsurances();
     }
 
     /**
      * @Then chciałbym do istniejącego ubezpieczenia dodać plik:
+     * @Then chciałbym dodać do istniejącego ubezpieczenia kolejny plik:
+     * @Then chciałbym aby nie było możliwe dodanie pliku do nieistniejącego ubezpieczenia:
+     * @Then chciałbym aby nie było możliwe dodanie kolejnego pliku o id :arg1
+     * @Then chciałbym aby nie była możliwa podmiana istniejącego pliku :arg1
+     * @Then chciałbym aby nie było możliwe pobranie pliku :arg1
      */
     public function chcialbymDoIstniejacegoUbezpieczeniaDodacPlik(TableNode $table)
     {
-        $car = self::$carRepository->find(1);
+        foreach ($table as $item) {
+            $dto = new DocumentDTO($item['fileId'],
+                                   $item['title'],
+                                   $item['description'],
+                                   $item['source']
+            );
 
-        /** @var \Madkom\RegistryApplication\Domain\CarManagement\Insurances\Insurance $insurance */
-        $insurance = $car->getInsurance();
 
-        $dto = new InsuranceDTO($item['id'], $item['dateFrom'], $item['dateTo'], $item['type']);
-        $documentDTO = new DocumentDTO();
+            $newInsuranceDocument = new AddInsuranceDocumentCommand(self::$carRepository,
+                                                                    $item['carId'],
+                                                                    $item['insuranceId'],
+                                                                    $dto
+            );
 
-        $newInsurance = AddInsuranceCommand::addWithFile(self::$carRepository, $carId, $dto, $documentDTO);
-
-        try {
-            $newInsurance->execute();
-            throw new \InvalidArgumentException('W tym teście spodziewano się wyjątku InvalidDatesException, ale go nie otrzymano');
-
-        } catch (InvalidDatesException $datesException) {
-
+            try {
+                $newInsuranceDocument->execute();
+            } catch(NonexistentInsuranceException $nonexistent) {
+            }
         }
-
-    }
-
-    /**
-     * @Then chciałbym dodać do istniejącego ubezpieczenia kolejny plik:
-     */
-    public function chcialbymDodacDoIstniejacegoUbezpieczeniaKolejnyPlik(TableNode $table)
-    {
-        throw new PendingException();
-    }
-
-    /**
-     * @Then chciałbym aby nie było możliwe dodanie pliku do nieistniejącego ubezpieczenia:
-     */
-    public function chcialbymAbyNieByloMozliweDodaniePlikuDoNieistniejacegoUbezpieczenia(TableNode $table)
-    {
-        throw new PendingException();
-    }
-
-    /**
-     * @Then chciałbym aby nie było możliwe dodanie kolejnego pliku o id :arg1
-     */
-    public function chcialbymAbyNieByloMozliweDodanieKolejnegoPlikuOId($arg1)
-    {
-        throw new PendingException();
-    }
-
-    /**
-     * @Then chciałbym aby nie była możliwa podmiana istniejącego pliku :arg1
-     */
-    public function chcialbymAbyNieBylaMozliwaPodmianaIstniejacegoPliku($arg1)
-    {
-        throw new PendingException();
     }
 
     /**
      * @Then chciałbym usunąć plik :arg1
      */
     public function chcialbymUsunacPlik($arg1)
-    {
-        throw new PendingException();
-    }
-
-    /**
-     * @Then chciałbym aby nie było możliwe pobranie pliku :arg1
-     */
-    public function chcialbymAbyNieByloMozliwePobraniePliku($arg1)
     {
         throw new PendingException();
     }

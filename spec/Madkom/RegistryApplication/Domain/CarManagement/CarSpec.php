@@ -121,7 +121,7 @@ class CarSpec extends ObjectBehavior
             $insuranceId       = mt_rand(100, 999) . '-' . mt_rand(100, 999) . '-' . mt_rand(100, 999);
             $insurances[$type] = $insuranceFactory->create($type, $dateFrom, $dateTo, $insuranceId);
             $this->addInsurance($insurances[$type]);
-            $this->getInsurance()
+            $this->getInsurances()
                  ->shouldContain($insurances[$type]);
         }
     }
@@ -158,12 +158,12 @@ class CarSpec extends ObjectBehavior
         $insuranceFactory = new InsuranceFactory();
         $carInsurance     = $insuranceFactory->create('AC', $dateFrom, $dateTo, $insuranceId);
         $this->addInsurance($carInsurance);
-        $this->getInsurance()
+        $this->getInsurances()
              ->shouldContain($carInsurance);
 
         $this->removeInsurance($carInsurance->getId())
              ->shouldReturn(0);
-        $this->getInsurance()
+        $this->getInsurances()
              ->shouldNotContain($carInsurance);
     }
 
@@ -176,12 +176,12 @@ class CarSpec extends ObjectBehavior
         $insuranceFactory = new InsuranceFactory();
         $carInsurance     = $insuranceFactory->create('AC', $dateFrom, $dateTo, $insuranceId);
         $this->addInsurance($carInsurance);
-        $this->getInsurance()
+        $this->getInsurances()
              ->shouldContain($carInsurance);
 
         $this->removeInsurance($carInsurance->getId())
              ->shouldReturn(0);
-        $this->getInsurance()
+        $this->getInsurances()
              ->shouldNotContain($carInsurance);
 
         $this->shouldThrow('\InvalidArgumentException')
@@ -197,7 +197,7 @@ class CarSpec extends ObjectBehavior
         $insuranceFactory = new InsuranceFactory();
         $carInsurance     = $insuranceFactory->create('AC', $dateFrom, $dateTo, $insuranceId);
         $this->addInsurance($carInsurance);
-        $this->getInsurance()
+        $this->getInsurances()
              ->shouldContain($carInsurance);
 
         $carInsuranceDocument = new DocumentFactory();
@@ -229,7 +229,7 @@ class CarSpec extends ObjectBehavior
         $insuranceFactory = new InsuranceFactory();
         $carInsurance     = $insuranceFactory->create('AC', $dateFrom, $dateTo, $insuranceId);
         $this->addInsurance($carInsurance);
-        $this->getInsurance()
+        $this->getInsurances()
              ->shouldContain($carInsurance);
 
         $carInsuranceDocument = new DocumentFactory();

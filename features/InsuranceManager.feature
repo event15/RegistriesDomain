@@ -50,17 +50,17 @@ Potrzeba biznesowa: Zarządzanie ubezpieczeniami
   Scenariusz: Dodanie pliku do istniejącego ubezpieczenia
     Mając w repozytorium dodane ubezpieczenia
     Wtedy chciałbym do istniejącego ubezpieczenia dodać plik:
-      | fileId | insuranceId | source                                     | title                    | description    |
-      | 1      | 1           | /resources/documents/insurances/ac2014.pdf | Dowód rejestracyjny 2014 | Zapłacono 98zł |
+      | carId | fileId | insuranceId | source                                     | title                    | description    |
+      | 1     | 1      | 1           | /resources/documents/insurances/ac2014.pdf | Dowód rejestracyjny 2014 | Zapłacono 98zł |
     Oraz chciałbym dodać do istniejącego ubezpieczenia kolejny plik:
-      | fileId | insuranceId | source                                              | title                    | description    |
-      | 2      | 1           | /resources/documents/insurances/ac2014-poprawka.pdf | Dowód rejestracyjny 2014 | Zapłacono 98zł |
+      | carId | fileId | insuranceId | source                                              | title                    | description    |
+      | 1     | 2      | 1           | /resources/documents/insurances/ac2014-poprawka.pdf | Dowód rejestracyjny 2014 | Zapłacono 98zł |
     #
     # Przypadki negatywne:
     #
     Oraz chciałbym aby nie było możliwe dodanie pliku do nieistniejącego ubezpieczenia:
-      | id | insuranceId | source                                     | title                    | description    |
-      | 1  | 666         | /resources/documents/insurances/ac2014.pdf | Dowód rejestracyjny 2014 | Zapłacono 98zł |
+      | carId | fileId | insuranceId | source                                     | title                    | description    |
+      | 1     | 1      | 666         | /resources/documents/insurances/ac2014.pdf | Dowód rejestracyjny 2014 | Zapłacono 98zł |
     Oraz chciałbym aby nie było możliwe dodanie kolejnego pliku o id "1"
     Oraz chciałbym aby nie była możliwa podmiana istniejącego pliku "/resources/documents/insurances/ac2014.pdf"
 

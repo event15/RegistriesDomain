@@ -79,6 +79,7 @@ final class AddInsuranceCommand implements CommandInterface
         );
 
         $this->car->addInsurance($newInsurance);
+
         if ($this->documentFile) {
             $this->car->addInsuranceDocument($newInsurance->getId(), $this->documentFile);
         }
