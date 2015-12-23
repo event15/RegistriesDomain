@@ -60,7 +60,8 @@ Potrzeba biznesowa: Zarządzanie ubezpieczeniami
     #
     Oraz chciałbym aby nie było możliwe dodanie pliku do nieistniejącego ubezpieczenia:
       | carId | fileId | insuranceId | source                                     | title                    | description    |
-      | 1     | 1      | 666         | /resources/documents/insurances/ac2014.pdf | Dowód rejestracyjny 2014 | Zapłacono 98zł |
+      | 1     | 3      | 666         | /resources/documents/insurances/ac2014.pdf | Dowód rejestracyjny 2014 | Zapłacono 98zł |
+      | 1     | 1      | 1         | /resources/documents/insurances/ac2014.pdf | Dowód rejestracyjny 2014 | Zapłacono 98zł |
     Oraz chciałbym aby nie było możliwe dodanie kolejnego pliku o id "1"
     Oraz chciałbym aby nie była możliwa podmiana istniejącego pliku "/resources/documents/insurances/ac2014.pdf"
 
