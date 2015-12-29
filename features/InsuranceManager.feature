@@ -29,6 +29,17 @@ Potrzeba biznesowa: Zarządzanie ubezpieczeniami
       | id | type | dateFrom   | dateTo     |
       | 5  | AC   | 2013-01-01 | 2014-01-31 |
       | 6  | AC   | 2013-01-01 | 2013-12-31 |
+    Oraz chciałbym aby dla samochodu "1" istniały ubezpieczenia:
+      | id |
+      | 2  |
+      | 3  |
+      | 4  |
+      | 5  |
+    Oraz chciałbym aby dla samochodu "1" nie istniały ubezpieczenia o "<id>":
+      | id |
+      | 5  |
+      | 6  |
+
 
   Scenariusz: Dodanie drugiego i kolejnego ubezpieczenia bez pliku
     Mając w repozytorium dodane samochody
@@ -40,12 +51,14 @@ Potrzeba biznesowa: Zarządzanie ubezpieczeniami
     #
     Oraz nie można dodać kolejnego ubezpieczenia do samochodu "1", którego data rozpoczęcia będzie wcześniej niż data końca poprzedniego:
       | id | type | dateFrom   | dateTo     |
-      | 3  | AC   | 2015-01-02 | 2016-01-02 |
-      | 3  | AC   | 2015-01-01 | 2016-01-01 |
+      | 8  | AC   | 2015-01-02 | 2016-01-02 |
+      | 8  | AC   | 2015-01-01 | 2016-01-01 |
     Oraz nie można dodać kolejnego ubezpieczenia do samochodu "1", którego data rozpoczęcia będzie później niż data końca poprzedniego:
       | id | type | dateFrom   | dateTo     |
-      | 3  | AC   | 2015-01-04 | 2016-01-03 |
-      | 3  | AC   | 2015-01-04 | 2016-01-03 |
+      | 8  | AC   | 2015-01-04 | 2016-01-03 |
+      | 8  | AC   | 2015-01-04 | 2016-01-03 |
+    Oraz chciałbym aby w samochodzie "1" było ubezpieczenie o id "7"
+    Oraz chciałbym aby w samochodzie "1" nie było ubezpieczenia o id "3"
 
   Scenariusz: Dodanie pliku do istniejącego ubezpieczenia
     Mając w repozytorium dodane ubezpieczenia

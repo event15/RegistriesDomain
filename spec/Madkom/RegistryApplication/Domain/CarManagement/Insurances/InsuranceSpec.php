@@ -21,9 +21,10 @@ class InsuranceSpec extends ObjectBehavior
     {
         $dateFrom = new \DateTime('01-12-2014');
         $dateTo   = new \DateTime('01-12-2015');
-        $insurerId = '123-123-123';
+        $insuranceId        = '321-321-321';
+        $insurerId          = '123-123-123';
 
-        $this->beConstructedWith($dateFrom, $dateTo, $insurerId);
+        $this->beConstructedWith($insuranceId, $dateFrom, $dateTo, $insurerId);
     }
 
     public function it_is_initializable()

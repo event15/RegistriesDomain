@@ -118,8 +118,9 @@ class CarSpec extends ObjectBehavior
         $insuranceFactory = new InsuranceFactory();
 
         foreach ($insuranceTypes as $type) {
-            $insuranceId       = mt_rand(100, 999) . '-' . mt_rand(100, 999) . '-' . mt_rand(100, 999);
-            $insurances[$type] = $insuranceFactory->create($type, $dateFrom, $dateTo, $insuranceId);
+            $insuranceId = mt_rand(100, 999) . '-' . mt_rand(100, 999) . '-' . mt_rand(100, 999);
+            $insurerId   = mt_rand(100, 999) . '-' . mt_rand(100, 999) . '-' . mt_rand(100, 999);
+            $insurances[$type] = $insuranceFactory->create($insuranceId, $type, $dateFrom, $dateTo, $insurerId);
             $this->addInsurance($insurances[$type]);
             $this->getInsurances()
                  ->shouldContain($insurances[$type]);
@@ -128,17 +129,18 @@ class CarSpec extends ObjectBehavior
 
     public function it_should_be_impossible_to_add_the_same_Insurances()
     {
-        $insurerId = '123-123-123';
-        $dateFrom  = new \DateTime('23-11-2015');
-        $dateTo    = new \DateTime('23-11-2016');
+        $insuranceId = '123-123-123';
+        $insurerId   = '123-123-123';
+        $dateFrom    = new \DateTime('23-11-2015');
+        $dateTo      = new \DateTime('23-11-2016');
 
         $invalidDateFrom = new \DateTime('23-11-2015');
         $invalidDateTo   = new \DateTime('23-11-2016');
 
         $insuranceFactory    = new InsuranceFactory();
-        $carInsurance        = $insuranceFactory->create('AC', $dateFrom, $dateTo, $insurerId);
-        $theSameCarInsurance = $insuranceFactory->create('AC', $dateFrom, $dateTo, $insurerId);
-        $badCarInsurance     = $insuranceFactory->create('AC', $invalidDateFrom, $invalidDateTo, $insurerId);
+        $carInsurance        = $insuranceFactory->create($insuranceId, 'AC', $dateFrom, $dateTo, $insurerId);
+        $theSameCarInsurance = $insuranceFactory->create($insuranceId, 'AC', $dateFrom, $dateTo, $insurerId);
+        $badCarInsurance     = $insuranceFactory->create($insuranceId, 'AC', $invalidDateFrom, $invalidDateTo, $insurerId);
 
         $this->addInsurance($carInsurance);
         $this->shouldThrow('Madkom\RegistryApplication\Domain\CarManagement\Insurances\Exceptions\DuplicatedInsuranceException'
@@ -152,11 +154,12 @@ class CarSpec extends ObjectBehavior
     public function it_should_be_possible_to_remove_Insurance()
     {
         $insuranceId = '123-123-123';
+        $insurerId   = '123-123-123';
         $dateFrom    = new \DateTime('23-11-2015');
         $dateTo      = new \DateTime('23-11-2016');
 
         $insuranceFactory = new InsuranceFactory();
-        $carInsurance     = $insuranceFactory->create('AC', $dateFrom, $dateTo, $insuranceId);
+        $carInsurance     = $insuranceFactory->create($insuranceId, 'AC', $dateFrom, $dateTo, $insurerId);
         $this->addInsurance($carInsurance);
         $this->getInsurances()
              ->shouldContain($carInsurance);
@@ -170,11 +173,12 @@ class CarSpec extends ObjectBehavior
     public function it_should_be_impossible_to_remove_nonexistent_Insurance()
     {
         $insuranceId = '123-123-123';
+        $insurerId   = '123-123-123';
         $dateFrom    = new \DateTime('23-11-2015');
         $dateTo      = new \DateTime('23-11-2016');
 
         $insuranceFactory = new InsuranceFactory();
-        $carInsurance     = $insuranceFactory->create('AC', $dateFrom, $dateTo, $insuranceId);
+        $carInsurance     = $insuranceFactory->create($insuranceId, 'AC', $dateFrom, $dateTo, $insurerId);
         $this->addInsurance($carInsurance);
         $this->getInsurances()
              ->shouldContain($carInsurance);
@@ -191,11 +195,12 @@ class CarSpec extends ObjectBehavior
     public function it_should_be_possible_to_add_InsuranceDocument_to_Insurance()
     {
         $insuranceId = '123-123-123';
+        $insurerId   = '123-123-123';
         $dateFrom    = new \DateTime('23-11-2015');
         $dateTo      = new \DateTime('23-11-2016');
 
         $insuranceFactory = new InsuranceFactory();
-        $carInsurance     = $insuranceFactory->create('AC', $dateFrom, $dateTo, $insuranceId);
+        $carInsurance     = $insuranceFactory->create($insuranceId, 'AC', $dateFrom, $dateTo, $insurerId);
         $this->addInsurance($carInsurance);
         $this->getInsurances()
              ->shouldContain($carInsurance);
@@ -223,11 +228,12 @@ class CarSpec extends ObjectBehavior
     public function it_should_be_possible_to_remove_InsuranceDocument_from_Insurance()
     {
         $insuranceId = '123-123-123';
+        $insurerId   = '123-123-123';
         $dateFrom    = new \DateTime('23-11-2015');
         $dateTo      = new \DateTime('23-11-2016');
 
         $insuranceFactory = new InsuranceFactory();
-        $carInsurance     = $insuranceFactory->create('AC', $dateFrom, $dateTo, $insuranceId);
+        $carInsurance     = $insuranceFactory->create($insuranceId, 'AC', $dateFrom, $dateTo, $insurerId);
         $this->addInsurance($carInsurance);
         $this->getInsurances()
              ->shouldContain($carInsurance);

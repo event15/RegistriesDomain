@@ -13,7 +13,6 @@ use Madkom\RegistryApplication\Application\CarManagement\InsuranceDTO;
 use Madkom\RegistryApplication\Domain\CarManagement\CarExceptions\InvalidDatesException;
 use Madkom\RegistryApplication\Domain\CarManagement\CarExceptions\NonexistentInsuranceException;
 use Madkom\RegistryApplication\Domain\CarManagement\Insurances\Exceptions\DuplicatedInsuranceException;
-use Madkom\RegistryApplication\Domain\CarManagement\Insurances\Insurance;
 
 class InsuranceManagerContext extends ContextRepositoryInterface implements Context, SnippetAcceptingContext
 {
@@ -108,9 +107,6 @@ class InsuranceManagerContext extends ContextRepositoryInterface implements Cont
      * @Then chciałbym do istniejącego ubezpieczenia dodać plik:
      * @Then chciałbym dodać do istniejącego ubezpieczenia kolejny plik:
      * @Then chciałbym aby nie było możliwe dodanie pliku do nieistniejącego ubezpieczenia:
-     * @Then chciałbym aby nie było możliwe dodanie kolejnego pliku o id :arg1
-     * @Then chciałbym aby nie była możliwa podmiana istniejącego pliku :arg1
-     * @Then chciałbym aby nie było możliwe pobranie pliku :arg1
      */
     public function chcialbymDoIstniejacegoUbezpieczeniaDodacPlik(TableNode $table)
     {
@@ -136,9 +132,72 @@ class InsuranceManagerContext extends ContextRepositoryInterface implements Cont
     }
 
     /**
+     * @Then chciałbym aby dla samochodu :carId istniały ubezpieczenia:
+     */
+    public function chcialbymAbyDlaSamochoduIstnialyUbezpieczenia($carId, TableNode $table)
+    {
+        $car = self::$carRepository->find($carId);
+        $insurances = $car->getInsurances();
+
+        $insurancesId = $table->getHash();
+
+        foreach ($insurancesId as $key => $value) {
+
+        }
+    }
+
+    /**
+     * @Then chciałbym aby dla samochodu :arg1 nie istniały ubezpieczenia o :arg2:
+     */
+    public function chcialbymAbyDlaSamochoduNieIstnialyUbezpieczeniaO($arg1, $arg2, TableNode $table)
+    {
+        throw new PendingException();
+    }
+
+    /**
+     * @Then chciałbym aby w samochodzie :arg1 było ubezpieczenie o id :arg2
+     */
+    public function chcialbymAbyWSamochodzieByloUbezpieczenieOId($arg1, $arg2)
+    {
+        throw new PendingException();
+    }
+
+    /**
+     * @Then chciałbym aby w samochodzie :arg1 nie było ubezpieczenia o id :arg2
+     */
+    public function chcialbymAbyWSamochodzieNieByloUbezpieczeniaOId($arg1, $arg2)
+    {
+        throw new PendingException();
+    }
+
+    /**
+     * @Then chciałbym aby nie było możliwe dodanie kolejnego pliku o id :arg1
+     */
+    public function chcialbymAbyNieByloMozliweDodanieKolejnegoPlikuOId($arg1)
+    {
+        throw new PendingException();
+    }
+
+    /**
+     * @Then chciałbym aby nie była możliwa podmiana istniejącego pliku :arg1
+     */
+    public function chcialbymAbyNieBylaMozliwaPodmianaIstniejacegoPliku($arg1)
+    {
+        throw new PendingException();
+    }
+
+    /**
      * @Then chciałbym usunąć plik :arg1
      */
     public function chcialbymUsunacPlik($arg1)
+    {
+        throw new PendingException();
+    }
+
+    /**
+     * @Then chciałbym aby nie było możliwe pobranie pliku :arg1
+     */
+    public function chcialbymAbyNieByloMozliwePobraniePliku($arg1)
     {
         throw new PendingException();
     }

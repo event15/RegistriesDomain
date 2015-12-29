@@ -37,10 +37,11 @@ class InsuranceFactorySpec extends ObjectBehavior
             'ASS' => self::INSURANCES_PATH . '\AssistanceInsurance'
         ];
 
-        $insurerId = '123-123-123';
+        $insuranceId = '321-321-321';
+        $insurerId   = '123-123-123';
 
         foreach ($insuranceTypes as $insuranceType => $insuranceTypeClass) {
-            $this->create($insuranceType, $this->dateFrom, $this->dateTo, $insurerId)
+            $this->create($insuranceId, $insuranceType, $this->dateFrom, $this->dateTo, $insurerId)
                  ->shouldReturnAnInstanceOf($insuranceTypeClass);
         }
     }
@@ -49,58 +50,62 @@ class InsuranceFactorySpec extends ObjectBehavior
     {
         $emptyInsuranceType = '';
         $nullInsuranceType  = null;
-        $insurerId = '123-123-123';
+        $insuranceId        = '321-321-321';
+        $insurerId          = '123-123-123';
 
         $this->shouldThrow('Madkom\RegistryApplication\Domain\CarManagement\Insurances\Exceptions\UnknownInsuranceTypeException')
-             ->during('create', [$emptyInsuranceType, $this->dateFrom, $this->dateTo, $insurerId]);
+             ->during('create', [$insuranceId, $emptyInsuranceType, $this->dateFrom, $this->dateTo, $insurerId]);
 
         $this->shouldThrow('Madkom\RegistryApplication\Domain\CarManagement\Insurances\Exceptions\UnknownInsuranceTypeException')
-             ->during('create', [$nullInsuranceType, $this->dateFrom, $this->dateTo, $insurerId]);
+             ->during('create', [$insuranceId, $nullInsuranceType, $this->dateFrom, $this->dateTo, $insurerId]);
 
     }
 
     public function it_should_throw_InvalidArgumentException_when_dateFrom_or_dateTo_are_empty()
     {
         $validInsuranceType = 'OC';
+        $insuranceId        = '321-321-321';
         $insurerId          = '123-123-123';
 
         $emptyDateFrom = '';
         $emptyDateTo   = '';
 
         $this->shouldThrow('Madkom\RegistryApplication\Domain\CarManagement\Insurances\Exceptions\EmptyInsuranceDateException')
-             ->during('create', [$validInsuranceType, $emptyDateFrom, $this->dateTo, $insurerId]);
+             ->during('create', [$insuranceId, $validInsuranceType, $emptyDateFrom, $this->dateTo, $insurerId]);
 
         $this->shouldThrow('Madkom\RegistryApplication\Domain\CarManagement\Insurances\Exceptions\EmptyInsuranceDateException')
-             ->during('create', [$validInsuranceType, $this->dateFrom, $emptyDateTo, $insurerId]);
+             ->during('create', [$insuranceId, $validInsuranceType, $this->dateFrom, $emptyDateTo, $insurerId]);
 
         $this->shouldThrow('Madkom\RegistryApplication\Domain\CarManagement\Insurances\Exceptions\EmptyInsuranceDateException')
-             ->during('create', [$validInsuranceType, $emptyDateFrom, $emptyDateTo, $insurerId]);
+             ->during('create', [$insuranceId, $validInsuranceType, $emptyDateFrom, $emptyDateTo, $insurerId]);
 
     }
 
     public function it_should_throw_InvalidArgumentException_when_dateFrom_or_dateTo_are_invalid()
     {
         $validInsuranceType      = 'OC';
+        $insuranceId             = '321-321-321';
         $insurerId               = '123-123-123';
         $invalidDateFromInstance = '11-01-2015';
         $invalidDateToInstance   = '11-01-2016';
 
         $this->shouldThrow('\InvalidArgumentException')
-             ->during('create', [$validInsuranceType, $invalidDateFromInstance, $invalidDateToInstance, $insurerId]);
+             ->during('create', [$insuranceId, $validInsuranceType, $invalidDateFromInstance, $invalidDateToInstance, $insurerId]);
     }
 
     public function it_should_throw_InvalidDatesException_when_dateFrom_is_greater_than_or_equal_to_dateTo()
     {
-        $validInsuranceType         = 'OC';
-        $insurerId = '123-123-123';
-        $dateFromGreaterThanDateTo  = new \DateTime('11-01-2016');
-        $isEqualToDateTo            = new \DateTime('11-01-2015');
-        $dateTo                     = new \DateTime('11-01-2015');
+        $validInsuranceType        = 'OC';
+        $insuranceId               = '321-321-321';
+        $insurerId                 = '123-123-123';
+        $dateFromGreaterThanDateTo = new \DateTime('11-01-2016');
+        $isEqualToDateTo           = new \DateTime('11-01-2015');
+        $dateTo                    = new \DateTime('11-01-2015');
 
         $this->shouldThrow('Madkom\RegistryApplication\Domain\CarManagement\CarExceptions\InvalidDatesException')
-             ->during('create', [$validInsuranceType, $dateFromGreaterThanDateTo, $dateTo, $insurerId]);
+             ->during('create', [$insuranceId, $validInsuranceType, $dateFromGreaterThanDateTo, $dateTo, $insurerId]);
 
         $this->shouldThrow('Madkom\RegistryApplication\Domain\CarManagement\CarExceptions\InvalidDatesException')
-             ->during('create', [$validInsuranceType, $isEqualToDateTo, $dateTo, $insurerId]);
+             ->during('create', [$insuranceId, $validInsuranceType, $isEqualToDateTo, $dateTo, $insurerId]);
     }
 }

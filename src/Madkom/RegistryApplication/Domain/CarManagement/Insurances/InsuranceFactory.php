@@ -25,7 +25,7 @@ class InsuranceFactory
      * @throws \InvalidArgumentException
      * @throws \Madkom\RegistryApplication\Domain\CarManagement\CarExceptions\InvalidDatesException
      */
-    public function create($insuranceType, $dateFrom, $dateTo, $insuranceId)
+    public function create($insuranceId, $insuranceType, $dateFrom, $dateTo, $insurerId)
     {
         $this->areEmpty($dateFrom, $dateTo);
         $this->hasValidDateFormat($dateFrom, $dateTo);
@@ -33,16 +33,16 @@ class InsuranceFactory
 
         switch($insuranceType) {
             case CarInsurance::INSURANCE_TYPE:
-                $insurance = new CarInsurance($dateFrom, $dateTo, $insuranceId);
+                $insurance = new CarInsurance($insuranceId, $dateFrom, $dateTo, $insurerId);
                 break;
             case AccidentInsurance::INSURANCE_TYPE:
-                $insurance = new AccidentInsurance($dateFrom, $dateTo, $insuranceId);
+                $insurance = new AccidentInsurance($insuranceId, $dateFrom, $dateTo, $insurerId);
                 break;
             case AssistanceInsurance::INSURANCE_TYPE:
-                $insurance = new AssistanceInsurance($dateFrom, $dateTo, $insuranceId);
+                $insurance = new AssistanceInsurance($insuranceId, $dateFrom, $dateTo, $insurerId);
                 break;
             case LiabilityInsurance::INSURANCE_TYPE:
-                $insurance = new LiabilityInsurance($dateFrom, $dateTo, $insuranceId);
+                $insurance = new LiabilityInsurance($insuranceId, $dateFrom, $dateTo, $insurerId);
                 break;
             default:
                 throw new UnknownInsuranceTypeException('Unknown insurance type: ' . $insuranceType);
@@ -84,13 +84,6 @@ class InsuranceFactory
 
         if($interval->days < 365 or $interval->days > 366) {
             throw new InvalidDatesException('Umowa z ubezpieczeniem może być tylko na rok.');
-        }
-    }
-
-    private function isValidOrder($dateFrom, $dateTo)
-    {
-        if($dateFrom >= $dateTo) {
-            throw new InvalidDatesException('Data początku umowy jest większa lub równa daty jej zakończenia.');
         }
     }
 }

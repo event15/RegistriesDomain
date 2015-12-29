@@ -12,6 +12,9 @@ use Madkom\RegistryApplication\Domain\CarManagement\CarExceptions\NonexistentIns
  */
 class Insurance
 {
+    /** @var  string $insuranceId */
+    private $insuranceId;
+
     /** @var  \DateTime */
     private $dateFrom;
 
@@ -35,7 +38,7 @@ class Insurance
      * @param $insurerId
      * @throws \Madkom\RegistryApplication\Domain\CarManagement\CarExceptions\InvalidDatesException
      */
-    public function __construct($dateFrom, $dateTo, $insurerId)
+    public function __construct($insuranceId, $dateFrom, $dateTo, $insurerId)
     {
         $dateChecker = new InsuranceDateChecker();
         $isInvalidDates = $dateChecker->checkDates($dateFrom, $dateTo);
@@ -54,7 +57,7 @@ class Insurance
      */
     public function getId()
     {
-        return $this->insurerId;
+        return $this->insuranceId;
     }
 
     /**
