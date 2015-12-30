@@ -25,9 +25,10 @@ class InsuranceManagerContext extends ContextRepositoryInterface implements Cont
 
         foreach ($insurance as $item) {
             $dto = new InsuranceDTO($item['id'],
+                                    $item['type'],
                                     $item['dateFrom'],
                                     $item['dateTo'],
-                                    $item['type']
+                                    $item['insurerId']
             );
 
             $newInsurance = AddInsuranceCommand::add(self::$carRepository, $carId, $dto);
@@ -47,9 +48,10 @@ class InsuranceManagerContext extends ContextRepositoryInterface implements Cont
 
         foreach ($insurance as $item) {
             $dto = new InsuranceDTO($item['id'],
+                                    $item['type'],
                                     $item['dateFrom'],
                                     $item['dateTo'],
-                                    $item['type']
+                                    $item['insurerId']
             );
 
             $newInsurance = AddInsuranceCommand::add(self::$carRepository, $carId, $dto);
@@ -76,9 +78,10 @@ class InsuranceManagerContext extends ContextRepositoryInterface implements Cont
 
         foreach ($insurance as $item) {
             $dto = new InsuranceDTO($item['id'],
+                                    $item['type'],
                                     $item['dateFrom'],
                                     $item['dateTo'],
-                                    $item['type']
+                                    $item['insurerId']
             );
 
             $newInsurance = AddInsuranceCommand::add(self::$carRepository, $carId, $dto);

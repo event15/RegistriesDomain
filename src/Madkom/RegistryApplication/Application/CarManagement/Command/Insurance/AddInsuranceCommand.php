@@ -72,7 +72,8 @@ final class AddInsuranceCommand implements CommandInterface
     {
         $insurance        = $this->insuranceDTO;
         $insuranceFactory = new InsuranceFactory();
-        $newInsurance     = $insuranceFactory->create($insurance->type,
+        $newInsurance     = $insuranceFactory->create($insurance->insuranceId,
+                                                      $insurance->type,
                                                       new \DateTime($insurance->dateFrom),
                                                       new \DateTime($insurance->dateTo),
                                                       $insurance->insurerId

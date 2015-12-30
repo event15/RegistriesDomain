@@ -3,25 +3,27 @@
   "description": "Rejestr firmowy",
   "minimum-stability": "dev",
   "license": "proprietary",
+
   "require-dev": {
     "behat/behat": "3.*",
-    "phpspec/phpspec": "2.*"
+    "phpspec/phpspec": "2.*",
+    "henrikbjorn/phpspec-code-coverage": "2.0.0"
   },
+
   "authors": [
     {
       "name": "Marek Woś",
       "email": "m.wos@madkom.pl"
     }
   ],
+
   "autoload": {
     "psr-4": {
       "": "src/"
     }
   },
+
   "config": {
     "bin-dir": "bin"
-  },
-  "require": {
-    "henrikbjorn/phpspec-code-coverage": "2.0.0"
   }
 }

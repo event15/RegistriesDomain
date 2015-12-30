@@ -11,6 +11,9 @@ namespace Madkom\RegistryApplication\Application\CarManagement;
 class InsuranceDTO
 {
     /** @var  string */
+    public $insuranceId;
+
+    /** @var  string */
     public $insurerId;
 
     /** @var  \DateTime */
@@ -30,12 +33,13 @@ class InsuranceDTO
      * @param \DateTime $dateTo
      * @param string    $type
      */
-    public function __construct($insurerId, $dateFrom, $dateTo, $type)
+    public function __construct($insuranceId, $type, $dateFrom, $dateTo, $insurerId)
     {
-        $this->insurerId = $insurerId;
-        $this->dateFrom  = $dateFrom;
-        $this->dateTo    = $dateTo;
-        $this->type      = $type;
+        $this->insurerId   = $insurerId;
+        $this->dateFrom    = $dateFrom;
+        $this->dateTo      = $dateTo;
+        $this->type        = $type;
+        $this->insuranceId = $insuranceId;
     }
 
 }

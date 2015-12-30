@@ -36,20 +36,22 @@ class Insurance
      * @param $dateFrom
      * @param $dateTo
      * @param $insurerId
+     *
      * @throws \Madkom\RegistryApplication\Domain\CarManagement\CarExceptions\InvalidDatesException
      */
     public function __construct($insuranceId, $dateFrom, $dateTo, $insurerId)
     {
-        $dateChecker = new InsuranceDateChecker();
+        $dateChecker    = new InsuranceDateChecker();
         $isInvalidDates = $dateChecker->checkDates($dateFrom, $dateTo);
 
-        if($isInvalidDates) {
+        if ($isInvalidDates) {
             throw new InvalidDatesException();
         }
 
-        $this->dateFrom  = $dateFrom;
-        $this->dateTo    = $dateTo;
-        $this->insurerId = $insurerId;
+        $this->dateFrom    = $dateFrom;
+        $this->dateTo      = $dateTo;
+        $this->insurerId   = $insurerId;
+        $this->insuranceId = $insuranceId;
     }
 
     /**
@@ -106,8 +108,9 @@ class Insurance
     public function removeInsuranceDocument($documentId)
     {
         foreach ($this->documents as $key => $document) {
-            if($document->getId() === $documentId) {
+            if ($document->getId() === $documentId) {
                 unset($this->documents[$key]);
+
                 return 0;
             }
         }
