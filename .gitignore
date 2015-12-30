@@ -1,6 +1,4 @@
-/frontend/index.html
 vendor/
 bin/
 .idea/
-bower_components/
-frontend/bower_components/
+coverage/
