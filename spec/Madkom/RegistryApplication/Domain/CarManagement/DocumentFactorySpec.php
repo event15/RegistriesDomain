@@ -4,12 +4,10 @@ namespace spec\Madkom\RegistryApplication\Domain\CarManagement;
 
 use Madkom\RegistryApplication\Domain\CarManagement\DocumentFactory;
 use PhpSpec\ObjectBehavior;
-use Prophecy\Argument;
 
 /**
- * Class DocumentFactorySpec
+ * Class DocumentFactorySpec.
  *
- * @package spec\Madkom\RegistryApplication\Domain\CarManagement
  * @mixin \Madkom\RegistryApplication\Domain\CarManagement\DocumentFactory
  */
 class DocumentFactorySpec extends ObjectBehavior
@@ -21,10 +19,10 @@ class DocumentFactorySpec extends ObjectBehavior
 
     public function it_is_possible_to_create_CarDocument()
     {
-        $id          = 'CD-123-123';
-        $title       = 'Poprawny tytuł';
+        $id = 'CD-123-123';
+        $title = 'Poprawny tytuł';
         $description = 'Poprawny opis';
-        $source      = 'Poprawna ścieżka';
+        $source = 'Poprawna ścieżka';
 
         $this->create(DocumentFactory::CAR_DOCUMENT, $id, $title, $description, $source)
             ->shouldBeAnInstanceOf('Madkom\RegistryApplication\Domain\CarManagement\CarDocument');
@@ -35,10 +33,10 @@ class DocumentFactorySpec extends ObjectBehavior
 
     public function it_should_be_impossible_to_create_document_with_invalid_type()
     {
-        $id          = 'CD-123-123';
-        $title       = 'Poprawny tytuł';
+        $id = 'CD-123-123';
+        $title = 'Poprawny tytuł';
         $description = 'Poprawny opis';
-        $source      = 'Poprawna ścieżka';
+        $source = 'Poprawna ścieżka';
 
         $this->shouldThrow('Madkom\RegistryApplication\Domain\CarManagement\CarExceptions\UnknownDocumentTypeException')
             ->during('create', ['invalid_type', $id, $title, $description, $source]);

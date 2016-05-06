@@ -3,9 +3,8 @@
  * Created by PhpStorm.
  * User: marek
  * Date: 02.12.15
- * Time: 15:36
+ * Time: 15:36.
  */
-
 namespace Madkom\RegistryApplication\Application\CarManagement;
 
 class CarDTO
@@ -44,15 +43,14 @@ class CarDTO
         $city,
         $department
     ) {
-        $this->id                 = $id;
-        $this->responsiblePerson  = $responsiblePerson;
-        $this->model              = $model;
-        $this->brand              = $brand;
+        $this->id = $id;
+        $this->responsiblePerson = $responsiblePerson;
+        $this->model = $model;
+        $this->brand = $brand;
         $this->registrationNumber = $registrationNumber;
-        $this->productionDate     = $productionDate;
-        $this->warrantyPeriod     = $warrantyPeriod;
-        $this->city               = $city;
-        $this->department         = $department;
+        $this->productionDate = $productionDate;
+        $this->warrantyPeriod = $warrantyPeriod;
+        $this->city = $city;
+        $this->department = $department;
     }
-
 }

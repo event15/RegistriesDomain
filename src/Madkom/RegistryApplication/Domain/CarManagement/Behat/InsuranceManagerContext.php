@@ -2,9 +2,9 @@
 
 namespace Madkom\RegistryApplication\Domain\CarManagement\Behat;
 
-use Behat\Behat\Tester\Exception\PendingException;
 use Behat\Behat\Context\Context;
 use Behat\Behat\Context\SnippetAcceptingContext;
+use Behat\Behat\Tester\Exception\PendingException;
 use Behat\Gherkin\Node\TableNode;
 use Madkom\RegistryApplication\Application\CarManagement\Command\Insurance\AddInsuranceCommand;
 use Madkom\RegistryApplication\Application\CarManagement\Command\Insurance\AddInsuranceDocumentCommand;
@@ -60,15 +60,14 @@ class InsuranceManagerContext extends ContextRepositoryInterface implements Cont
                 $newInsurance->execute();
                 throw new \InvalidArgumentException('W tym teście spodziewano się wyjątku InvalidDatesException, ale go nie otrzymano');
             } catch (InvalidDatesException $datesException) {
-
             }
         }
-
     }
 
     /**
      * @Then nie można dodać kolejnego ubezpieczenia do samochodu :carId, którego data rozpoczęcia będzie wcześniej niż data końca poprzedniego:
      * @Then nie można dodać kolejnego ubezpieczenia do samochodu :carId, którego data rozpoczęcia będzie później niż data końca poprzedniego:
+     *
      * @throws \Madkom\RegistryApplication\Domain\CarManagement\CarExceptions\InvalidDatesException
      * @throws \InvalidArgumentException
      */
@@ -90,9 +89,7 @@ class InsuranceManagerContext extends ContextRepositoryInterface implements Cont
                 $newInsurance->execute();
                 throw new \InvalidArgumentException('W tym teście spodziewano się wyjątku InvalidDatesException, ale go nie otrzymano');
             } catch (InvalidDatesException $datesException) {
-
             } catch (DuplicatedInsuranceException $duplicatesException) {
-
             }
         }
     }
@@ -120,7 +117,6 @@ class InsuranceManagerContext extends ContextRepositoryInterface implements Cont
                                    $item['source']
             );
 
-
             $newInsuranceDocument = new AddInsuranceDocumentCommand(self::$carRepository,
                                                                     $item['carId'],
                                                                     $item['insuranceId'],
@@ -129,7 +125,7 @@ class InsuranceManagerContext extends ContextRepositoryInterface implements Cont
 
             try {
                 $newInsuranceDocument->execute();
-            } catch(NonexistentInsuranceException $nonexistent) {
+            } catch (NonexistentInsuranceException $nonexistent) {
             }
         }
     }
@@ -145,7 +141,6 @@ class InsuranceManagerContext extends ContextRepositoryInterface implements Cont
         $insurancesId = $table->getHash();
 
         foreach ($insurancesId as $key => $value) {
-
         }
     }
 

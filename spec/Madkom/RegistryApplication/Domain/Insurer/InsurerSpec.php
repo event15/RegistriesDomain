@@ -3,12 +3,10 @@
 namespace spec\Madkom\RegistryApplication\Domain\Insurer;
 
 use PhpSpec\ObjectBehavior;
-use Prophecy\Argument;
 
 /**
- * Class InsurerSpec
+ * Class InsurerSpec.
  *
- * @package spec\Madkom\RegistryApplication\Domain\Insurer
  * @mixin \Madkom\RegistryApplication\Domain\Insurer\Insurer
  */
 class InsurerSpec extends ObjectBehavior

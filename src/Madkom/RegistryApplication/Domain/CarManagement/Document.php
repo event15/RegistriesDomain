@@ -16,8 +16,8 @@ abstract class Document
 
     public function __construct($id, $source)
     {
-        $this->id         = $id;
-        $this->source     = $source;
+        $this->id = $id;
+        $this->source = $source;
         $this->createDate = new \DateTime('now');
     }
 

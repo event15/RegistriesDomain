@@ -8,5 +8,4 @@ class InsuranceDateChecker
     {
         return ($dateFrom >= $dateTo) ?: false;
     }
-
 }

@@ -6,12 +6,10 @@ use Madkom\RegistryApplication\Domain\CarManagement\DocumentFactory;
 use Madkom\RegistryApplication\Domain\CarManagement\Insurances\InsuranceFactory;
 use Madkom\RegistryApplication\Domain\CarManagement\VehicleInspection\VehicleInspection;
 use PhpSpec\ObjectBehavior;
-use Prophecy\Argument;
 
 /**
- * Class CarSpec
+ * Class CarSpec.
  *
- * @package spec\Madkom\RegistryApplication\Domain\CarManagement
  * @mixin \Madkom\RegistryApplication\Domain\CarManagement\Car
  */
 class CarSpec extends ObjectBehavior
@@ -28,7 +26,7 @@ class CarSpec extends ObjectBehavior
                                         new \DateTime('now'), // Production date
                                         new \DateTime('now'), // Warranty period
                                         'Gdynia',
-                                        'DRO'
+                                        'DRO',
                                     ]
         );
     }
@@ -59,8 +57,8 @@ class CarSpec extends ObjectBehavior
 
     public function it_is_not_possible_to_add_the_same_VehicleInspections()
     {
-        $newVehicleInspection           = $this->prepareVehicleInspection('1', '2015-11-20', '2016-11-20');
-        $theSameVehicleInspection       = $this->prepareVehicleInspection('1', '2015-11-20', '2016-11-20');
+        $newVehicleInspection = $this->prepareVehicleInspection('1', '2015-11-20', '2016-11-20');
+        $theSameVehicleInspection = $this->prepareVehicleInspection('1', '2015-11-20', '2016-11-20');
         $reversedDatesVehicleInspection = $this->prepareVehicleInspection('2', '2050-11-20', '2000-11-20');
 
         $this->addVehicleInspection($newVehicleInspection);
@@ -75,7 +73,7 @@ class CarSpec extends ObjectBehavior
 
     public function it_is_possible_to_add_multiple_different_VehicleInspections_to_car()
     {
-        $newVehicleInspection      = $this->prepareVehicleInspection('1', '2015-11-20', '2016-11-20');
+        $newVehicleInspection = $this->prepareVehicleInspection('1', '2015-11-20', '2016-11-20');
         $otherNewVehicleInspection = $this->prepareVehicleInspection('2', '2016-11-10', '2016-11-20');
 
         $this->addVehicleInspection($newVehicleInspection);
@@ -96,7 +94,7 @@ class CarSpec extends ObjectBehavior
 
     public function it_is_not_possible_to_remove_a_nonexistent_VehicleInspection_from_car()
     {
-        $newVehicleInspection     = $this->prepareVehicleInspection('1', '2015-11-20', '2016-11-20');
+        $newVehicleInspection = $this->prepareVehicleInspection('1', '2015-11-20', '2016-11-20');
         $omittedVehicleInspection = $this->prepareVehicleInspection('2', '2015-11-20', '2016-11-20');
 
         // Adding only $newVehicleInspection
@@ -110,16 +108,16 @@ class CarSpec extends ObjectBehavior
 
     public function it_is_possible_to_add_new_Insurances_to_car()
     {
-        $insurances     = [];
+        $insurances = [];
         $insuranceTypes = ['AC', 'OC', 'ASS', 'NWW'];
-        $dateFrom       = new \DateTime('23-11-2016');
-        $dateTo         = new \DateTime('24-11-2017');
+        $dateFrom = new \DateTime('23-11-2016');
+        $dateTo = new \DateTime('24-11-2017');
 
         $insuranceFactory = new InsuranceFactory();
 
         foreach ($insuranceTypes as $type) {
-            $insuranceId = mt_rand(100, 999) . '-' . mt_rand(100, 999) . '-' . mt_rand(100, 999);
-            $insurerId   = mt_rand(100, 999) . '-' . mt_rand(100, 999) . '-' . mt_rand(100, 999);
+            $insuranceId = mt_rand(100, 999).'-'.mt_rand(100, 999).'-'.mt_rand(100, 999);
+            $insurerId = mt_rand(100, 999).'-'.mt_rand(100, 999).'-'.mt_rand(100, 999);
             $insurances[$type] = $insuranceFactory->create($insuranceId, $type, $dateFrom, $dateTo, $insurerId);
             $this->addInsurance($insurances[$type]);
             $this->getInsurances()
@@ -130,17 +128,17 @@ class CarSpec extends ObjectBehavior
     public function it_should_be_impossible_to_add_the_same_Insurances()
     {
         $insuranceId = '123-123-123';
-        $insurerId   = '123-123-123';
-        $dateFrom    = new \DateTime('23-11-2015');
-        $dateTo      = new \DateTime('23-11-2016');
+        $insurerId = '123-123-123';
+        $dateFrom = new \DateTime('23-11-2015');
+        $dateTo = new \DateTime('23-11-2016');
 
         $invalidDateFrom = new \DateTime('23-11-2015');
-        $invalidDateTo   = new \DateTime('23-11-2016');
+        $invalidDateTo = new \DateTime('23-11-2016');
 
-        $insuranceFactory    = new InsuranceFactory();
-        $carInsurance        = $insuranceFactory->create($insuranceId, 'AC', $dateFrom, $dateTo, $insurerId);
+        $insuranceFactory = new InsuranceFactory();
+        $carInsurance = $insuranceFactory->create($insuranceId, 'AC', $dateFrom, $dateTo, $insurerId);
         $theSameCarInsurance = $insuranceFactory->create($insuranceId, 'AC', $dateFrom, $dateTo, $insurerId);
-        $badCarInsurance     = $insuranceFactory->create($insuranceId, 'AC', $invalidDateFrom, $invalidDateTo, $insurerId);
+        $badCarInsurance = $insuranceFactory->create($insuranceId, 'AC', $invalidDateFrom, $invalidDateTo, $insurerId);
 
         $this->addInsurance($carInsurance);
         $this->shouldThrow('Madkom\RegistryApplication\Domain\CarManagement\Insurances\Exceptions\DuplicatedInsuranceException'
@@ -154,12 +152,12 @@ class CarSpec extends ObjectBehavior
     public function it_should_be_possible_to_remove_Insurance()
     {
         $insuranceId = '123-123-123';
-        $insurerId   = '123-123-123';
-        $dateFrom    = new \DateTime('23-11-2015');
-        $dateTo      = new \DateTime('23-11-2016');
+        $insurerId = '123-123-123';
+        $dateFrom = new \DateTime('23-11-2015');
+        $dateTo = new \DateTime('23-11-2016');
 
         $insuranceFactory = new InsuranceFactory();
-        $carInsurance     = $insuranceFactory->create($insuranceId, 'AC', $dateFrom, $dateTo, $insurerId);
+        $carInsurance = $insuranceFactory->create($insuranceId, 'AC', $dateFrom, $dateTo, $insurerId);
         $this->addInsurance($carInsurance);
         $this->getInsurances()
              ->shouldContain($carInsurance);
@@ -173,12 +171,12 @@ class CarSpec extends ObjectBehavior
     public function it_should_be_impossible_to_remove_nonexistent_Insurance()
     {
         $insuranceId = '123-123-123';
-        $insurerId   = '123-123-123';
-        $dateFrom    = new \DateTime('23-11-2015');
-        $dateTo      = new \DateTime('23-11-2016');
+        $insurerId = '123-123-123';
+        $dateFrom = new \DateTime('23-11-2015');
+        $dateTo = new \DateTime('23-11-2016');
 
         $insuranceFactory = new InsuranceFactory();
-        $carInsurance     = $insuranceFactory->create($insuranceId, 'AC', $dateFrom, $dateTo, $insurerId);
+        $carInsurance = $insuranceFactory->create($insuranceId, 'AC', $dateFrom, $dateTo, $insurerId);
         $this->addInsurance($carInsurance);
         $this->getInsurances()
              ->shouldContain($carInsurance);
@@ -195,18 +193,18 @@ class CarSpec extends ObjectBehavior
     public function it_should_be_possible_to_add_InsuranceDocument_to_Insurance()
     {
         $insuranceId = '123-123-123';
-        $insurerId   = '123-123-123';
-        $dateFrom    = new \DateTime('23-11-2015');
-        $dateTo      = new \DateTime('23-11-2016');
+        $insurerId = '123-123-123';
+        $dateFrom = new \DateTime('23-11-2015');
+        $dateTo = new \DateTime('23-11-2016');
 
         $insuranceFactory = new InsuranceFactory();
-        $carInsurance     = $insuranceFactory->create($insuranceId, 'AC', $dateFrom, $dateTo, $insurerId);
+        $carInsurance = $insuranceFactory->create($insuranceId, 'AC', $dateFrom, $dateTo, $insurerId);
         $this->addInsurance($carInsurance);
         $this->getInsurances()
              ->shouldContain($carInsurance);
 
         $carInsuranceDocument = new DocumentFactory();
-        $document             = $carInsuranceDocument->create(DocumentFactory::INSURANCE_DOCUMENT,
+        $document = $carInsuranceDocument->create(DocumentFactory::INSURANCE_DOCUMENT,
                                                               'AC-123',
                                                               'AC wrzesień 2015',
                                                               'Uzupełnić o nowe dane.',
@@ -228,18 +226,18 @@ class CarSpec extends ObjectBehavior
     public function it_should_be_possible_to_remove_InsuranceDocument_from_Insurance()
     {
         $insuranceId = '123-123-123';
-        $insurerId   = '123-123-123';
-        $dateFrom    = new \DateTime('23-11-2015');
-        $dateTo      = new \DateTime('23-11-2016');
+        $insurerId = '123-123-123';
+        $dateFrom = new \DateTime('23-11-2015');
+        $dateTo = new \DateTime('23-11-2016');
 
         $insuranceFactory = new InsuranceFactory();
-        $carInsurance     = $insuranceFactory->create($insuranceId, 'AC', $dateFrom, $dateTo, $insurerId);
+        $carInsurance = $insuranceFactory->create($insuranceId, 'AC', $dateFrom, $dateTo, $insurerId);
         $this->addInsurance($carInsurance);
         $this->getInsurances()
              ->shouldContain($carInsurance);
 
         $carInsuranceDocument = new DocumentFactory();
-        $document             = $carInsuranceDocument->create(DocumentFactory::INSURANCE_DOCUMENT,
+        $document = $carInsuranceDocument->create(DocumentFactory::INSURANCE_DOCUMENT,
                                                               'AC-123',
                                                               'AC wrzesień 2015',
                                                               'Uzupełnić o nowe dane.',
@@ -270,14 +268,15 @@ class CarSpec extends ObjectBehavior
     }
 
     /**
-     * @return \Madkom\RegistryApplication\Domain\CarManagement\CarDocument|\Madkom\RegistryApplication\Domain\CarManagement\Insurances\InsuranceDocument
      * @throws \Madkom\RegistryApplication\Domain\CarManagement\CarExceptions\EmptyDocumentTypeException
      * @throws \Madkom\RegistryApplication\Domain\CarManagement\CarExceptions\UnknownDocumentTypeException
+     *
+     * @return \Madkom\RegistryApplication\Domain\CarManagement\CarDocument|\Madkom\RegistryApplication\Domain\CarManagement\Insurances\InsuranceDocument
      */
     private function prepareDocument($docId, $title, $description, $source)
     {
         $carDocument = new DocumentFactory();
-        $document    = $carDocument->create(DocumentFactory::CAR_DOCUMENT,
+        $document = $carDocument->create(DocumentFactory::CAR_DOCUMENT,
                                             $docId,
                                             $title,
                                             $description,

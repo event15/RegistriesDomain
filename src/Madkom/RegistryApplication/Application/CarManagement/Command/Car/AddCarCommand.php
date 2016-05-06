@@ -12,10 +12,9 @@ class AddCarCommand implements CommandInterface
     private $preparedCar;
     private $carRepository;
 
-
     public function __construct(CarRepositoryInterface $carRepository, CarDTO $preparedCar)
     {
-        $this->preparedCar   = $preparedCar;
+        $this->preparedCar = $preparedCar;
         $this->carRepository = $carRepository;
     }
 
