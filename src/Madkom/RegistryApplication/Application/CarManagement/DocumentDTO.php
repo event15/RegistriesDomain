@@ -3,9 +3,8 @@
  * Created by PhpStorm.
  * User: marek
  * Date: 08.12.15
- * Time: 12:50
+ * Time: 12:50.
  */
-
 namespace Madkom\RegistryApplication\Application\CarManagement;
 
 class DocumentDTO
@@ -25,9 +24,9 @@ class DocumentDTO
      */
     public function __construct($docId, $title, $description, $source)
     {
-        $this->docId       = $docId;
-        $this->title       = $title;
+        $this->docId = $docId;
+        $this->title = $title;
         $this->description = $description;
-        $this->source      = $source;
+        $this->source = $source;
     }
 }

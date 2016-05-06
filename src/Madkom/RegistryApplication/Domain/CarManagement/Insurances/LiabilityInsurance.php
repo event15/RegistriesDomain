@@ -11,4 +11,3 @@ class LiabilityInsurance extends Insurance
         return self::INSURANCE_TYPE;
     }
 }
-

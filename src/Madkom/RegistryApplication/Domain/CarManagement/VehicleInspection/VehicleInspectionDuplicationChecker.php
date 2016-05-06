@@ -3,15 +3,12 @@
  * Created by PhpStorm.
  * User: marek
  * Date: 19.11.15
- * Time: 13:06
+ * Time: 13:06.
  */
-
 namespace Madkom\RegistryApplication\Domain\CarManagement\VehicleInspection;
 
 /**
- * Class VehicleInspectionDuplicationChecker
- *
- * @package Madkom\RegistryApplication\Domain\CarManagement\VehicleInspection
+ * Class VehicleInspectionDuplicationChecker.
  */
 class VehicleInspectionDuplicationChecker
 {
@@ -25,7 +22,7 @@ class VehicleInspectionDuplicationChecker
     {
         /** @var VehicleInspection $vehicleInspection */
         foreach ($existingVehicleInspection as $vehicleInspection) {
-            if($newVehicleInspection->getLastInspection() === $vehicleInspection->getLastInspection() ||
+            if ($newVehicleInspection->getLastInspection() === $vehicleInspection->getLastInspection() ||
                $newVehicleInspection->getId()             === $vehicleInspection->getId()
             ) {
                 return true;

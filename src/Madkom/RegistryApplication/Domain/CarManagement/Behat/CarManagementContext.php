@@ -1,20 +1,21 @@
 <?php
+
 namespace Madkom\RegistryApplication\Domain\CarManagement\Behat;
 
 use Behat\Behat\Context\Context;
 use Behat\Gherkin\Node\TableNode;
-use Madkom\RegistryApplication\Application\CarManagement\DocumentDTO;
 use Madkom\RegistryApplication\Application\CarManagement\CarDTO;
 use Madkom\RegistryApplication\Application\CarManagement\Command\Car\AddCarCommand;
+use Madkom\RegistryApplication\Application\CarManagement\Command\Car\AddCarDocumentCommand;
+use Madkom\RegistryApplication\Application\CarManagement\DocumentDTO;
 use Madkom\RegistryApplication\Domain\CarManagement\CarExceptions\CarFoundException;
 use Madkom\RegistryApplication\Domain\CarManagement\CarExceptions\CarNotFoundException;
 use Madkom\RegistryApplication\Domain\CarManagement\CarExceptions\DuplicatedVehicleInspectionException;
-use Madkom\RegistryApplication\Domain\CarManagement\VehicleInspection\VehicleInspection;
-use Madkom\RegistryApplication\Application\CarManagement\Command\Car\AddCarDocumentCommand;
 use Madkom\RegistryApplication\Domain\CarManagement\CarExceptions\InvalidDatesException;
+use Madkom\RegistryApplication\Domain\CarManagement\VehicleInspection\VehicleInspection;
 
 /**
- * Class CarManagementContext
+ * Class CarManagementContext.
  *
  * Defines application features from the specific context.
  */
@@ -22,7 +23,6 @@ class CarManagementContext extends ContextRepositoryInterface implements Context
 {
     /**
      * Initializes context.
-     *
      */
 /*    public function __construct()
     {
@@ -31,6 +31,7 @@ class CarManagementContext extends ContextRepositoryInterface implements Context
 
     /**
      * @When /^mam następujące dane samochodów, chcę je dodać do repozytorium:$/
+     *
      * @param \Behat\Gherkin\Node\TableNode $table
      */
     public function mamNastępujaceDaneSamochodowChceJeDodacDoRepozytorium(TableNode $table)
@@ -85,7 +86,6 @@ class CarManagementContext extends ContextRepositoryInterface implements Context
         try {
             self::$carRepository->find($id);
         } catch (CarNotFoundException $e) {
-
         } catch (CarFoundException $e) {
             throw new CarFoundException('Znaleziono samochód, który nie został dodany do repozytorium.');
         }
@@ -136,16 +136,16 @@ class CarManagementContext extends ContextRepositoryInterface implements Context
 
     /**
      * @Then chciałbym w samochodzie :carId dodać informację o przeglądzie z numerem :inspectionId, w którym data ostatniego to :lastInspection, a data następnego to :upcomingInspection
+     *
      * @throws \Madkom\RegistryApplication\Domain\CarManagement\CarExceptions\InvalidDatesException
      */
-    public function chcialbymWSamochodzieDodacInformacjeOPrzegladzieZNumeremWKtorymDataOstatniegoToADataNastępnegoTo
-(
+    public function chcialbymWSamochodzieDodacInformacjeOPrzegladzieZNumeremWKtorymDataOstatniegoToADataNastępnegoTo(
         $carId,
         $inspectionId,
         $lastInspection,
         $upcomingInspection
     ) {
-        $selectedCar   = self::$carRepository->find($carId);
+        $selectedCar = self::$carRepository->find($carId);
         $newInspection = VehicleInspection::createVehicleInspection($inspectionId,
                                                                     $lastInspection,
                                                                     $upcomingInspection
@@ -153,7 +153,6 @@ class CarManagementContext extends ContextRepositoryInterface implements Context
         try {
             $selectedCar->addVehicleInspection($newInspection);
         } catch (InvalidDatesException $e) {
-
         }
     }
 
@@ -162,7 +161,7 @@ class CarManagementContext extends ContextRepositoryInterface implements Context
      */
     public function chcialbymAbyNieByloMozliweDodanieDwochPrzegladowOTakimSamym($carId, $inspectionId)
     {
-        $selectedCar   = self::$carRepository->find($carId);
+        $selectedCar = self::$carRepository->find($carId);
         $newInspection = VehicleInspection::createVehicleInspection($inspectionId, '2015-12-30', '2016-12-30');
         try {
             $selectedCar->addVehicleInspection($newInspection);
@@ -193,15 +192,14 @@ class CarManagementContext extends ContextRepositoryInterface implements Context
      */
     public function chcialbymUsunacPlikSkanuDowoduRejestracyjnegoZSamochodu($carId, $documentId)
     {
-        $repository  = self::$carRepository;
+        $repository = self::$carRepository;
         $selectedCar = $repository->find($carId);
         $selectedCar->getCarDocument();
 
         try {
             $selectedCar->removeCarDocument($documentId);
-            throw new \InvalidArgumentException;
+            throw new \InvalidArgumentException();
         } catch (\Exception $e) {
-
         }
     }
 
@@ -210,12 +208,13 @@ class CarManagementContext extends ContextRepositoryInterface implements Context
      */
     public function chcialbymAbyNieByloMozliweUsuniecieNieistniejacegoPlikuZSamochodu($carId, $documentId)
     {
-        $repository  = self::$carRepository;
+        $repository = self::$carRepository;
         $selectedCar = $repository->find($carId);
 
         try {
             $selectedCar->removeCarDocument($documentId);
-            throw new \InvalidArgumentException;
-        } catch (\Exception $e) {}
+            throw new \InvalidArgumentException();
+        } catch (\Exception $e) {
+        }
     }
 }

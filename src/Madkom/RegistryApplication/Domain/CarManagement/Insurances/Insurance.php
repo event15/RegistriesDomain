@@ -6,28 +6,26 @@ use Madkom\RegistryApplication\Domain\CarManagement\CarExceptions\InvalidDatesEx
 use Madkom\RegistryApplication\Domain\CarManagement\CarExceptions\NonexistentInsuranceException;
 
 /**
- * Class Insurance
- *
- * @package Madkom\RegistryApplication\Domain\CarManagement\Insurances
+ * Class Insurance.
  */
 class Insurance
 {
-    /** @var  string $insuranceId */
+    /** @var string $insuranceId */
     private $insuranceId;
 
-    /** @var  \DateTime */
+    /** @var \DateTime */
     private $dateFrom;
 
-    /** @var  \DateTime */
+    /** @var \DateTime */
     private $dateTo;
 
-    /** @var  string */
+    /** @var string */
     private $insurerId;
 
-    /** @var  \Madkom\RegistryApplication\Domain\CarManagement\Insurances\InsuranceDocument[] */
+    /** @var \Madkom\RegistryApplication\Domain\CarManagement\Insurances\InsuranceDocument[] */
     private $documents = [];
 
-    /** @var  string */
+    /** @var string */
     private $insuranceCoverage;
 
     /**
@@ -41,16 +39,16 @@ class Insurance
      */
     public function __construct($insuranceId, $dateFrom, $dateTo, $insurerId)
     {
-        $dateChecker    = new InsuranceDateChecker();
+        $dateChecker = new InsuranceDateChecker();
         $isInvalidDates = $dateChecker->checkDates($dateFrom, $dateTo);
 
         if ($isInvalidDates) {
             throw new InvalidDatesException();
         }
 
-        $this->dateFrom    = $dateFrom;
-        $this->dateTo      = $dateTo;
-        $this->insurerId   = $insurerId;
+        $this->dateFrom = $dateFrom;
+        $this->dateTo = $dateTo;
+        $this->insurerId = $insurerId;
         $this->insuranceId = $insuranceId;
     }
 
@@ -63,8 +61,9 @@ class Insurance
     }
 
     /**
-     * @return \Madkom\RegistryApplication\Domain\Insurer\Insurer
      * @throws \Madkom\RegistryApplication\Domain\CarManagement\Insurances\Exceptions\EmptyInsurerException
+     *
+     * @return \Madkom\RegistryApplication\Domain\Insurer\Insurer
      */
     public function getInsurer()
     {
@@ -122,5 +121,4 @@ class Insurance
     {
         $this->insuranceCoverage = $coverage;
     }
-
 }

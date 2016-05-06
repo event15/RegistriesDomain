@@ -3,9 +3,8 @@
  * Created by PhpStorm.
  * User: marek
  * Date: 02.12.15
- * Time: 14:43
+ * Time: 14:43.
  */
-
 namespace Madkom\RegistryApplication\Domain\CarManagement;
 
 interface CarRepositoryInterface
@@ -20,19 +19,21 @@ interface CarRepositoryInterface
     /**
      * @param $carId
      *
-     * @return \Madkom\RegistryApplication\Domain\CarManagement\Car
      * @throws \Madkom\RegistryApplication\Domain\CarManagement\CarExceptions\CarNotFoundException
+     *
+     * @return \Madkom\RegistryApplication\Domain\CarManagement\Car
      */
     public function find($carId);
 
     /**
-     * @return boolean
+     * @return bool
      */
     public function isEmpty();
 
     /**
-     * @return boolean
      * @throws \Madkom\RegistryApplication\Domain\CarManagement\CarExceptions\CarNotFoundException
+     *
+     * @return bool
      */
     public function remove($carId);
 

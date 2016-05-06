@@ -7,9 +7,7 @@ use Madkom\RegistryApplication\Domain\CarManagement\Insurances\Exceptions\EmptyI
 use Madkom\RegistryApplication\Domain\CarManagement\Insurances\Exceptions\UnknownInsuranceTypeException;
 
 /**
- * Class InsuranceFactory
- *
- * @package Madkom\RegistryApplication\Domain\CarManagement\Insurance
+ * Class InsuranceFactory.
  */
 class InsuranceFactory
 {
@@ -19,11 +17,12 @@ class InsuranceFactory
      * @param $dateTo
      * @param $insuranceId
      *
-     * @return \Madkom\RegistryApplication\Domain\CarManagement\Insurances\AccidentInsurance|\Madkom\RegistryApplication\Domain\CarManagement\Insurances\AssistanceInsurance|\Madkom\RegistryApplication\Domain\CarManagement\Insurances\CarInsurance|\Madkom\RegistryApplication\Domain\CarManagement\Insurances\LiabilityInsurance
      * @throws \Madkom\RegistryApplication\Domain\CarManagement\Insurances\Exceptions\EmptyInsuranceDateException
      * @throws \Madkom\RegistryApplication\Domain\CarManagement\Insurances\Exceptions\UnknownInsuranceTypeException
      * @throws \InvalidArgumentException
      * @throws \Madkom\RegistryApplication\Domain\CarManagement\CarExceptions\InvalidDatesException
+     *
+     * @return \Madkom\RegistryApplication\Domain\CarManagement\Insurances\AccidentInsurance|\Madkom\RegistryApplication\Domain\CarManagement\Insurances\AssistanceInsurance|\Madkom\RegistryApplication\Domain\CarManagement\Insurances\CarInsurance|\Madkom\RegistryApplication\Domain\CarManagement\Insurances\LiabilityInsurance
      */
     public function create($insuranceId, $insuranceType, $dateFrom, $dateTo, $insurerId)
     {
@@ -31,7 +30,7 @@ class InsuranceFactory
         $this->hasValidDateFormat($dateFrom, $dateTo);
         $this->isEqualToOneYear($dateFrom, $dateTo);
 
-        switch($insuranceType) {
+        switch ($insuranceType) {
             case CarInsurance::INSURANCE_TYPE:
                 $insurance = new CarInsurance($insuranceId, $dateFrom, $dateTo, $insurerId);
                 break;
@@ -45,7 +44,7 @@ class InsuranceFactory
                 $insurance = new LiabilityInsurance($insuranceId, $dateFrom, $dateTo, $insurerId);
                 break;
             default:
-                throw new UnknownInsuranceTypeException('Unknown insurance type: ' . $insuranceType);
+                throw new UnknownInsuranceTypeException('Unknown insurance type: '.$insuranceType);
                 break;
         }
 
@@ -68,11 +67,12 @@ class InsuranceFactory
     /**
      * @param $dateFrom
      * @param $dateTo
+     *
      * @throws \InvalidArgumentException
      */
     private function hasValidDateFormat($dateFrom, $dateTo)
     {
-        if (! ($dateFrom instanceof \DateTime) or ! ($dateTo instanceof \DateTime)) {
+        if (!($dateFrom instanceof \DateTime) or !($dateTo instanceof \DateTime)) {
             throw new \InvalidArgumentException('The \'date from\' or \'date to\' has not be instance of DateTime class.'
             );
         }
@@ -82,7 +82,7 @@ class InsuranceFactory
     {
         $interval = $dateTo->diff($dateFrom);
 
-        if($interval->days < 365 or $interval->days > 366) {
+        if ($interval->days < 365 or $interval->days > 366) {
             throw new InvalidDatesException('Umowa z ubezpieczeniem może być tylko na rok.');
         }
     }

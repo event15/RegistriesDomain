@@ -4,16 +4,16 @@ namespace Madkom\RegistryApplication\Domain\Insurer;
 
 final class Insurer
 {
-    /** @var  string */
+    /** @var string */
     private $id;
 
-    /** @var  string */
+    /** @var string */
     private $company;
 
-    /** @var  string */
+    /** @var string */
     private $emailToContact;
 
-    /** @var  string */
+    /** @var string */
     private $mobileContact;
 
     /**
@@ -26,10 +26,10 @@ final class Insurer
      */
     public function __construct($id, $company, $emailToContact, $mobileContact)
     {
-        $this->id             = $id;
-        $this->company        = $company;
+        $this->id = $id;
+        $this->company = $company;
         $this->emailToContact = $emailToContact;
-        $this->mobileContact  = $mobileContact;
+        $this->mobileContact = $mobileContact;
     }
 
     /**

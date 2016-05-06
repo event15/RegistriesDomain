@@ -7,9 +7,7 @@ use Madkom\RegistryApplication\Domain\CarManagement\CarExceptions\CarNotFoundExc
 use Madkom\RegistryApplication\Domain\CarManagement\CarRepositoryInterface;
 
 /**
- * Class CarInMemoryRepository
- *
- * @package Madkom\RegistryApplication\Infrastructure\CarManagement
+ * Class CarInMemoryRepository.
  */
 class CarInMemoryRepository implements CarRepositoryInterface
 {
@@ -22,8 +20,8 @@ class CarInMemoryRepository implements CarRepositoryInterface
 
     public function find($carId)
     {
-        if(!array_key_exists($carId, $this->repository)) {
-            throw new CarNotFoundException('Nie znaleziono samochodu o podanym id = ' . $carId);
+        if (!array_key_exists($carId, $this->repository)) {
+            throw new CarNotFoundException('Nie znaleziono samochodu o podanym id = '.$carId);
         }
 
         return $this->repository[$carId];
@@ -31,16 +29,17 @@ class CarInMemoryRepository implements CarRepositoryInterface
 
     public function isEmpty()
     {
-        return (! count($this->repository)) ?: false;
+        return (!count($this->repository)) ?: false;
     }
 
     public function remove($carId)
     {
-        if(!array_key_exists($carId, $this->repository)) {
-            throw new CarNotFoundException('Nie znaleziono samochodu o podanym id = ' . $carId);
+        if (!array_key_exists($carId, $this->repository)) {
+            throw new CarNotFoundException('Nie znaleziono samochodu o podanym id = '.$carId);
         }
 
         unset($this->repository[$carId]);
+
         return 0;
     }
 

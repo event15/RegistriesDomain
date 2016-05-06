@@ -3,26 +3,25 @@
  * Created by PhpStorm.
  * User: marek
  * Date: 10.12.15
- * Time: 10:13
+ * Time: 10:13.
  */
-
 namespace Madkom\RegistryApplication\Application\CarManagement;
 
 class InsuranceDTO
 {
-    /** @var  string */
+    /** @var string */
     public $insuranceId;
 
-    /** @var  string */
+    /** @var string */
     public $insurerId;
 
-    /** @var  \DateTime */
+    /** @var \DateTime */
     public $dateFrom;
 
-    /** @var  \DateTime */
+    /** @var \DateTime */
     public $dateTo;
 
-    /** @var  string */
+    /** @var string */
     public $type;
 
     /**
@@ -35,11 +34,10 @@ class InsuranceDTO
      */
     public function __construct($insuranceId, $type, $dateFrom, $dateTo, $insurerId)
     {
-        $this->insurerId   = $insurerId;
-        $this->dateFrom    = $dateFrom;
-        $this->dateTo      = $dateTo;
-        $this->type        = $type;
+        $this->insurerId = $insurerId;
+        $this->dateFrom = $dateFrom;
+        $this->dateTo = $dateTo;
+        $this->type = $type;
         $this->insuranceId = $insuranceId;
     }
-
 }

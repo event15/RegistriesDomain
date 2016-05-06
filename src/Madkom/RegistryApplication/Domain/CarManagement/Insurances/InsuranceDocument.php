@@ -3,9 +3,8 @@
  * Created by PhpStorm.
  * User: marek
  * Date: 19.11.15
- * Time: 09:37
+ * Time: 09:37.
  */
-
 namespace Madkom\RegistryApplication\Domain\CarManagement\Insurances;
 
 use Madkom\RegistryApplication\Domain\CarManagement\Document;

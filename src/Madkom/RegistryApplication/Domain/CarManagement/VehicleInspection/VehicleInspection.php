@@ -3,22 +3,19 @@
  * Created by PhpStorm.
  * User: marek
  * Date: 19.11.15
- * Time: 09:36
+ * Time: 09:36.
  */
-
 namespace Madkom\RegistryApplication\Domain\CarManagement\VehicleInspection;
-
-use Madkom\RegistryApplication\Domain\CarManagement\CarExceptions\InvalidDatesException;
 
 class VehicleInspection
 {
-    /** @var  string */
+    /** @var string */
     private $id;
 
-    /** @var  \DateTime */
+    /** @var \DateTime */
     private $lastInspection;
 
-    /** @var  \DateTime */
+    /** @var \DateTime */
     private $upcomingInspection;
 
     /**
@@ -30,8 +27,8 @@ class VehicleInspection
      */
     private function __construct($id, $lastInspection, $upcomingInspection)
     {
-        $this->id                 = $id;
-        $this->lastInspection     = $lastInspection;
+        $this->id = $id;
+        $this->lastInspection = $lastInspection;
         $this->upcomingInspection = $upcomingInspection;
     }
 
@@ -40,10 +37,11 @@ class VehicleInspection
      * @param $lastInspection
      * @param $upcomingInspection
      *
-     * @return \Madkom\RegistryApplication\Domain\CarManagement\VehicleInspection\VehicleInspection
      * @throws \Madkom\RegistryApplication\Domain\CarManagement\CarExceptions\InvalidDatesException
+     *
+     * @return \Madkom\RegistryApplication\Domain\CarManagement\VehicleInspection\VehicleInspection
      */
-    public static function createVehicleInspection($id, $lastInspection = 'now', $upcomingInspection)
+    public static function createVehicleInspection($id, $lastInspection, $upcomingInspection)
     {
         return new self(
             $id,

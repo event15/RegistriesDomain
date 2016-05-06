@@ -3,9 +3,7 @@
 namespace Madkom\RegistryApplication\Domain\CarManagement\VehicleInspection;
 
 /**
- * Class VehicleInspectionDateChecker
- *
- * @package Madkom\RegistryApplication\Domain\CarManagement\VehicleInspection
+ * Class VehicleInspectionDateChecker.
  */
 class VehicleInspectionDateChecker
 {

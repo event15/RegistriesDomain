@@ -16,49 +16,49 @@ use Madkom\RegistryApplication\Domain\CarManagement\VehicleInspection\VehicleIns
 
 class Car
 {
-    /** @var  string */
+    /** @var string */
     private $id;
 
-    /** @var  string */
+    /** @var string */
     private $responsiblePerson;
 
-    /** @var  string */
+    /** @var string */
     private $model;
 
-    /** @var  string */
+    /** @var string */
     private $brand;
 
-    /** @var  string */
+    /** @var string */
     private $registrationNumber;
 
-    /** @var  \DateTime */
+    /** @var \DateTime */
     private $productionDate;
 
-    /** @var  \DateTime */
+    /** @var \DateTime */
     private $warrantyPeriod;
 
-    /** @var  string */
+    /** @var string */
     private $fuelType;
 
-    /** @var  string */
+    /** @var string */
     private $engineSize;
 
-    /** @var  string */
+    /** @var string */
     private $gearBox;
 
-    /** @var  string */
+    /** @var string */
     private $city;
 
-    /** @var  string */
+    /** @var string */
     private $department;
 
-    /** @var  Insurance[] */
+    /** @var Insurance[] */
     private $insurances = [];
 
-    /** @var  CarDocument[] */
+    /** @var CarDocument[] */
     private $carDocuments = [];
 
-    /** @var  VehicleInspection[] */
+    /** @var VehicleInspection[] */
     private $vehicleInspection = [];
 
     /**
@@ -84,15 +84,15 @@ class Car
         $city,
         $department
     ) {
-            $this->id                 = $id;
-            $this->responsiblePerson  = $responsiblePerson;
-            $this->model              = $model;
-            $this->brand              = $brand;
-            $this->registrationNumber = $registrationNumber;
-            $this->productionDate     = $productionDate;
-            $this->warrantyPeriod     = $warrantyPeriod;
-            $this->city               = $city;
-            $this->department         = $department;
+        $this->id = $id;
+        $this->responsiblePerson = $responsiblePerson;
+        $this->model = $model;
+        $this->brand = $brand;
+        $this->registrationNumber = $registrationNumber;
+        $this->productionDate = $productionDate;
+        $this->warrantyPeriod = $warrantyPeriod;
+        $this->city = $city;
+        $this->department = $department;
     }
 
     /**
@@ -139,19 +139,18 @@ class Car
         $this->responsiblePerson = $responsiblePerson;
     }
 
-
     public function addVehicleInspection(VehicleInspection $newVehicleInspection)
     {
         $duplicationChecker = new VehicleInspectionDuplicationChecker();
-        $isDuplicated       = $duplicationChecker->checkForDuplicates($this->vehicleInspection, $newVehicleInspection);
-        if($isDuplicated) {
-            throw new DuplicatedVehicleInspectionException;
+        $isDuplicated = $duplicationChecker->checkForDuplicates($this->vehicleInspection, $newVehicleInspection);
+        if ($isDuplicated) {
+            throw new DuplicatedVehicleInspectionException();
         }
 
-        $dateChecker    = new VehicleInspectionDateChecker();
+        $dateChecker = new VehicleInspectionDateChecker();
         $isInvalidDates = $dateChecker->checkDates($newVehicleInspection);
-        if($isInvalidDates) {
-            throw new InvalidDatesException;
+        if ($isInvalidDates) {
+            throw new InvalidDatesException();
         }
 
         $this->vehicleInspection[] = $newVehicleInspection;
@@ -164,10 +163,10 @@ class Car
      */
     public function removeVehicleInspection(VehicleInspection $vehicleInspection)
     { // REFACTOR: przekazywać tylko ID
-        if( ($key = array_search($vehicleInspection, $this->vehicleInspection, true)) !== false) {
+        if (($key = array_search($vehicleInspection, $this->vehicleInspection, true)) !== false) {
             unset($this->vehicleInspection[$key]);
         } else {
-            throw new RemovingNonexistentElementException;
+            throw new RemovingNonexistentElementException();
         }
     }
 
@@ -179,9 +178,9 @@ class Car
     public function addInsurance(Insurance $newInsurance)
     {
         $duplicationChecker = new InsuranceDuplicationChecker();
-        $isDuplicated       = $duplicationChecker->checkForDuplicates($this->insurances, $newInsurance);
-        if($isDuplicated) {
-            throw new DuplicatedInsuranceException;
+        $isDuplicated = $duplicationChecker->checkForDuplicates($this->insurances, $newInsurance);
+        if ($isDuplicated) {
+            throw new DuplicatedInsuranceException();
         }
 
         $this->insurances[] = $newInsurance;
@@ -190,20 +189,22 @@ class Car
     public function removeInsurance($selectedInsuranceId)
     {
         foreach ($this->insurances as $key => $insurance) {
-            if($insurance->getId() === $selectedInsuranceId) {
+            if ($insurance->getId() === $selectedInsuranceId) {
                 unset($this->insurances[$key]);
+
                 return 0;
             }
         }
 
-        throw new \InvalidArgumentException;
+        throw new \InvalidArgumentException();
     }
 
     public function addInsuranceDocument($insuranceId, InsuranceDocument $insuranceDocument)
     {
         foreach ($this->insurances as &$insurance) {
-            if($insurance->getId() === $insuranceId) {
+            if ($insurance->getId() === $insuranceId) {
                 $insurance->addInsuranceDocument($insuranceDocument);
+
                 return 0;
             }
         }
@@ -214,7 +215,7 @@ class Car
     public function getInsuranceDocuments($insuranceId)
     {
         foreach ($this->insurances as $insurance) {
-            if($insurance->getId() === $insuranceId) {
+            if ($insurance->getId() === $insuranceId) {
                 return $insurance->getInsuranceDocuments();
             }
         }
@@ -232,11 +233,12 @@ class Car
         foreach ($this->carDocuments as $key => $document) {
             if ($document->getId() === $carDocumentId) {
                 unset($this->carDocuments[$key]);
+
                 return 0;
             }
         }
 
-        throw new \InvalidArgumentException;
+        throw new \InvalidArgumentException();
     }
 
     public function getCarDocument()
@@ -247,8 +249,9 @@ class Car
     public function removeInsuranceDocument($insuranceId, $documentId)
     {
         foreach ($this->insurances as $insurance) {
-            if($insurance->getId() === $insuranceId) {
+            if ($insurance->getId() === $insuranceId) {
                 $insurance->removeInsuranceDocument($documentId);
+
                 return 0;
             }
         }
