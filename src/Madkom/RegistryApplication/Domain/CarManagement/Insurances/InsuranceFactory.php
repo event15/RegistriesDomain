@@ -53,8 +53,8 @@ class InsuranceFactory
     }
 
     /**
-     * @param $dateFrom
-     * @param $dateTo
+     * @param \DateTime $dateFrom
+     * @param \DateTime $dateTo
      *
      * @throws \Madkom\RegistryApplication\Domain\CarManagement\Insurances\Exceptions\EmptyInsuranceDateException
      */
@@ -66,8 +66,8 @@ class InsuranceFactory
     }
 
     /**
-     * @param $dateFrom
-     * @param $dateTo
+     * @param \DateTime $dateFrom
+     * @param \DateTime $dateTo
      *
      * @throws \InvalidArgumentException
      */
@@ -79,6 +79,10 @@ class InsuranceFactory
         }
     }
 
+    /**
+     * @param \DateTime $dateFrom
+     * @param \DateTime $dateTo
+     */
     private function isEqualToOneYear($dateFrom, $dateTo)
     {
         $interval = $dateTo->diff($dateFrom);
