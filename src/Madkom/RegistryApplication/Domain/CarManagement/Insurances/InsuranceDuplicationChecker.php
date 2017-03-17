@@ -15,7 +15,7 @@ class InsuranceDuplicationChecker
     /**
      * @param \Madkom\RegistryApplication\Domain\CarManagement\Insurances\Insurance $newInsurance
      *
-     * @return true|false
+     * @return boolean
      */
     public function checkForDuplicates(array $existingInsurance, Insurance $newInsurance)
     {

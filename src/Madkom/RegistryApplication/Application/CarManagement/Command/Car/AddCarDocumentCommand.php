@@ -24,10 +24,10 @@ class AddCarDocumentCommand implements CommandInterface
     {
         $document = new DocumentFactory();
         $carDocument = $document->create(DocumentFactory::CAR_DOCUMENT,
-                                         $this->preparedDocument->docId,
-                                         $this->preparedDocument->title,
-                                         $this->preparedDocument->description,
-                                         $this->preparedDocument->source
+                                            $this->preparedDocument->docId,
+                                            $this->preparedDocument->title,
+                                            $this->preparedDocument->description,
+                                            $this->preparedDocument->source
         );
 
         $car = $this->repository->find($this->carId);

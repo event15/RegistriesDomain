@@ -23,7 +23,7 @@ class VehicleInspectionDuplicationChecker
         /** @var VehicleInspection $vehicleInspection */
         foreach ($existingVehicleInspection as $vehicleInspection) {
             if ($newVehicleInspection->getLastInspection() === $vehicleInspection->getLastInspection() ||
-               $newVehicleInspection->getId()             === $vehicleInspection->getId()
+               $newVehicleInspection->getId() === $vehicleInspection->getId()
             ) {
                 return true;
             }

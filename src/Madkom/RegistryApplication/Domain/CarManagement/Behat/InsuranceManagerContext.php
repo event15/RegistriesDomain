@@ -112,9 +112,9 @@ class InsuranceManagerContext extends ContextRepositoryInterface implements Cont
     {
         foreach ($table as $item) {
             $dto = new DocumentDTO($item['fileId'],
-                                   $item['title'],
-                                   $item['description'],
-                                   $item['source']
+                                    $item['title'],
+                                    $item['description'],
+                                    $item['source']
             );
 
             $newInsuranceDocument = new AddInsuranceDocumentCommand(self::$carRepository,

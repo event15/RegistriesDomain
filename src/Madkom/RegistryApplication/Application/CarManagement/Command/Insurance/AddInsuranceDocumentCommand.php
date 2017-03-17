@@ -32,9 +32,9 @@ class AddInsuranceDocumentCommand implements CommandInterface
     {
         $car = $this->repository->find($this->carId);
         $insurance = new InsuranceDocument($this->insuranceId,
-                                           $this->document->title,
-                                           $this->document->description,
-                                           $this->document->source
+                                            $this->document->title,
+                                            $this->document->description,
+                                            $this->document->source
         );
 
         $car->addInsuranceDocument($this->insuranceId, $insurance);

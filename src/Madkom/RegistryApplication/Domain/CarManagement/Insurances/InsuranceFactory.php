@@ -12,17 +12,18 @@ use Madkom\RegistryApplication\Domain\CarManagement\Insurances\Exceptions\Unknow
 class InsuranceFactory
 {
     /**
-     * @param $insuranceType
-     * @param $dateFrom
-     * @param $dateTo
-     * @param $insuranceId
+     * @param string $insuranceType
+     * @param \DateTime $dateFrom
+     * @param \DateTime $dateTo
+     * @param string $insuranceId
+     * @param string $insurerId
      *
      * @throws \Madkom\RegistryApplication\Domain\CarManagement\Insurances\Exceptions\EmptyInsuranceDateException
      * @throws \Madkom\RegistryApplication\Domain\CarManagement\Insurances\Exceptions\UnknownInsuranceTypeException
      * @throws \InvalidArgumentException
      * @throws \Madkom\RegistryApplication\Domain\CarManagement\CarExceptions\InvalidDatesException
      *
-     * @return \Madkom\RegistryApplication\Domain\CarManagement\Insurances\AccidentInsurance|\Madkom\RegistryApplication\Domain\CarManagement\Insurances\AssistanceInsurance|\Madkom\RegistryApplication\Domain\CarManagement\Insurances\CarInsurance|\Madkom\RegistryApplication\Domain\CarManagement\Insurances\LiabilityInsurance
+     * @return Insurance
      */
     public function create($insuranceId, $insuranceType, $dateFrom, $dateTo, $insurerId)
     {

@@ -39,14 +39,14 @@ class CarManagementContext extends ContextRepositoryInterface implements Context
         $car = $table->getHash();
         foreach ($car as $item) {
             $dto = new CarDTO($item['id'],
-                              $item['responsiblePerson'],
-                              $item['model'],
-                              $item['brand'],
-                              $item['registrationNumber'],
-                              $item['productionDate'],
-                              $item['warrantyPeriod'],
-                              $item['city'],
-                              $item['department']
+                                $item['responsiblePerson'],
+                                $item['model'],
+                                $item['brand'],
+                                $item['registrationNumber'],
+                                $item['productionDate'],
+                                $item['warrantyPeriod'],
+                                $item['city'],
+                                $item['department']
             );
 
             $newCar = new AddCarCommand(self::$carRepository, $dto);
@@ -177,9 +177,9 @@ class CarManagementContext extends ContextRepositoryInterface implements Context
         $documents = $table->getHash();
         foreach ($documents as $document) {
             $dto = new DocumentDTO($document['id'],
-                                      $document['source'],
-                                      $document['title'],
-                                      $document['description']
+                                        $document['source'],
+                                        $document['title'],
+                                        $document['description']
             );
 
             $carDocument = new AddCarDocumentCommand(self::$carRepository, $document['carId'], $dto);
