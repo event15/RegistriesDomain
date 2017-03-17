@@ -46,10 +46,10 @@ final class AddInsuranceCommand implements CommandInterface
         $command->car = $command->repository->find($carId);
 
         $command->documentFile = $carInsuranceDocument->create(DocumentFactory::INSURANCE_DOCUMENT,
-                                                               $command->documentDTO->docId,
-                                                               $command->documentDTO->title,
-                                                               $documentDTO->description,
-                                                               $documentDTO->source
+                                                                $command->documentDTO->docId,
+                                                                $command->documentDTO->title,
+                                                                $documentDTO->description,
+                                                                $documentDTO->source
         );
 
         return $command;
@@ -71,10 +71,10 @@ final class AddInsuranceCommand implements CommandInterface
         $insurance = $this->insuranceDTO;
         $insuranceFactory = new InsuranceFactory();
         $newInsurance = $insuranceFactory->create($insurance->insuranceId,
-                                                      $insurance->type,
-                                                      new \DateTime($insurance->dateFrom),
-                                                      new \DateTime($insurance->dateTo),
-                                                      $insurance->insurerId
+                                                        $insurance->type,
+                                                        new \DateTime($insurance->dateFrom),
+                                                        new \DateTime($insurance->dateTo),
+                                                        $insurance->insurerId
         );
 
         $this->car->addInsurance($newInsurance);
